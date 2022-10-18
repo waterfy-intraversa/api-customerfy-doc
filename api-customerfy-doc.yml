@@ -221,7 +221,7 @@ paths:
     parameters: []
   /inquilino:
     get:
-      summary: Your GET endpoint
+      summary: Get Dados Inquilino
       tags: []
       responses:
         '200':
@@ -236,7 +236,7 @@ paths:
       operationId: get-inquilino
   /cliente:
     get:
-      summary: Your GET endpoint
+      summary: Get Dados Cliente
       tags: []
       responses:
         '200':
@@ -248,7 +248,7 @@ paths:
       operationId: get-cliente
   /filtros:
     get:
-      summary: Your GET endpoint
+      summary: Get Campos Pesquisa
       tags: []
       responses:
         '200':
