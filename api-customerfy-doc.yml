@@ -219,6 +219,57 @@ paths:
           description: Created
       operationId: get-utils
     parameters: []
+  /inquilino:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CadastroLigacaoDadosInquilino'
+      operationId: get-inquilino
+  /cliente:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroLigacaoDadosCliente'
+      operationId: get-cliente
+  /filtros:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CamposPesquisaGet'
+          headers: {}
+      operationId: get-filtros
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: tabela
+          description: i_tabela
+        - schema:
+            type: string
+          in: header
+          name: campo
+          description: i_campo
 components:
   schemas:
     CriarLigacaoModel:
@@ -727,16 +778,431 @@ components:
         - observacao
     UtilsModel:
       type: object
+      properties:
+        utils:
+          type: object
+          properties:
+            cidades:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            distritos:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            logradouros:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            grupos:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            tipos_fatura:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            tipos_cobranca:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            situacao_instalacao:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            situacao_cobranca:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            classe_consumo:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            irregularidades:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            tipos_instalacao:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            msg_prevencao_acidentes:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            protecao_hidrometro:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
       x-examples:
         Example 1:
-          produto: ''
-          id: 0
+          utils:
+            cidades:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            distritos:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            logradouros:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            grupos:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            tipos_fatura:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            tipos_cobranca:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            situacao_instalacao:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            situacao_cobranca:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            classe_consumo:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            irregularidades:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            tipos_instalacao:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            msg_prevencao_acidentes:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            protecao_hidrometro:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+      title: ''
+      description: ''
+    CadastroLigacaoDadosInquilino:
+      type: object
       properties:
-        produto:
-          type: string
+        inquilino:
+          type: object
+          properties:
+            id_inquilino:
+              type: string
+            nome_inquilino:
+              type: string
+            data_nascimento:
+              type: string
+            ddd:
+              type: integer
+            telefone:
+              type: string
+            ddd_celular:
+              type: integer
+            celular:
+              type: string
+            email:
+              type: string
+            rg_inquilino:
+              type: string
+            rg_data_expedicao:
+              type: string
+            cpf:
+              type: string
+            cnpj:
+              type: string
+            qt_moradores:
+              type: integer
+            imprime_dados_clinete:
+              type: boolean
+      x-examples:
+        Example 1:
+          inquilino:
+            id_inquilino: id_inquilino
+            nome_inquilino: nome
+            data_nascimento: '20221007'
+            ddd: 11
+            telefone: telefone
+            ddd_celular: 11
+            celular: celular
+            email: email
+            rg_inquilino: rg
+            rg_data_expedicao: '20221007'
+            cpf: cpf
+            cnpj: cnpj
+            qt_moradores: 5
+            imprime_dados_clinete: true
+      title: CadastroLigacaoDadosInquilinoGet
+    CadastroLigacaoDadosCliente:
+      title: CadastroLigacaoDadosCliente
+      x-stoplight:
+        id: om6pap5eshnk8
+      type: object
+      properties:
         id:
-          type: integer
-      required:
-        - id
-      description: Utils blablza
+          type: string
+    CamposPesquisaGet:
+      type: object
+      properties:
+        campos_pesquisa:
+          type: object
+          properties:
+            campos:
+              type: array
+              items:
+                type: object
+                properties:
+                  campo:
+                    type: string
+                  nome:
+                    type: string
+                  tipo_dado_java:
+                    type: string
+                  tabela:
+                    type: string
+                  tabela_cons_padrao:
+                    type: string
+                  campo_cons_padrao:
+                    type: string
+      x-examples:
+        Example 1:
+          campos_pesquisa:
+            campos:
+              - campo: campo
+                nome: nome
+                tipo_dado_java: tipo
+                tabela: tabela
+                tabela_cons_padrao: tabela
+                campo_cons_padrao: campo
   securitySchemes: {}
