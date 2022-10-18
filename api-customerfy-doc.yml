@@ -215,8 +215,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UtilsModel'
-        '201':
-          description: Created
       operationId: get-utils
     parameters: []
   /inquilino:
@@ -229,7 +227,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/CadastroLigacaoDadosInquilino'
             application/xml:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoDadosInquilino'
