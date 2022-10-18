@@ -259,17 +259,22 @@ paths:
                 $ref: '#/components/schemas/CamposPesquisaGet'
           headers: {}
       operationId: get-filtros
-      parameters:
-        - schema:
-            type: string
-          in: header
-          name: tabela
-          description: i_tabela
-        - schema:
-            type: string
-          in: header
-          name: campo
-          description: i_campo
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tabela:
+                  type: string
+                campo:
+                  type: string
+              x-examples:
+                Example 1:
+                  tabela: i_tabela
+                  campo: i_campo
+        description: ''
 components:
   schemas:
     CriarLigacaoModel:
@@ -1164,14 +1169,6 @@ components:
             qt_moradores: 5
             imprime_dados_clinete: true
       title: CadastroLigacaoDadosInquilinoGet
-    CadastroLigacaoDadosCliente:
-      title: CadastroLigacaoDadosCliente
-      x-stoplight:
-        id: om6pap5eshnk8
-      type: object
-      properties:
-        id:
-          type: string
     CamposPesquisaGet:
       type: object
       properties:
@@ -1205,4 +1202,48 @@ components:
                 tabela: tabela
                 tabela_cons_padrao: tabela
                 campo_cons_padrao: campo
+    CadastroLigacaoDadosCliente:
+      type: object
+      properties:
+        id_cliente:
+          type: string
+        nome_cliente:
+          type: string
+        tipo_pessoa:
+          type: string
+        email:
+          type: string
+        dt_nascimento:
+          type: string
+        dt_instalacao:
+          type: string
+        observacao:
+          type: string
+        rg:
+          type: string
+        dt_expedicao_rg:
+          type: string
+        cpf:
+          type: string
+        cnpj:
+          type: string
+        telefone:
+          type: string
+        celular:
+          type: string
+      x-examples:
+        Example 1:
+          id_cliente: id_cliente
+          nome_cliente: nome_cliente
+          tipo_pessoa: tipo_pessoa
+          email: email
+          dt_nascimento: 01/01/1900
+          dt_instalacao: 06/10/2022
+          observacao: observação
+          rg: rg
+          dt_expedicao_rg: 05/10/1915
+          cpf: cpf
+          cnpj: cnpj
+          telefone: '1147941989'
+          celular: '11975058645'
   securitySchemes: {}
