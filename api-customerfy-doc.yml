@@ -1,10 +1,10 @@
 openapi: 3.1.0
 info:
   title: CustomerFy API
-  version: '0.0.2'
+  version: '0.0.1'
   summary: Customerfy API
 servers:
-  - url: ' https://stoplight.io/mocks/intraversa/builder/100252385'
+  - url: 'https://stoplight.io/mocks/intraversa/builder/100252385'
 paths:
   /ligacao:
     parameters: []
@@ -27,6 +27,15 @@ paths:
                   Example 1:
                     status: 200
                     message: Success
+              examples:
+                example-success:
+                  value:
+                    status: 200
+                    message: Sucesso
+                example-error:
+                  value:
+                    status: 400
+                    message: Bad Request
       requestBody:
         content:
           application/json:
