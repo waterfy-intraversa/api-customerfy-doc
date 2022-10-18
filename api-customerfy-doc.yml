@@ -221,7 +221,7 @@ paths:
     parameters: []
   /inquilino:
     get:
-      summary: Get Dados Inquilino
+      summary: Dados Inquilino
       tags: []
       responses:
         '200':
@@ -236,7 +236,7 @@ paths:
       operationId: get-inquilino
   /cliente:
     get:
-      summary: Get Dados Cliente
+      summary: Dados Cliente
       tags: []
       responses:
         '200':
@@ -248,7 +248,7 @@ paths:
       operationId: get-cliente
   /filtros:
     get:
-      summary: Get Campos Pesquisa
+      summary: Campos Pesquisa
       tags: []
       responses:
         '200':
@@ -275,6 +275,35 @@ paths:
                   tabela: i_tabela
                   campo: i_campo
         description: ''
+  /popup:
+    get:
+      summary: Pesquisa PopUp
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PesquisaPopUp'
+      operationId: get-popup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tabela:
+                  type: string
+                coluna:
+                  type: string
+                filtro:
+                  type: string
+              x-examples:
+                Example 1:
+                  tabela: i_tabela
+                  coluna: i_campo
+                  filtro: i_filter
 components:
   schemas:
     CriarLigacaoModel:
@@ -1246,4 +1275,66 @@ components:
           cnpj: cnpj
           telefone: '1147941989'
           celular: '11975058645'
+    PesquisaPopUp:
+      type: object
+      properties:
+        gridvo:
+          type: array
+          items:
+            type: object
+            properties:
+              colunas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    nome:
+                      type: string
+              linhas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    linha:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          linha_query:
+                            type: string
+                    representação:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          dados:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                idStr:
+                                  type: string
+                                descr:
+                                  type: string
+                                flag:
+                                  type: string
+                                tipoRet:
+                                  type: integer
+      x-examples:
+        Example 1:
+          gridvo:
+            - colunas:
+                - nome: column name
+              linhas:
+                - linha:
+                    - linha_query: row
+                  representação:
+                    - dados:
+                        - id: 1
+                          idStr: string
+                          descr: string
+                          flag: string
+                          tipoRet: 1
   securitySchemes: {}
