@@ -4,7 +4,7 @@ info:
   version: '0.0.2'
   summary: Customerfy API
 servers:
-  - url: ' https://stoplight.io/mocks/intraversa/customerfy/100252385'
+  - url: ' https://stoplight.io/mocks/intraversa/builder/100252385'
 paths:
   /ligacao:
     parameters: []
