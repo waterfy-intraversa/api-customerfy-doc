@@ -302,6 +302,30 @@ paths:
                   tabela: i_tabela
                   coluna: i_campo
                   filtro: i_filter
+  /contrato-locacao:
+    get:
+      summary: Contrato Locação
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroLigacaoContratoLocacao'
+      operationId: get-contrato-locacao
+  /list-combos:
+    get:
+      summary: Drop Down lists
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroLigacaoComboBox'
+      operationId: get-list-combos
 components:
   schemas:
     CriarLigacaoModel:
@@ -1335,4 +1359,431 @@ components:
                           descr: string
                           flag: string
                           tipoRet: 1
+    CadastroLigacaoContratoLocacao:
+      type: object
+      properties:
+        contrato_locacao:
+          type: object
+          properties:
+            contrato_locacao_detalhes:
+              type: array
+              items:
+                type: object
+                properties:
+                  cliente:
+                    type: string
+                  contrato:
+                    type: string
+                  status:
+                    type: string
+                  tipo_locacao:
+                    type: string
+                  qt_moradores:
+                    type: integer
+                  data_inicio:
+                    type: string
+                  data_fim:
+                    type: string
+                  data_encerramento:
+                    type: string
+      x-examples:
+        Example 1:
+          contrato_locacao:
+            contrato_locacao_detalhes:
+              - cliente: id_cliente
+                contrato: contrato
+                status: status
+                tipo_locacao: tipo_locação
+                qt_moradores: 5
+                data_inicio: '20221007'
+                data_fim: '20221007'
+                data_encerramento: '20221007'
+    CadastroLigacaoComboBox:
+      type: object
+      x-examples:
+        Example 1:
+          localizacao:
+            zonas_pressao:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            bacias:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            zonas_macro:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            roteiro_entrega:
+              tipo_entregas:
+                dados:
+                  - id: 1
+                    idStr: string
+                    descr: string
+                    flag: string
+                    tipoRet: 1
+          instalacao:
+            tipos_cavalete:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            situacao_cavalete:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            situacao_imovel:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            tipos_calcada:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+          dados_comerciais:
+            fontes_alternativas:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            cliente_especial:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+          complemento:
+            tipos_pavimento:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            tipos_rede:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            padrao_instalacao:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            posicoes_rede:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            tipos_esgotamento:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            fontes_abastecimento:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            diametros_ramal_agua:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            diametros_ramal_esgoto:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            tipos_despejo:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            classificacoes_uso:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            posicoes_rede_esgoto:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            orgao_publico:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+      properties:
+        localizacao:
+          type: object
+          properties:
+            zonas_pressao:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            bacias:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            zonas_macro:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            roteiro_entrega:
+              type: object
+              properties:
+                tipo_entregas:
+                  type: object
+                  properties:
+                    dados:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          idStr:
+                            type: string
+                          descr:
+                            type: string
+                          flag:
+                            type: string
+                          tipoRet:
+                            type: integer
+        instalacao:
+          type: object
+          properties:
+            tipos_cavalete:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            situacao_cavalete:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            situacao_imovel:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            tipos_calcada:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+        dados_comerciais:
+          type: object
+          properties:
+            fontes_alternativas:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            cliente_especial:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+        complemento:
+          type: object
+          properties:
+            tipos_pavimento:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            tipos_rede:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            padrao_instalacao:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            posicoes_rede:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            tipos_esgotamento:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            fontes_abastecimento:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            diametros_ramal_agua:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            diametros_ramal_esgoto:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            tipos_despejo:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            classificacoes_uso:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            posicoes_rede_esgoto:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+            orgao_publico:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
   securitySchemes: {}
