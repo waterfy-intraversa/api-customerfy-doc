@@ -7,7 +7,7 @@ info:
 servers:
   - url: 'https://stoplight.io/mocks/intraversa/builder/100252385'
 paths:
-  /ligacao:
+  /cadastro/ligacao/save:
     parameters: []
     post:
       summary: Criar Ligação
@@ -217,7 +217,7 @@ paths:
                 $ref: '#/components/schemas/UtilsModel'
       operationId: get-utils
     parameters: []
-  /inquilino:
+  /cadastro/ligacao/inquilino:
     get:
       summary: Dados Inquilino
       tags: []
@@ -232,7 +232,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoDadosInquilino'
       operationId: get-inquilino
-  /cliente:
+    parameters: []
+  /cadastro/ligacao/cliente:
     get:
       summary: Dados Cliente
       tags: []
@@ -244,7 +245,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoDadosCliente'
       operationId: get-cliente
-  /filtros:
+    parameters: []
+  /busca/popup/filtros:
     get:
       summary: Campos Pesquisa
       tags: []
@@ -273,7 +275,8 @@ paths:
                   tabela: i_tabela
                   campo: i_campo
         description: ''
-  /popup:
+    parameters: []
+  /busca/popup/busca:
     get:
       summary: Pesquisa PopUp
       tags: []
@@ -302,7 +305,8 @@ paths:
                   tabela: i_tabela
                   coluna: i_campo
                   filtro: i_filter
-  /contrato-locacao:
+    parameters: []
+  /cadastro/ligacao/contrato-locacao:
     get:
       summary: Contrato Locação
       tags: []
@@ -314,7 +318,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoContratoLocacao'
       operationId: get-contrato-locacao
-  /list-combos:
+    parameters: []
+  /cadastro/ligacao/list-combos:
     get:
       summary: Drop Down lists
       tags: []
@@ -326,6 +331,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoComboBox'
       operationId: get-list-combos
+    parameters: []
+  /carrega-menu:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarregaMenus'
+      operationId: get-carrega-menu
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sistema:
+                  type: integer
+              x-examples:
+                Example 1:
+                  sistema: 1
 components:
   schemas:
     CriarLigacaoModel:
@@ -1786,4 +1815,130 @@ components:
                   type: array
                   items:
                     type: object
+    CarregaMenus:
+      type: object
+      properties:
+        id:
+          type: integer
+        ordem:
+          type: integer
+        grupo_tela:
+          type: string
+        col_tela:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              tela:
+                type: string
+              nome_gui:
+                type: string
+              id_grupo_tela:
+                type: integer
+              ordem:
+                type: integer
+              sistema:
+                type: integer
+              ativo:
+                type: boolean
+        col_grupo_tela:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              ordem:
+                type: integer
+              grupo_tela:
+                type: string
+              col_tela:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    tela:
+                      type: string
+                    nome_gui:
+                      type: string
+                    id_grupo_tela:
+                      type: integer
+                    ordem:
+                      type: integer
+                    sistema:
+                      type: integer
+                    ativo:
+                      type: boolean
+              col_grupo_tela:
+                type: array
+                items:
+                  type: object
+                  properties: {}
+              sistema:
+                type: integer
+              id_grupo_tela_pai:
+                type: integer
+              icone:
+                type: string
+              icone_hover:
+                type: string
+              arq_ico:
+                type: string
+              arq_ico_hover:
+                type: string
+        sistema:
+          type: integer
+        id_grupo_tela_pai:
+          type: integer
+        icone:
+          type: string
+        icone_hover:
+          type: string
+        arq_ico:
+          type: string
+        arq_ico_hover:
+          type: string
+      x-examples:
+        Example 1:
+          id: 1
+          ordem: 1
+          grupo_tela: tela
+          col_tela:
+            - id: 1
+              tela: tela
+              nome_gui: nome
+              id_grupo_tela: 1
+              ordem: 1
+              sistema: 1
+              ativo: true
+          col_grupo_tela:
+            - id: 1
+              ordem: 1
+              grupo_tela: tela
+              col_tela:
+                - id: 1
+                  tela: tela
+                  nome_gui: nome
+                  id_grupo_tela: 1
+                  ordem: 1
+                  sistema: 1
+                  ativo: true
+              col_grupo_tela:
+                - {}
+              sistema: 1
+              id_grupo_tela_pai: 1
+              icone: icone
+              icone_hover: icone
+              arq_ico: icone
+              arq_ico_hover: icone
+          sistema: 1
+          id_grupo_tela_pai: 1
+          icone: icone
+          icone_hover: icone
+          arq_ico: icone
+          arq_ico_hover: icone
   securitySchemes: {}
