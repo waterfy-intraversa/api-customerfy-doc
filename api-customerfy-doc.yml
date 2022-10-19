@@ -334,7 +334,7 @@ paths:
     parameters: []
   /carrega-menu:
     get:
-      summary: Your GET endpoint
+      summary: Carrega Menus
       tags: []
       responses:
         '200':
