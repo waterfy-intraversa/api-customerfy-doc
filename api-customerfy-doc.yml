@@ -227,11 +227,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CadastroLigacaoDadosInquilino'
+                $ref: '#/components/schemas/CadastroLigacaoDadosCliente'
             application/xml:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoDadosInquilino'
       operationId: get-inquilino
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_cliente:
+                  type: integer
     parameters: []
   /cadastro/ligacao/cliente:
     get:
@@ -245,6 +253,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoDadosCliente'
       operationId: get-cliente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_cliente:
+                  type: integer
     parameters: []
   /busca/popup/filtros:
     get:
@@ -1221,58 +1237,6 @@ components:
                   tipoRet: 1
       title: ''
       description: ''
-    CadastroLigacaoDadosInquilino:
-      type: object
-      properties:
-        inquilino:
-          type: object
-          properties:
-            id_inquilino:
-              type: string
-            nome_inquilino:
-              type: string
-            data_nascimento:
-              type: string
-            ddd:
-              type: integer
-            telefone:
-              type: string
-            ddd_celular:
-              type: integer
-            celular:
-              type: string
-            email:
-              type: string
-            rg_inquilino:
-              type: string
-            rg_data_expedicao:
-              type: string
-            cpf:
-              type: string
-            cnpj:
-              type: string
-            qt_moradores:
-              type: integer
-            imprime_dados_clinete:
-              type: boolean
-      x-examples:
-        Example 1:
-          inquilino:
-            id_inquilino: id_inquilino
-            nome_inquilino: nome
-            data_nascimento: '20221007'
-            ddd: 11
-            telefone: telefone
-            ddd_celular: 11
-            celular: celular
-            email: email
-            rg_inquilino: rg
-            rg_data_expedicao: '20221007'
-            cpf: cpf
-            cnpj: cnpj
-            qt_moradores: 5
-            imprime_dados_clinete: true
-      title: CadastroLigacaoDadosInquilinoGet
     CamposPesquisaGet:
       type: object
       properties:
@@ -1309,47 +1273,135 @@ components:
     CadastroLigacaoDadosCliente:
       type: object
       properties:
-        id_cliente:
-          type: string
-        nome_cliente:
-          type: string
-        tipo_pessoa:
-          type: string
-        email:
-          type: string
-        dt_nascimento:
-          type: string
-        dt_instalacao:
-          type: string
-        observacao:
-          type: string
-        rg:
-          type: string
-        dt_expedicao_rg:
-          type: string
-        cpf:
-          type: string
-        cnpj:
-          type: string
-        telefone:
-          type: string
-        celular:
-          type: string
+        cliente:
+          type: object
+          properties:
+            alterado:
+              type: boolean
+            novo:
+              type: boolean
+            id_cleinte:
+              type: integer
+            data_nascimento:
+              type: string
+            rg_data_expedicao:
+              type: string
+            id_cidade:
+              type: integer
+            cidade:
+              type: string
+            cliente:
+              type: string
+            tipo_cliente:
+              type: string
+            bairro:
+              type: string
+            logradouro:
+              type: string
+            num_imovel:
+              type: string
+            complemento:
+              type: string
+            rg:
+              type: string
+            cpf:
+              type: string
+            cnpj:
+              type: string
+            telefone:
+              type: string
+            celular:
+              type: string
+            email:
+              type: string
+            observacao:
+              type: string
+            nome_pai:
+              type: string
+            nome_mae:
+              type: string
+            qt_ligacoes:
+              type: integer
+            total_debitos:
+              type: number
+            total_parcelamento:
+              type: number
+            col_ligacao:
+              type: array
+              items:
+                type: object
+                properties:
+                  id_cliente:
+                    type: integer
+                  id_ligacao:
+                    type: integer
+                  endereco:
+                    type: string
+                  nome_inquilino:
+                    type: string
+            id_bairro:
+              type: integer
+            id_logradouro:
+              type: integer
+            id_sexo:
+              type: integer
+            id_usuario_cadastro:
+              type: integer
+            cep:
+              type: integer
+            possui_debito:
+              type: boolean
+            retorno_serasa:
+              type: string
+            rcs:
+              type: string
+            rfc:
+              type: string
+            jubilado:
+              type: boolean
       x-examples:
         Example 1:
-          id_cliente: id_cliente
-          nome_cliente: nome_cliente
-          tipo_pessoa: tipo_pessoa
-          email: email
-          dt_nascimento: 01/01/1900
-          dt_instalacao: 06/10/2022
-          observacao: observação
-          rg: rg
-          dt_expedicao_rg: 05/10/1915
-          cpf: cpf
-          cnpj: cnpj
-          telefone: '1147941989'
-          celular: '11975058645'
+          cliente:
+            alterado: true
+            novo: true
+            id_cleinte: 1
+            data_nascimento: '20221007'
+            rg_data_expedicao: '20221007'
+            id_cidade: 1
+            cidade: string
+            cliente: string
+            tipo_cliente: string
+            bairro: string
+            logradouro: string
+            num_imovel: string
+            complemento: string
+            rg: string
+            cpf: cpf
+            cnpj: cnpj
+            telefone: telefone
+            celular: celular
+            email: email
+            observacao: string
+            nome_pai: string
+            nome_mae: string
+            qt_ligacoes: 2
+            total_debitos: 2.2
+            total_parcelamento: 2.2
+            col_ligacao:
+              - id_cliente: 1
+                id_ligacao: 1
+                endereco: string
+                nome_inquilino: string
+            id_bairro: 1
+            id_logradouro: 1
+            id_sexo: 1
+            id_usuario_cadastro: 1
+            cep: 1
+            possui_debito: true
+            retorno_serasa: string
+            rcs: string
+            rfc: string
+            jubilado: true
     PesquisaPopUp:
       type: object
       properties:
