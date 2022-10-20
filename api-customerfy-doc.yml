@@ -318,6 +318,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoContratoLocacao'
       operationId: get-contrato-locacao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_ligacao:
+                  type: integer
+              x-examples:
+                Example 1:
+                  id_ligacao: 1
+        description: ''
     parameters: []
   /cadastro/ligacao/list-combos:
     get:
@@ -355,6 +367,18 @@ paths:
               x-examples:
                 Example 1:
                   sistema: 1
+  /unidade-negocio:
+    get:
+      summary: Unidade de negócio
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnidadeNegocio'
+      operationId: get-unidade-negocio
 components:
   schemas:
     CriarLigacaoModel:
@@ -1941,4 +1965,54 @@ components:
           icone_hover: icone
           arq_ico: icone
           arq_ico_hover: icone
+    UnidadeNegocio:
+      type: object
+      properties:
+        unidade_negocio:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              unidade_negocio:
+                type: string
+              data_source:
+                type: string
+              data_source_call_center:
+                type: string
+              unidade_operacional:
+                type: string
+              ip_servidor_aplicacao:
+                type: string
+              id_unidade_operacional:
+                type: integer
+              endereco:
+                type: string
+              website:
+                type: string
+              email:
+                type: string
+              horario_funcionamento:
+                type: string
+              telefone:
+                type: string
+              modo_operacao:
+                type: string
+      x-examples:
+        Example 1:
+          unidade_negocio:
+            - id: 1
+              unidade_negocio: string
+              data_source: string
+              data_source_call_center: string
+              unidade_operacional: string
+              ip_servidor_aplicacao: string
+              id_unidade_operacional: 1
+              endereco: string
+              website: string
+              email: string
+              horario_funcionamento: string
+              telefone: string
+              modo_operacao: string
   securitySchemes: {}
