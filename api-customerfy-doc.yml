@@ -228,9 +228,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoDadosCliente'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/CadastroLigacaoDadosInquilino'
       operationId: get-inquilino
       requestBody:
         content:
@@ -395,6 +392,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/UnidadeNegocio'
       operationId: get-unidade-negocio
+  /login:
+    post:
+      summary: ''
+      operationId: post-login
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Login'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuario:
+                  type: string
+                senha:
+                  type: string
+                unidade_negocio:
+                  type: string
 components:
   schemas:
     CriarLigacaoModel:
@@ -562,7 +582,7 @@ components:
       description: Modelo de criação de Ligação
       title: CriarLigacaoModel
       properties:
-        id_instalacao:
+        id_ligacao:
           type: string
         id_cliente:
           type: string
@@ -624,6 +644,11 @@ components:
                   type: string
                 censo:
                   type: integer
+              required:
+                - cidade
+                - distrito
+                - bairro
+                - logradouro
             identificacao:
               type: object
               properties:
@@ -639,6 +664,8 @@ components:
                   type: string
                 cavalete:
                   type: integer
+              required:
+                - grupo
             roteiro_leitura:
               type: object
               properties:
@@ -654,6 +681,8 @@ components:
                   type: integer
                 sub_unidade:
                   type: integer
+              required:
+                - grupo
             roteiro_entrega:
               type: object
               properties:
@@ -689,6 +718,9 @@ components:
                   type: string
                 sub_bairro:
                   type: string
+              required:
+                - grupo
+                - tipo_entrega
         instalacao:
           type: object
           properties:
@@ -718,6 +750,8 @@ components:
               type: number
             tem_piscina:
               type: boolean
+          required:
+            - situacao_imovel
         dados_comerciais:
           type: object
           properties:
@@ -748,6 +782,17 @@ components:
                   type: string
                 economias:
                   type: integer
+                unidade_mensuracao:
+                  type: string
+                base_calculo:
+                  type: number
+                valor_mensuracao:
+                  type: number
+                volume_estimado:
+                  type: number
+              required:
+                - id_categoria
+                - id_sub_categoria
             instalacao_consolidadora:
               type: object
               properties:
@@ -772,10 +817,15 @@ components:
                   type: string
                 id_medidor:
                   type: string
+          required:
+            - tipo_faturamento
+            - situacao_cobranca
+            - classe_consumo
+            - fonte_alternativa
         medicao:
           type: object
           properties:
-            tipo_instalacao:
+            tipo_ligacao:
               type: string
             num_medidor:
               type: string
@@ -822,6 +872,9 @@ components:
                   type: string
                 ponteiros:
                   type: string
+          required:
+            - tipo_ligacao
+            - num_medidor
         complemento:
           type: object
           properties:
@@ -871,6 +924,8 @@ components:
               type: number
             dt_alteracao_situacao:
               type: string
+          required:
+            - fonte_abastecimento
         contrato_locacao:
           type: object
           properties:
@@ -892,15 +947,6 @@ components:
               type: string
             dt_encerramento:
               type: string
-      required:
-        - id_instalacao
-        - id_cliente
-        - nome_cliente
-        - tipo_pessoa
-        - email
-        - dt_nascimento
-        - dt_instalacao
-        - observacao
     UtilsModel:
       type: object
       properties:
@@ -2067,4 +2113,801 @@ components:
               horario_funcionamento: string
               telefone: string
               modo_operacao: string
+    Login:
+      type: object
+      properties:
+        usuario_logado:
+          type: object
+          properties:
+            id:
+              type: integer
+            usuario:
+              type: string
+            cpf:
+              type: string
+            id_grupo_usuario:
+              type: integer
+            id_unidade_operacional_selecionada:
+              type: integer
+            id_unidade_negocio_selecionada:
+              type: integer
+            serv_aplicacoes_selecionado:
+              type: string
+            id_departamento:
+              type: integer
+            id_distrito:
+              type: integer
+            unidade_operacional:
+              type: string
+            departamento:
+              type: string
+            nome_resumido:
+              type: string
+            nome_usuario:
+              type: string
+            ativo:
+              type: string
+            validar_ip:
+              type: string
+            validar_depto:
+              type: string
+            usuario_interno:
+              type: string
+            bloqueado:
+              type: string
+            permitir_login_simultaneo:
+              type: string
+            num_tentativas_erradas:
+              type: integer
+            dt_alteracao_senha:
+              type: string
+            senha:
+              type: string
+            senha1:
+              type: string
+            senha2:
+              type: string
+            email:
+              type: string
+            grupo_usuario_vo:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  grupo_usuario:
+                    type: string
+                  id_unidade_negocio_selecionada:
+                    type: integer
+                  telas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        tela:
+                          type: string
+                        nome_gui:
+                          type: string
+                        id_grupo_tela:
+                          type: integer
+                        ordem:
+                          type: integer
+                        sistema:
+                          type: integer
+                        ativo:
+                          type: boolean
+                  telas_funcoes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        tela_funcao:
+                          type: string
+                  formularios_padrao:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        descricao:
+                          type: string
+                        titulo:
+                          type: string
+                        tabela:
+                          type: string
+                        incluir:
+                          type: string
+                        consultar:
+                          type: string
+                        imprimir:
+                          type: string
+                        ajuda:
+                          type: string
+                  macros:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        id_macro_categoria:
+                          type: integer
+                        macro:
+                          type: string
+                        id_macro:
+                          type: integer
+                        tipo_macro:
+                          type: integer
+                        unidade_negocio:
+                          type: string
+                        macro_sql:
+                          type: string
+                        link:
+                          type: string
+                        macro_sql_refatorado:
+                          type: string
+                        macro_layout:
+                          type: string
+                        macro_sub_layout:
+                          type: string
+                        titulo:
+                          type: string
+                        type:
+                          type: string
+                        arquivo_relatorio:
+                          type: string
+                        arquivo_sub_relatorio:
+                          type: string
+                        parametro:
+                          type: string
+                        delimitador_campo_text:
+                          type: string
+                        separador_campo:
+                          type: string
+                        new_row:
+                          type: string
+                        nome_arquivo:
+                          type: string
+                        extensao_arquivo:
+                          type: string
+                        enconding_arquivo:
+                          type: string
+                        resumo:
+                          type: string
+                        informacoes:
+                          type: string
+                        sem_cabecalho:
+                          type: boolean
+                        id_usuario:
+                          type: integer
+                        id_unidade_operacional:
+                          type: integer
+                        usuario:
+                          type: string
+                        id_unidade_negocio:
+                          type: integer
+                        objects:
+                          type: string
+                        params:
+                          type: string
+                        horario_execucao_macro_vos:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              id_macro:
+                                type: integer
+                              id_dia_semana:
+                                type: integer
+                              hora_inicio:
+                                type: string
+                              hora_termino:
+                                type: string
+                              dia_semana:
+                                type: string
+                        macro_categoria:
+                          type: string
+                        logar_execucao:
+                          type: boolean
+                        id_cidade:
+                          type: integer
+                        map_id:
+                          type: string
+                        result:
+                          type: string
+                        tags:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              tipo_tag:
+                                type: string
+                              titulo_macro:
+                                type: string
+                              arquivo_relatorio:
+                                type: string
+                              arquivo_sub_relatorio:
+                                type: string
+                              legenda:
+                                type: string
+                              campo:
+                                type: string
+                              tamanho_maximo:
+                                type: integer
+                              tool_tip_text:
+                                type: string
+                              tabela:
+                                type: string
+                              valor_padrao:
+                                type: string
+                              validacao:
+                                type: string
+                              texto_validacao:
+                                type: string
+                              campo_chave:
+                                type: string
+                              campo_exibicao:
+                                type: string
+                              selecionado:
+                                type: string
+                              chave_primaria:
+                                type: string
+                              cor_fremte:
+                                type: string
+                              cor_fundo:
+                                type: string
+                              resultado:
+                                type: string
+                              resultado_parametro:
+                                type: string
+                              id_operacao:
+                                type: string
+                              campo_ordenacao:
+                                type: string
+                              condicao:
+                                type: string
+                              campo_aninhado:
+                                type: string
+                              campo_fornecido:
+                                type: string
+                              item_combo:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    idStr:
+                                      type: string
+                                    descr:
+                                      type: string
+                                    flag:
+                                      type: string
+                                    tipoRet:
+                                      type: integer
+                                    combo_aninhado:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          id:
+                                            type: integer
+                                          idStr:
+                                            type: string
+                                          descr:
+                                            type: string
+                                          flag:
+                                            type: string
+                                          tipoRet:
+                                            type: integer
+                                          combo_aninhado:
+                                            type: array
+                                            items:
+                                              type: object
+                                              properties: {}
+                  permissao_grupo_usuario_servicos:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        id_grupo_usuario:
+                          type: integer
+                        id_servico:
+                          type: integer
+                        servico:
+                          type: string
+                        grupo_pode_cadastrar:
+                          type: string
+                        ativo:
+                          type: string
+                        grupo_pode_imprimir:
+                          type: string
+                        grupo_pode_baixar:
+                          type: string
+            permissao_usuario_depto_vo:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  id_usuario:
+                    type: integer
+                  id_depto:
+                    type: integer
+                  departamento:
+                    type: string
+            permissao_usuario_ip_vo:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  id_usuario:
+                    type: integer
+                  ip:
+                    type: string
+            id_unidade_operacional:
+              type: integer
+            perfil_tef_vo:
+              type: object
+              properties:
+                id:
+                  type: integer
+                caminho_arquivo_jar:
+                  type: string
+                descricao:
+                  type: string
+                codigo_transacao_pagamento:
+                  type: integer
+                codigo_transacao_cancelamento:
+                  type: integer
+                codigo_transacao_reimpressao:
+                  type: integer
+                codigo_transacao_contingencia:
+                  type: integer
+                ip_servidor:
+                  type: string
+                caminho_arquivo_identificador_terminal:
+                  type: string
+                codigo_loja:
+                  type: string
+                emitir_comprovante_caixa:
+                  type: string
+                homologacao:
+                  type: string
+                debug_mode:
+                  type: string
+                parametros_tef:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      id_cidade:
+                        type: integer
+                      id_unidade_operacional:
+                        type: integer
+                      id_perfil_tef:
+                        type: integer
+                      path_arquivo_conciliacao:
+                        type: string
+                      id_arrecadador_tef:
+                        type: integer
+                      valor_minimo:
+                        type: number
+                      tipo_comprovante:
+                        type: string
+            unidade_negocio_atual:
+              type: object
+              properties:
+                id:
+                  type: integer
+                unidade_negocio:
+                  type: string
+                data_source:
+                  type: string
+                data_source_call_center:
+                  type: string
+                unidade_operacional:
+                  type: string
+                ip_servidor_aplicacao:
+                  type: string
+                id_unidade_operacional:
+                  type: integer
+                endereco:
+                  type: string
+                website:
+                  type: string
+                email:
+                  type: string
+                horario_funcionamento:
+                  type: string
+                telefone:
+                  type: string
+                modo_operacao:
+                  type: string
+            ip_acesso:
+              type: string
+            sistema_logado:
+              type: integer
+            id_cidade_departamento:
+              type: integer
+            telas_sistema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  ordem:
+                    type: integer
+                  grupo_tela:
+                    type: string
+                  col_tela:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        tela:
+                          type: string
+                        nome_gui:
+                          type: string
+                        id_grupo_tela:
+                          type: integer
+                        ordem:
+                          type: integer
+                        sistema:
+                          type: integer
+                        ativo:
+                          type: boolean
+                  col_grupo_tela:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        ordem:
+                          type: integer
+                        grupo_tela:
+                          type: string
+                        col_tela:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              tela:
+                                type: string
+                              nome_gui:
+                                type: string
+                              id_grupo_tela:
+                                type: integer
+                              ordem:
+                                type: integer
+                              sistema:
+                                type: integer
+                              ativo:
+                                type: boolean
+                        col_grupo_tela:
+                          type: array
+                          items:
+                            type: object
+                            properties: {}
+                        sistema:
+                          type: integer
+                        id_grupo_tela_pai:
+                          type: integer
+                        icone:
+                          type: string
+                        icone_hover:
+                          type: string
+                        arq_ico:
+                          type: string
+                        arq_ico_hover:
+                          type: string
+                  sistema:
+                    type: integer
+                  id_grupo_tela_pai:
+                    type: integer
+                  icone:
+                    type: string
+                  icone_hover:
+                    type: string
+                  arq_ico:
+                    type: string
+                  arq_ico_hover:
+                    type: string
+            san_locked:
+              type: boolean
+            cidades:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  cidade:
+                    type: string
+            data_source:
+              type: string
+            db_dialect:
+              type: integer
+            id_leiturista:
+              type: integer
+            id_idioma:
+              type: integer
+            id_equipe:
+              type: integer
+            id_arrecadador:
+              type: integer
+            country_code:
+              type: string
+            language_code:
+              type: string
+            laguage_tag:
+              type: string
+      x-examples:
+        Example 1:
+          usuario_logado:
+            id: 1
+            usuario: string
+            cpf: string
+            id_grupo_usuario: 1
+            id_unidade_operacional_selecionada: 1
+            id_unidade_negocio_selecionada: 1
+            serv_aplicacoes_selecionado: string
+            id_departamento: 1
+            id_distrito: 1
+            unidade_operacional: string
+            departamento: string
+            nome_resumido: string
+            nome_usuario: string
+            ativo: string
+            validar_ip: string
+            validar_depto: string
+            usuario_interno: string
+            bloqueado: string
+            permitir_login_simultaneo: string
+            num_tentativas_erradas: 1
+            dt_alteracao_senha: string
+            senha: string
+            senha1: string
+            senha2: string
+            email: string
+            grupo_usuario_vo:
+              - id: 1
+                grupo_usuario: string
+                id_unidade_negocio_selecionada: 1
+                telas:
+                  - id: 1
+                    tela: string
+                    nome_gui: string
+                    id_grupo_tela: 1
+                    ordem: 1
+                    sistema: 1
+                    ativo: true
+                telas_funcoes:
+                  - id: 1
+                    tela_funcao: string
+                formularios_padrao:
+                  - id: 1
+                    descricao: string
+                    titulo: string
+                    tabela: string
+                    incluir: string
+                    consultar: string
+                    imprimir: string
+                    ajuda: string
+                macros:
+                  - id: 1
+                    id_macro_categoria: 1
+                    macro: string
+                    id_macro: 1
+                    tipo_macro: 1
+                    unidade_negocio: string
+                    macro_sql: string
+                    link: string
+                    macro_sql_refatorado: string
+                    macro_layout: string
+                    macro_sub_layout: string
+                    titulo: string
+                    type: string
+                    arquivo_relatorio: string
+                    arquivo_sub_relatorio: string
+                    parametro: string
+                    delimitador_campo_text: string
+                    separador_campo: string
+                    new_row: string
+                    nome_arquivo: string
+                    extensao_arquivo: string
+                    enconding_arquivo: string
+                    resumo: string
+                    informacoes: string
+                    sem_cabecalho: true
+                    id_usuario: 1
+                    id_unidade_operacional: 1
+                    usuario: string
+                    id_unidade_negocio: 1
+                    objects: '?????????'
+                    params: '???????'
+                    horario_execucao_macro_vos:
+                      - id: 1
+                        id_macro: 1
+                        id_dia_semana: 1
+                        hora_inicio: string
+                        hora_termino: string
+                        dia_semana: string
+                    macro_categoria: string
+                    logar_execucao: true
+                    id_cidade: 1
+                    map_id: string
+                    result: string
+                    tags:
+                      - tipo_tag: string
+                        titulo_macro: string
+                        arquivo_relatorio: string
+                        arquivo_sub_relatorio: string
+                        legenda: string
+                        campo: string
+                        tamanho_maximo: 1
+                        tool_tip_text: string
+                        tabela: string
+                        valor_padrao: string
+                        validacao: string
+                        texto_validacao: string
+                        campo_chave: string
+                        campo_exibicao: string
+                        selecionado: string
+                        chave_primaria: string
+                        cor_fremte: string
+                        cor_fundo: string
+                        resultado: string
+                        resultado_parametro: string
+                        id_operacao: string
+                        campo_ordenacao: string
+                        condicao: string
+                        campo_aninhado: string
+                        campo_fornecido: string
+                        item_combo:
+                          - id: 1
+                            idStr: string
+                            descr: string
+                            flag: string
+                            tipoRet: 1
+                            combo_aninhado:
+                              - id: 1
+                                idStr: string
+                                descr: string
+                                flag: string
+                                tipoRet: 1
+                                combo_aninhado:
+                                  - {}
+                permissao_grupo_usuario_servicos:
+                  - id: 1
+                    id_grupo_usuario: 1
+                    id_servico: 1
+                    servico: string
+                    grupo_pode_cadastrar: string
+                    ativo: string
+                    grupo_pode_imprimir: string
+                    grupo_pode_baixar: string
+            permissao_usuario_depto_vo:
+              - id: 1
+                id_usuario: 1
+                id_depto: 1
+                departamento: string
+            permissao_usuario_ip_vo:
+              - id: 1
+                id_usuario: 1
+                ip: string
+            id_unidade_operacional: 1
+            perfil_tef_vo:
+              id: 1
+              caminho_arquivo_jar: string
+              descricao: string
+              codigo_transacao_pagamento: 1
+              codigo_transacao_cancelamento: 1
+              codigo_transacao_reimpressao: 1
+              codigo_transacao_contingencia: 1
+              ip_servidor: string
+              caminho_arquivo_identificador_terminal: string
+              codigo_loja: string
+              emitir_comprovante_caixa: string
+              homologacao: string
+              debug_mode: string
+              parametros_tef:
+                - id: 1
+                  id_cidade: 1
+                  id_unidade_operacional: 1
+                  id_perfil_tef: 1
+                  path_arquivo_conciliacao: string
+                  id_arrecadador_tef: 1
+                  valor_minimo: 2.2
+                  tipo_comprovante: string
+            unidade_negocio_atual:
+              id: 1
+              unidade_negocio: string
+              data_source: string
+              data_source_call_center: string
+              unidade_operacional: string
+              ip_servidor_aplicacao: string
+              id_unidade_operacional: 1
+              endereco: string
+              website: string
+              email: string
+              horario_funcionamento: string
+              telefone: string
+              modo_operacao: string
+            ip_acesso: string
+            sistema_logado: 1
+            id_cidade_departamento: 1
+            telas_sistema:
+              - id: 1
+                ordem: 1
+                grupo_tela: tela
+                col_tela:
+                  - id: 1
+                    tela: tela
+                    nome_gui: nome
+                    id_grupo_tela: 1
+                    ordem: 1
+                    sistema: 1
+                    ativo: true
+                col_grupo_tela:
+                  - id: 1
+                    ordem: 1
+                    grupo_tela: tela
+                    col_tela:
+                      - id: 1
+                        tela: tela
+                        nome_gui: nome
+                        id_grupo_tela: 1
+                        ordem: 1
+                        sistema: 1
+                        ativo: true
+                    col_grupo_tela:
+                      - {}
+                    sistema: 1
+                    id_grupo_tela_pai: 1
+                    icone: icone
+                    icone_hover: icone
+                    arq_ico: icone
+                    arq_ico_hover: icone
+                sistema: 1
+                id_grupo_tela_pai: 1
+                icone: icone
+                icone_hover: icone
+                arq_ico: icone
+                arq_ico_hover: icone
+            san_locked: true
+            cidades:
+              - id: 1
+                cidade: string
+            data_source: string
+            db_dialect: 1
+            id_leiturista: 1
+            id_idioma: 1
+            id_equipe: 1
+            id_arrecadador: 1
+            country_code: string
+            language_code: string
+            laguage_tag: string
   securitySchemes: {}
+x-extension-1: null
