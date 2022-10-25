@@ -522,25 +522,25 @@ components:
             instalacao:
               type: object
               properties:
-                cidade:
+                id_cidade:
                   type: integer
-                distrito:
+                id_distrito:
                   type: integer
-                bairro:
+                id_bairro:
                   type: integer
-                sub_bairro:
+                id_sub_bairro:
                   type: integer
-                logradouro:
+                id_logradouro:
                   type: integer
                 cep:
                   type: string
                 numero:
                   type: integer
-                zona_pressao:
+                id_zona_pressao:
                   type: integer
                 bacia:
                   type: integer
-                zona_macro:
+                id_zona_macro:
                   type: integer
                 quadra:
                   type: string
@@ -553,26 +553,26 @@ components:
             identificacao:
               type: object
               properties:
-                grupo:
+                id_grupo:
                   type: integer
-                setor:
+                id_setor:
                   type: integer
-                rota:
+                id_rota:
                   type: integer
                 quadra:
                   type: string
                 lote:
                   type: string
-                cavalete:
+                id_cavalete:
                   type: integer
             roteiro_leitura:
               type: object
               properties:
-                grupo:
+                id_grupo:
                   type: integer
-                setor:
+                id_setor:
                   type: integer
-                roteiro:
+                id_roteiro:
                   type: integer
                 quadra:
                   type: integer
@@ -583,11 +583,11 @@ components:
             roteiro_entrega:
               type: object
               properties:
-                grupo:
+                id_grupo:
                   type: integer
-                setor:
+                id_setor:
                   type: integer
-                roteiro:
+                id_roteiro:
                   type: integer
                 quadra:
                   type: integer
@@ -599,7 +599,7 @@ components:
                   type: string
                 estado_uf:
                   type: string
-                tipo_entrega:
+                id_tipo_entrega:
                   type: integer
                 instalacao:
                   type: string
@@ -622,21 +622,21 @@ components:
               type: string
             observacao_imovel:
               type: string
-            tipo_cavalete:
+            id_tipo_cavalete:
               type: integer
-            situacao_cavalete:
+            id_situacao_cavalete:
               type: integer
             observacao_cavalete:
               type: string
-            situacao_imovel:
+            id_situacao_imovel:
               type: integer
             dt_instalacao_agua:
               type: string
             dt_instalacao_esgoto:
               type: string
-            caracteristica:
+            id_caracteristica:
               type: integer
-            tipo_calcada:
+            id_tipo_calcada:
               type: integer
             num_quartos:
               type: integer
@@ -647,21 +647,21 @@ components:
         dados_comerciais:
           type: object
           properties:
-            tipo_faturamento:
+            id_tipo_faturamento:
               type: integer
-            tipo_cobranca:
+            id_tipo_cobranca:
               type: integer
-            situacao_instlacao:
+            id_situacao_instlacao:
               type: integer
-            situacao_cobranca:
+            id_situacao_cobranca:
               type: integer
-            classe_consumo:
+            id_classe_consumo:
               type: integer
-            irregularidade:
+            id_irregularidade:
               type: integer
             pago_anual_ativo:
               type: boolean
-            fonte_alternativa:
+            id_fonte_alternativa:
               type: integer
             cliente_especial:
               type: string
@@ -733,7 +733,7 @@ components:
         medicao:
           type: object
           properties:
-            tipo_instalacao:
+            id_tipo_instalacao:
               type: integer
             num_medidor:
               type: string
@@ -745,19 +745,19 @@ components:
               type: string
             num_lacre_medidor:
               type: string
-            msg_prevencao_acidentes:
+            id_msg_prevencao_acidentes:
               type: integer
             dt_validade_mensagem:
               type: string
-            msg_prevencao_acidentes_2:
+            id_msg_prevencao_acidentes_2:
               type: integer
             dt_validade_mensagem_2:
               type: string
-            msg_prevencao_acidentes_3:
+            id_msg_prevencao_acidentes_3:
               type: integer
             dt_validade_mensagem_3:
               type: string
-            protecao_hidrometro:
+            id_protecao_hidrometro:
               type: integer
             anti-fraude:
               type: boolean
@@ -783,17 +783,17 @@ components:
         complemento:
           type: object
           properties:
-            tipo_pavimento:
+            id_tipo_pavimento:
               type: integer
-            tipo_rede:
+            id_tipo_rede:
               type: integer
-            tipo_instalacao:
+            id_tipo_instalacao:
               type: integer
-            posicao_rede:
+            id_posicao_rede:
               type: integer
-            tipo_esgotamento:
+            id_tipo_esgotamento:
               type: integer
-            fonte_abastecimento:
+            id_fonte_abastecimento:
               type: integer
             tem_poco:
               type: boolean
@@ -807,9 +807,9 @@ components:
               type: string
             area_construida:
               type: number
-            tipo_despejo:
+            id_tipo_despejo:
               type: integer
-            classificacao_uso:
+            id_classificacao_uso:
               type: integer
             latitude:
               type: number
@@ -819,9 +819,9 @@ components:
               type: number
             ligacao_temp:
               type: boolean
-            posicao_rede_esgoto:
+            id_posicao_rede_esgoto:
               type: integer
-            orgao_publico:
+            id_orgao_publico:
               type: integer
             distancia_ramal_agua:
               type: number
@@ -900,44 +900,44 @@ components:
             jubilado: true
           localizacao:
             instalacao:
-              cidade: 1
-              distrito: 1
-              bairro: 1
-              sub_bairro: 1
-              logradouro: 1
+              id_cidade: 1
+              id_distrito: 1
+              id_bairro: 1
+              id_sub_bairro: 1
+              id_logradouro: 1
               cep: cep
               numero: 1
-              zona_pressao: 1
+              id_zona_pressao: 1
               bacia: 1
-              zona_macro: 1
+              id_zona_macro: 1
               quadra: quadra
               lote: lote
               inscricao: inscricao
               censo: 10
             identificacao:
-              grupo: 1
-              setor: 1
-              rota: 1
+              id_grupo: 1
+              id_setor: 1
+              id_rota: 1
               quadra: quadra
               lote: lote
-              cavalete: 1
+              id_cavalete: 1
             roteiro_leitura:
-              grupo: 1
-              setor: 1
-              roteiro: 1
+              id_grupo: 1
+              id_setor: 1
+              id_roteiro: 1
               quadra: 1
               sequencia: 1
               sub_unidade: 1
             roteiro_entrega:
-              grupo: 1
-              setor: 1
-              roteiro: 1
+              id_grupo: 1
+              id_setor: 1
+              id_roteiro: 1
               quadra: 1
               sequencia: 1
               sub_unidade: 1
               cidade: id_cidade
               estado_uf: id_uf
-              tipo_entrega: 1
+              id_tipo_entrega: 1
               instalacao: id_ligacao
               logradouro: id_logradouro
               complemento: complementoo
@@ -948,26 +948,26 @@ components:
           detalhes_instalacao:
             complemento: complementoo
             observacao_imovel: observacao
-            tipo_cavalete: 1
-            situacao_cavalete: 1
+            id_tipo_cavalete: 1
+            id_situacao_cavalete: 1
             observacao_cavalete: observacao
-            situacao_imovel: 1
+            id_situacao_imovel: 1
             dt_instalacao_agua: '20221007'
             dt_instalacao_esgoto: '20221007'
-            caracteristica: 1
-            tipo_calcada: 1
+            id_caracteristica: 1
+            id_tipo_calcada: 1
             num_quartos: 1
             volume_piscina: 1.1
             tem_piscina: true
           dados_comerciais:
-            tipo_faturamento: 1
-            tipo_cobranca: 1
-            situacao_instlacao: 1
-            situacao_cobranca: 1
-            classe_consumo: 1
-            irregularidade: 1
+            id_tipo_faturamento: 1
+            id_tipo_cobranca: 1
+            id_situacao_instlacao: 1
+            id_situacao_cobranca: 1
+            id_classe_consumo: 1
+            id_irregularidade: 1
             pago_anual_ativo: true
-            fonte_alternativa: 1
+            id_fonte_alternativa: 1
             cliente_especial: id_tipo
             categoria:
               - id_categoria: 1
@@ -1000,19 +1000,19 @@ components:
               id_cliente: id_cliente
               id_medidor: id_medidor
           medicao:
-            tipo_instalacao: 1
+            id_tipo_instalacao: 1
             num_medidor: id_medidor
             dt_aquisicao: '20221007'
             ano_fabricacao: ano
             situacao_medidor: situação
             num_lacre_medidor: id_lacre
-            msg_prevencao_acidentes: 1
+            id_msg_prevencao_acidentes: 1
             dt_validade_mensagem: '20221007'
-            msg_prevencao_acidentes_2: 1
+            id_msg_prevencao_acidentes_2: 1
             dt_validade_mensagem_2: '20221007'
-            msg_prevencao_acidentes_3: 1
+            id_msg_prevencao_acidentes_3: 1
             dt_validade_mensagem_3: '20221007'
-            protecao_hidrometro: 1
+            id_protecao_hidrometro: 1
             anti-fraude: false
             tem_lacre: false
             dados_medidor:
@@ -1024,26 +1024,26 @@ components:
               classe_metrologia: metrologia
               ponteiros: ponteiros
           complemento:
-            tipo_pavimento: 1
-            tipo_rede: 1
-            tipo_instalacao: 1
-            posicao_rede: 1
-            tipo_esgotamento: 1
-            fonte_abastecimento: 1
+            id_tipo_pavimento: 1
+            id_tipo_rede: 1
+            id_tipo_instalacao: 1
+            id_posicao_rede: 1
+            id_tipo_esgotamento: 1
+            id_fonte_abastecimento: 1
             tem_poco: true
             capacidade_reservatorio: 2.2
             reservatorio: 1
             diametro_ramal_agua: id_diametro
             diametro_ramal_esgoto: id_diametro
             area_construida: 3.3
-            tipo_despejo: 1
-            classificacao_uso: 1
+            id_tipo_despejo: 1
+            id_classificacao_uso: 1
             latitude: 2.2
             longitude: 2.2
             area_verde: 2.2
             ligacao_temp: true
-            posicao_rede_esgoto: 1
-            orgao_publico: 1
+            id_posicao_rede_esgoto: 1
+            id_orgao_publico: 1
             distancia_ramal_agua: 2.2
             distancia_ramal_esgoto: 2.2
             dt_alteracao_situacao: '20221007'
@@ -2402,10 +2402,6 @@ components:
                           type: string
                         id_unidade_negocio:
                           type: integer
-                        objects:
-                          type: string
-                        params:
-                          type: string
                         horario_execucao_macro_vos:
                           type: array
                           items:
@@ -2855,8 +2851,6 @@ components:
                     id_unidade_operacional: 1
                     usuario: string
                     id_unidade_negocio: 1
-                    objects: '?????????'
-                    params: '???????'
                     horario_execucao_macro_vos:
                       - id: 1
                         id_macro: 1
