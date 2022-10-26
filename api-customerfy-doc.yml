@@ -415,6 +415,26 @@ paths:
                   type: string
                 unidade_negocio:
                   type: string
+  /cadastro/ligacao/documento:
+    get:
+      summary: Busca Documentos
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentosModel'
+      operationId: get-cadastro-ligacao-documento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_ligacao:
+                  type: integer
 components:
   schemas:
     CriarLigacaoModel:
@@ -3013,5 +3033,85 @@ components:
             country_code: string
             language_code: string
             laguage_tag: string
+    DocumentosModel:
+      type: object
+      properties:
+        id_ligacao:
+          type: integer
+        cliente:
+          type: string
+        endereco:
+          type: string
+        id_cidade:
+          type: integer
+        documentos:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              id_documento_tipo:
+                type: integer
+              id_documento_motivo:
+                type: integer
+              id_documento_gs:
+                type: string
+              largura:
+                type: integer
+              altura:
+                type: integer
+              nome_arquivo:
+                type: string
+              arquivo:
+                type: string
+              documento_tipo:
+                type: string
+              documento_motivo:
+                type: string
+              imagem:
+                type: boolean
+              pdf:
+                type: boolean
+              arq_base64:
+                type: string
+              id_ocorrencia_leitura:
+                type: integer
+              ocorrencia_leitura:
+                type: string
+              observacao:
+                type: string
+              id_periodo:
+                type: integer
+              id_ocorrencia:
+                type: integer
+              path:
+                type: string
+      x-examples:
+        Example 1:
+          id_ligacao: 1
+          cliente: string
+          endereco: string
+          id_cidade: 1
+          documentos:
+            - id: 1
+              id_documento_tipo: 1
+              id_documento_motivo: 1
+              id_documento_gs: string
+              largura: 1
+              altura: 1
+              nome_arquivo: string
+              arquivo: string
+              documento_tipo: string
+              documento_motivo: string
+              imagem: true
+              pdf: false
+              arq_base64: string
+              id_ocorrencia_leitura: 1
+              ocorrencia_leitura: string
+              observacao: string
+              id_periodo: 1
+              id_ocorrencia: 1
+              path: string
   securitySchemes: {}
 x-extension-1: null
