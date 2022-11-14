@@ -435,6 +435,126 @@ paths:
               properties:
                 id_ligacao:
                   type: integer
+  /central-atendimento/documentos/contratos-ligacao:
+    get:
+      summary: CA - Documentos - Contratos Ligação
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CADocumentosContratosLigacaoModel'
+      operationId: get-central-atendimento-documentos-contratos-ligacao
+  /central-atendimento/documentos/dados-ligacao:
+    get:
+      summary: CA - Documentos - Dados Ligação
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CADocumentosDadosLigacao'
+      operationId: get-central-atendimento-documentos-dados-ligacao
+  '/central-atendimento/ligacao/{id_ligacao}':
+    parameters:
+      - schema:
+          type: string
+        name: id_ligacao
+        in: path
+        required: true
+    get:
+      summary: CA - Ligação
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CALigacaoDadosModel'
+      operationId: get-central-atendimento-ligacao-id_ligacao
+  '/central-atendimento/ligacao/{id_ligacao}/excecao':
+    parameters:
+      - schema:
+          type: string
+        name: id_ligacao
+        in: path
+        required: true
+    get:
+      summary: CA - Ligação - Exceções
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CALigacaoExcecaoModel'
+      operationId: get-central-atendimento-ligacao-id_ligacao-excecao
+  /central-atendimento/parametros-cadastro:
+    get:
+      summary: CA - Parametros Cadastrp
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CAParametrosCadastroModel'
+      operationId: get-central-atendimento-parametros-cadastro
+  /central-atendimento/pesquisa-cliente:
+    get:
+      summary: CA - Pesquisa Cliente
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CAPesquisaClienteModel'
+      operationId: get-central-atendimento-pesquisa-cliente
+  /central-atendimento/pesquisa-cliente/criterios:
+    get:
+      summary: CA - Pesquisa Cliente - Critérios
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CAPesquisaClienteCriterioModel'
+      operationId: get-central-atendimento-pesquisa-cliente-criterios
+  /central-atendimento/portal-servicos:
+    get:
+      summary: CA - Portal Serviços
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CAPortalServicosModel'
+      operationId: get-central-atendimento-portal-servicos
+  /central-atendimento/receitas-acessorias/historico:
+    get:
+      summary: CA - Receitas Acessórias - Histórico
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CAReceitasAcessoriasHistoricoModel'
+      operationId: get-central-atendimento-receitas-acessorias-historico
 components:
   schemas:
     CriarLigacaoModel:
@@ -3113,5 +3233,1186 @@ components:
               id_periodo: 1
               id_ocorrencia: 1
               path: string
+    CADocumentosContratosLigacaoModel:
+      type: object
+      properties:
+        id_contrato:
+          type: integer
+        id_macro:
+          type: integer
+        id_cidade:
+          type: integer
+        descricao_documento:
+          type: string
+        observacao:
+          type: string
+      x-examples:
+        Example 1:
+          id_contrato: 1
+          id_macro: 1
+          id_cidade: 1
+          descricao_documento: string
+          observacao: string
+      title: ''
+      x-stoplight:
+        id: 073ac36a9bb75
+    CADocumentosDadosLigacao:
+      type: object
+      properties:
+        id_ligacao:
+          type: integer
+        cliente:
+          type: string
+        endereco:
+          type: string
+        id_cidade:
+          type: integer
+        documentos:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              id_documento_tipo:
+                type: integer
+              id_documento_motivo:
+                type: integer
+              id_documento_gs:
+                type: string
+              largura:
+                type: integer
+              altura:
+                type: integer
+              nome_arquivo:
+                type: string
+              arquivo:
+                type: string
+              documento_tipo:
+                type: string
+              documento_motivo:
+                type: string
+              imagem:
+                type: boolean
+              pdf:
+                type: boolean
+              arqu_base64:
+                type: string
+              id_ocorrencia_leitura:
+                type: integer
+              observacao:
+                type: string
+              id_periodo:
+                type: integer
+              id_ocorrencia:
+                type: integer
+              path:
+                type: string
+      x-examples:
+        Example 1:
+          id_ligacao: 1
+          cliente: string
+          endereco: string
+          id_cidade: 1
+          documentos:
+            - id: 1
+              id_documento_tipo: 1
+              id_documento_motivo: 1
+              id_documento_gs: string
+              largura: 1
+              altura: 1
+              nome_arquivo: string
+              arquivo: string
+              documento_tipo: string
+              documento_motivo: string
+              imagem: true
+              pdf: false
+              arqu_base64: string
+              id_ocorrencia_leitura: 1
+              observacao: string
+              id_periodo: 1
+              id_ocorrencia: 1
+              path: string
+    CALigacaoDadosModel:
+      type: object
+      properties:
+        id_cidade:
+          type: integer
+        id_bacia:
+          type: integer
+        id_zona_pressão:
+          type: integer
+        id_sub_distrito:
+          type: integer
+        id_medidor:
+          type: integer
+        id_grupo:
+          type: integer
+        sub_distrito:
+          type: string
+        id_cliente:
+          type: integer
+        id_cliente_inqquilino:
+          type: integer
+        id_bairro:
+          type: integer
+        id_sub_bairro:
+          type: integer
+        id_distrito:
+          type: integer
+        id_logradouro:
+          type: integer
+        nome_cliente:
+          type: string
+        cidade:
+          type: string
+        cidade_entrega:
+          type: string
+        distrito:
+          type: string
+        logradouro:
+          type: string
+        nr_imovel:
+          type: integer
+        cep:
+          type: string
+        bairro:
+          type: string
+        sub_bairro:
+          type: string
+        complemento:
+          type: string
+        zona_pressao:
+          type: string
+        bacia:
+          type: string
+        zona_macro:
+          type: string
+        quadra:
+          type: string
+        lote:
+          type: string
+        inscricao:
+          type: string
+        grupo:
+          type: string
+        rota:
+          type: integer
+        quadra_rota:
+          type: integer
+        sequencia:
+          type: integer
+        id_ligacao_entrega:
+          type: integer
+        tipo_entrega:
+          type: string
+        logradouro_entrega:
+          type: string
+        nr_imovel_entrega:
+          type: integer
+        cep_entrega:
+          type: string
+        bairro_entrega:
+          type: string
+        sub_bairro_entrega:
+          type: string
+        grupo_entrega:
+          type: string
+        rota_entrega:
+          type: integer
+        quadra_entrega:
+          type: integer
+        sequencia_entrega:
+          type: integer
+        sub_unidade_entrega:
+          type: integer
+        complemento_entrega:
+          type: string
+        tipo_faturamento:
+          type: string
+        tipo_cobranca:
+          type: string
+        situacao_ligacao:
+          type: string
+        cobraca_fase:
+          type: string
+        classe_consumo:
+          type: string
+        tipo_irregularidade:
+          type: string
+        consolidadora:
+          type: string
+        obs_consolidacao:
+          type: string
+        id_ligacao_consolidadora:
+          type: integer
+        cliente_consolidador:
+          type: string
+        medidor_consolidador:
+          type: string
+        tipo_ligacao:
+          type: string
+        medidor:
+          type: string
+        data_instalacao:
+          type: string
+        ano_fabricacao:
+          type: string
+        situacao:
+          type: string
+        nr_ponteiros:
+          type: string
+        medidor_marca:
+          type: string
+        medidor_modelo:
+          type: string
+        medidor_tipo:
+          type: string
+        medidor_tecnologia:
+          type: string
+        medidor_vazao:
+          type: string
+        medidor_classe:
+          type: string
+        possui_lacre:
+          type: string
+        inquilino:
+          type: string
+        inquilino_fone_fixo:
+          type: string
+        inquilino_fone_movel:
+          type: string
+        inquilino_email:
+          type: string
+        tipo_pavimento:
+          type: string
+        tipo_rede:
+          type: string
+        padrao_instalacao:
+          type: string
+        posicao_rede:
+          type: string
+        tipo_cavalete:
+          type: string
+        situacao_cavalet:
+          type: string
+        '''tipo_esgotamento':
+          type: string
+        fonte_abastecimento:
+          type: string
+        sistema_esgotamento_sanitario:
+          type: string
+        reservatorio:
+          type: string
+        piscina:
+          type: string
+        rg_inquilino:
+          type: string
+        cpf_inquilino:
+          type: string
+        cnpj_inquilino:
+          type: string
+        numero_moradores:
+          type: integer
+        nr_economias_cons:
+          type: integer
+        ligacao_categoria:
+          type: array
+          items:
+            type: object
+            properties:
+              id_categoria:
+                type: integer
+              id_sub_categoria:
+                type: integer
+              qtd_economia:
+                type: integer
+              percentual_fat:
+                type: integer
+              categoria:
+                type: string
+              sub_categoria:
+                type: string
+              id_unidade_mensuracao:
+                type: integer
+              unidade_mensuracao:
+                type: string
+              valor_unidade:
+                type: number
+              volume_estimado:
+                type: integer
+              peso_faturado:
+                type: integer
+              base_calc:
+                type: number
+              cor_linha:
+                type: string
+              categoria_principal:
+                type: boolean
+              taxa_de_servico:
+                type: number
+              aluguel_hidrometro:
+                type: number
+              valor_consumo_zero:
+                type: number
+              servico_ambiental:
+                type: number
+        nr_imovel_antigo:
+          type: string
+        grupo_ident:
+          type: string
+        setor_ident:
+          type: string
+        quadra_ident:
+          type: string
+        lote_ident:
+          type: string
+        cavalete_ident:
+          type: string
+        rota_ident:
+          type: integer
+        id_ordem_servico:
+          type: integer
+        id_tipo_entrega:
+          type: integer
+        id_grupo_entrega:
+          type: integer
+        setor_entrega:
+          type: integer
+        setor_leitura:
+          type: integer
+        rota_leitura:
+          type: integer
+        quadra_leitura:
+          type: integer
+        seq_leitura:
+          type: integer
+        sub_unidade_leitura:
+          type: integer
+        telefone_cliente:
+          type: string
+        id_sistema_tratamento:
+          type: integer
+        sistema_tratamento:
+          type: string
+        id_ligacao_consolidadora_arrecadacao:
+          type: integer
+        soleira_negativa:
+          type: boolean
+        classificacao_uso:
+          type: string
+        rcs_inquilino:
+          type: string
+        rfc_inquilino:
+          type: string
+        tipo_calcada:
+          type: string
+        observacao_cavalete:
+          type: string
+        observacao_ligacao:
+          type: string
+      x-examples:
+        Example 1:
+          id_cidade: 1
+          id_bacia: 1
+          id_zona_pressão: 1
+          id_sub_distrito: 1
+          id_medidor: 1
+          id_grupo: 1
+          sub_distrito: string
+          id_cliente: 1
+          id_cliente_inqquilino: 1
+          id_bairro: 1
+          id_sub_bairro: 1
+          id_distrito: 1
+          id_logradouro: 1
+          nome_cliente: string
+          cidade: string
+          cidade_entrega: string
+          distrito: string
+          logradouro: string
+          nr_imovel: 1
+          cep: string
+          bairro: string
+          sub_bairro: string
+          complemento: string
+          zona_pressao: string
+          bacia: string
+          zona_macro: string
+          quadra: string
+          lote: string
+          inscricao: string
+          grupo: string
+          rota: 1
+          quadra_rota: 1
+          sequencia: 1
+          id_ligacao_entrega: 1
+          tipo_entrega: string
+          logradouro_entrega: string
+          nr_imovel_entrega: 1
+          cep_entrega: string
+          bairro_entrega: string
+          sub_bairro_entrega: string
+          grupo_entrega: string
+          rota_entrega: 1
+          quadra_entrega: 1
+          sequencia_entrega: 1
+          sub_unidade_entrega: 1
+          complemento_entrega: string
+          tipo_faturamento: string
+          tipo_cobranca: string
+          situacao_ligacao: string
+          cobraca_fase: string
+          classe_consumo: string
+          tipo_irregularidade: string
+          consolidadora: string
+          obs_consolidacao: string
+          id_ligacao_consolidadora: 1
+          cliente_consolidador: string
+          medidor_consolidador: string
+          tipo_ligacao: string
+          medidor: string
+          data_instalacao: string
+          ano_fabricacao: string
+          situacao: string
+          nr_ponteiros: string
+          medidor_marca: string
+          medidor_modelo: string
+          medidor_tipo: string
+          medidor_tecnologia: string
+          medidor_vazao: string
+          medidor_classe: string
+          possui_lacre: string
+          inquilino: string
+          inquilino_fone_fixo: string
+          inquilino_fone_movel: string
+          inquilino_email: string
+          tipo_pavimento: string
+          tipo_rede: string
+          padrao_instalacao: string
+          posicao_rede: string
+          tipo_cavalete: string
+          situacao_cavalet: string
+          '''tipo_esgotamento': string
+          fonte_abastecimento: string
+          sistema_esgotamento_sanitario: string
+          reservatorio: string
+          piscina: string
+          rg_inquilino: string
+          cpf_inquilino: string
+          cnpj_inquilino: string
+          numero_moradores: 1
+          nr_economias_cons: 1
+          ligacao_categoria:
+            - id_categoria: 1
+              id_sub_categoria: 1
+              qtd_economia: 1
+              percentual_fat: 1
+              categoria: string
+              sub_categoria: string
+              id_unidade_mensuracao: 1
+              unidade_mensuracao: string
+              valor_unidade: 1.1
+              volume_estimado: 1
+              peso_faturado: 1
+              base_calc: 1.1
+              cor_linha: string
+              categoria_principal: true
+              taxa_de_servico: 1.1
+              aluguel_hidrometro: 1.1
+              valor_consumo_zero: 1.1
+              servico_ambiental: 1.1
+          nr_imovel_antigo: string
+          grupo_ident: string
+          setor_ident: string
+          quadra_ident: string
+          lote_ident: string
+          cavalete_ident: string
+          rota_ident: 1
+          id_ordem_servico: 1
+          id_tipo_entrega: 1
+          id_grupo_entrega: 1
+          setor_entrega: 1
+          setor_leitura: 1
+          rota_leitura: 1
+          quadra_leitura: 1
+          seq_leitura: 1
+          sub_unidade_leitura: 1
+          telefone_cliente: string
+          id_sistema_tratamento: 1
+          sistema_tratamento: string
+          id_ligacao_consolidadora_arrecadacao: 1
+          soleira_negativa: true
+          classificacao_uso: string
+          rcs_inquilino: string
+          rfc_inquilino: string
+          tipo_calcada: string
+          observacao_cavalete: string
+          observacao_ligacao: string
+      x-stoplight:
+        id: a591b79c5b84c
+    CALigacaoExcecaoModel:
+      type: object
+      properties:
+        ativa:
+          type: boolean
+        data_inativacao:
+          type: string
+        data_cadastro:
+          type: string
+        id_excecao:
+          type: integer
+        id_tipo_faturamento:
+          type: integer
+        tipo_faturamento:
+          type: string
+        dia:
+          type: integer
+        percentual:
+          type: number
+        valor:
+          type: number
+        carga:
+          type: number
+        id_periodo_inicial:
+          type: integer
+        seq_periodo_inicial:
+          type: integer
+        periodo_inicial:
+          type: string
+        id_periodo_final:
+          type: integer
+        seq_periodo_final:
+          type: integer
+        periodo_final:
+          type: string
+        id_excecao_motivo:
+          type: integer
+        excecao_motivo:
+          type: string
+        observacao:
+          type: string
+        id_classificacao_fiscal:
+          type: integer
+        classificacao_fiscal:
+          type: string
+        tipo_fat_admitido:
+          type: string
+        id:
+          type: integer
+        id_ligacao:
+          type: integer
+        id_cidade:
+          type: integer
+        excecao:
+          type: string
+        cliente:
+          type: string
+        alterado:
+          type: boolean
+        id_categoria:
+          type: integer
+        categoria:
+          type: string
+        id_sub_categoria:
+          type: integer
+        sub_categoria:
+          type: string
+        id_motivo_bad_list:
+          type: integer
+        motivo_inclusao_bad_list:
+          type: string
+        id_tipo_aplicacao:
+          type: integer
+        tipo_aplicacao:
+          type: string
+        salvar_log:
+          type: boolean
+      x-examples:
+        Example 1:
+          ativa: true
+          data_inativacao: string
+          data_cadastro: string
+          id_excecao: 1
+          id_tipo_faturamento: 1
+          tipo_faturamento: string
+          dia: 1
+          percentual: 1.1
+          valor: 1.1
+          carga: 1.1
+          id_periodo_inicial: 1
+          seq_periodo_inicial: 1
+          periodo_inicial: string
+          id_periodo_final: 1
+          seq_periodo_final: 1
+          periodo_final: string
+          id_excecao_motivo: 1
+          excecao_motivo: string
+          observacao: string
+          id_classificacao_fiscal: 1
+          classificacao_fiscal: string
+          tipo_fat_admitido: string
+          id: 1
+          id_ligacao: 1
+          id_cidade: 1
+          excecao: string
+          cliente: string
+          alterado: true
+          id_categoria: 1
+          categoria: string
+          id_sub_categoria: 1
+          sub_categoria: string
+          id_motivo_bad_list: 1
+          motivo_inclusao_bad_list: string
+          id_tipo_aplicacao: 1
+          tipo_aplicacao: string
+          salvar_log: true
+    CAParametrosCadastroModel:
+      type: object
+      properties:
+        facilitador_roteiro_logradouro:
+          type: string
+        id_cidade:
+          type: integer
+        limite_mensagem_convencional:
+          type: integer
+        limite_mensagem_simultanea_linha:
+          type: integer
+        limite_mensagem_simultane_colune:
+          type: integer
+        validar_identificacao:
+          type: string
+        id_cidade_padrao:
+          type: integer
+        id_distrito_padrao:
+          type: integer
+        id_situacao_ligacao_padrao:
+          type: integer
+        id_situacao_cobranca_padrao:
+          type: integer
+        id_tipo_ligacao_padrao:
+          type: integer
+        utiliza_leitura_telemetria:
+          type: string
+        utiliza_conta_identificada:
+          type: string
+        utiliza_distancia_ramal:
+          type: string
+        utiliza_informacoes_adicionais:
+          type: string
+        utiliza_fonte_alternativa:
+          type: string
+        utiliza_percentual_esgoto:
+          type: string
+        utiliza_orgao_publico:
+          type: string
+        utiliza_sistema_esgotamento_sanitario:
+          type: string
+        normalizar_endereco:
+          type: string
+        calcular_volume_estimado_ligacao:
+          type: string
+        calcular_peso_fatura_ligacao:
+          type: string
+        bloquear_classe_consumo:
+          type: string
+        inquilino_normalizado:
+          type: string
+        validar_documentacao_cliente:
+          type: string
+        checar_debitos_com_bloqueio:
+          type: string
+        utiliza_esgoto_diferenciado:
+          type: string
+        aplicar_desconto_sub_cat_produto:
+          type: string
+        mascara_telefone:
+          type: boolean
+        validar_telefone:
+          type: boolean
+        ddd_inicial:
+          type: integer
+        ddd_final:
+          type: integer
+        tamanho_fone_fixo_maximo:
+          type: integer
+        tamanho_fone_movel_minimo:
+          type: integer
+        utiliza_classe_consumo_automatico:
+          type: string
+        habilita_validacao_serasa:
+          type: string
+        checa_debitos_inquilino_atual:
+          type: string
+        checa_debitos_inquilino_futuro:
+          type: string
+        checa_debitos_cliente_atual:
+          type: string
+        checa_debitos_cliente_futuro:
+          type: string
+        ent_alternativa_mesma_cidade:
+          type: boolean
+        normaliza_endereco_completo:
+          type: boolean
+        utiliza_sistema_tratamento:
+          type: string
+        utiliza_soleira_negativa:
+          type: boolean
+        checa_debitos_orgao_publico:
+          type: boolean
+        cobrar_taxa_servico:
+          type: boolean
+        cobrar_aluguel_hidrometro:
+          type: boolean
+        cobrar_consumo_zero:
+          type: boolean
+        nr_maximo_categorias:
+          type: integer
+        nr_maximo_economias:
+          type: integer
+        cobrar_servicos_ambientais:
+          type: boolean
+        utiliza_documentos_angola:
+          type: boolean
+        cpf_cnpj_obrigatorio:
+          type: boolean
+      x-examples:
+        Example 1:
+          facilitador_roteiro_logradouro: string
+          id_cidade: 1
+          limite_mensagem_convencional: 1
+          limite_mensagem_simultanea_linha: 1
+          limite_mensagem_simultane_colune: 1
+          validar_identificacao: string
+          id_cidade_padrao: 1
+          id_distrito_padrao: 1
+          id_situacao_ligacao_padrao: 1
+          id_situacao_cobranca_padrao: 1
+          id_tipo_ligacao_padrao: 1
+          utiliza_leitura_telemetria: string
+          utiliza_conta_identificada: string
+          utiliza_distancia_ramal: string
+          utiliza_informacoes_adicionais: string
+          utiliza_fonte_alternativa: string
+          utiliza_percentual_esgoto: string
+          utiliza_orgao_publico: string
+          utiliza_sistema_esgotamento_sanitario: string
+          normalizar_endereco: string
+          calcular_volume_estimado_ligacao: string
+          calcular_peso_fatura_ligacao: string
+          bloquear_classe_consumo: string
+          inquilino_normalizado: string
+          validar_documentacao_cliente: string
+          checar_debitos_com_bloqueio: string
+          utiliza_esgoto_diferenciado: string
+          aplicar_desconto_sub_cat_produto: string
+          mascara_telefone: true
+          validar_telefone: true
+          ddd_inicial: 1
+          ddd_final: 1
+          tamanho_fone_fixo_maximo: 1
+          tamanho_fone_movel_minimo: 1
+          utiliza_classe_consumo_automatico: string
+          habilita_validacao_serasa: string
+          checa_debitos_inquilino_atual: string
+          checa_debitos_inquilino_futuro: string
+          checa_debitos_cliente_atual: string
+          checa_debitos_cliente_futuro: string
+          ent_alternativa_mesma_cidade: true
+          normaliza_endereco_completo: false
+          utiliza_sistema_tratamento: string
+          utiliza_soleira_negativa: true
+          checa_debitos_orgao_publico: true
+          cobrar_taxa_servico: false
+          cobrar_aluguel_hidrometro: false
+          cobrar_consumo_zero: false
+          nr_maximo_categorias: 1
+          nr_maximo_economias: 1
+          cobrar_servicos_ambientais: false
+          utiliza_documentos_angola: false
+          cpf_cnpj_obrigatorio: true
+    CAPesquisaClienteModel:
+      type: object
+      properties:
+        cliente:
+          type: array
+          items:
+            type: object
+            properties:
+              id_cidade:
+                type: integer
+              cidade:
+                type: string
+              id_bairro:
+                type: integer
+              bairro:
+                type: string
+              id_distrito:
+                type: integer
+              distrito:
+                type: string
+              id_logradouro:
+                type: integer
+              logradouro:
+                type: string
+              nr_imovel:
+                type: string
+              complemento:
+                type: string
+              id_ligacao:
+                type: integer
+              id_cliente:
+                type: integer
+              cliente:
+                type: string
+              nome_inquilino:
+                type: string
+              id_bacia:
+                type: integer
+              bacia:
+                type: string
+              id_zona_pressao:
+                type: integer
+              zona_pressao:
+                type: string
+              id_sub_distrito:
+                type: integer
+              sub_distrito:
+                type: string
+              inscricao:
+                type: string
+              id_medidor:
+                type: integer
+              medidor:
+                type: string
+              telefone:
+                type: string
+              id_grupo:
+                type: integer
+              grupo:
+                type: string
+              rota:
+                type: string
+              situacao_ligacao:
+                type: string
+              cobranca_fase:
+                type: string
+              quadra:
+                type: string
+              lote:
+                type: string
+              cavalete:
+                type: string
+              setor:
+                type: string
+              identificacao:
+                type: string
+              fone:
+                type: string
+              fone_inquilino:
+                type: string
+              email_inquilino:
+                type: string
+              email:
+                type: string
+              hidrometro:
+                type: string
+              rota_leitura:
+                type: string
+              nr_imovel_antigo:
+                type: string
+              tipo_faturamento:
+                type: string
+              tipo_cobranca:
+                type: string
+              numero_moradores:
+                type: integer
+              numero_lacre:
+                type: string
+              nr_ponteiro:
+                type: integer
+              categoria_faturamento:
+                type: string
+              cep:
+                type: string
+              cpf_cnpj:
+                type: string
+      x-examples:
+        Example 1:
+          cliente:
+            - id_cidade: 1
+              cidade: string
+              id_bairro: 1
+              bairro: string
+              id_distrito: 1
+              distrito: string
+              id_logradouro: 1
+              logradouro: string
+              nr_imovel: string
+              complemento: string
+              id_ligacao: 1
+              id_cliente: 1
+              cliente: string
+              nome_inquilino: string
+              id_bacia: 1
+              bacia: string
+              id_zona_pressao: 1
+              zona_pressao: string
+              id_sub_distrito: 1
+              sub_distrito: string
+              inscricao: string
+              id_medidor: 1
+              medidor: string
+              telefone: string
+              id_grupo: 1
+              grupo: string
+              rota: string
+              situacao_ligacao: string
+              cobranca_fase: string
+              quadra: string
+              lote: string
+              cavalete: string
+              setor: string
+              identificacao: string
+              fone: string
+              fone_inquilino: string
+              email_inquilino: string
+              email: string
+              hidrometro: string
+              rota_leitura: string
+              nr_imovel_antigo: string
+              tipo_faturamento: string
+              tipo_cobranca: string
+              numero_moradores: 1
+              numero_lacre: string
+              nr_ponteiro: 1
+              categoria_faturamento: string
+              cep: string
+              cpf_cnpj: string
+    CAPesquisaClienteCriterioModel:
+      type: object
+      properties:
+        id_cidade:
+          type: integer
+        bairro:
+          type: string
+        logradouro:
+          type: string
+        nr_imovel:
+          type: string
+        nr_imovel_antigo:
+          type: boolean
+        proprietario:
+          type: string
+        inscricao:
+          type: string
+        nr_medidor:
+          type: string
+        complemento:
+          type: string
+        id_ligacao:
+          type: string
+        telefone:
+          type: string
+        id_grupo:
+          type: integer
+        id_setor:
+          type: integer
+        id_rota:
+          type: integer
+        id_quadra:
+          type: integer
+        id_seq:
+          type: integer
+        id_sub_seq:
+          type: integer
+        combo_logradouro:
+          type: boolean
+        tipo_logradouro:
+          type: string
+        cep:
+          type: string
+        cpf_cnpj:
+          type: string
+      x-examples:
+        Example 1:
+          id_cidade: 1
+          bairro: string
+          logradouro: string
+          nr_imovel: string
+          nr_imovel_antigo: false
+          proprietario: string
+          inscricao: string
+          nr_medidor: string
+          complemento: string
+          id_ligacao: string
+          telefone: string
+          id_grupo: 1
+          id_setor: 1
+          id_rota: 1
+          id_quadra: 1
+          id_seq: 1
+          id_sub_seq: 1
+          combo_logradouro: false
+          tipo_logradouro: string
+          cep: string
+          cpf_cnpj: string
+    CAPortalServicosModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        bairro:
+          type: string
+        cel_conjuge:
+          type: string
+        cep:
+          type: string
+        cidade:
+          type: string
+        complemento:
+          type: string
+        cpf_cnpj:
+          type: string
+        data_nascimento:
+          type: string
+        email:
+          type: string
+        email_conjuge:
+          type: string
+        endereco:
+          type: string
+        estado_civil:
+          type: string
+        nome:
+          type: string
+        nome_conjuge:
+          type: string
+        nr_pessoas_imovel:
+          type: integer
+        numero:
+          type: integer
+        permite_sms:
+          type: string
+        rg_orgao_expedidor:
+          type: string
+        senha:
+          type: string
+        tel_fixo:
+          type: string
+        tel_movel:
+          type: string
+        tel_movel_2:
+          type: string
+        tipo_pessoa:
+          type: string
+        av_vinculos_cliente_cdcs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              cdc:
+                type: string
+              tipo_vinculo:
+                type: string
+              id_cidade:
+                type: integer
+              auto_leitura:
+                type: string
+              data_adesao_auto_leitura:
+                type: string
+              id_tipo_entrega_anterior:
+                type: integer
+        acesso_oauth:
+          type: string
+        oauth_id:
+          type: string
+        oauth_provider:
+          type: string
+        nome_filho_1:
+          type: string
+        nome_filho_2:
+          type: string
+        email_filho_1:
+          type: string
+        email_filho_2:
+          type: string
+        data_inclusao:
+          type: string
+        data_confirmacao_cadastro:
+          type: string
+        data_alteracao:
+          type: string
+      x-examples:
+        Example 1:
+          id: 1
+          bairro: string
+          cel_conjuge: string
+          cep: string
+          cidade: string
+          complemento: string
+          cpf_cnpj: string
+          data_nascimento: string
+          email: string
+          email_conjuge: string
+          endereco: string
+          estado_civil: string
+          nome: string
+          nome_conjuge: string
+          nr_pessoas_imovel: 1
+          numero: 1
+          permite_sms: string
+          rg_orgao_expedidor: string
+          senha: string
+          tel_fixo: string
+          tel_movel: string
+          tel_movel_2: string
+          tipo_pessoa: string
+          av_vinculos_cliente_cdcs:
+            - id: 1
+              cdc: string
+              tipo_vinculo: string
+              id_cidade: 1
+              auto_leitura: string
+              data_adesao_auto_leitura: string
+              id_tipo_entrega_anterior: 1
+          acesso_oauth: string
+          oauth_id: string
+          oauth_provider: string
+          nome_filho_1: string
+          nome_filho_2: string
+          email_filho_1: string
+          email_filho_2: string
+          data_inclusao: string
+          data_confirmacao_cadastro: string
+          data_alteracao: string
+    CAReceitasAcessoriasHistoricoModel:
+      type: object
+      properties:
+        codigo_produto:
+          type: integer
+        produto:
+          type: string
+        valor:
+          type: number
+        data_adesao:
+          type: string
+        data_processamento:
+          type: string
+        cancelado:
+          type: string
+        motivo_cancelamento:
+          type: string
+      x-examples:
+        Example 1:
+          codigo_produto: 1
+          produto: string
+          valor: 1.1
+          data_adesao: string
+          data_processamento: string
+          cancelado: string
+          motivo_cancelamento: string
   securitySchemes: {}
 x-extension-1: null
