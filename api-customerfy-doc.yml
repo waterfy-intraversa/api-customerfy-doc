@@ -10,7 +10,7 @@ paths:
   /cadastro/ligacao/save:
     parameters: []
     post:
-      summary: Criar Ligação
+      summary: Cadastro Ligação - Salvar
       operationId: criar-ligacao
       responses:
         '200':
@@ -219,7 +219,7 @@ paths:
     parameters: []
   /cadastro/ligacao/inquilino:
     get:
-      summary: Dados Inquilino
+      summary: Cadastro Ligação - Dados Inquilino
       tags: []
       responses:
         '200':
@@ -237,10 +237,11 @@ paths:
               properties:
                 id_cliente:
                   type: integer
+      description: Chamada para retornar os dados do inquilino.
     parameters: []
   /cadastro/ligacao/cliente:
     get:
-      summary: Dados Cliente
+      summary: Cadastro Ligação - Dados Cliente
       tags: []
       responses:
         '200':
@@ -258,10 +259,11 @@ paths:
               properties:
                 id_cliente:
                   type: integer
+      description: Chamada para trazer os dados do cliente.
     parameters: []
   /busca/popup/filtros:
     get:
-      summary: Campos Pesquisa
+      summary: Dialog Pesquisa - Campos Pesquisa
       tags: []
       responses:
         '200':
@@ -288,10 +290,11 @@ paths:
                   tabela: i_tabela
                   campo: i_campo
         description: ''
+      description: Chamada para trazer os filtros que poderão ser utilizados na busca
     parameters: []
   /busca/popup/busca:
     get:
-      summary: Pesquisa PopUp
+      summary: Dialog Pesquisa - Busca
       tags: []
       responses:
         '200':
@@ -318,10 +321,11 @@ paths:
                   tabela: i_tabela
                   coluna: i_campo
                   filtro: i_filter
+      description: Chamada que faz a busca e retorna os dados para a tela
     parameters: []
   /cadastro/ligacao/contrato-locacao:
     get:
-      summary: Contrato Locação
+      summary: Cadastro Ligação - Contrato Locação
       tags: []
       responses:
         '200':
@@ -343,6 +347,7 @@ paths:
                 Example 1:
                   id_ligacao: 1
         description: ''
+      description: Chamada para retornar os contratos de locação referentes a ligação selecionada
     parameters: []
   /cadastro/ligacao/list-dados-iniciais:
     get:
@@ -360,7 +365,7 @@ paths:
     parameters: []
   /carrega-menu:
     get:
-      summary: Carrega Menus
+      summary: Geral - Carrega Menus
       tags: []
       responses:
         '200':
@@ -381,9 +386,10 @@ paths:
               x-examples:
                 Example 1:
                   sistema: 1
+      description: Chamada para carregar todos os menus da aplicação. Chamada feita após o login.
   /unidade-negocio:
     get:
-      summary: Unidade de negócio
+      summary: Login - Unidade de negócio
       tags: []
       responses:
         '200':
@@ -393,9 +399,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/UnidadeNegocio'
       operationId: get-unidade-negocio
+      description: Chamada para trazer as unidades de negócio possiveis para serem selecionadas na tela do login.
   /login:
     post:
-      summary: ''
+      summary: Login - Login
       operationId: post-login
       responses:
         '200':
@@ -416,9 +423,10 @@ paths:
                   type: string
                 unidade_negocio:
                   type: string
+      description: Chamda para realizar o login
   /cadastro/ligacao/documento:
     get:
-      summary: Busca Documentos
+      summary: Cadastro Ligação - Busca Documentos
       tags: []
       responses:
         '200':
@@ -436,6 +444,7 @@ paths:
               properties:
                 id_ligacao:
                   type: integer
+      description: 'Chamada para trazer os documentos relacionados a ligação selecionada, através do id da ligação.'
   /central-atendimento/documentos/contratos-ligacao:
     get:
       summary: CA - Documentos - Contratos Ligação
@@ -616,7 +625,7 @@ paths:
     parameters: []
   /cadastro/ligacao/valida/consolidacao-arrecadacaoc:
     get:
-      summary: Your GET endpoint
+      summary: Cadastro Ligação - Valida consolidação arrecadação
       tags: []
       responses:
         '200':
@@ -653,7 +662,7 @@ paths:
       description: Chamada para buscar a unidade operacional do usuario logado. Feita no momento em que a tela de cadastro de ligação é aberta
   /cadastro/ligacao/documento-angola:
     get:
-      summary: Valida se utiliza documento Angola
+      summary: Cadastro Ligação - Valida se utiliza documento Angola
       tags: []
       responses:
         '200':
