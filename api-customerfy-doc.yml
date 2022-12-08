@@ -351,7 +351,7 @@ paths:
     parameters: []
   /cadastro/ligacao/list-dados-iniciais:
     get:
-      summary: Cadastro Ligação - Combo List
+      summary: Cadastro Ligação - List Dados Iniciais
       tags: []
       responses:
         '200':
