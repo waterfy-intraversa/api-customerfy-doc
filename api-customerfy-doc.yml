@@ -216,6 +216,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UtilsModel'
       operationId: get-utils
+      description: Chamada feita para carregar todos os dados que são utilizados em mais de uma tela. Chamada deverá ser feita após a efetivação do login
     parameters: []
   /cadastro/ligacao/inquilino:
     get:
@@ -302,7 +303,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PesquisaPopUp'
+                $ref: '#/components/schemas/ListarTuplaModel'
       operationId: get-popup
       requestBody:
         content:
@@ -684,6 +685,52 @@ paths:
               properties:
                 cidade_id:
                   type: integer
+  /cadastro/ligacao/consulta/filtros:
+    get:
+      summary: Cadastro Ligação - Consulta - Filtro Pesquisa
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroLigacaoConsultaCamposPesquisaModel'
+      operationId: get-cadastro-ligacao-consulta-filtros
+      description: Chamada para buscar os filtros a serem utilizados na pesquisa do cadastro de ligação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tabela:
+                  type: string
+                simples:
+                  type: boolean
+  /cadastro/ligacao/consulta/busca:
+    get:
+      summary: Cadastro Ligação - Consulta - Busca
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListarTuplaModel'
+      operationId: get-cadastro-ligacao-consulta-busca
+      description: 'Chamada para fazer a busca do cadastro de ligação, chamada feita ao clicar no botão pesquisar na aba de consulta simples'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tabela:
+                  type: string
+                filtro:
+                  type: string
 components:
   schemas:
     CriarLigacaoModel:
@@ -1819,8 +1866,23 @@ components:
             rcs: string
             rfc: string
             jubilado: true
-    PesquisaPopUp:
+    ListarTuplaModel:
       type: object
+      x-examples:
+        Example 1:
+          gridvo:
+            - colunas:
+                - nome: column name
+              linhas:
+                - linha:
+                    - linha_query: row
+                  representação:
+                    - dados:
+                        - id: 1
+                          idStr: string
+                          descr: string
+                          flag: string
+                          tipoRet: 1
       properties:
         gridvo:
           type: array
@@ -1834,7 +1896,7 @@ components:
                   properties:
                     nome:
                       type: string
-              linhas:
+              dados:
                 type: array
                 items:
                   type: object
@@ -1866,21 +1928,9 @@ components:
                                   type: string
                                 tipoRet:
                                   type: integer
-      x-examples:
-        Example 1:
-          gridvo:
-            - colunas:
-                - nome: column name
-              linhas:
-                - linha:
-                    - linha_query: row
-                  representação:
-                    - dados:
-                        - id: 1
-                          idStr: string
-                          descr: string
-                          flag: string
-                          tipoRet: 1
+      x-stoplight:
+        id: cecae3304635e
+      description: 'Modelo do retorno das buscas '
     CadastroLigacaoContratoLocacao:
       type: object
       properties:
@@ -2115,6 +2165,24 @@ components:
                             type: string
                           tipoRet:
                             type: integer
+                caracteristicas_ligacao:
+                  type: object
+                  properties:
+                    dados:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          idStr:
+                            type: string
+                          descr:
+                            type: string
+                          flag:
+                            type: string
+                          tipoRet:
+                            type: integer
             dados_comerciais:
               type: object
               properties:
@@ -2137,6 +2205,24 @@ components:
                           tipoRet:
                             type: integer
                 cliente_especial:
+                  type: object
+                  properties:
+                    dados:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          idStr:
+                            type: string
+                          descr:
+                            type: string
+                          flag:
+                            type: string
+                          tipoRet:
+                            type: integer
+                situacoes_ligacao:
                   type: object
                   properties:
                     dados:
@@ -2560,6 +2646,13 @@ components:
                     descr: string
                     flag: string
                     tipoRet: 1
+              caracteristicas_ligacao:
+                dados:
+                  - id: 1
+                    idStr: string
+                    descr: string
+                    flag: string
+                    tipoRet: 1
             dados_comerciais:
               fontes_alternativas:
                 dados:
@@ -2569,6 +2662,13 @@ components:
                     flag: string
                     tipoRet: 1
               cliente_especial:
+                dados:
+                  - id: 1
+                    idStr: string
+                    descr: string
+                    flag: string
+                    tipoRet: 1
+              situacoes_ligacao:
                 dados:
                   - id: 1
                     idStr: string
@@ -2714,10 +2814,6 @@ components:
             cobrar_servicos_ambientais: false
             utiliza_documentos_angola: false
             cpf_cnpj_obrigatorio: true
-      title: CadastroLigacaoListarDadosIniciaisModel
-      description: ''
-      x-stoplight:
-        id: 5d3363106c73f
     CarregaMenus:
       type: object
       properties:
@@ -5548,5 +5644,66 @@ components:
               consolidacao_arrecadacao_filhas:
                 - {}
           agrupa_retencao: false
+    CadastroLigacaoConsultaCamposPesquisaModel:
+      type: array
+      items:
+        type: object
+        properties:
+          id_tabela:
+            type: integer
+          campo:
+            type: string
+          nome:
+            type: string
+          tipo_dado_java:
+            type: string
+          tabela:
+            type: string
+          tabela_cons_padrao:
+            type: string
+          campo_cons_padrao:
+            type: string
+          id_cons_padrao:
+            type: integer
+          tam_campo:
+            type: integer
+          tipo_dado_bd:
+            type: string
+          val_default:
+            type: string
+          campo_cons_registro:
+            type: string
+          campo_exibe_cons_registro:
+            type: integer
+          campo_rotulo_vo:
+            type: array
+            items:
+              type: object
+              properties:
+                id_tabela_campo:
+                  type: integer
+                id_lingua:
+                  type: integer
+                descricao:
+                  type: string
+      x-examples:
+        Example 1:
+          - id_tabela: 1
+            campo: string
+            nome: string
+            tipo_dado_java: string
+            tabela: string
+            tabela_cons_padrao: string
+            campo_cons_padrao: string
+            id_cons_padrao: 1
+            tam_campo: 1
+            tipo_dado_bd: string
+            val_default: string
+            campo_cons_registro: string
+            campo_exibe_cons_registro: 1
+            campo_rotulo_vo:
+              - id_tabela_campo: 1
+                id_lingua: 1
+                descricao: string
   securitySchemes: {}
 x-extension-1: null
