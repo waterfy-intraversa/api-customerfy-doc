@@ -776,6 +776,60 @@ paths:
               properties:
                 sql:
                   type: string
+  /cadastro/ligacao/facilitador-roteiro/identificacao:
+    get:
+      summary: Cadastro Ligação - Roteiro Leitura
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id_roteiro:
+                    type: integer
+      operationId: get-cadastro-ligacao-facilitador-roteiro-identificacao
+      description: 'Chamada para retornar o id do roteiro de leitura com base no grupo, setor, rota, e quadra'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_grupo:
+                  type: integer
+                setor:
+                  type: integer
+                rota:
+                  type: integer
+                quadra:
+                  type: integer
+  /seguranca/permissao-funcao:
+    get:
+      summary: Segurança - Permissão Função
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  permite:
+                    type: boolean
+      operationId: get-seguranca-permissao-funcao
+      description: Chamada relizada para retornar se uma função pode ser utilizada ou não
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_funcao:
+                  type: integer
 components:
   schemas:
     CriarLigacaoModel:
