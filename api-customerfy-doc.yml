@@ -334,7 +334,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CadastroLigacaoContratoLocacao'
+                $ref: '#/components/schemas/CadastroLigacaoContratosLocacao'
       operationId: get-contrato-locacao
       requestBody:
         content:
@@ -912,6 +912,50 @@ paths:
               properties:
                 id_documento:
                   type: integer
+  /cadastro/ligacao/contrato-locacao/contratos-abertos:
+    get:
+      summary: Cadastro Ligação - Contratos Locação - Abertos
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contratos_abertos:
+                    type: integer
+      operationId: get-cadastro-ligacao-contrato-locacao-contratos-abertos
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_ligacao:
+                  type: integer
+  /cadastro/ligacao/contrato-locacao/salvar:
+    post:
+      summary: ''
+      operationId: post-cadastro-ligacao-contrato-locacao-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  salvo:
+                    type: boolean
+      description: Chamada para salvar novos contratos de locação. Chamada feita no clique do botão "Salvar contrato inquilino"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CadastroLigacaoSalvarContratoLocacaoDto'
 components:
   schemas:
     CriarLigacaoModel:
@@ -2112,45 +2156,52 @@ components:
       x-stoplight:
         id: cecae3304635e
       description: 'Modelo do retorno das buscas '
-    CadastroLigacaoContratoLocacao:
-      type: object
-      properties:
-        contrato_locacao:
-          type: object
-          properties:
-            contrato_locacao_detalhes:
-              type: array
-              items:
-                type: object
-                properties:
-                  cliente:
-                    type: string
-                  contrato:
-                    type: string
-                  status:
-                    type: string
-                  tipo_locacao:
-                    type: string
-                  qt_moradores:
-                    type: integer
-                  data_inicio:
-                    type: string
-                  data_fim:
-                    type: string
-                  data_encerramento:
-                    type: string
+    CadastroLigacaoContratosLocacao:
+      type: array
+      items:
+        type: object
+        properties:
+          id_contrato:
+            type: integer
+          id_ligacao:
+            type: integer
+          id_cliente_inquilino:
+            type: integer
+          id_tipo_locacao:
+            type: integer
+          numero_moradores:
+            type: integer
+          cliente_inquilino:
+            type: string
+          contrato_locacao:
+            type: string
+          tipo_locacao:
+            type: string
+          data_vigencia_de:
+            type: string
+          data_vigencia_ate:
+            type: string
+          data_encerramento:
+            type: string
+          ativo:
+            type: string
       x-examples:
         Example 1:
-          contrato_locacao:
-            contrato_locacao_detalhes:
-              - cliente: id_cliente
-                contrato: contrato
-                status: status
-                tipo_locacao: tipo_locação
-                qt_moradores: 5
-                data_inicio: '20221007'
-                data_fim: '20221007'
-                data_encerramento: '20221007'
+          - id_contrato: 1
+            id_ligacao: 1
+            id_cliente_inquilino: 1
+            id_tipo_locacao: 1
+            numero_moradores: 1
+            cliente_inquilino: string
+            contrato_locacao: string
+            tipo_locacao: string
+            data_vigencia_de: string
+            data_vigencia_ate: string
+            data_encerramento: string
+            ativo: string
+      title: ''
+      x-stoplight:
+        id: 88ce4a2ed626c
     CadastroLigacaoListarDadosIniciaisModel:
       type: object
       properties:
@@ -6071,5 +6122,46 @@ components:
                 descricao: string
                 flag: string
                 tipo_retorno: 1
+    CadastroLigacaoSalvarContratoLocacaoDto:
+      type: object
+      properties:
+        id_contrato:
+          type: integer
+        id_ligacao:
+          type: integer
+        id_cliente_inquilino:
+          type: integer
+        id_tipo_locacao:
+          type: integer
+        numero_moradores:
+          type: integer
+        cliente_inquilino:
+          type: string
+        contrato_locacao:
+          type: string
+        tipo_locacao:
+          type: string
+        data_vigencia_de:
+          type: string
+        data_vigencia_ate:
+          type: string
+        data_encerramento:
+          type: string
+        ativo:
+          type: string
+      x-examples:
+        Example 1:
+          id_contrato: 1
+          id_ligacao: 1
+          id_cliente_inquilino: 1
+          id_tipo_locacao: 1
+          numero_moradores: 1
+          cliente_inquilino: string
+          contrato_locacao: string
+          tipo_locacao: string
+          data_vigencia_de: string
+          data_vigencia_ate: string
+          data_encerramento: string
+          ativo: string
   securitySchemes: {}
 x-extension-1: null
