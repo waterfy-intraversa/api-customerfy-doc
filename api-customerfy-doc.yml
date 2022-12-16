@@ -1839,6 +1839,42 @@ components:
                         type: string
                       tipoRet:
                         type: integer
+            categorias:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
+            sub_categorias:
+              type: object
+              properties:
+                dados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
       x-examples:
         Example 1:
           utils:
@@ -1920,6 +1956,20 @@ components:
                   flag: string
                   tipoRet: 1
             protecao_hidrometro:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            categorias:
+              dados:
+                - id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
+            sub_categorias:
               dados:
                 - id: 1
                   idStr: string
