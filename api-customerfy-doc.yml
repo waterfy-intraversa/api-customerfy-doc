@@ -401,10 +401,10 @@ paths:
                 $ref: '#/components/schemas/UnidadeNegocio'
       operationId: get-unidade-negocio
       description: Chamada para trazer as unidades de negócio possiveis para serem selecionadas na tela do login.
-  /login:
-    post:
-      summary: Login - Login
-      operationId: post-login
+  /login/usuario-logado:
+    get:
+      summary: Login - getUsuarioLogadoSistema
+      operationId: get-login
       responses:
         '200':
           description: OK
@@ -412,19 +412,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Login'
+      description: Chamada para realizar o login - getUsuarioLogadoSistema
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                usuario:
-                  type: string
-                senha:
-                  type: string
-                unidade_negocio:
-                  type: string
-      description: Chamda para realizar o login
+                sistema:
+                  type: integer
+    parameters: []
   /cadastro/ligacao/documento:
     get:
       summary: Cadastro Ligação - Busca Documentos
@@ -470,6 +467,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/CADocumentosDadosLigacao'
       operationId: get-central-atendimento-documentos-dados-ligacao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_ligacao:
+                  type: integer
+                ordem_servico:
+                  type: string
   '/central-atendimento/ligacao/{id_ligacao}':
     parameters:
       - schema:
@@ -829,6 +836,81 @@ paths:
               type: object
               properties:
                 id_funcao:
+                  type: integer
+  /comum/versao:
+    get:
+      summary: Comum - getVersionFromTextFile
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  versao:
+                    type: string
+      operationId: get-comum-versao
+      description: Chamada realizada após o login que retorna a versão da aplicação
+  /cobranca/load-parametro:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  parametro:
+                    type: integer
+      operationId: get-cobranca-load-parametro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_ligacao:
+                  type: integer
+  /central-atendimento/ocorrencia-operacional:
+    get:
+      summary: Central Atendimento - Ocorrencia Operaciona
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CAOcorrenciasOperacionais'
+      operationId: get-central-atendimento-ocorrencia-operacional
+      description: 'Chamada que retorna a lista de ocorrencias, por id da ligação. Chamada feita ao abrir a tela da central de atendimento'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_ligacao:
+                  type: integer
+  /cadastro/ligacao/documento/download:
+    get:
+      summary: Cadastro Ligação - Documentos - Download
+      tags: []
+      responses: {}
+      operationId: get-cadastro-ligacao-documento-download
+      description: Chamada para fazer download do documento selecionado.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_documento:
                   type: integer
 components:
   schemas:
@@ -5865,5 +5947,129 @@ components:
               nr_imovel_inicial: string
               nr_imovel_final: string
               cor: string
+    CAOcorrenciasOperacionais:
+      type: array
+      items:
+        type: object
+        properties:
+          id_cidade:
+            type: integer
+          id_tipo_ocorrencia:
+            type: integer
+          titulo:
+            type: string
+          descricao:
+            type: string
+          tipo_ocorrencia:
+            type: string
+          hora_inicial:
+            type: string
+          hora_final:
+            type: string
+          previsao:
+            type: string
+          intervencoes:
+            type: string
+          situacao:
+            type: string
+          status:
+            type: string
+          populacao_afetada:
+            type: integer
+          observacao:
+            type: string
+          classificacao:
+            type: string
+          informante:
+            type: string
+          sistemas:
+            type: array
+            items:
+              type: object
+              properties:
+                id_string:
+                  type: string
+                descricao:
+                  type: string
+                flag:
+                  type: string
+                tipo_retorno:
+                  type: integer
+          bairros:
+            type: array
+            items:
+              type: object
+              properties:
+                id_string:
+                  type: string
+                descricao:
+                  type: string
+                flag:
+                  type: string
+                tipo_retorno:
+                  type: integer
+          logradouros:
+            type: array
+            items:
+              type: object
+              properties:
+                id_string:
+                  type: string
+                descricao:
+                  type: string
+                flag:
+                  type: string
+                tipo_retorno:
+                  type: integer
+          zona_macro:
+            type: array
+            items:
+              type: object
+              properties:
+                id_string:
+                  type: string
+                descricao:
+                  type: string
+                flag:
+                  type: string
+                tipo_retorno:
+                  type: integer
+      x-examples:
+        Example 1:
+          - id_cidade: 1
+            id_tipo_ocorrencia: 1
+            titulo: string
+            descricao: string
+            tipo_ocorrencia: string
+            hora_inicial: string
+            hora_final: string
+            previsao: string
+            intervencoes: string
+            situacao: string
+            status: string
+            populacao_afetada: 1
+            observacao: string
+            classificacao: string
+            informante: string
+            sistemas:
+              - id_string: string
+                descricao: string
+                flag: string
+                tipo_retorno: 1
+            bairros:
+              - id_string: string
+                descricao: string
+                flag: string
+                tipo_retorno: 1
+            logradouros:
+              - id_string: string
+                descricao: string
+                flag: string
+                tipo_retorno: 1
+            zona_macro:
+              - id_string: string
+                descricao: string
+                flag: string
+                tipo_retorno: 1
   securitySchemes: {}
 x-extension-1: null
