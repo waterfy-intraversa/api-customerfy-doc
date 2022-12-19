@@ -230,15 +230,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoDadosCliente'
       operationId: get-inquilino
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_cliente:
-                  type: integer
       description: Chamada para retornar os dados do inquilino.
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cliente
     parameters: []
   /cadastro/ligacao/cliente:
     get:
@@ -252,15 +249,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoDadosCliente'
       operationId: get-cliente
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_cliente:
-                  type: integer
       description: Chamada para trazer os dados do cliente.
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cliente
     parameters: []
   /busca/popup/filtros:
     get:
@@ -275,22 +269,15 @@ paths:
                 $ref: '#/components/schemas/CamposPesquisaGet'
           headers: {}
       operationId: get-filtros
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                tabela:
-                  type: string
-                campo:
-                  type: string
-              x-examples:
-                Example 1:
-                  tabela: i_tabela
-                  campo: i_campo
-        description: ''
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: tabela
+        - schema:
+            type: string
+          in: query
+          name: campo
       description: Chamada para trazer os filtros que poderão ser utilizados na busca
     parameters: []
   /busca/popup/busca:
@@ -305,24 +292,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/ListarTuplaModel'
       operationId: get-popup
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                tabela:
-                  type: string
-                coluna:
-                  type: string
-                filtro:
-                  type: string
-              x-examples:
-                Example 1:
-                  tabela: i_tabela
-                  coluna: i_campo
-                  filtro: i_filter
       description: Chamada que faz a busca e retorna os dados para a tela
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: tabela
+        - schema:
+            type: string
+          in: query
+          name: coluna
+        - schema:
+            type: string
+          in: query
+          name: filtro
     parameters: []
   /cadastro/ligacao/contrato-locacao:
     get:
@@ -336,19 +319,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoContratosLocacao'
       operationId: get-contrato-locacao
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_ligacao:
-                  type: integer
-              x-examples:
-                Example 1:
-                  id_ligacao: 1
-        description: ''
       description: Chamada para retornar os contratos de locação referentes a ligação selecionada
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
     parameters: []
   /cadastro/ligacao/list-dados-iniciais:
     get:
@@ -376,18 +352,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/CarregaMenus'
       operationId: get-carrega-menu
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                sistema:
-                  type: integer
-              x-examples:
-                Example 1:
-                  sistema: 1
       description: Chamada para carregar todos os menus da aplicação. Chamada feita após o login.
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: sistema
   /unidade-negocio:
     get:
       summary: Login - Unidade de negócio
@@ -413,14 +383,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/Login'
       description: Chamada para realizar o login - getUsuarioLogadoSistema
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                sistema:
-                  type: integer
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: sistema
     parameters: []
   /cadastro/ligacao/documento:
     get:
@@ -434,15 +401,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/DocumentosModel'
       operationId: get-cadastro-ligacao-documento
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_ligacao:
-                  type: integer
       description: 'Chamada para trazer os documentos relacionados a ligação selecionada, através do id da ligação.'
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
   /central-atendimento/documentos/contratos-ligacao:
     get:
       summary: CA - Documentos - Contratos Ligação
@@ -467,16 +431,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/CADocumentosDadosLigacao'
       operationId: get-central-atendimento-documentos-dados-ligacao
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_ligacao:
-                  type: integer
-                ordem_servico:
-                  type: string
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+        - schema:
+            type: string
+          in: query
+          name: ordem_servico
   '/central-atendimento/ligacao/{id_ligacao}':
     parameters:
       - schema:
@@ -597,15 +560,12 @@ paths:
                   Example 1:
                     permite_alterar: false
       operationId: get-cadastro-ligacao-id_ligacao-permite-alterar
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                nova_ligacao:
-                  type: boolean
       description: 'Endpoint para validar se a ligação permite alterações, chamada feita ao clicar no botão de salvar'
+      parameters:
+        - schema:
+            type: boolean
+          in: query
+          name: nova_ligacao
   /cadastro/ligacao/valida/faturamento-iniciado:
     get:
       summary: Cadastro Ligação - Ciclo Faturamento Iniciado
@@ -622,14 +582,11 @@ paths:
                     type: boolean
       operationId: get-cadastro-ligacao-faturamento-iniciado
       description: 'Valida pelo id do grupo, se o ciclo do faturamento foi iniciado. Chamada feita ao clicar no botão salvar'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_grupo:
-                  type: integer
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_grupo
     parameters: []
   /cadastro/ligacao/valida/consolidacao-arrecadacaoc:
     get:
@@ -643,15 +600,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConsolidacaoArrecadacaoDtoModel'
       operationId: get-cadastro-ligacao-valida-consolidacao-arrecadacaoc
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_ligacao:
-                  type: integer
       description: 'Valida pelo ID da ligação, a parte de conolidação de arrecadação. Chamada feita ao clicar no botão de salvar do formulario'
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
   /user/unidade-operacional:
     get:
       summary: Retorna unidade operacional - Usuario logado
@@ -684,14 +638,11 @@ paths:
                     type: boolean
       operationId: get-cadastro-ligacao-documento-angola
       description: 'Chamada para validar, pelo id da cidade, se utiliza documento Angola. Chamada feita no momento em que a tela de cadastro de ligação é aberta, e quando a cidade for alterada.'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                cidade_id:
-                  type: integer
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
   /cadastro/ligacao/consulta/filtros:
     get:
       summary: Cadastro Ligação - Consulta - Filtro Pesquisa
@@ -705,16 +656,15 @@ paths:
                 $ref: '#/components/schemas/CadastroLigacaoConsultaCamposPesquisaModel'
       operationId: get-cadastro-ligacao-consulta-filtros
       description: Chamada para buscar os filtros a serem utilizados na pesquisa do cadastro de ligação
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                tabela:
-                  type: string
-                simples:
-                  type: boolean
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: tabela
+        - schema:
+            type: boolean
+          in: query
+          name: simples
   /cadastro/ligacao/consulta/busca:
     get:
       summary: Cadastro Ligação - Consulta - Busca
@@ -728,16 +678,15 @@ paths:
                 $ref: '#/components/schemas/ListarTuplaModel'
       operationId: get-cadastro-ligacao-consulta-busca
       description: 'Chamada para fazer a busca do cadastro de ligação, chamada feita ao clicar no botão pesquisar na aba de consulta simples'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                tabela:
-                  type: string
-                filtro:
-                  type: string
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: tabela
+        - schema:
+            type: string
+          in: query
+          name: filtro
   /cadastro/ligacao/facilitador-roteiro:
     get:
       summary: Cadastro Ligação - Facilitador Roteiro
@@ -751,14 +700,11 @@ paths:
                 $ref: '#/components/schemas/CadastroLigacaoFacilitadorRoteiroModel'
       operationId: get-cadastro-ligacao-facilitador-roteiro
       description: Chamada para retorna as informações de roteiro. Chamada para ser feita ao clicar no botão de facilitador de roteiro na aba localização do cadastro de ligação.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                i_inscricao:
-                  type: string
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: i_inscricao
   /comum/listar-parametro:
     get:
       summary: Comum - Listar Parâmetro String
@@ -775,14 +721,11 @@ paths:
                     type: string
       operationId: get-comum-listar-parametro
       description: ''
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                sql:
-                  type: string
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: sql
   /cadastro/ligacao/facilitador-roteiro/identificacao:
     get:
       summary: Cadastro Ligação - Roteiro Leitura
@@ -799,20 +742,23 @@ paths:
                     type: integer
       operationId: get-cadastro-ligacao-facilitador-roteiro-identificacao
       description: 'Chamada para retornar o id do roteiro de leitura com base no grupo, setor, rota, e quadra'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_grupo:
-                  type: integer
-                setor:
-                  type: integer
-                rota:
-                  type: integer
-                quadra:
-                  type: integer
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_grupo
+        - schema:
+            type: integer
+          in: query
+          name: setor
+        - schema:
+            type: integer
+          in: query
+          name: rota
+        - schema:
+            type: integer
+          in: query
+          name: quadra
   /seguranca/permissao-funcao:
     get:
       summary: Segurança - Permissão Função
@@ -829,14 +775,11 @@ paths:
                     type: boolean
       operationId: get-seguranca-permissao-funcao
       description: Chamada relizada para retornar se uma função pode ser utilizada ou não
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_funcao:
-                  type: integer
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_funcao
   /comum/versao:
     get:
       summary: Comum - getVersionFromTextFile
@@ -868,14 +811,11 @@ paths:
                   parametro:
                     type: integer
       operationId: get-cobranca-load-parametro
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_ligacao:
-                  type: integer
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
   /central-atendimento/ocorrencia-operacional:
     get:
       summary: Central Atendimento - Ocorrencia Operaciona
@@ -889,14 +829,11 @@ paths:
                 $ref: '#/components/schemas/CAOcorrenciasOperacionais'
       operationId: get-central-atendimento-ocorrencia-operacional
       description: 'Chamada que retorna a lista de ocorrencias, por id da ligação. Chamada feita ao abrir a tela da central de atendimento'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_ligacao:
-                  type: integer
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
   /cadastro/ligacao/documento/download:
     get:
       summary: Cadastro Ligação - Documentos - Download
@@ -904,14 +841,11 @@ paths:
       responses: {}
       operationId: get-cadastro-ligacao-documento-download
       description: Chamada para fazer download do documento selecionado.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_documento:
-                  type: integer
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_documento
   /cadastro/ligacao/contrato-locacao/contratos-abertos:
     get:
       summary: Cadastro Ligação - Contratos Locação - Abertos
@@ -928,14 +862,11 @@ paths:
                     type: integer
       operationId: get-cadastro-ligacao-contrato-locacao-contratos-abertos
       description: ''
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id_ligacao:
-                  type: integer
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
   /cadastro/ligacao/contrato-locacao/salvar:
     post:
       summary: ''
@@ -956,6 +887,24 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CadastroLigacaoSalvarContratoLocacaoDto'
+  /cadastr/ligacao/consulta/carregar-registro:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CriarLigacaoModel'
+      operationId: get-cadastr-ligacao-consulta-carregar-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+      description: Chamada para carregar no formulário a ligação retornada na busca. Chamada feita ao clicar no botão OK do popup da pesquisa de ligação
 components:
   schemas:
     CriarLigacaoModel:
