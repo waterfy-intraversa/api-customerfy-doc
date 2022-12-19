@@ -889,7 +889,7 @@ paths:
               $ref: '#/components/schemas/CadastroLigacaoSalvarContratoLocacaoDto'
   /cadastr/ligacao/consulta/carregar-registro:
     get:
-      summary: Your GET endpoint
+      summary: Cadastro Ligação - Carregar Registro
       tags: []
       responses:
         '200':
