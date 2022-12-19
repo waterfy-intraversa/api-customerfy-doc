@@ -887,7 +887,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CadastroLigacaoSalvarContratoLocacaoDto'
-  /cadastr/ligacao/consulta/carregar-registro:
+  /cadastro/ligacao/consulta/carregar-registro:
     get:
       summary: Cadastro Ligação - Carregar Registro
       tags: []
@@ -905,6 +905,81 @@ paths:
           in: query
           name: id_ligacao
       description: Chamada para carregar no formulário a ligação retornada na busca. Chamada feita ao clicar no botão OK do popup da pesquisa de ligação
+    parameters: []
+  /cadastro/ligacao/medidor:
+    get:
+      summary: Cadastro Ligação - Medidor
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroLigacaoMedidorDto'
+      operationId: get-cadastro-ligacao-medidor
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_medidor
+      description: Chamada que popula os dados do medido no formulário
+  /cadastro/ligacao/tipo-ligacao:
+    get:
+      summary: Cadastr Ligação - Carrega tipo ligação
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  idStr:
+                    type: string
+                  descr:
+                    type: string
+                  flag:
+                    type: string
+                  tipoRet:
+                    type: integer
+                x-examples:
+                  Example 1:
+                    id: 1
+                    idStr: string
+                    descr: string
+                    flag: string
+                    tipoRet: 1
+      operationId: get-cadastro-ligacao-tipo-ligacao
+      description: Chamada feita após a carregar o registro de uma ligação pesquisada
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cronograma/ger-fases/ciclo-faturamento:
+    get:
+      summary: Cronograma - Ciclo Faturamento Iniciado
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  iniciado:
+                    type: boolean
+      operationId: get-cronograma-ger-fases-ciclo-faturamento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_grupo
 components:
   schemas:
     CriarLigacaoModel:
@@ -6162,5 +6237,46 @@ components:
           data_vigencia_ate: string
           data_encerramento: string
           ativo: string
+    CadastroLigacaoMedidorDto:
+      type: object
+      properties:
+        medido:
+          type: string
+        id_medidor:
+          type: integer
+        data_aquisicao:
+          type: string
+        ano_fabricacao:
+          type: string
+        situacao:
+          type: string
+        marca:
+          type: string
+        modelo:
+          type: string
+        tipo:
+          type: string
+        tecnologia:
+          type: string
+        vazao:
+          type: string
+        classe:
+          type: string
+        ponteiro:
+          type: string
+      x-examples:
+        Example 1:
+          medido: string
+          id_medidor: 1
+          data_aquisicao: string
+          ano_fabricacao: string
+          situacao: string
+          marca: string
+          modelo: string
+          tipo: string
+          tecnologia: string
+          vazao: string
+          classe: string
+          ponteiro: string
   securitySchemes: {}
 x-extension-1: null
