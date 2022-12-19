@@ -980,6 +980,23 @@ paths:
             type: integer
           in: query
           name: id_grupo
+  /cadastro/ligacao/entrega:
+    get:
+      summary: Cadastro Ligação - Carrega Ligação Entrega
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroLigacaoLocalDto'
+      operationId: get-cadastro-ligacao-entrega
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
 components:
   schemas:
     CriarLigacaoModel:
@@ -6278,5 +6295,64 @@ components:
           vazao: string
           classe: string
           ponteiro: string
+    CadastroLigacaoLocalDto:
+      type: object
+      properties:
+        alterado:
+          type: boolean
+        novo:
+          type: boolean
+        bairro:
+          type: string
+        sub_bairro:
+          type: string
+        nr_imovel:
+          type: integer
+        cep:
+          type: string
+        id_grupo:
+          type: integer
+        rota:
+          type: integer
+        quadra:
+          type: integer
+        sequencia:
+          type: integer
+        sub_unidade:
+          type: integer
+        cidade:
+          type: string
+        complemento:
+          type: string
+        logradouro:
+          type: string
+        id_uf:
+          type: integer
+        id_uf_entrega:
+          type: integer
+        id_cidade:
+          type: integer
+        id_cidade_grupo:
+          type: integer
+      x-examples:
+        Example 1:
+          alterado: true
+          novo: true
+          bairro: string
+          sub_bairro: string
+          nr_imovel: 1
+          cep: string
+          id_grupo: 1
+          rota: 1
+          quadra: 1
+          sequencia: 1
+          sub_unidade: 1
+          cidade: string
+          complemento: string
+          logradouro: string
+          id_uf: 1
+          id_uf_entrega: 1
+          id_cidade: 1
+          id_cidade_grupo: 1
   securitySchemes: {}
 x-extension-1: null
