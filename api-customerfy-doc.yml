@@ -798,7 +798,7 @@ paths:
       description: Chamada realizada após o login que retorna a versão da aplicação
   /cobranca/load-parametro:
     get:
-      summary: Your GET endpoint
+      summary: Cobrança - Load Parametro
       tags: []
       responses:
         '200':
@@ -869,7 +869,7 @@ paths:
           name: id_ligacao
   /cadastro/ligacao/contrato-locacao/salvar:
     post:
-      summary: ''
+      summary: Cadastro Ligação - Contratos Locação - Salvar novo contrato
       operationId: post-cadastro-ligacao-contrato-locacao-salvar
       responses:
         '200':
@@ -926,7 +926,7 @@ paths:
       description: Chamada que popula os dados do medido no formulário
   /cadastro/ligacao/tipo-ligacao:
     get:
-      summary: Cadastr Ligação - Carrega tipo ligação
+      summary: Cadastro Ligação - Carrega tipo ligação
       tags: []
       responses:
         '200':
@@ -992,6 +992,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoLocalDto'
       operationId: get-cadastro-ligacao-entrega
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cadastro/ligacao/recadastro:
+    get:
+      summary: Cadastro Ligação - Recadastro
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroLigacaoRecadastroSimplModel'
+      operationId: get-cadastro-ligacao-recadastro
+      description: Chamada para popular a a aba de recadastro do cadastro de ligação. Chamada efetuada ao carregar os dados de uma ligação existente.
       parameters:
         - schema:
             type: integer
@@ -6354,5 +6372,74 @@ components:
           id_uf_entrega: 1
           id_cidade: 1
           id_cidade_grupo: 1
+    CadastroLigacaoRecadastroSimplModel:
+      type: object
+      properties:
+        recadastro:
+          type: array
+          items:
+            type: object
+            properties:
+              processo:
+                type: object
+                properties:
+                  id_ligacao:
+                    type: integer
+                  id_processo:
+                    type: integer
+                  data_cadastro:
+                    type: string
+                  programa:
+                    type: string
+                  data_inicio:
+                    type: string
+                  data_termino:
+                    type: string
+                  id_status:
+                    type: integer
+                  id_fase:
+                    type: integer
+                  atributos_atualizados:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id_atributo:
+                          type: integer
+                        atributo:
+                          type: string
+                        antes:
+                          type: string
+                        depois:
+                          type: string
+                        empresa:
+                          type: string
+                        data_atualizacao:
+                          type: string
+                        repasse:
+                          type: boolean
+                        atualizado:
+                          type: boolean
+      x-examples:
+        Example 1:
+          recadastro:
+            - processo:
+                id_ligacao: 1
+                id_processo: 1
+                data_cadastro: string
+                programa: string
+                data_inicio: string
+                data_termino: string
+                id_status: 1
+                id_fase: 1
+                atributos_atualizados:
+                  - id_atributo: 1
+                    atributo: string
+                    antes: string
+                    depois: string
+                    empresa: string
+                    data_atualizacao: string
+                    repasse: true
+                    atualizado: true
   securitySchemes: {}
 x-extension-1: null
