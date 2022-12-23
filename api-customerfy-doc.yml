@@ -456,8 +456,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CALigacaoDadosModel'
+                $ref: '#/components/schemas/CAAtendimentoLigacaoModel'
       operationId: get-central-atendimento-ligacao-id_ligacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
   '/central-atendimento/ligacao/{id_ligacao}/excecao':
     parameters:
       - schema:
@@ -476,9 +481,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/CALigacaoExcecaoModel'
       operationId: get-central-atendimento-ligacao-id_ligacao-excecao
-  /central-atendimento/parametros-cadastro:
+  /cadastro/parametros-cadastro:
     get:
-      summary: CA - Parametros Cadastrp
+      summary: CA - Parametros Cadastro
       tags: []
       responses:
         '200':
@@ -488,6 +493,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/CAParametrosCadastroModel'
       operationId: get-central-atendimento-parametros-cadastro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+    parameters: []
   /central-atendimento/pesquisa-cliente:
     get:
       summary: CA - Pesquisa Cliente
@@ -622,7 +633,7 @@ paths:
                     type: integer
       operationId: get-user-unidade-operacional
       description: Chamada para buscar a unidade operacional do usuario logado. Feita no momento em que a tela de cadastro de ligação é aberta
-  /cadastro/ligacao/documento-angola:
+  /cadastro/parametros/documento-angola:
     get:
       summary: Cadastro Ligação - Valida se utiliza documento Angola
       tags: []
@@ -637,12 +648,16 @@ paths:
                   utiliza_doc_angola:
                     type: boolean
       operationId: get-cadastro-ligacao-documento-angola
-      description: 'Chamada para validar, pelo id da cidade, se utiliza documento Angola. Chamada feita no momento em que a tela de cadastro de ligação é aberta, e quando a cidade for alterada.'
+      description: |-
+        Chamada para validar, pelo id da cidade, se utiliza documento Angola. 
+        Chamada feita no momento em que a tela de cadastro de ligação é aberta, e quando a cidade for alterada.
+        Chamada feita ao pesquisar uma ligação na central de atendimento.
       parameters:
         - schema:
             type: integer
           in: query
           name: id_cidade
+    parameters: []
   /cadastro/ligacao/consulta/filtros:
     get:
       summary: Cadastro Ligação - Consulta - Filtro Pesquisa
@@ -796,7 +811,7 @@ paths:
                     type: string
       operationId: get-comum-versao
       description: Chamada realizada após o login que retorna a versão da aplicação
-  /cobranca/load-parametro:
+  /cobranca/parametros/load-parametro:
     get:
       summary: Cobrança - Load Parametro
       tags: []
@@ -816,6 +831,7 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+    parameters: []
   /central-atendimento/ocorrencia-operacional:
     get:
       summary: Central Atendimento - Ocorrencia Operaciona
@@ -1010,6 +1026,152 @@ paths:
                 $ref: '#/components/schemas/CadastroLigacaoRecadastroSimplModel'
       operationId: get-cadastro-ligacao-recadastro
       description: Chamada para popular a a aba de recadastro do cadastro de ligação. Chamada efetuada ao carregar os dados de uma ligação existente.
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  '/central-atendimento/ligacao/{id_ligacao}/dados':
+    parameters:
+      - schema:
+          type: string
+        name: id_ligacao
+        in: path
+        required: true
+    get:
+      summary: Central Atendimento - Ligação - Dados
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CALigacaoDadosModel'
+      operationId: get-central-atendimento-ligacao-idligacao-dados
+      description: Chamada feita após inserir uma ligação na central de atendimento
+      parameters:
+        - schema:
+            type: boolean
+          in: query
+          name: ordem_servico
+  '/central-atendimento/ligacao/{id_ligacao}/ocorrencias':
+    parameters:
+      - schema:
+          type: string
+        name: id_ligacao
+        in: path
+        required: true
+    get:
+      summary: Central Atendimento - Ocorrencias Operacionais
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CAOcorrenciaOperacionalLigacao'
+      operationId: get-central-atendimento-ligacao-id_ligacao-ocorrencias
+      description: Chamada para retornar as ocorrencias por ligação. Chamada feita após buscar por uma ligação
+      parameters: []
+  /faturamento/parametros/exibir-semaforo:
+    get:
+      summary: Faturamento - Exibir Semaforo
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  exibir_semaforo:
+                    type: boolean
+      operationId: get-faturamento-parametros-exibir-semaforo
+      description: Chamada feita ao pesquisar uma ligação na central de atendimento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+  /cobranca/parametros/exibir-corte-light:
+    get:
+      summary: Cobrança - Parâmetros - Exibir corte light
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  exibir_corte_light:
+                    type: boolean
+      operationId: get-cobranca-parametros-exibir-corte-light
+      description: Chamada feita ao pesquisar uma ligação na central de atendimento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /faturamento/parametros/debito-pregresso:
+    get:
+      summary: Faturamento - Parametros - Utiliza débitos pregresso
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  utiliza_debito_pregresso:
+                    type: boolean
+      operationId: get-faturamento-parametros-debito-pregresso
+      description: Chamada feita ao pesquisar uma ligação na central de atendimento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+  /cadastro/instalacao/medidor/historico:
+    get:
+      summary: Cadastro - Instalação - Carrega histórico medidor
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CAInstalacaoMedidorModel'
+      operationId: get-cadastro-instalacao-medidor-historico
+      description: Chamada feita ao pesquisar uma ligação na central de atendimento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cobranca/negativacao-fase:
+    get:
+      summary: Cobrança - Busca negativação fase
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  negativacao_fase:
+                    type: integer
+      operationId: get-cobranca-negativacao-fase
+      description: Chamada feita ao buscar uma ligação na central de atendimento
       parameters:
         - schema:
             type: integer
@@ -4301,7 +4463,7 @@ components:
               id_periodo: 1
               id_ocorrencia: 1
               path: string
-    CALigacaoDadosModel:
+    CAAtendimentoLigacaoModel:
       type: object
       properties:
         id_cidade:
@@ -4718,7 +4880,7 @@ components:
           observacao_cavalete: string
           observacao_ligacao: string
       x-stoplight:
-        id: a591b79c5b84c
+        id: 0db293983e515
     CALigacaoExcecaoModel:
       type: object
       properties:
@@ -6441,5 +6603,334 @@ components:
                     data_atualizacao: string
                     repasse: true
                     atualizado: true
+    CAInstalacaoMedidorModel:
+      type: array
+      items:
+        type: object
+        properties:
+          alterado:
+            type: boolean
+          novo:
+            type: boolean
+          lacre:
+            type: string
+          id_ligacao:
+            type: integer
+          id_medidor:
+            type: integer
+          medidor:
+            type: string
+          id_medidor_atual:
+            type: integer
+          id_programa_troca:
+            type: integer
+          programa_troca:
+            type: string
+          leitura_retirada:
+            type: integer
+          leitura_instalacao:
+            type: integer
+          volume_residual:
+            type: integer
+          id_equipe:
+            type: integer
+          equipe:
+            type: string
+          dt_retirada:
+            type: string
+          observacao:
+            type: string
+          id_periodo:
+            type: integer
+          id_grupo:
+            type: integer
+          id_periodo_instalacao:
+            type: integer
+          periodo_instalacao:
+            type: string
+          id_periodo_anterior:
+            type: integer
+          periodo_anterior:
+            type: string
+          id_periodo_util_residuo:
+            type: integer
+          periodo_util_residuo:
+            type: string
+          seq_id_periodo_util_residuo:
+            type: integer
+          id_medidor_motivo_troca:
+            type: integer
+          medido_motivo_troca:
+            type: string
+          id_ordem_servico_detalhe:
+            type: integer
+          dt_instalacao:
+            type: string
+          projeta_consumo:
+            type: string
+      x-examples:
+        Example 1:
+          - alterado: true
+            novo: true
+            lacre: string
+            id_ligacao: 1
+            id_medidor: 1
+            medidor: string
+            id_medidor_atual: 1
+            id_programa_troca: 1
+            programa_troca: string
+            leitura_retirada: 1
+            leitura_instalacao: 1
+            volume_residual: 1
+            id_equipe: 1
+            equipe: string
+            dt_retirada: string
+            observacao: string
+            id_periodo: 1
+            id_grupo: 1
+            id_periodo_instalacao: 1
+            periodo_instalacao: string
+            id_periodo_anterior: 1
+            periodo_anterior: string
+            id_periodo_util_residuo: 1
+            periodo_util_residuo: string
+            seq_id_periodo_util_residuo: 1
+            id_medidor_motivo_troca: 1
+            medido_motivo_troca: string
+            id_ordem_servico_detalhe: 1
+            dt_instalacao: string
+            projeta_consumo: string
+    CAComboExcecaoModel:
+      type: array
+      items:
+        type: object
+        properties:
+          id_excecao:
+            type: integer
+          id_tipo_excecao:
+            type: integer
+          exige_percentual:
+            type: string
+          exige_valor:
+            type: string
+          exige_cargo:
+            type: string
+          exige_classificacao_fiscal:
+            type: string
+          exige_tipo_faturamento:
+            type: string
+          exige_data:
+            type: string
+          exige_ajuste_valor_por_volume:
+            type: string
+          exige_categoria:
+            type: string
+          exige_sub_categoria:
+            type: string
+          id_motivo_padrao:
+            type: integer
+          id_periodo_incorporação:
+            type: integer
+      x-examples:
+        Example 1:
+          - id_excecao: 1
+            id_tipo_excecao: 1
+            exige_percentual: string
+            exige_valor: string
+            exige_cargo: string
+            exige_classificacao_fiscal: string
+            exige_tipo_faturamento: string
+            exige_data: string
+            exige_ajuste_valor_por_volume: string
+            exige_categoria: string
+            exige_sub_categoria: string
+            id_motivo_padrao: 1
+            id_periodo_incorporação: 1
+    CALigacaoDadosModel:
+      type: object
+      properties:
+        id_ligacao:
+          type: integer
+        id_cliente:
+          type: integer
+        id_grupo:
+          type: integer
+        id_ligacao_consolidadora:
+          type: integer
+        nome_cliente:
+          type: string
+        grupo:
+          type: string
+        cpf:
+          type: string
+        cnpj:
+          type: string
+        endereco:
+          type: string
+        rg:
+          type: string
+        situacao_ligacao:
+          type: string
+        situacao_cobranca:
+          type: string
+        situacao_imovel:
+          type: string
+        cidade:
+          type: string
+        id_cidade:
+          type: integer
+        digito_verificador:
+          type: string
+        id_cliente_inquilino:
+          type: integer
+        faturas_atrasadas:
+          type: integer
+        importacao_debitos:
+          type: boolean
+      x-examples:
+        Example 1:
+          id_ligacao: 1
+          id_cliente: 1
+          id_grupo: 1
+          id_ligacao_consolidadora: 1
+          nome_cliente: string
+          grupo: string
+          cpf: string
+          cnpj: string
+          endereco: string
+          rg: string
+          situacao_ligacao: string
+          situacao_cobranca: string
+          situacao_imovel: string
+          cidade: string
+          id_cidade: 1
+          digito_verificador: string
+          id_cliente_inquilino: 1
+          faturas_atrasadas: 1
+          importacao_debitos: true
+    CAOcorrenciaOperacionalLigacao:
+      type: array
+      items:
+        type: object
+        properties:
+          id_cidade:
+            type: integer
+          id_tipo_ocorrencia:
+            type: integer
+          titulo:
+            type: string
+          descricao:
+            type: string
+          tipo_ocorrencia:
+            type: string
+          hora_inicial:
+            type: string
+          hora_final:
+            type: string
+          previsao:
+            type: string
+          intervencoes:
+            type: string
+          situacao:
+            type: string
+          status:
+            type: string
+          populacao_afetada:
+            type: integer
+          observacao:
+            type: string
+          classificacao:
+            type: string
+          informante:
+            type: string
+          sistemas:
+            type: array
+            items:
+              type: object
+              properties:
+                id_string:
+                  type: string
+                descricao:
+                  type: string
+                flag:
+                  type: string
+                tipo_retorno:
+                  type: integer
+          bairros:
+            type: array
+            items:
+              type: object
+              properties:
+                id_string:
+                  type: string
+                descricao:
+                  type: string
+                flag:
+                  type: string
+                tipo_retorno:
+                  type: integer
+          logradouros:
+            type: array
+            items:
+              type: object
+              properties:
+                id_string:
+                  type: string
+                descricao:
+                  type: string
+                flag:
+                  type: string
+                tipo_retorno:
+                  type: integer
+          zona_macro:
+            type: array
+            items:
+              type: object
+              properties:
+                id_string:
+                  type: string
+                descricao:
+                  type: string
+                flag:
+                  type: string
+                tipo_retorno:
+                  type: integer
+      x-examples:
+        Example 1:
+          - id_cidade: 1
+            id_tipo_ocorrencia: 1
+            titulo: string
+            descricao: string
+            tipo_ocorrencia: string
+            hora_inicial: string
+            hora_final: string
+            previsao: string
+            intervencoes: string
+            situacao: string
+            status: string
+            populacao_afetada: 1
+            observacao: string
+            classificacao: string
+            informante: string
+            sistemas:
+              - id_string: string
+                descricao: string
+                flag: string
+                tipo_retorno: 1
+            bairros:
+              - id_string: string
+                descricao: string
+                flag: string
+                tipo_retorno: 1
+            logradouros:
+              - id_string: string
+                descricao: string
+                flag: string
+                tipo_retorno: 1
+            zona_macro:
+              - id_string: string
+                descricao: string
+                flag: string
+                tipo_retorno: 1
   securitySchemes: {}
 x-extension-1: null
