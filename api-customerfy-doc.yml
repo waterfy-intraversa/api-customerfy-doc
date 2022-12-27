@@ -1229,7 +1229,11 @@ components:
               type: string
             telefone:
               type: string
+            ddd_fixo:
+              type: string
             celular:
+              type: string
+            ddd_movel:
               type: string
             email:
               type: string
@@ -1649,7 +1653,9 @@ components:
             cpf: cpf
             cnpj: cnpj
             telefone: telefone
+            ddd_fixo: string
             celular: celular
+            ddd_movel: string
             email: email
             observacao: string
             nome_pai: string
@@ -2270,7 +2276,11 @@ components:
               type: string
             telefone:
               type: string
+            ddd_fixo:
+              type: string
             celular:
+              type: string
+            ddd_movel:
               type: string
             email:
               type: string
@@ -2339,7 +2349,9 @@ components:
             cpf: cpf
             cnpj: cnpj
             telefone: telefone
+            ddd_fixo: string
             celular: celular
+            ddd_movel: string
             email: email
             observacao: string
             nome_pai: string
