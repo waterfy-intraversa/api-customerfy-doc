@@ -2974,6 +2974,27 @@ components:
                             type: string
                           tipoRet:
                             type: integer
+            contratos_locacao:
+              type: object
+              properties:
+                tipo_locacao:
+                  type: object
+                  properties:
+                    dados:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          idStr:
+                            type: string
+                          descr:
+                            type: string
+                          flag:
+                            type: string
+                          tipoRet:
+                            type: integer
         parametros_cadastro:
           type: object
           properties:
@@ -3269,6 +3290,14 @@ components:
                     flag: string
                     tipoRet: 1
               tipos_orgao_publico:
+                dados:
+                  - id: 1
+                    idStr: string
+                    descr: string
+                    flag: string
+                    tipoRet: 1
+            contratos_locacao:
+              tipo_locacao:
                 dados:
                   - id: 1
                     idStr: string
