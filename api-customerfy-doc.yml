@@ -382,7 +382,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Login'
-      description: Chamada para realizar o login - getUsuarioLogadoSistema
+      description: ''
       parameters:
         - schema:
             type: integer
@@ -1257,6 +1257,36 @@ paths:
             type: integer
           in: query
           name: acao
+  /login/login:
+    post:
+      summary: Login - Login
+      operationId: post-login-login
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+        description: ''
+  /cadastro/ligacao/list-dados-cidades:
+    get:
+      summary: Cadastro Ligação - List Dados Cidades
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroLigacaoListarDadosIniciaisModel'
+      operationId: get-cadastro-ligacao-list-dados-cidades
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
 components:
   schemas:
     CriarLigacaoModel:
@@ -3616,6 +3646,250 @@ components:
               modo_operacao: string
     Login:
       type: object
+      x-examples:
+        Example 1:
+          usuario_logado:
+            id: 1
+            usuario: string
+            cpf: string
+            id_grupo_usuario: 1
+            id_unidade_operacional_selecionada: 1
+            id_unidade_negocio_selecionada: 1
+            serv_aplicacoes_selecionado: string
+            id_departamento: 1
+            id_distrito: 1
+            unidade_operacional: string
+            departamento: string
+            nome_resumido: string
+            nome_usuario: string
+            ativo: string
+            validar_ip: string
+            validar_depto: string
+            usuario_interno: string
+            bloqueado: string
+            permitir_login_simultaneo: string
+            num_tentativas_erradas: 1
+            dt_alteracao_senha: string
+            senha: string
+            senha1: string
+            senha2: string
+            email: string
+            grupo_usuario_vo:
+              - id: 1
+                grupo_usuario: string
+                id_unidade_negocio_selecionada: 1
+                telas:
+                  - id: 1
+                    tela: string
+                    nome_gui: string
+                    id_grupo_tela: 1
+                    ordem: 1
+                    sistema: 1
+                    ativo: true
+                telas_funcoes:
+                  - id: 1
+                    tela_funcao: string
+                formularios_padrao:
+                  - id: 1
+                    descricao: string
+                    titulo: string
+                    tabela: string
+                    incluir: string
+                    consultar: string
+                    imprimir: string
+                    ajuda: string
+                macros:
+                  - id: 1
+                    id_macro_categoria: 1
+                    macro: string
+                    id_macro: 1
+                    tipo_macro: 1
+                    unidade_negocio: string
+                    macro_sql: string
+                    link: string
+                    macro_sql_refatorado: string
+                    macro_layout: string
+                    macro_sub_layout: string
+                    titulo: string
+                    type: string
+                    arquivo_relatorio: string
+                    arquivo_sub_relatorio: string
+                    parametro: string
+                    delimitador_campo_text: string
+                    separador_campo: string
+                    new_row: string
+                    nome_arquivo: string
+                    extensao_arquivo: string
+                    enconding_arquivo: string
+                    resumo: string
+                    informacoes: string
+                    sem_cabecalho: true
+                    id_usuario: 1
+                    id_unidade_operacional: 1
+                    usuario: string
+                    id_unidade_negocio: 1
+                    horario_execucao_macro_vos:
+                      - id: 1
+                        id_macro: 1
+                        id_dia_semana: 1
+                        hora_inicio: string
+                        hora_termino: string
+                        dia_semana: string
+                    macro_categoria: string
+                    logar_execucao: true
+                    id_cidade: 1
+                    map_id: string
+                    result: string
+                    tags:
+                      - tipo_tag: string
+                        titulo_macro: string
+                        arquivo_relatorio: string
+                        arquivo_sub_relatorio: string
+                        legenda: string
+                        campo: string
+                        tamanho_maximo: 1
+                        tool_tip_text: string
+                        tabela: string
+                        valor_padrao: string
+                        validacao: string
+                        texto_validacao: string
+                        campo_chave: string
+                        campo_exibicao: string
+                        selecionado: string
+                        chave_primaria: string
+                        cor_fremte: string
+                        cor_fundo: string
+                        resultado: string
+                        resultado_parametro: string
+                        id_operacao: string
+                        campo_ordenacao: string
+                        condicao: string
+                        campo_aninhado: string
+                        campo_fornecido: string
+                        item_combo:
+                          - id: 1
+                            idStr: string
+                            descr: string
+                            flag: string
+                            tipoRet: 1
+                            combo_aninhado:
+                              - id: 1
+                                idStr: string
+                                descr: string
+                                flag: string
+                                tipoRet: 1
+                                combo_aninhado:
+                                  - {}
+                permissao_grupo_usuario_servicos:
+                  - id: 1
+                    id_grupo_usuario: 1
+                    id_servico: 1
+                    servico: string
+                    grupo_pode_cadastrar: string
+                    ativo: string
+                    grupo_pode_imprimir: string
+                    grupo_pode_baixar: string
+            permissao_usuario_depto_vo:
+              - id: 1
+                id_usuario: 1
+                id_depto: 1
+                departamento: string
+            permissao_usuario_ip_vo:
+              - id: 1
+                id_usuario: 1
+                ip: string
+            id_unidade_operacional: 1
+            perfil_tef_vo:
+              id: 1
+              caminho_arquivo_jar: string
+              descricao: string
+              codigo_transacao_pagamento: 1
+              codigo_transacao_cancelamento: 1
+              codigo_transacao_reimpressao: 1
+              codigo_transacao_contingencia: 1
+              ip_servidor: string
+              caminho_arquivo_identificador_terminal: string
+              codigo_loja: string
+              emitir_comprovante_caixa: string
+              homologacao: string
+              debug_mode: string
+              parametros_tef:
+                - id: 1
+                  id_cidade: 1
+                  id_unidade_operacional: 1
+                  id_perfil_tef: 1
+                  path_arquivo_conciliacao: string
+                  id_arrecadador_tef: 1
+                  valor_minimo: 2.2
+                  tipo_comprovante: string
+            unidade_negocio_atual:
+              id: 1
+              unidade_negocio: string
+              data_source: string
+              data_source_call_center: string
+              unidade_operacional: string
+              ip_servidor_aplicacao: string
+              id_unidade_operacional: 1
+              endereco: string
+              website: string
+              email: string
+              horario_funcionamento: string
+              telefone: string
+              modo_operacao: string
+            ip_acesso: string
+            sistema_logado: 1
+            id_cidade_departamento: 1
+            telas_sistema:
+              - id: 1
+                ordem: 1
+                grupo_tela: tela
+                col_tela:
+                  - id: 1
+                    tela: tela
+                    nome_gui: nome
+                    id_grupo_tela: 1
+                    ordem: 1
+                    sistema: 1
+                    ativo: true
+                col_grupo_tela:
+                  - id: 1
+                    ordem: 1
+                    grupo_tela: tela
+                    col_tela:
+                      - id: 1
+                        tela: tela
+                        nome_gui: nome
+                        id_grupo_tela: 1
+                        ordem: 1
+                        sistema: 1
+                        ativo: true
+                    col_grupo_tela:
+                      - {}
+                    sistema: 1
+                    id_grupo_tela_pai: 1
+                    icone: icone
+                    icone_hover: icone
+                    arq_ico: icone
+                    arq_ico_hover: icone
+                sistema: 1
+                id_grupo_tela_pai: 1
+                icone: icone
+                icone_hover: icone
+                arq_ico: icone
+                arq_ico_hover: icone
+            san_locked: true
+            cidades:
+              - id: 1
+                cidade: string
+            data_source: string
+            db_dialect: 1
+            id_leiturista: 1
+            id_idioma: 1
+            id_equipe: 1
+            id_arrecadador: 1
+            country_code: string
+            language_code: string
+            laguage_tag: string
       properties:
         usuario_logado:
           type: object
@@ -3909,7 +4183,6 @@ components:
                                             type: array
                                             items:
                                               type: object
-                                              properties: {}
                   permissao_grupo_usuario_servicos:
                     type: array
                     items:
@@ -4106,7 +4379,6 @@ components:
                           type: array
                           items:
                             type: object
-                            properties: {}
                         sistema:
                           type: integer
                         id_grupo_tela_pai:
@@ -4160,250 +4432,8 @@ components:
               type: string
             laguage_tag:
               type: string
-      x-examples:
-        Example 1:
-          usuario_logado:
-            id: 1
-            usuario: string
-            cpf: string
-            id_grupo_usuario: 1
-            id_unidade_operacional_selecionada: 1
-            id_unidade_negocio_selecionada: 1
-            serv_aplicacoes_selecionado: string
-            id_departamento: 1
-            id_distrito: 1
-            unidade_operacional: string
-            departamento: string
-            nome_resumido: string
-            nome_usuario: string
-            ativo: string
-            validar_ip: string
-            validar_depto: string
-            usuario_interno: string
-            bloqueado: string
-            permitir_login_simultaneo: string
-            num_tentativas_erradas: 1
-            dt_alteracao_senha: string
-            senha: string
-            senha1: string
-            senha2: string
-            email: string
-            grupo_usuario_vo:
-              - id: 1
-                grupo_usuario: string
-                id_unidade_negocio_selecionada: 1
-                telas:
-                  - id: 1
-                    tela: string
-                    nome_gui: string
-                    id_grupo_tela: 1
-                    ordem: 1
-                    sistema: 1
-                    ativo: true
-                telas_funcoes:
-                  - id: 1
-                    tela_funcao: string
-                formularios_padrao:
-                  - id: 1
-                    descricao: string
-                    titulo: string
-                    tabela: string
-                    incluir: string
-                    consultar: string
-                    imprimir: string
-                    ajuda: string
-                macros:
-                  - id: 1
-                    id_macro_categoria: 1
-                    macro: string
-                    id_macro: 1
-                    tipo_macro: 1
-                    unidade_negocio: string
-                    macro_sql: string
-                    link: string
-                    macro_sql_refatorado: string
-                    macro_layout: string
-                    macro_sub_layout: string
-                    titulo: string
-                    type: string
-                    arquivo_relatorio: string
-                    arquivo_sub_relatorio: string
-                    parametro: string
-                    delimitador_campo_text: string
-                    separador_campo: string
-                    new_row: string
-                    nome_arquivo: string
-                    extensao_arquivo: string
-                    enconding_arquivo: string
-                    resumo: string
-                    informacoes: string
-                    sem_cabecalho: true
-                    id_usuario: 1
-                    id_unidade_operacional: 1
-                    usuario: string
-                    id_unidade_negocio: 1
-                    horario_execucao_macro_vos:
-                      - id: 1
-                        id_macro: 1
-                        id_dia_semana: 1
-                        hora_inicio: string
-                        hora_termino: string
-                        dia_semana: string
-                    macro_categoria: string
-                    logar_execucao: true
-                    id_cidade: 1
-                    map_id: string
-                    result: string
-                    tags:
-                      - tipo_tag: string
-                        titulo_macro: string
-                        arquivo_relatorio: string
-                        arquivo_sub_relatorio: string
-                        legenda: string
-                        campo: string
-                        tamanho_maximo: 1
-                        tool_tip_text: string
-                        tabela: string
-                        valor_padrao: string
-                        validacao: string
-                        texto_validacao: string
-                        campo_chave: string
-                        campo_exibicao: string
-                        selecionado: string
-                        chave_primaria: string
-                        cor_fremte: string
-                        cor_fundo: string
-                        resultado: string
-                        resultado_parametro: string
-                        id_operacao: string
-                        campo_ordenacao: string
-                        condicao: string
-                        campo_aninhado: string
-                        campo_fornecido: string
-                        item_combo:
-                          - id: 1
-                            idStr: string
-                            descr: string
-                            flag: string
-                            tipoRet: 1
-                            combo_aninhado:
-                              - id: 1
-                                idStr: string
-                                descr: string
-                                flag: string
-                                tipoRet: 1
-                                combo_aninhado:
-                                  - {}
-                permissao_grupo_usuario_servicos:
-                  - id: 1
-                    id_grupo_usuario: 1
-                    id_servico: 1
-                    servico: string
-                    grupo_pode_cadastrar: string
-                    ativo: string
-                    grupo_pode_imprimir: string
-                    grupo_pode_baixar: string
-            permissao_usuario_depto_vo:
-              - id: 1
-                id_usuario: 1
-                id_depto: 1
-                departamento: string
-            permissao_usuario_ip_vo:
-              - id: 1
-                id_usuario: 1
-                ip: string
-            id_unidade_operacional: 1
-            perfil_tef_vo:
-              id: 1
-              caminho_arquivo_jar: string
-              descricao: string
-              codigo_transacao_pagamento: 1
-              codigo_transacao_cancelamento: 1
-              codigo_transacao_reimpressao: 1
-              codigo_transacao_contingencia: 1
-              ip_servidor: string
-              caminho_arquivo_identificador_terminal: string
-              codigo_loja: string
-              emitir_comprovante_caixa: string
-              homologacao: string
-              debug_mode: string
-              parametros_tef:
-                - id: 1
-                  id_cidade: 1
-                  id_unidade_operacional: 1
-                  id_perfil_tef: 1
-                  path_arquivo_conciliacao: string
-                  id_arrecadador_tef: 1
-                  valor_minimo: 2.2
-                  tipo_comprovante: string
-            unidade_negocio_atual:
-              id: 1
-              unidade_negocio: string
-              data_source: string
-              data_source_call_center: string
-              unidade_operacional: string
-              ip_servidor_aplicacao: string
-              id_unidade_operacional: 1
-              endereco: string
-              website: string
-              email: string
-              horario_funcionamento: string
-              telefone: string
-              modo_operacao: string
-            ip_acesso: string
-            sistema_logado: 1
-            id_cidade_departamento: 1
-            telas_sistema:
-              - id: 1
-                ordem: 1
-                grupo_tela: tela
-                col_tela:
-                  - id: 1
-                    tela: tela
-                    nome_gui: nome
-                    id_grupo_tela: 1
-                    ordem: 1
-                    sistema: 1
-                    ativo: true
-                col_grupo_tela:
-                  - id: 1
-                    ordem: 1
-                    grupo_tela: tela
-                    col_tela:
-                      - id: 1
-                        tela: tela
-                        nome_gui: nome
-                        id_grupo_tela: 1
-                        ordem: 1
-                        sistema: 1
-                        ativo: true
-                    col_grupo_tela:
-                      - {}
-                    sistema: 1
-                    id_grupo_tela_pai: 1
-                    icone: icone
-                    icone_hover: icone
-                    arq_ico: icone
-                    arq_ico_hover: icone
-                sistema: 1
-                id_grupo_tela_pai: 1
-                icone: icone
-                icone_hover: icone
-                arq_ico: icone
-                arq_ico_hover: icone
-            san_locked: true
-            cidades:
-              - id: 1
-                cidade: string
-            data_source: string
-            db_dialect: 1
-            id_leiturista: 1
-            id_idioma: 1
-            id_equipe: 1
-            id_arrecadador: 1
-            country_code: string
-            language_code: string
-            laguage_tag: string
+            processo_a_inicializar:
+              type: integer
     DocumentosModel:
       type: object
       properties:
