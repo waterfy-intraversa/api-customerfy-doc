@@ -1177,6 +1177,86 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+  /cadastro/ligacao/endereco-entrega:
+    get:
+      summary: Cadastro Ligação - Carrega endereço entrega
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnderecoEntregaDtoModel'
+      operationId: get-cadastro-ligacao-endereco-entrega
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cadastro/ligacao/documentos/contrato-ligacao:
+    get:
+      summary: Cadastro Ligação - Contratos Ligação
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LigacaoContratoDtoModel'
+      operationId: get-cadastro-ligacao-contrato-ligacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+    parameters: []
+  /cadastro/ligacao/verifica/tipo-entrega-alternativa:
+    get:
+      summary: Cadastro Ligação - Verifica - Entrega alternativa
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entrega_alternativa:
+                    type: string
+      operationId: get-cadastro-ligacao-verifica-tipo-entrega-alternativa
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_tipo_entrega
+  /cadastro/ligacao/validar/dados-identificacao:
+    get:
+      summary: Cadastro Ligação - Valida - Dados Identificação
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  validado:
+                    type: boolean
+      operationId: get-cadastro-ligacao-validar-dados-identificacao
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: ligacao_dto
+          description: aqui é o dto da ligação
+        - schema:
+            type: integer
+          in: query
+          name: acao
 components:
   schemas:
     CriarLigacaoModel:
@@ -6973,5 +7053,62 @@ components:
                 descricao: string
                 flag: string
                 tipo_retorno: 1
+    EnderecoEntregaDtoModel:
+      type: object
+      properties:
+        id_ligacao_entrega:
+          type: integer
+        id_tipo_entrega:
+          type: integer
+        cidade_entrega:
+          type: string
+        id_uf_entrega:
+          type: integer
+        logradouro_entrega:
+          type: string
+        complemento_entrega:
+          type: string
+        nr_imovel_entrega:
+          type: integer
+        cep_entrega:
+          type: string
+        bairro_entrega:
+          type: string
+        sub_bairro_entrega:
+          type: string
+      x-examples:
+        Example 1:
+          id_ligacao_entrega: 1
+          id_tipo_entrega: 1
+          cidade_entrega: string
+          id_uf_entrega: 1
+          logradouro_entrega: string
+          complemento_entrega: string
+          nr_imovel_entrega: 1
+          cep_entrega: string
+          bairro_entrega: string
+          sub_bairro_entrega: string
+    LigacaoContratoDtoModel:
+      type: array
+      items:
+        type: object
+        properties:
+          id_contrato:
+            type: integer
+          id_macro:
+            type: integer
+          id_cidade:
+            type: integer
+          descricao_documento:
+            type: string
+          observacao:
+            type: string
+      x-examples:
+        Example 1:
+          - id_contrato: 1
+            id_macro: 1
+            id_cidade: 1
+            descricao_documento: string
+            observacao: string
   securitySchemes: {}
 x-extension-1: null
