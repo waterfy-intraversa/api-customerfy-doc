@@ -204,10 +204,13 @@ paths:
                     dt_encerramento: '20221007'
         description: ''
       description: Chamada responsável em criar ligação.
+      tags:
+        - Cadastro-Ligação
   /utils:
     get:
       summary: Utils Get
-      tags: []
+      tags:
+        - Geral
       responses:
         '200':
           description: OK
@@ -221,7 +224,8 @@ paths:
   /cadastro/ligacao/inquilino:
     get:
       summary: Cadastro Ligação - Dados Inquilino
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -240,7 +244,8 @@ paths:
   /cadastro/ligacao/cliente:
     get:
       summary: Cadastro Ligação - Dados Cliente
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -259,7 +264,6 @@ paths:
   /busca/popup/filtros:
     get:
       summary: Dialog Pesquisa - Campos Pesquisa
-      tags: []
       responses:
         '200':
           description: OK
@@ -279,11 +283,14 @@ paths:
           in: query
           name: campo
       description: Chamada para trazer os filtros que poderão ser utilizados na busca
+      tags:
+        - Buscas
     parameters: []
   /busca/popup/busca:
     get:
       summary: Dialog Pesquisa - Busca
-      tags: []
+      tags:
+        - Buscas
       responses:
         '200':
           description: OK
@@ -310,7 +317,8 @@ paths:
   /cadastro/ligacao/contrato-locacao:
     get:
       summary: Cadastro Ligação - Contrato Locação
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -329,7 +337,8 @@ paths:
   /cadastro/ligacao/list-dados-iniciais:
     get:
       summary: Cadastro Ligação - List Dados Iniciais
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -343,7 +352,8 @@ paths:
   /carrega-menu:
     get:
       summary: Geral - Carrega Menus
-      tags: []
+      tags:
+        - Geral
       responses:
         '200':
           description: OK
@@ -361,7 +371,8 @@ paths:
   /unidade-negocio:
     get:
       summary: Login - Unidade de negócio
-      tags: []
+      tags:
+        - Login
       responses:
         '200':
           description: OK
@@ -388,11 +399,14 @@ paths:
             type: integer
           in: query
           name: sistema
+      tags:
+        - Login
     parameters: []
   /cadastro/ligacao/documento:
     get:
       summary: Cadastro Ligação - Busca Documentos
-      tags: []
+      tags:
+        - Cadastro-Liogação
       responses:
         '200':
           description: OK
@@ -410,7 +424,8 @@ paths:
   /central-atendimento/documentos/contratos-ligacao:
     get:
       summary: CA - Documentos - Contratos Ligação
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -422,7 +437,8 @@ paths:
   /central-atendimento/documentos/dados-ligacao:
     get:
       summary: CA - Documentos - Dados Ligação
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -449,7 +465,8 @@ paths:
         required: true
     get:
       summary: CA - Ligação
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -472,7 +489,8 @@ paths:
         required: true
     get:
       summary: CA - Ligação - Exceções
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -484,7 +502,8 @@ paths:
   /cadastro/parametros-cadastro:
     get:
       summary: CA - Parametros Cadastro
-      tags: []
+      tags:
+        - Parâmetros
       responses:
         '200':
           description: OK
@@ -502,7 +521,8 @@ paths:
   /central-atendimento/pesquisa-cliente:
     get:
       summary: CA - Pesquisa Cliente
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -514,7 +534,8 @@ paths:
   /central-atendimento/pesquisa-cliente/criterios:
     get:
       summary: CA - Pesquisa Cliente - Critérios
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -526,7 +547,8 @@ paths:
   /central-atendimento/portal-servicos:
     get:
       summary: CA - Portal Serviços
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -538,7 +560,8 @@ paths:
   /central-atendimento/receitas-acessorias/historico:
     get:
       summary: CA - Receitas Acessórias - Histórico
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -556,7 +579,8 @@ paths:
         required: true
     get:
       summary: Cadastro Ligação - Valida permite alteração
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -580,7 +604,8 @@ paths:
   /cadastro/ligacao/valida/faturamento-iniciado:
     get:
       summary: Cadastro Ligação - Ciclo Faturamento Iniciado
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -602,7 +627,8 @@ paths:
   /cadastro/ligacao/valida/consolidacao-arrecadacaoc:
     get:
       summary: Cadastro Ligação - Valida consolidação arrecadação
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -620,7 +646,6 @@ paths:
   /user/unidade-operacional:
     get:
       summary: Retorna unidade operacional - Usuario logado
-      tags: []
       responses:
         '200':
           description: OK
@@ -633,10 +658,13 @@ paths:
                     type: integer
       operationId: get-user-unidade-operacional
       description: Chamada para buscar a unidade operacional do usuario logado. Feita no momento em que a tela de cadastro de ligação é aberta
+      tags:
+        - User
   /cadastro/parametros/documento-angola:
     get:
       summary: Cadastro - Parametros - Valida se utiliza documento Angola
-      tags: []
+      tags:
+        - Parâmetros
       responses:
         '200':
           description: OK
