@@ -405,8 +405,6 @@ paths:
   /cadastro/ligacao/documento:
     get:
       summary: Cadastro Ligação - Busca Documentos
-      tags:
-        - Cadastro-Liogação
       responses:
         '200':
           description: OK
@@ -421,6 +419,8 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+      tags:
+        - Cadastro-Ligação
   /central-atendimento/documentos/contratos-ligacao:
     get:
       summary: CA - Documentos - Contratos Ligação
@@ -689,7 +689,8 @@ paths:
   /cadastro/ligacao/consulta/filtros:
     get:
       summary: Cadastro Ligação - Consulta - Filtro Pesquisa
-      tags: []
+      tags:
+        - Buscas
       responses:
         '200':
           description: OK
@@ -711,7 +712,8 @@ paths:
   /cadastro/ligacao/consulta/busca:
     get:
       summary: Cadastro Ligação - Consulta - Busca
-      tags: []
+      tags:
+        - Buscas
       responses:
         '200':
           description: OK
@@ -733,7 +735,8 @@ paths:
   /cadastro/ligacao/facilitador-roteiro:
     get:
       summary: Cadastro Ligação - Facilitador Roteiro
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -751,7 +754,8 @@ paths:
   /comum/listar-parametro:
     get:
       summary: Comum - Listar Parâmetro String
-      tags: []
+      tags:
+        - Geral
       responses:
         '200':
           description: OK
@@ -772,7 +776,8 @@ paths:
   /cadastro/ligacao/facilitador-roteiro/identificacao:
     get:
       summary: Cadastro Ligação - Roteiro Leitura
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -805,7 +810,8 @@ paths:
   /seguranca/permissao-funcao:
     get:
       summary: Segurança - Permissão Função
-      tags: []
+      tags:
+        - Segurança
       responses:
         '200':
           description: OK
@@ -826,7 +832,8 @@ paths:
   /comum/versao:
     get:
       summary: Comum - getVersionFromTextFile
-      tags: []
+      tags:
+        - Geral
       responses:
         '200':
           description: OK
@@ -842,7 +849,8 @@ paths:
   /cobranca/parametros/load-parametro:
     get:
       summary: Cobrança - Load Parametro
-      tags: []
+      tags:
+        - Cobrança
       responses:
         '200':
           description: OK
@@ -863,7 +871,8 @@ paths:
   /cadastro/ligacao/documento/download:
     get:
       summary: Cadastro Ligação - Documentos - Download
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses: {}
       operationId: get-cadastro-ligacao-documento-download
       description: Chamada para fazer download do documento selecionado.
@@ -875,7 +884,8 @@ paths:
   /cadastro/ligacao/contrato-locacao/contratos-abertos:
     get:
       summary: Cadastro Ligação - Contratos Locação - Abertos
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -913,10 +923,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CadastroLigacaoSalvarContratoLocacaoDto'
+      tags:
+        - Cadastro-Ligação
   /cadastro/ligacao/consulta/carregar-registro:
     get:
       summary: Cadastro Ligação - Carregar Registro
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -935,7 +948,8 @@ paths:
   /cadastro/ligacao/medidor:
     get:
       summary: Cadastro Ligação - Medidor
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -953,7 +967,8 @@ paths:
   /cadastro/ligacao/tipo-ligacao:
     get:
       summary: Cadastro Ligação - Carrega tipo ligação
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -989,7 +1004,9 @@ paths:
   /cronograma/ger-fases/ciclo-faturamento:
     get:
       summary: Cronograma - Ciclo Faturamento Iniciado
-      tags: []
+      tags:
+        - Cronograma
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1009,7 +1026,8 @@ paths:
   /cadastro/ligacao/entrega:
     get:
       summary: Cadastro Ligação - Carrega Ligação Entrega
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -1026,7 +1044,8 @@ paths:
   /cadastro/ligacao/recadastro:
     get:
       summary: Cadastro Ligação - Recadastro
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -1050,7 +1069,8 @@ paths:
         required: true
     get:
       summary: Central Atendimento - Ligação - Dados
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1074,7 +1094,8 @@ paths:
         required: true
     get:
       summary: Central Atendimento - Ocorrencias Operacionais
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1088,7 +1109,9 @@ paths:
   /faturamento/parametros/exibir-semaforo:
     get:
       summary: Faturamento - Exibir Semaforo
-      tags: []
+      tags:
+        - Faturamento
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1109,7 +1132,9 @@ paths:
   /cobranca/parametros/exibir-corte-light:
     get:
       summary: Cobrança - Parâmetros - Exibir corte light
-      tags: []
+      tags:
+        - Cobrança
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1130,7 +1155,9 @@ paths:
   /faturamento/parametros/debito-pregresso:
     get:
       summary: Faturamento - Parametros - Utiliza débitos pregresso
-      tags: []
+      tags:
+        - Faturamento
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1151,7 +1178,8 @@ paths:
   /cadastro/instalacao/medidor/historico:
     get:
       summary: Cadastro - Instalação - Carrega histórico medidor
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1169,7 +1197,9 @@ paths:
   /cobranca/negativacao-fase:
     get:
       summary: Cobrança - Busca negativação fase
-      tags: []
+      tags:
+        - Cobgrança
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1190,7 +1220,8 @@ paths:
   /cadastro/ligacao/endereco-entrega:
     get:
       summary: Cadastro Ligação - Carrega endereço entrega
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -1207,7 +1238,8 @@ paths:
   /cadastro/ligacao/documentos/contrato-ligacao:
     get:
       summary: Cadastro Ligação - Contratos Ligação
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -1225,7 +1257,8 @@ paths:
   /cadastro/ligacao/verifica/tipo-entrega-alternativa:
     get:
       summary: Cadastro Ligação - Verifica - Entrega alternativa
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -1245,7 +1278,8 @@ paths:
   /cadastro/ligacao/validar/dados-identificacao:
     get:
       summary: Cadastro Ligação - Valida - Dados Identificação
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -1280,10 +1314,13 @@ paths:
             schema:
               $ref: '#/components/schemas/Login'
         description: ''
+      tags:
+        - Login
   /cadastro/ligacao/list-dados-cidades:
     get:
       summary: Cadastro Ligação - List Dados Cidades
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -1300,7 +1337,8 @@ paths:
   /central-atendimento/ligacao/cliente/atendimento:
     get:
       summary: Central Atendimento - Cliente - Obter ligação atendimento
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1319,7 +1357,8 @@ paths:
   /central-atedimento/ligacao/atendimento:
     get:
       summary: Central Atendimento - Ligacao - Atendimento
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1336,7 +1375,9 @@ paths:
   /faturamento/parametros/cadastro:
     get:
       summary: Faturamento - Parâmetros - Obter parâmetro cadastro
-      tags: []
+      tags:
+        - Faturamento
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1378,10 +1419,14 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+      tags:
+        - Central-Atendimento
   /gerfases/cronograma/exibir:
     get:
       summary: GerFases - Exibir Cronograma
-      tags: []
+      tags:
+        - Cronograma
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1399,7 +1444,9 @@ paths:
   /medicao/historico/total-consumo:
     get:
       summary: Medição - Total histórico consumo
-      tags: []
+      tags:
+        - Medição
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1419,7 +1466,9 @@ paths:
   /medicao/historico/consumo:
     get:
       summary: Medição - Histórico consumo
-      tags: []
+      tags:
+        - Medição
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1444,7 +1493,8 @@ paths:
   /comum/ligacao/cidade:
     get:
       summary: Comum - Obter cidade por ligação
-      tags: []
+      tags:
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1483,7 +1533,9 @@ paths:
   /faturamento/habilitar-cx-timbre:
     get:
       summary: Faturamento - Habilitar Caixa Timbre
-      tags: []
+      tags:
+        - Faturamento
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1498,7 +1550,6 @@ paths:
   /comum/listar-combo:
     get:
       summary: Comum - Listar Combo
-      tags: []
       responses:
         '200':
           description: OK
@@ -1536,10 +1587,15 @@ paths:
             type: string
           in: query
           name: sql
+      tags:
+        - Cadastro-Ligação
+        - Central-Atendimento
   /faturamento/historico/total:
     get:
       summary: Faturamento - Total histórico
-      tags: []
+      tags:
+        - Faturamento
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -1559,7 +1615,9 @@ paths:
   /faturamento/historico/total-cliente:
     get:
       summary: Faturamento - Total histórico cliente
-      tags: []
+      tags:
+        - Faturamento
+        - Central-Atendimento
       responses:
         '200':
           description: OK
