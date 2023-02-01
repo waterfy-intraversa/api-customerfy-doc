@@ -937,6 +937,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CriarLigacaoModel'
+              examples: {}
       operationId: get-cadastr-ligacao-consulta-carregar-registro
       parameters:
         - schema:
@@ -2014,6 +2015,66 @@ paths:
             type: string
           in: query
           name: sql
+  /faturamento/parcelamento/rubricas/descontos-parcelamento:
+    get:
+      summary: Faturamento - Load rubricas desconto parcelamento
+      tags:
+        - Faturamento
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RubricaDtoModel'
+      operationId: get-faturamento-parcelamento-rubricas-descontos-parcelamento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+  /cadastro/ligacao/carrega/ligacao-consolidadora:
+    get:
+      summary: Cadastro Ligação - Carrega ligação consolidadora
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    dados:
+                      type: string
+      operationId: get-cadastro-ligacao-carrega-ligacao-consolidadora
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cadastro/ligacao/obter-consolidacao:
+    get:
+      summary: Cadastro Ligação - Obter Consolidação
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PesquisaConsolidacaoDtoModel'
+      operationId: get-cadastro-ligacao-obter-consolidacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
 components:
   schemas:
     CriarLigacaoModel:
@@ -17878,5 +17939,252 @@ components:
           remove_abas_informacoes: string
           retro_alimentacao_entrada_paga: string
           id_rubrica_desconto_encargos: 1
+    RubricaDtoModel:
+      type: object
+      properties:
+        alterado:
+          type: boolean
+        novo:
+          type: boolean
+        id_cidade:
+          type: integer
+        codigo:
+          type: integer
+        revisao:
+          type: integer
+        vigencia:
+          type: string
+        situacao:
+          type: string
+        id_grupo_rubrica:
+          type: integer
+        contratual:
+          type: boolean
+        rubrica:
+          type: string
+        rubrica_resumida:
+          type: string
+        valor:
+          type: number
+        fator_reducao:
+          type: number
+        id_classificacao_fiscal:
+          type: integer
+        id_classificacao_fiscal_indireta:
+          type: integer
+        id_decreto:
+          type: integer
+        debito_credito:
+          type: string
+        exibir_fatura:
+          type: boolean
+        considerar_total_fatura:
+          type: boolean
+        id_grupo_exibe:
+          type: integer
+        col_tipo_taxa_atraso:
+          type: array
+          items:
+            type: object
+            properties:
+              tipo_taxa:
+                type: integer
+        id_tipo_reg_integracao_fin:
+          type: integer
+        id_grupo_receita:
+          type: integer
+        codigo_auxiliar:
+          type: integer
+        id_grupo_processo_arrecadacao:
+          type: integer
+        st_faturar:
+          type: string
+        id_rubrica_parc:
+          type: integer
+        rubrica_parc:
+          type: string
+        id_rubrica:
+          type: integer
+        grupo_receita:
+          type: string
+        valor_imposto:
+          type: number
+        id_incidencia:
+          type: integer
+        incidencia:
+          type: string
+        aliquota_iss:
+          type: number
+        aliquota_icms:
+          type: number
+        aliquota_pis:
+          type: number
+        aliquota_cofins:
+          type: number
+        aliquota_inss:
+          type: number
+        id_tipo_rubrica:
+          type: integer
+        rubrica_desconto_parc:
+          type: string
+        consumo_atual:
+          type: string
+      x-examples:
+        Example 1:
+          alterado: true
+          novo: true
+          id_cidade: 17
+          codigo: 1
+          revisao: 1
+          vigencia: '02032023'
+          situacao: A
+          id_grupo_rubrica: 1
+          contratual: true
+          rubrica: ''
+          rubrica_resumida: ''
+          valor: 1.1
+          fator_reducao: 1.1
+          id_classificacao_fiscal: 1
+          id_classificacao_fiscal_indireta: 1
+          id_decreto: 1
+          debito_credito: D
+          exibir_fatura: true
+          considerar_total_fatura: true
+          id_grupo_exibe: 1
+          col_tipo_taxa_atraso:
+            - tipo_taxa: 1
+          id_tipo_reg_integracao_fin: 1
+          id_grupo_receita: 1
+          codigo_auxiliar: 1
+          id_grupo_processo_arrecadacao: 1
+          st_faturar: 'N'
+          id_rubrica_parc: 1
+          rubrica_parc: 'N'
+          id_rubrica: 1
+          grupo_receita: ''
+          valor_imposto: 1.1
+          id_incidencia: 1
+          incidencia: ''
+          aliquota_iss: 1.1
+          aliquota_icms: 1.1
+          aliquota_pis: 1.1
+          aliquota_cofins: 1.1
+          aliquota_inss: 1.1
+          id_tipo_rubrica: 1
+          rubrica_desconto_parc: 'N'
+          consumo_atual: ''
+    PesquisaConsolidacaoDtoModel:
+      type: object
+      properties:
+        id_ligacao:
+          type: integer
+        grupo:
+          type: string
+        cliente:
+          type: string
+        endereco:
+          type: string
+        medidor:
+          type: string
+        tipo_faturamento:
+          type: string
+        categoria:
+          type: string
+        consolidacao_detalhe:
+          type: array
+          items:
+            type: object
+            properties:
+              id_ligacao:
+                type: integer
+              grupo:
+                type: string
+              data_ligacao:
+                type: string
+              endereco:
+                type: string
+              medidor:
+                type: string
+              tipo_faturamento:
+                type: string
+              categoria:
+                type: string
+              consolidacao_detalhe:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id_ligacao:
+                      type: integer
+                    grupo:
+                      type: string
+                    data_ligacao:
+                      type: string
+                    endereco:
+                      type: string
+                    medidor:
+                      type: string
+                    tipo_faturamento:
+                      type: string
+                    categoria:
+                      type: string
+                    consolidacao_detalhe:
+                      type: array
+                      items:
+                        type: object
+                        properties: {}
+      x-examples:
+        Example 1:
+          id_ligacao: 1
+          grupo: grupo 1
+          cliente: Maria
+          endereco: rua 1
+          medidor: Y22L405492
+          tipo_faturamento: agua
+          categoria: residencial
+          consolidacao_detalhe:
+            - id_ligacao: 1
+              grupo: grupo 1
+              data_ligacao: '10102015'
+              endereco: rua 1
+              medidor: Y22L405492
+              tipo_faturamento: agua
+              categoria: residencial
+              consolidacao_detalhe:
+                - id_ligacao: 1
+                  grupo: grupo 1
+                  data_ligacao: '10102015'
+                  endereco: rua 1
+                  medidor: Y22L405492
+                  tipo_faturamento: agua
+                  categoria: residencial
+                  consolidacao_detalhe:
+                    - {}
+      examples:
+        - id_ligacao: 1
+          grupo: grupo 1
+          cliente: Maria
+          endereco: rua 1
+          medidor: Y22L405492
+          tipo_faturamento: agua
+          categoria: residencial
+          consolidacao_detalhe:
+            - id_ligacao: 1
+              grupo: grupo 1
+              data_ligacao: '10102015'
+              endereco: rua 1
+              medidor: Y22L405492
+              tipo_faturamento: agua
+              categoria: residencial
+              consolidacao_detalhe:
+                - id_ligacao: 1
+                  grupo: grupo 1
+                  data_ligacao: '10102015'
+                  endereco: rua 1
+                  medidor: Y22L405492
+                  tipo_faturamento: agua
+                  categoria: residencial
+                  consolidacao_detalhe:
+                    - {}
   securitySchemes: {}
 x-extension-1: null
