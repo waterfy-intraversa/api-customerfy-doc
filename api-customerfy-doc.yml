@@ -2039,7 +2039,8 @@ paths:
   /cadastro/ligacao/carrega/ligacao-consolidadora:
     get:
       summary: Cadastro Ligação - Carrega ligação consolidadora
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
@@ -2061,7 +2062,8 @@ paths:
   /cadastro/ligacao/obter-consolidacao:
     get:
       summary: Cadastro Ligação - Obter Consolidação
-      tags: []
+      tags:
+        - Cadastro-Ligação
       responses:
         '200':
           description: OK
