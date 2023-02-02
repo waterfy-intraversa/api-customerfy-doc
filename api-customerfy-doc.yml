@@ -380,6 +380,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UnidadeNegocio'
+              examples:
+                Example 1:
+                  value:
+                    unidade_negocio:
+                      - id: 17
+                        unidadeNegocio: 'HIDRO FORTE '
+                        dataSourceCallCenter: ''
+                        unidadeOperacional: HIDRO FORTE
+                        ipServidorAplicacao: HIDRO_FORTE
+                        idUnidadeOperacional: 17
+                        endereco: ''
+                        webSite: ''
+                        email: ''
+                        horarioFuncionamento: ''
+                        telefone: ''
+                        modoOperacao: P
+                      - id: 18
+                        unidadeNegocio: HIDRO
+                        dataSourceCallCenter: ''
+                        unidadeOperacional: HIDRO
+                        ipServidorAplicacao: HIDRO
+                        idUnidadeOperacional: 18
+                        endereco: ''
+                        webSite: ''
+                        email: ''
+                        horarioFuncionamento: ''
+                        telefone: ''
+                        modoOperacao: P
       operationId: get-unidade-negocio
       description: Chamada para trazer as unidades de negócio possiveis para serem selecionadas na tela do login.
   /login/usuario-logado:
