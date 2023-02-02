@@ -799,6 +799,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListarTuplaModel'
+              examples:
+                Example 1:
+                  value:
+                    colunas:
+                      - Codigo da Ligacao
+                      - dv
+                      - identificacao
+                      - consumidor
+                      - Endereco da Ligacao
+                      - numero
+                      - nrantigo
+                      - bairro
+                      - complemento
+                      - grupo
+                      - inscricao
+                      - medidor
+                    dados:
+                      - linha:
+                          - '8177190'
+                          - null
+                          - 307 1 2 1 1 0
+                          - MARIA APARECIDA GUIMARÃES
+                          - RUA  20
+                          - '0'
+                          - ''
+                          - CENTRO
+                          - ASDFA
+                          - GRUPO 4
+                          - ''
+                          - Y22L405492
+                        representacao:
+                          id: 8177190
+                          descr: '8177190'
+                          tipoRet: 0
       operationId: get-cadastro-ligacao-consulta-busca
       description: 'Chamada para fazer a busca do cadastro de ligação, chamada feita ao clicar no botão pesquisar na aba de consulta simples'
       parameters:
@@ -2610,6 +2644,141 @@ paths:
                     idOcorrencia: 0
                     id: 2120
       operationId: get-cadastro-ligacao-documento-id_documento
+  /faturamento/parcelamento/calcular-parcelas-validar:
+    get:
+      summary: Faturamento - Calcular parcelas validar
+      tags:
+        - Faturamento
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
+      operationId: get-faturamento-parcelamento-calcular-parcelas-validar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
+  /faturamento/verifica/data-contrato-locacao:
+    get:
+      summary: Faturamento - Verificar data contrato locação associado
+      tags:
+        - Faturamento
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valido:
+                    type: boolean
+              examples:
+                Example 1:
+                  value:
+                    valido: true
+      operationId: get-faturamento-verifica-data-contrato-locacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
+        description: ''
+  /faturamento/parcelamento/salvar-parcelas:
+    get:
+      summary: Faturamento - Salvar parcelas
+      tags:
+        - Faturamento
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
+      operationId: get-faturamento-parcelamento-salvar-parcelas
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: tipo_campanha
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
+  /faturamento/parcelamento/imprimir-contrato:
+    get:
+      summary: Faturamento - Imprimir Contrato
+      tags:
+        - Faturamento
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contrato:
+                    type: string
+      operationId: get-faturamento-parcelamento-imprimir-contrato
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_parcelamento
+        - schema:
+            type: string
+          in: query
+          name: tipo_contrato
+  /faturamento/fatura/imprimir-fatura:
+    get:
+      summary: Faturamento - Imprimir Fatura
+      tags:
+        - Faturamento
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fatura:
+                    type: string
+      operationId: get-faturamento-fatura-imprimir-fatura
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: layout
+        - schema:
+            type: integer
+          in: query
+          name: id_fatura
+        - schema:
+            type: integer
+          in: query
+          name: id_codigo
+        - schema:
+            type: boolean
+          in: query
+          name: pesquisar_cidade
 components:
   schemas:
     CriarLigacaoModel:
@@ -3887,69 +4056,50 @@ components:
             jubilado: true
     ListarTuplaModel:
       type: object
+      properties:
+        gridvo:
+          type: object
+          properties:
+            colunas:
+              type: array
+              items:
+                type: string
+            dados:
+              type: array
+              items:
+                type: object
+                properties:
+                  linha:
+                    type: array
+                    items:
+                      type: string
+                  representação:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      idStr:
+                        type: string
+                      descr:
+                        type: string
+                      flag:
+                        type: string
+                      tipoRet:
+                        type: integer
       x-examples:
         Example 1:
           gridvo:
-            - colunas:
-                - nome: column name
-              linhas:
-                - linha:
-                    - linha_query: row
-                  representação:
-                    - dados:
-                        - id: 1
-                          idStr: string
-                          descr: string
-                          flag: string
-                          tipoRet: 1
-      properties:
-        gridvo:
-          type: array
-          items:
-            type: object
-            properties:
-              colunas:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    nome:
-                      type: string
-              dados:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    linha:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          linha_query:
-                            type: string
-                    representação:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          dados:
-                            type: array
-                            items:
-                              type: object
-                              properties:
-                                id:
-                                  type: integer
-                                idStr:
-                                  type: string
-                                descr:
-                                  type: string
-                                flag:
-                                  type: string
-                                tipoRet:
-                                  type: integer
-      x-stoplight:
-        id: cecae3304635e
-      description: 'Modelo do retorno das buscas '
+            colunas:
+              - column name
+            dados:
+              - linha:
+                  - row
+                representação:
+                  id: 1
+                  idStr: string
+                  descr: string
+                  flag: string
+                  tipoRet: 1
     CadastroLigacaoContratosLocacao:
       type: array
       items:
@@ -18774,5 +18924,1207 @@ components:
           id_periodo: 1
           id_ocorrencia: 1
           path: ''
+    ParcelamentoDadosDtoModel:
+      type: object
+      properties:
+        parcelamento_vo:
+          type: object
+          properties:
+            bairro:
+              type: string
+            cidade:
+              type: string
+            cnpj_proprietario:
+              type: string
+            col_faturas_geradas:
+              type: array
+              items:
+                type: object
+                properties:
+                  faturas:
+                    type: integer
+            col_parcelamento_debitos_vo:
+              type: array
+              items:
+                type: object
+                properties:
+                  selecionado:
+                    type: boolean
+                  id_periodo:
+                    type: integer
+                  id_grupo_receita:
+                    type: integer
+                  id_rubrica_parcelamento:
+                    type: integer
+                  periodo:
+                    type: string
+                  id_fatura:
+                    type: integer
+                  id_tipo_transacao:
+                    type: integer
+                  tipo_transacao:
+                    type: string
+                  vencto:
+                    type: string
+                  valor:
+                    type: number
+                  valor_imposto:
+                    type: number
+                  valor_acrescimo:
+                    type: number
+                  total:
+                    type: number
+                  col_acrescimos_vo:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id_rubrica:
+                          type: integer
+                        id_fatura:
+                          type: number
+                        id_cliente_inquilino:
+                          type: integer
+                        rubrica:
+                          type: string
+                        valor:
+                          type: number
+                        valor_uf_ir:
+                          type: number
+                        valor_acum:
+                          type: number
+                        periodo:
+                          type: string
+                        id_rubrica_origem:
+                          type: integer
+                        calculo_correcao_pendente:
+                          type: string
+                  col_debitos_rubrica:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        selecionado:
+                          type: boolean
+                        id_periodo:
+                          type: integer
+                        id_grupo_receita:
+                          type: integer
+                        id_rubrica_parcelamento:
+                          type: integer
+                        periodo:
+                          type: string
+                        id_fatura:
+                          type: integer
+                        id_tipo_transacao:
+                          type: integer
+                        tipo_transacao:
+                          type: string
+                        vencto:
+                          type: string
+                        valor:
+                          type: number
+                        valor_imposto:
+                          type: number
+                        valor_acrescimo:
+                          type: number
+                        total:
+                          type: number
+                        col_acrescimos_vo:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id_rubrica:
+                                type: integer
+                              id_fatura:
+                                type: number
+                              id_cliente_inquilino:
+                                type: integer
+                              rubrica:
+                                type: string
+                              valor:
+                                type: number
+                              valor_uf_ir:
+                                type: number
+                              valor_acum:
+                                type: number
+                              periodo:
+                                type: string
+                              id_rubrica_origem:
+                                type: integer
+                              calculo_correcao_pendente:
+                                type: string
+                        col_debitos_rubrica:
+                          type: array
+                          items:
+                            type: object
+                            properties: {}
+                        id_ligacao_seguro:
+                          type: integer
+                        total_uf_ir:
+                          type: number
+                        valor_acrescimo_uf_ir:
+                          type: number
+                        valor_uf_ir:
+                          type: number
+                        id_processo:
+                          type: integer
+                        id_cliente_inquilino:
+                          type: integer
+                        desconto:
+                          type: boolean
+                        valor_encargos_fatura:
+                          type: number
+                  id_ligacao_seguro:
+                    type: integer
+                  total_uf_ir:
+                    type: number
+                  valor_acrescimo_uf_ir:
+                    type: number
+                  valor_uf_ir:
+                    type: number
+                  id_processo:
+                    type: integer
+                  id_cliente_inquilino:
+                    type: integer
+                  desconto:
+                    type: boolean
+                  valor_encargos_fatura:
+                    type: number
+            col_contrato:
+              type: array
+              items:
+                type: object
+                properties:
+                  id_fatura:
+                    type: integer
+                  valor_acrescimo:
+                    type: number
+                  id_periodo:
+                    type: integer
+                  id_rubrica_parcelamento:
+                    type: integer
+                  periodo:
+                    type: string
+                  valor:
+                    type: number
+                  total:
+                    type: number
+            com_entrada:
+              type: boolean
+            cpf_proprietario:
+              type: string
+            data:
+              type: string
+            id_cidade:
+              type: integer
+            id_cliente:
+              type: integer
+            id_grupo:
+              type: integer
+            id_ligacao:
+              type: integer
+            id_ligacao_entrega:
+              type: integer
+            id_parcelamento:
+              type: integer
+            id_periodo_prim_parcelamento:
+              type: integer
+            id_rubrica_parcelamento:
+              type: integer
+            id_atraso_encargo_negociado:
+              type: integer
+            id_tipo_parcelamento:
+              type: integer
+            tipo_parcelamento:
+              type: string
+            logradouro:
+              type: string
+            nome_inquilino:
+              type: string
+            nome_proprietario:
+              type: string
+            nr_imovel:
+              type: integer
+            nr_max_parc:
+              type: integer
+            qtd_debitos_selecionados:
+              type: integer
+            qta_min_debitos_parc:
+              type: integer
+            rg_proprietario:
+              type: string
+            valor_acrescimo_selecionado:
+              type: number
+            valor_min_debito_parc:
+              type: number
+            valor_min_entrada_parc:
+              type: number
+            valor_min_parc:
+              type: number
+            valor_total_a_parcelar:
+              type: number
+            valor_total_selecionado:
+              type: number
+            valor_entrada_contrato:
+              type: number
+            valor_parcelas_contrato:
+              type: number
+            col_debitos_rubricas_selecionado:
+              type: array
+              items:
+                type: object
+                properties:
+                  selecionado:
+                    type: boolean
+                  id_periodo:
+                    type: integer
+                  id_grupo_receita:
+                    type: integer
+                  id_rubrica_parcelamento:
+                    type: integer
+                  periodo:
+                    type: string
+                  id_fatura:
+                    type: integer
+                  id_tipo_transacao:
+                    type: integer
+                  tipo_transacao:
+                    type: string
+                  vencto:
+                    type: string
+                  valor:
+                    type: number
+                  valor_imposto:
+                    type: number
+                  valor_acrescimo:
+                    type: number
+                  total:
+                    type: number
+                  col_acrescimos_vo:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id_rubrica:
+                          type: integer
+                        id_fatura:
+                          type: number
+                        id_cliente_inquilino:
+                          type: integer
+                        rubrica:
+                          type: string
+                        valor:
+                          type: number
+                        valor_uf_ir:
+                          type: number
+                        valor_acum:
+                          type: number
+                        periodo:
+                          type: string
+                        id_rubrica_origem:
+                          type: integer
+                        calculo_correcao_pendente:
+                          type: string
+                  col_debitos_rubrica:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        selecionado:
+                          type: boolean
+                        id_periodo:
+                          type: integer
+                        id_grupo_receita:
+                          type: integer
+                        id_rubrica_parcelamento:
+                          type: integer
+                        periodo:
+                          type: string
+                        id_fatura:
+                          type: integer
+                        id_tipo_transacao:
+                          type: integer
+                        tipo_transacao:
+                          type: string
+                        vencto:
+                          type: string
+                        valor:
+                          type: number
+                        valor_imposto:
+                          type: number
+                        valor_acrescimo:
+                          type: number
+                        total:
+                          type: number
+                        col_acrescimos_vo:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id_rubrica:
+                                type: integer
+                              id_fatura:
+                                type: number
+                              id_cliente_inquilino:
+                                type: integer
+                              rubrica:
+                                type: string
+                              valor:
+                                type: number
+                              valor_uf_ir:
+                                type: number
+                              valor_acum:
+                                type: number
+                              periodo:
+                                type: string
+                              id_rubrica_origem:
+                                type: integer
+                              calculo_correcao_pendente:
+                                type: string
+                        col_debitos_rubrica:
+                          type: array
+                          items:
+                            type: object
+                            properties: {}
+                        id_ligacao_seguro:
+                          type: integer
+                        total_uf_ir:
+                          type: number
+                        valor_acrescimo_uf_ir:
+                          type: number
+                        valor_uf_ir:
+                          type: number
+                        id_processo:
+                          type: integer
+                        id_cliente_inquilino:
+                          type: integer
+                        desconto:
+                          type: boolean
+                        valor_encargos_fatura:
+                          type: number
+                  id_ligacao_seguro:
+                    type: integer
+                  total_uf_ir:
+                    type: number
+                  valor_acrescimo_uf_ir:
+                    type: number
+                  valor_uf_ir:
+                    type: number
+                  id_processo:
+                    type: integer
+                  id_cliente_inquilino:
+                    type: integer
+                  desconto:
+                    type: boolean
+                  valor_encargos_fatura:
+                    type: number
+            data_vencimento:
+              type: string
+            qtd_faturas:
+              type: integer
+            valor_total:
+              type: number
+            valor_acrescimo_uf_ir:
+              type: number
+            valor_debito_uf_ir:
+              type: number
+            id_cliente_inquilino:
+              type: integer
+            id_orgao_publico:
+              type: integer
+            nr_extras_parcelas_faturamento:
+              type: integer
+            valor_encargos_fatura:
+              type: integer
+            campanha:
+              type: boolean
+        nr_parcelas:
+          type: integer
+        id_taxa_financiamento:
+          type: integer
+        valor_entrada:
+          type: integer
+        id_tipo_parcelamento:
+          type: integer
+        valor_financ:
+          type: number
+        data_vencto:
+          type: string
+        nacionalidade:
+          type: string
+        estado_civil:
+          type: string
+        profissao:
+          type: string
+        id_tipo_acordo:
+          type: integer
+        col_tela_parc_gr:
+          type: array
+          items:
+            type: object
+            properties:
+              entrada_tela:
+                type: boolean
+              parcela_tela:
+                type: string
+              periodo_tela:
+                type: string
+              data_vencto_tela:
+                type: string
+              valor_parcela_tela:
+                type: number
+              valor_financ_tela:
+                type: number
+              valor_acresc_tela:
+                type: number
+        parcelamento_parcelas_dados_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              parcela:
+                type: string
+              entrada:
+                type: boolean
+              data_vencto:
+                type: string
+              id_periodo:
+                type: integer
+              periodo:
+                type: string
+              valor_parcela:
+                type: number
+              valor_imposto_parcela:
+                type: number
+              valor_financ:
+                type: number
+              valor_imposto_financ:
+                type: number
+              valor_acrescimo:
+                type: number
+              valor_imposto_acrescimo:
+                type: number
+              id_rubrica_financiamento:
+                type: integer
+              id_grupo_receita:
+                type: integer
+              col_acrescimo_vo:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id_rubrica:
+                      type: integer
+                    id_fatura:
+                      type: integer
+                    id_cliente_inquilino:
+                      type: integer
+                    rubrica:
+                      type: string
+                    valor:
+                      type: number
+                    valor_uf_ir:
+                      type: number
+                    valor_acum:
+                      type: number
+                    periodo:
+                      type: string
+                    id_rubrica_origem:
+                      type: integer
+                    calculo_correcao_pendente:
+                      type: string
+              id_sit_parc:
+                type: integer
+              col_antecip:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id_tipo_venda:
+                      type: integer
+                    tipo_venda:
+                      type: string
+                    tipo_lancamento:
+                      type: string
+                    id_situacao_incorp:
+                      type: integer
+                    id_venda:
+                      type: integer
+                    data_lancto:
+                      type: string
+                    id_periodo_inicial:
+                      type: integer
+                    periodo_inicial:
+                      type: string
+                    id_rubrica:
+                      type: integer
+                    rubrica:
+                      type: string
+                    nr_parcelas:
+                      type: integer
+                    valor:
+                      type: number
+                    valor_imposto:
+                      type: number
+                    observacao:
+                      type: string
+                    origem:
+                      type: string
+                    id_usuario_cadastro:
+                      type: integer
+                    usuario_cadastro:
+                      type: string
+                    venda_fat_incorp_det_vo:
+                      type: array
+                      items:
+                        type: object
+                        properties: {}
+                    id_ligacao_consolidadora:
+                      type: integer
+                    parcela:
+                      type: integer
+                    id_venda_detalhe:
+                      type: integer
+                    id_detalhe_parcela:
+                      type: integer
+                    id_sit_parcela:
+                      type: integer
+                    id_parcelamento:
+                      type: integer
+                    id_ligacao:
+                      type: integer
+                    situacao:
+                      type: string
+                    id_cliente_inquilino:
+                      type: integer
+              col_rubrica_parcelamento:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    parcela:
+                      type: string
+                    entrada:
+                      type: boolean
+                    data_vencto:
+                      type: string
+                    id_periodo:
+                      type: integer
+                    periodo:
+                      type: string
+                    valor_parcela:
+                      type: number
+                    valor_imposto_parcela:
+                      type: number
+                    valor_financ:
+                      type: number
+                    valor_imposto_financ:
+                      type: number
+                    valor_acrescimo:
+                      type: number
+                    valor_imposto_acrescimo:
+                      type: number
+                    id_rubrica_financiamento:
+                      type: integer
+                    id_grupo_receita:
+                      type: integer
+                    col_acrescimo_vo:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id_rubrica:
+                            type: integer
+                          id_fatura:
+                            type: integer
+                          id_cliente_inquilino:
+                            type: integer
+                          rubrica:
+                            type: string
+                          valor:
+                            type: number
+                          valor_uf_ir:
+                            type: number
+                          valor_acum:
+                            type: number
+                          periodo:
+                            type: string
+                          id_rubrica_origem:
+                            type: integer
+                          calculo_correcao_pendente:
+                            type: string
+                    id_sit_parc:
+                      type: integer
+                    col_antecip:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id_tipo_venda:
+                            type: integer
+                          tipo_venda:
+                            type: string
+                          tipo_lancamento:
+                            type: string
+                          id_situacao_incorp:
+                            type: integer
+                          id_venda:
+                            type: integer
+                          data_lancto:
+                            type: string
+                          id_periodo_inicial:
+                            type: integer
+                          periodo_inicial:
+                            type: string
+                          id_rubrica:
+                            type: integer
+                          rubrica:
+                            type: string
+                          nr_parcelas:
+                            type: integer
+                          valor:
+                            type: number
+                          valor_imposto:
+                            type: number
+                          observacao:
+                            type: string
+                          origem:
+                            type: string
+                          id_usuario_cadastro:
+                            type: integer
+                          usuario_cadastro:
+                            type: string
+                          venda_fat_incorp_det_vo:
+                            type: array
+                            items:
+                              type: object
+                              properties: {}
+                          id_ligacao_consolidadora:
+                            type: integer
+                          parcela:
+                            type: integer
+                          id_venda_detalhe:
+                            type: integer
+                          id_detalhe_parcela:
+                            type: integer
+                          id_sit_parcela:
+                            type: integer
+                          id_parcelamento:
+                            type: integer
+                          id_ligacao:
+                            type: integer
+                          situacao:
+                            type: string
+                          id_cliente_inquilino:
+                            type: integer
+                    col_rubrica_parcelamento:
+                      type: array
+                      items:
+                        type: object
+                        properties: {}
+                    col_taxa_financiamento:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id_rubrica:
+                            type: integer
+                          id_rubrica_imposto:
+                            type: integer
+                          valor:
+                            type: number
+                          valor_imposto:
+                            type: number
+                          id_grupo_receita:
+                            type: integer
+                    d_valor_parcela_sem_acres_tela:
+                      type: number
+                    valor_acres_parcela_tela:
+                      type: number
+                    valor_acres_tela:
+                      type: number
+                    debito_credito:
+                      type: string
+                    id_ligacao_seguro:
+                      type: integer
+                    valor_acrescimo_uf_ir:
+                      type: number
+                    valor_debito_uf_ir:
+                      type: number
+                    valor_uf_ir:
+                      type: number
+                    id_cliente_inquilino:
+                      type: integer
+                    id_orgao_publico:
+                      type: integer
+                    id_fatura:
+                      type: integer
+              col_taxa_financiamento:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id_rubrica:
+                      type: integer
+                    id_rubrica_imposto:
+                      type: integer
+                    valor:
+                      type: number
+                    valor_imposto:
+                      type: number
+                    id_grupo_receita:
+                      type: integer
+              d_valor_parcela_sem_acres_tela:
+                type: number
+              valor_acres_parcela_tela:
+                type: number
+              valor_acres_tela:
+                type: number
+              debito_credito:
+                type: string
+              id_ligacao_seguro:
+                type: integer
+              valor_acrescimo_uf_ir:
+                type: number
+              valor_debito_uf_ir:
+                type: number
+              valor_uf_ir:
+                type: number
+              id_cliente_inquilino:
+                type: integer
+              id_orgao_publico:
+                type: integer
+              id_fatura:
+                type: integer
+        procurador_rg:
+          type: string
+        procurador_nome:
+          type: string
+        procurador_estado_civil:
+          type: string
+        procurador_nacionalidade:
+          type: string
+        procurado_profissao:
+          type: string
+        condominio_rg:
+          type: string
+        condominio_nome:
+          type: string
+        condominio_estado_civil:
+          type: string
+        condominio_nacionalidade:
+          type: string
+        condominio_cpf:
+          type: string
+        condominio_endereço:
+          type: string
+        condominio_profissao:
+          type: string
+        pessoa_juridica_rg:
+          type: string
+        pessoa_juridica_nome:
+          type: string
+        pessoa_juridica_estado_civil:
+          type: string
+        pessoa_juridica_nacionalidade:
+          type: string
+        pessoa_juridica_cpf:
+          type: string
+        pessoa_juridica_endereco:
+          type: string
+        pessoa_juridica_profissao:
+          type: string
+        perc_desconto:
+          type: number
+        valor_desconto:
+          type: number
+        alcada:
+          type: boolean
+      x-examples:
+        Example 1:
+          parcelamento_vo:
+            bairro: string
+            cidade: string
+            cnpj_proprietario: string
+            col_faturas_geradas:
+              - faturas: 1
+            col_parcelamento_debitos_vo:
+              - selecionado: true
+                id_periodo: 1
+                id_grupo_receita: 1
+                id_rubrica_parcelamento: 1
+                periodo: string
+                id_fatura: 1
+                id_tipo_transacao: 1
+                tipo_transacao: string
+                vencto: string
+                valor: 1.1
+                valor_imposto: 1.1
+                valor_acrescimo: 1.1
+                total: 1.1
+                col_acrescimos_vo:
+                  - id_rubrica: 1
+                    id_fatura: 1.1
+                    id_cliente_inquilino: 1
+                    rubrica: string
+                    valor: 1.1
+                    valor_uf_ir: 1.1
+                    valor_acum: 1.1
+                    periodo: string
+                    id_rubrica_origem: 1
+                    calculo_correcao_pendente: string
+                col_debitos_rubrica:
+                  - selecionado: true
+                    id_periodo: 1
+                    id_grupo_receita: 1
+                    id_rubrica_parcelamento: 1
+                    periodo: string
+                    id_fatura: 1
+                    id_tipo_transacao: 1
+                    tipo_transacao: string
+                    vencto: string
+                    valor: 1.1
+                    valor_imposto: 1.1
+                    valor_acrescimo: 1.1
+                    total: 1.1
+                    col_acrescimos_vo:
+                      - id_rubrica: 1
+                        id_fatura: 1.1
+                        id_cliente_inquilino: 1
+                        rubrica: string
+                        valor: 1.1
+                        valor_uf_ir: 1.1
+                        valor_acum: 1.1
+                        periodo: string
+                        id_rubrica_origem: 1
+                        calculo_correcao_pendente: string
+                    col_debitos_rubrica:
+                      - {}
+                    id_ligacao_seguro: 1
+                    total_uf_ir: 1.1
+                    valor_acrescimo_uf_ir: 1.1
+                    valor_uf_ir: 1.1
+                    id_processo: 1
+                    id_cliente_inquilino: 1
+                    desconto: true
+                    valor_encargos_fatura: 1.1
+                id_ligacao_seguro: 1
+                total_uf_ir: 1.1
+                valor_acrescimo_uf_ir: 1.1
+                valor_uf_ir: 1.1
+                id_processo: 1
+                id_cliente_inquilino: 1
+                desconto: true
+                valor_encargos_fatura: 1.1
+            col_contrato:
+              - id_fatura: 1
+                valor_acrescimo: 1.1
+                id_periodo: 1
+                id_rubrica_parcelamento: 1
+                periodo: string
+                valor: 1.1
+                total: 1.1
+            com_entrada: true
+            cpf_proprietario: string
+            data: string
+            id_cidade: 1
+            id_cliente: 1
+            id_grupo: 1
+            id_ligacao: 1
+            id_ligacao_entrega: 1
+            id_parcelamento: 1
+            id_periodo_prim_parcelamento: 1
+            id_rubrica_parcelamento: 1
+            id_atraso_encargo_negociado: 1
+            id_tipo_parcelamento: 1
+            tipo_parcelamento: string
+            logradouro: string
+            nome_inquilino: string
+            nome_proprietario: string
+            nr_imovel: 1
+            nr_max_parc: 1
+            qtd_debitos_selecionados: 1
+            qta_min_debitos_parc: 1
+            rg_proprietario: string
+            valor_acrescimo_selecionado: 1.1
+            valor_min_debito_parc: 1.1
+            valor_min_entrada_parc: 1.1
+            valor_min_parc: 1.1
+            valor_total_a_parcelar: 1.1
+            valor_total_selecionado: 1.1
+            valor_entrada_contrato: 1.1
+            valor_parcelas_contrato: 1.1
+            col_debitos_rubricas_selecionado:
+              - selecionado: true
+                id_periodo: 1
+                id_grupo_receita: 1
+                id_rubrica_parcelamento: 1
+                periodo: string
+                id_fatura: 1
+                id_tipo_transacao: 1
+                tipo_transacao: string
+                vencto: string
+                valor: 1.1
+                valor_imposto: 1.1
+                valor_acrescimo: 1.1
+                total: 1.1
+                col_acrescimos_vo:
+                  - id_rubrica: 1
+                    id_fatura: 1.1
+                    id_cliente_inquilino: 1
+                    rubrica: string
+                    valor: 1.1
+                    valor_uf_ir: 1.1
+                    valor_acum: 1.1
+                    periodo: string
+                    id_rubrica_origem: 1
+                    calculo_correcao_pendente: string
+                col_debitos_rubrica:
+                  - selecionado: true
+                    id_periodo: 1
+                    id_grupo_receita: 1
+                    id_rubrica_parcelamento: 1
+                    periodo: string
+                    id_fatura: 1
+                    id_tipo_transacao: 1
+                    tipo_transacao: string
+                    vencto: string
+                    valor: 1.1
+                    valor_imposto: 1.1
+                    valor_acrescimo: 1.1
+                    total: 1.1
+                    col_acrescimos_vo:
+                      - id_rubrica: 1
+                        id_fatura: 1.1
+                        id_cliente_inquilino: 1
+                        rubrica: string
+                        valor: 1.1
+                        valor_uf_ir: 1.1
+                        valor_acum: 1.1
+                        periodo: string
+                        id_rubrica_origem: 1
+                        calculo_correcao_pendente: string
+                    col_debitos_rubrica:
+                      - {}
+                    id_ligacao_seguro: 1
+                    total_uf_ir: 1.1
+                    valor_acrescimo_uf_ir: 1.1
+                    valor_uf_ir: 1.1
+                    id_processo: 1
+                    id_cliente_inquilino: 1
+                    desconto: true
+                    valor_encargos_fatura: 1.1
+                id_ligacao_seguro: 1
+                total_uf_ir: 1.1
+                valor_acrescimo_uf_ir: 1.1
+                valor_uf_ir: 1.1
+                id_processo: 1
+                id_cliente_inquilino: 1
+                desconto: true
+                valor_encargos_fatura: 1.1
+            data_vencimento: string
+            qtd_faturas: 1
+            valor_total: 1.1
+            valor_acrescimo_uf_ir: 1.1
+            valor_debito_uf_ir: 1.1
+            id_cliente_inquilino: 1
+            id_orgao_publico: 1
+            nr_extras_parcelas_faturamento: 1
+            valor_encargos_fatura: 1
+            campanha: true
+          nr_parcelas: 2
+          id_taxa_financiamento: 1
+          valor_entrada: 20
+          id_tipo_parcelamento: 1
+          valor_financ: 62.91
+          data_vencto: '02032023'
+          nacionalidade: brasileiro
+          estado_civil: solteiro
+          profissao: artista
+          id_tipo_acordo: 1
+          col_tela_parc_gr:
+            - entrada_tela: true
+              parcela_tela: ''
+              periodo_tela: ''
+              data_vencto_tela: ''
+              valor_parcela_tela: 1.1
+              valor_financ_tela: 1.1
+              valor_acresc_tela: 1.1
+          parcelamento_parcelas_dados_vo:
+            - id: 1
+              parcela: string
+              entrada: true
+              data_vencto: string
+              id_periodo: 1
+              periodo: string
+              valor_parcela: 1.1
+              valor_imposto_parcela: 1.1
+              valor_financ: 1.1
+              valor_imposto_financ: 1.1
+              valor_acrescimo: 1.1
+              valor_imposto_acrescimo: 1.1
+              id_rubrica_financiamento: 1
+              id_grupo_receita: 1
+              col_acrescimo_vo:
+                - id_rubrica: 1
+                  id_fatura: 1
+                  id_cliente_inquilino: 1
+                  rubrica: string
+                  valor: 1.1
+                  valor_uf_ir: 1.1
+                  valor_acum: 1.1
+                  periodo: string
+                  id_rubrica_origem: 1
+                  calculo_correcao_pendente: string
+              id_sit_parc: 1
+              col_antecip:
+                - id_tipo_venda: 1
+                  tipo_venda: string
+                  tipo_lancamento: string
+                  id_situacao_incorp: 1
+                  id_venda: 1
+                  data_lancto: string
+                  id_periodo_inicial: 1
+                  periodo_inicial: string
+                  id_rubrica: 1
+                  rubrica: string
+                  nr_parcelas: 1
+                  valor: 1.1
+                  valor_imposto: 1.1
+                  observacao: string
+                  origem: string
+                  id_usuario_cadastro: 1
+                  usuario_cadastro: string
+                  venda_fat_incorp_det_vo:
+                    - {}
+                  id_ligacao_consolidadora: 1
+                  parcela: 1
+                  id_venda_detalhe: 1
+                  id_detalhe_parcela: 1
+                  id_sit_parcela: 1
+                  id_parcelamento: 1
+                  id_ligacao: 1
+                  situacao: string
+                  id_cliente_inquilino: 1
+              col_rubrica_parcelamento:
+                - id: 1
+                  parcela: string
+                  entrada: true
+                  data_vencto: string
+                  id_periodo: 1
+                  periodo: string
+                  valor_parcela: 1.1
+                  valor_imposto_parcela: 1.1
+                  valor_financ: 1.1
+                  valor_imposto_financ: 1.1
+                  valor_acrescimo: 1.1
+                  valor_imposto_acrescimo: 1.1
+                  id_rubrica_financiamento: 1
+                  id_grupo_receita: 1
+                  col_acrescimo_vo:
+                    - id_rubrica: 1
+                      id_fatura: 1
+                      id_cliente_inquilino: 1
+                      rubrica: string
+                      valor: 1.1
+                      valor_uf_ir: 1.1
+                      valor_acum: 1.1
+                      periodo: string
+                      id_rubrica_origem: 1
+                      calculo_correcao_pendente: string
+                  id_sit_parc: 1
+                  col_antecip:
+                    - id_tipo_venda: 1
+                      tipo_venda: string
+                      tipo_lancamento: string
+                      id_situacao_incorp: 1
+                      id_venda: 1
+                      data_lancto: string
+                      id_periodo_inicial: 1
+                      periodo_inicial: string
+                      id_rubrica: 1
+                      rubrica: string
+                      nr_parcelas: 1
+                      valor: 1.1
+                      valor_imposto: 1.1
+                      observacao: string
+                      origem: string
+                      id_usuario_cadastro: 1
+                      usuario_cadastro: string
+                      venda_fat_incorp_det_vo:
+                        - {}
+                      id_ligacao_consolidadora: 1
+                      parcela: 1
+                      id_venda_detalhe: 1
+                      id_detalhe_parcela: 1
+                      id_sit_parcela: 1
+                      id_parcelamento: 1
+                      id_ligacao: 1
+                      situacao: string
+                      id_cliente_inquilino: 1
+                  col_rubrica_parcelamento:
+                    - {}
+                  col_taxa_financiamento:
+                    - id_rubrica: 1
+                      id_rubrica_imposto: 1
+                      valor: 1.1
+                      valor_imposto: 1.1
+                      id_grupo_receita: 1
+                  d_valor_parcela_sem_acres_tela: 1.1
+                  valor_acres_parcela_tela: 1.1
+                  valor_acres_tela: 1.1
+                  debito_credito: string
+                  id_ligacao_seguro: 1
+                  valor_acrescimo_uf_ir: 1.1
+                  valor_debito_uf_ir: 1.1
+                  valor_uf_ir: 1.1
+                  id_cliente_inquilino: 1
+                  id_orgao_publico: 1
+                  id_fatura: 1
+              col_taxa_financiamento:
+                - id_rubrica: 1
+                  id_rubrica_imposto: 1
+                  valor: 1.1
+                  valor_imposto: 1.1
+                  id_grupo_receita: 1
+              d_valor_parcela_sem_acres_tela: 1.1
+              valor_acres_parcela_tela: 1.1
+              valor_acres_tela: 1.1
+              debito_credito: string
+              id_ligacao_seguro: 1
+              valor_acrescimo_uf_ir: 1.1
+              valor_debito_uf_ir: 1.1
+              valor_uf_ir: 1.1
+              id_cliente_inquilino: 1
+              id_orgao_publico: 1
+              id_fatura: 1
+          procurador_rg: '4813650679'
+          procurador_nome: Cleito
+          procurador_estado_civil: viuvo
+          procurador_nacionalidade: brasileiro
+          procurado_profissao: marcineiro
+          condominio_rg: ''
+          condominio_nome: ''
+          condominio_estado_civil: ''
+          condominio_nacionalidade: ''
+          condominio_cpf: ''
+          condominio_endereço: ''
+          condominio_profissao: ''
+          pessoa_juridica_rg: ''
+          pessoa_juridica_nome: ''
+          pessoa_juridica_estado_civil: ''
+          pessoa_juridica_nacionalidade: ''
+          pessoa_juridica_cpf: ''
+          pessoa_juridica_endereco: ''
+          pessoa_juridica_profissao: ''
+          perc_desconto: 1.1
+          valor_desconto: 1.1
+          alcada: true
   securitySchemes: {}
 x-extension-1: null
