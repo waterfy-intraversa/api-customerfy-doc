@@ -332,17 +332,105 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CamposPesquisaGet'
+                x-examples:
+                  Example 1:
+                    campos_pesquisa:
+                      campos:
+                        - idTabela: 0
+                          campo: rg
+                          nome: rg
+                          tipoDadoJava: String
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
+                        - idTabela: 0
+                          campo: cpf
+                          nome: cpf
+                          tipoDadoJava: String
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
+                        - idTabela: 0
+                          campo: id
+                          nome: Codigo
+                          tipoDadoJava: int
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
+                        - idTabela: 0
+                          campo: cliente
+                          nome: Nome do Cliente
+                          tipoDadoJava: String
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
+                        - idTabela: 0
+                          campo: cnpj
+                          nome: cnpj
+                          tipoDadoJava: String
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
               examples:
                 Example 1:
                   value:
                     campos_pesquisa:
                       campos:
-                        - campo: string
-                          nome: string
-                          tipo_dado_java: string
-                          tabela: string
-                          tabela_cons_padrao: string
-                          campo_cons_padrao: string
+                        - idTabela: 0
+                          campo: rg
+                          nome: rg
+                          tipoDadoJava: String
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
+                        - idTabela: 0
+                          campo: cpf
+                          nome: cpf
+                          tipoDadoJava: String
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
+                        - idTabela: 0
+                          campo: id
+                          nome: Codigo
+                          tipoDadoJava: int
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
+                        - idTabela: 0
+                          campo: cliente
+                          nome: Nome do Cliente
+                          tipoDadoJava: String
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
+                        - idTabela: 0
+                          campo: cnpj
+                          nome: cnpj
+                          tipoDadoJava: String
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
           headers: {}
       operationId: get-filtros
       parameters:
@@ -370,6 +458,127 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListarTuplaModel'
+              examples:
+                Example 1:
+                  value:
+                    columns:
+                      - Codigo
+                      - Nome do Cliente
+                      - cnpj
+                      - cpf
+                      - email
+                      - fonemovel
+                    dados:
+                      - row:
+                          - '508'
+                          - JOSÉ MOREIRA LIMA
+                          - null
+                          - '28486250153'
+                          - null
+                          - '984360145'
+                        representacao:
+                          descr: JOSÉ MOREIRA LIMA
+                          tipoRet: 3
+                          id: 508
+                      - row:
+                          - '358'
+                          - MARCILEIDE BARREIRA RIBEIRO
+                          - null
+                          - '93297262168'
+                          - null
+                          - '984558697'
+                        representacao:
+                          descr: MARCILEIDE BARREIRA RIBEIRO
+                          tipoRet: 3
+                          id: 358
+                      - row:
+                          - '855'
+                          - COSMO DA SILVA RAMOS
+                          - null
+                          - '91808022149'
+                          - null
+                          - '984587066'
+                        representacao:
+                          descr: COSMO DA SILVA RAMOS
+                          tipoRet: 3
+                          id: 855
+                      - row:
+                          - '995'
+                          - JUCILENE DA MATA MARTINS CO?LHO
+                          - null
+                          - '03160590135'
+                          - null
+                          - '984654648'
+                        representacao:
+                          descr: JUCILENE DA MATA MARTINS CO?LHO
+                          tipoRet: 3
+                          id: 995
+                      - row:
+                          - '1002'
+                          - RENARIA DA SILVA LOPES
+                          - null
+                          - '03862107132'
+                          - Renariadsl8090@gmail.com
+                          - '63992970174'
+                        representacao:
+                          descr: RENARIA DA SILVA LOPES
+                          tipoRet: 3
+                          id: 1002
+                      - row:
+                          - '1130'
+                          - ISAILDE NORONHA DA SILVA
+                          - null
+                          - '01342895100'
+                          - null
+                          - '984650720'
+                        representacao:
+                          descr: ISAILDE NORONHA DA SILVA
+                          tipoRet: 3
+                          id: 1130
+                      - row:
+                          - '1131'
+                          - GECIVALDO ALVES ARAUJO
+                          - null
+                          - '03874816133'
+                          - null
+                          - '63992984028'
+                        representacao:
+                          descr: GECIVALDO ALVES ARAUJO
+                          tipoRet: 3
+                          id: 1131
+                      - row:
+                          - '1060943'
+                          - FLAVIA CARVALHO LAUERMANN
+                          - null
+                          - '10739101722'
+                          - null
+                          - '984226743'
+                        representacao:
+                          descr: FLAVIA CARVALHO LAUERMANN
+                          tipoRet: 3
+                          id: 1060943
+                      - row:
+                          - '1060944'
+                          - FLAVIA CARVALHO LAUERMANN
+                          - null
+                          - '10739101722'
+                          - null
+                          - '984226743'
+                        representacao:
+                          descr: FLAVIA CARVALHO LAUERMANN
+                          tipoRet: 3
+                          id: 1060944
+                      - row:
+                          - '1060954'
+                          - SEBASTIANA ROCHA DA SILVA
+                          - null
+                          - '45147264191'
+                          - null
+                          - '984731518'
+                        representacao:
+                          descr: SEBASTIANA ROCHA DA SILVA
+                          tipoRet: 3
+                          id: 1060954
       operationId: get-popup
       description: Chamada que faz a busca e retorna os dados para a tela
       parameters:
@@ -1102,7 +1311,57 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CadastroLigacaoConsultaCamposPesquisaModel'
+                $ref: '#/components/schemas/CamposPesquisaGet'
+              examples:
+                Example 1:
+                  value:
+                    campos_pesquisa:
+                      campos:
+                        - idTabela: 0
+                          campo: rg
+                          nome: rg
+                          tipoDadoJava: String
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
+                        - idTabela: 0
+                          campo: cpf
+                          nome: cpf
+                          tipoDadoJava: String
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
+                        - idTabela: 0
+                          campo: id
+                          nome: Codigo
+                          tipoDadoJava: int
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
+                        - idTabela: 0
+                          campo: cliente
+                          nome: Nome do Cliente
+                          tipoDadoJava: String
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
+                        - idTabela: 0
+                          campo: cnpj
+                          nome: cnpj
+                          tipoDadoJava: String
+                          tabela: Cliente
+                          idConsPadrao: 0
+                          tamCampo: 0
+                          ordemCampoExibConsRegistro: 0
+                          campoRotuloVO: []
       operationId: get-cadastro-ligacao-consulta-filtros
       description: Chamada para buscar os filtros a serem utilizados na pesquisa do cadastro de ligação
       parameters:
@@ -3890,6 +4149,8 @@ components:
               items:
                 type: object
                 properties:
+                  id_tabela:
+                    type: integer
                   campo:
                     type: string
                   nome:
@@ -3902,16 +4163,50 @@ components:
                     type: string
                   campo_cons_padrao:
                     type: string
+                  id_cons_padrao:
+                    type: integer
+                  tam_campo:
+                    type: integer
+                  tipo_dado_bd:
+                    type: string
+                  val_default:
+                    type: string
+                  campo_cons_registro:
+                    type: string
+                  campo_exibe_cons_registro:
+                    type: integer
+                  campo_rotulo_vo:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id_tabela_campo:
+                          type: integer
+                        id_lingua:
+                          type: integer
+                        descricao:
+                          type: string
       x-examples:
         Example 1:
           campos_pesquisa:
             campos:
-              - campo: campo
-                nome: nome
-                tipo_dado_java: tipo
-                tabela: tabela
-                tabela_cons_padrao: tabela
-                campo_cons_padrao: campo
+              - id_tabela: 1
+                campo: string
+                nome: string
+                tipo_dado_java: string
+                tabela: string
+                tabela_cons_padrao: string
+                campo_cons_padrao: string
+                id_cons_padrao: 1
+                tam_campo: 1
+                tipo_dado_bd: string
+                val_default: string
+                campo_cons_registro: string
+                campo_exibe_cons_registro: 1
+                campo_rotulo_vo:
+                  - id_tabela_campo: 1
+                    id_lingua: 1
+                    descricao: string
     CadastroLigacaoDadosCliente:
       type: object
       properties:
