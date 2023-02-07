@@ -322,9 +322,9 @@ paths:
           in: query
           name: id_cliente
     parameters: []
-  /busca/popup/filtros:
+  /consulta/personalizada/filtros:
     get:
-      summary: Dialog Pesquisa - Campos Pesquisa
+      summary: Consulta Personalizada - Campos Pesquisa
       responses:
         '200':
           description: OK
@@ -446,9 +446,9 @@ paths:
       tags:
         - Buscas
     parameters: []
-  /busca/popup/busca:
+  /consulta/personalizada/busca:
     get:
-      summary: Dialog Pesquisa - Busca
+      summary: Consulta Personalizada - Busca
       tags:
         - Buscas
       responses:
@@ -1300,9 +1300,9 @@ paths:
           in: query
           name: id_cidade
     parameters: []
-  /cadastro/ligacao/consulta/filtros:
+  /consulta/registros/filtros:
     get:
-      summary: Cadastro Ligação - Consulta - Filtro Pesquisa
+      summary: Consulta Registros - Campos Pesquisa
       tags:
         - Buscas
       responses:
@@ -1373,9 +1373,10 @@ paths:
             type: boolean
           in: query
           name: simples
-  /cadastro/ligacao/consulta/busca:
+    parameters: []
+  /consulta/registros/busca:
     get:
-      summary: Cadastro Ligação - Consulta - Busca
+      summary: Consulta Registros - Busca
       tags:
         - Buscas
       responses:
@@ -1430,6 +1431,7 @@ paths:
             type: string
           in: query
           name: filtro
+    parameters: []
   /cadastro/ligacao/facilitador-roteiro:
     get:
       summary: Cadastro Ligação - Facilitador Roteiro
