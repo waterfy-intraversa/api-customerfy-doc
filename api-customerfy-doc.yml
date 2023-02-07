@@ -332,6 +332,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CamposPesquisaGet'
+              examples:
+                Example 1:
+                  value:
+                    campos_pesquisa:
+                      campos:
+                        - campo: string
+                          nome: string
+                          tipo_dado_java: string
+                          tabela: string
+                          tabela_cons_padrao: string
+                          campo_cons_padrao: string
           headers: {}
       operationId: get-filtros
       parameters:
@@ -407,6 +418,261 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CadastroLigacaoListarDadosIniciaisModel'
+              examples:
+                Example 1:
+                  value:
+                    id_situacao_ligacao: 0
+                    flags:
+                      permite_ligacao_salvar: true
+                      permite_alterar_dados_comerciais_ligacao: true
+                      utiliza_identificacao: string
+                      utilizacao_consolidacao_consumo: string
+                      exige_percentual_faturamento: true
+                      codigo_manual: true
+                      mascara_telefone: true
+                      imp_coletor_entrega_alternativa: true
+                    combos:
+                      localizacao:
+                        zonas_pressao:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        bacias:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        zonas_macro:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        tipo_entregas:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        grupos:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                      instalacao:
+                        tipos_cavalete:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        situacao_cavalete:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        situacao_imovel:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        tipos_calcada:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        caracteristicas_ligacao:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                      dados_comerciais:
+                        fontes_alternativas:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        cliente_especial:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        situacoes_ligacao:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                      complemento:
+                        tipos_pavimento:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        tipos_rede:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        padroes_instalacao:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        posicoes_rede:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        tipos_esgotamento:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        fontes_abastecimento:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        diametros_ramal_agua:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        diametros_ramal_esgoto:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        tipos_despejo:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        classificacoes_uso:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        posicoes_rede_esgoto:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                        tipos_orgao_publico:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                      contratos_locacao:
+                        tipo_locacao:
+                          dados:
+                            - id: 0
+                              idStr: string
+                              descr: string
+                              flag: string
+                              tipoRet: 0
+                    parametros_cadastro:
+                      facilitador_roteiro_logradouro: string
+                      id_cidade: 0
+                      limite_mensagem_convencional: 0
+                      limite_mensagem_simultanea_linha: 0
+                      limite_mensagem_simultane_colune: 0
+                      validar_identificacao: string
+                      id_cidade_padrao: 0
+                      id_distrito_padrao: 0
+                      id_situacao_ligacao_padrao: 0
+                      id_situacao_cobranca_padrao: 0
+                      id_tipo_ligacao_padrao: 0
+                      utiliza_leitura_telemetria: string
+                      utiliza_conta_identificada: string
+                      utiliza_distancia_ramal: string
+                      utiliza_informacoes_adicionais: string
+                      utiliza_fonte_alternativa: string
+                      utiliza_percentual_esgoto: string
+                      utiliza_orgao_publico: string
+                      utiliza_sistema_esgotamento_sanitario: string
+                      normalizar_endereco: string
+                      calcular_volume_estimado_ligacao: string
+                      calcular_peso_fatura_ligacao: string
+                      bloquear_classe_consumo: string
+                      inquilino_normalizado: string
+                      validar_documentacao_cliente: string
+                      checar_debitos_com_bloqueio: string
+                      utiliza_esgoto_diferenciado: string
+                      aplicar_desconto_sub_cat_produto: string
+                      mascara_telefone: true
+                      validar_telefone: true
+                      ddd_inicial: 0
+                      ddd_final: 0
+                      tamanho_fone_fixo_maximo: 0
+                      tamanho_fone_movel_minimo: 0
+                      utiliza_classe_consumo_automatico: string
+                      habilita_validacao_serasa: string
+                      checa_debitos_inquilino_atual: string
+                      checa_debitos_inquilino_futuro: string
+                      checa_debitos_cliente_atual: string
+                      checa_debitos_cliente_futuro: string
+                      ent_alternativa_mesma_cidade: true
+                      normaliza_endereco_completo: true
+                      utiliza_sistema_tratamento: string
+                      utiliza_soleira_negativa: true
+                      checa_debitos_orgao_publico: true
+                      cobrar_taxa_servico: true
+                      cobrar_aluguel_hidrometro: true
+                      cobrar_consumo_zero: true
+                      nr_maximo_categorias: 0
+                      nr_maximo_economias: 0
+                      cobrar_servicos_ambientais: true
+                      utiliza_documentos_angola: true
+                      cpf_cnpj_obrigatorio: true
       operationId: get-list-combos
       description: 'Chamada para popular os list combos especificos à tela de cadastro de ligação, e a flags e parametros necessários ao funcionamento da tela. Chamada feita quando a tela é aberta.'
     parameters: []
@@ -2497,6 +2763,18 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+  /cadastro/ligacao/delete:
+    get:
+      summary: Cadastro Ligação - Delete
+      tags:
+        - Cadastro-Ligação
+      responses: {}
+      operationId: get-cadastro-ligacao-delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CriarLigacaoModel'
 components:
   schemas:
     CriarLigacaoModel:
