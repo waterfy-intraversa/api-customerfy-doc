@@ -3042,17 +3042,228 @@ paths:
           in: query
           name: id_ligacao
   /cadastro/ligacao/delete:
-    get:
-      summary: Cadastro Ligação - Delete
-      tags:
-        - Cadastro-Ligação
-      responses: {}
-      operationId: get-cadastro-ligacao-delete
+    post:
+      summary: ''
+      operationId: post-cadastro-ligacao-delete
+      responses:
+        '200':
+          description: OK
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/CriarLigacaoModel'
+        description: ''
+  /faturamento/verifica/emissao-declaracao-anual:
+    get:
+      summary: Faturamento - Verifica emissão declaração anual
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+      operationId: get-faturamento-verifica-emissao-declaracao-anual
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+        - schema:
+            type: integer
+          in: query
+          name: id_cliente_inquilino
+        - schema:
+            type: integer
+          in: query
+          name: ano
+  /cobranca/processo-corte/ligacao:
+    get:
+      summary: Cobrança - Get ligação processo corte
+      tags:
+        - Cobrança
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoProcessoCorteDtoModel'
+      operationId: get-cobranca-processo-corte-ligacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cobranca/historico-corte/ligacao:
+    get:
+      summary: Cobrança - Get histórico ligação corte
+      tags:
+        - Cobrança
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoCorteCobrancaDtoModel'
+      operationId: get-cobranca-historico-corte-ligacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cobranca/historico-nao-corte/ligacao:
+    get:
+      summary: Cobrança - Get histórico ligação não corte
+      tags:
+        - Cobrança
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoNaoCorteCobrancaDtoModel'
+      operationId: get-cobranca-historico-nao-corte-ligacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cobranca/processo/juridico:
+    get:
+      summary: Cobrança - Obter processos jurídicos
+      tags:
+        - Cobrança
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessoJuridicoDtoModel'
+      operationId: get-cobranca-processo-juridico
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FiltroProcessoJuridicoDtoModel'
+  /cobranca/processo/juridico/add:
+    get:
+      summary: Cobrança - Adicionar processo
+      tags:
+        - Cobrança
+        - Central-Atendimento
+      responses: {}
+      operationId: get-cobranca-processo-juridico-add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FiltroProcessoJuridicoDtoModel'
+  /cobranca/processo/juridico/inativar:
+    get:
+      summary: Cobrança - Inativar processo
+      tags:
+        - Cobrança
+        - Central-Atendimento
+      responses: {}
+      operationId: get-cobranca-processo-juridico-inativar
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FiltroProcessoJuridicoDtoModel'
+  /cobranca/acordos/faturas:
+    get:
+      summary: Cobrança - Acordos - Obter faturas acordo
+      tags:
+        - Cobrança
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcordoDtoModel'
+      operationId: get-cobranca-acordos-faturas
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cobranca/acordos/verificar-os:
+    get:
+      summary: Cobrança - Acordos - Verificar OS
+      tags:
+        - Cobrança
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      operationId: get-cobranca-acordos-verificar-os
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cobranca/acordos/save:
+    get:
+      summary: Cobrança - Acordos - Salvar acordo
+      tags:
+        - Cobrança
+        - Central-Atendimento
+      responses: {}
+      operationId: get-cobranca-acordos-save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AcordoDtoModel'
+  /cobranca/acordos/consulta-acordos:
+    get:
+      summary: Cobrança - Acordos - Consultar acordo
+      tags:
+        - Cobrança
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AcordoDtoModel'
+      operationId: get-cobranca-acordos-consulta-acordos
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
 components:
   schemas:
     CriarLigacaoModel:
@@ -22882,5 +23093,398 @@ components:
               periodo: ''
               vencimento: ''
               valor: 1.1
+    LigacaoProcessoCorteDtoModel:
+      type: object
+      properties:
+        id_processo:
+          type: integer
+        data_entrega_prevista:
+          type: string
+        fraude:
+          type: string
+        data_conf_aviso:
+          type: string
+        data_corte_prevista:
+          type: string
+        count_faturas:
+          type: integer
+        soma_valores:
+          type: number
+        situacao:
+          type: string
+        vt_faturas:
+          type: array
+          items:
+            type: object
+            properties:
+              id_fatura:
+                type: integer
+              id_ligacao:
+                type: integer
+              id_processo_corte:
+                type: integer
+              valor:
+                type: number
+              vencimento:
+                type: string
+              periodo:
+                type: string
+              situacao:
+                type: string
+              tipo:
+                type: string
+              data_pagto:
+                type: string
+              notificada:
+                type: string
+              negativada:
+                type: string
+              motivo_cancelamento_serasa:
+                type: string
+              cancelamento_envio_negativacao:
+                type: string
+              id_processo_corte_origem:
+                type: integer
+              data_corte_prevista:
+                type: string
+              tipo_layout_aviso_debito:
+                type: string
+        id_ligacao:
+          type: integer
+        id_motivo_corte:
+          type: integer
+        id_usuario_baixa:
+          type: integer
+        data_hora_baixa:
+          type: string
+        status_corte:
+          type: string
+        status_processo:
+          type: string
+        id_venda_conbranca_aviso_debito:
+          type: integer
+        negativacao:
+          type: string
+        objetivo_processo:
+          type: string
+        aviso:
+          type: string
+        id_objetivo_processo_corte:
+          type: integer
+        status_ligacao_processo:
+          type: string
+        tipo_processo:
+          type: string
+        corte_light:
+          type: string
+        data_real_entrega_notificacao:
+          type: string
+        data_vencimento:
+          type: string
+      x-examples:
+        Example 1:
+          id_processo: 1
+          data_entrega_prevista: ''
+          fraude: ''
+          data_conf_aviso: ''
+          data_corte_prevista: ''
+          count_faturas: 1
+          soma_valores: 1.1
+          situacao: ''
+          vt_faturas:
+            - id_fatura: 1
+              id_ligacao: 1
+              id_processo_corte: 1
+              valor: 1.1
+              vencimento: ''
+              periodo: ''
+              situacao: ''
+              tipo: ''
+              data_pagto: ''
+              notificada: ''
+              negativada: ''
+              motivo_cancelamento_serasa: ''
+              cancelamento_envio_negativacao: ''
+              id_processo_corte_origem: 1
+              data_corte_prevista: ''
+              tipo_layout_aviso_debito: ''
+          id_ligacao: 1
+          id_motivo_corte: 1
+          id_usuario_baixa: 1
+          data_hora_baixa: ''
+          status_corte: ''
+          status_processo: ''
+          id_venda_conbranca_aviso_debito: 1
+          negativacao: ''
+          objetivo_processo: ''
+          aviso: ''
+          id_objetivo_processo_corte: 1
+          status_ligacao_processo: ''
+          tipo_processo: ''
+          corte_light: ''
+          data_real_entrega_notificacao: ''
+          data_vencimento: ''
+    LigacaoCorteCobrancaDtoModel:
+      type: object
+      properties:
+        data_do_corte:
+          type: string
+        tipo_do_corte:
+          type: string
+        leitura_corte:
+          type: integer
+        residuo_corte:
+          type: integer
+        residuo_pendente:
+          type: integer
+        periodo_residuo:
+          type: string
+        fraude:
+          type: string
+        cortado_por:
+          type: string
+        data_religacao:
+          type: string
+        leitrura_religacao:
+          type: integer
+        religada_por:
+          type: string
+        observacao:
+          type: string
+        id_ligacao_corte:
+          type: integer
+        id_ligacao:
+          type: integer
+        data_leitura:
+          type: string
+        leitura_atual:
+          type: integer
+        ligacao_nova:
+          type: string
+        retornado_coletor:
+          type: string
+        id_medicao:
+          type: integer
+        residuo_tolerado:
+          type: integer
+        data_instalacao_medidor:
+          type: string
+        leitura_instalacao:
+          type: integer
+        id_periodo_util_residuo:
+          type: integer
+        id_instalacao_medidor:
+          type: integer
+        nr_ponteiros:
+          type: integer
+      x-examples:
+        Example 1:
+          data_do_corte: ''
+          tipo_do_corte: ''
+          leitura_corte: 1
+          residuo_corte: 1
+          residuo_pendente: 1
+          periodo_residuo: ''
+          fraude: ''
+          cortado_por: ''
+          data_religacao: ''
+          leitrura_religacao: 1
+          religada_por: ''
+          observacao: ''
+          id_ligacao_corte: 1
+          id_ligacao: 1
+          data_leitura: ''
+          leitura_atual: 1
+          ligacao_nova: ''
+          retornado_coletor: ''
+          id_medicao: 1
+          residuo_tolerado: 1
+          data_instalacao_medidor: ''
+          leitura_instalacao: 1
+          id_periodo_util_residuo: 1
+          id_instalacao_medidor: 1
+          nr_ponteiros: 1
+    LigacaoNaoCorteCobrancaDtoModel:
+      type: object
+      properties:
+        id_motivo_nao_corte:
+          type: integer
+        id_agente:
+          type: integer
+        id_ligacao:
+          type: integer
+        motivo_nao_corte:
+          type: string
+        agente:
+          type: string
+        data_nao_corte:
+          type: string
+      x-examples:
+        Example 1:
+          id_motivo_nao_corte: 1
+          id_agente: 1
+          id_ligacao: 1
+          motivo_nao_corte: ''
+          agente: ''
+          data_nao_corte: ''
+    ProcessoJuridicoDtoModel:
+      type: object
+      properties:
+        consumidor:
+          type: string
+        endereco:
+          type: string
+        processos:
+          type: array
+          items:
+            type: object
+            properties:
+              id_processo_juridico:
+                type: integer
+              codigo_processo:
+                type: string
+              data_inicio:
+                type: string
+              observacao:
+                type: string
+              data_cadastro:
+                type: string
+              usuario_cadastro:
+                type: string
+              data_inativacao:
+                type: string
+              usuario_inativacao:
+                type: string
+              ativo:
+                type: string
+      x-examples:
+        Example 1:
+          consumidor: ''
+          endereco: ''
+          processos:
+            - id_processo_juridico: 1
+              codigo_processo: ''
+              data_inicio: ''
+              observacao: ''
+              data_cadastro: ''
+              usuario_cadastro: ''
+              data_inativacao: ''
+              usuario_inativacao: ''
+              ativo: ''
+    FiltroProcessoJuridicoDtoModel:
+      type: object
+      properties:
+        id_cidade:
+          type: integer
+        id_ligacao:
+          type: integer
+        id_usuario:
+          type: integer
+        codigo_processo:
+          type: string
+        data_inicio:
+          type: string
+        observacao:
+          type: string
+        id_processo_juridico:
+          type: integer
+      x-examples:
+        Example 1:
+          id_cidade: 1
+          id_ligacao: 1
+          id_usuario: 1
+          codigo_processo: ''
+          data_inicio: ''
+          observacao: ''
+          id_processo_juridico: 1
+    AcordoDtoModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        data_hora:
+          type: string
+        faturas:
+          type: array
+          items:
+            type: object
+            properties:
+              id_fatura:
+                type: integer
+              id_tipo_transacao:
+                type: integer
+              tipo_transacao:
+                type: string
+              vencimento:
+                type: string
+              valor:
+                type: number
+              cadastro:
+                type: string
+              id_fatura_situacao:
+                type: integer
+              fatura_situacao:
+                type: string
+              data_vencimento:
+                type: string
+              status:
+                type: string
+              id_cliente_inquilino:
+                type: integer
+              nome_cliente_inquilino:
+                type: string
+        id_motivo_acordo:
+          type: integer
+        motivo_acordo:
+          type: string
+        data_limite:
+          type: string
+        observacao:
+          type: string
+        nr_dias_limite_acordo:
+          type: integer
+        id_ligacao:
+          type: integer
+        id_usuario:
+          type: integer
+        usuario:
+          type: string
+        id_situacao_acordo:
+          type: integer
+        situacao_acordo:
+          type: string
+        id_cliente_inquilino:
+          type: integer
+        nome_cliente_inquilino:
+          type: string
+      x-examples:
+        Example 1:
+          id: 1
+          data_hora: ''
+          faturas:
+            - id_fatura: 1
+              id_tipo_transacao: 1
+              tipo_transacao: ''
+              vencimento: ''
+              valor: 1.1
+              cadastro: ''
+              id_fatura_situacao: 1
+              fatura_situacao: ''
+              data_vencimento: ''
+              status: ''
+              id_cliente_inquilino: 1
+              nome_cliente_inquilino: ''
+          id_motivo_acordo: 1
+          motivo_acordo: ''
+          data_limite: ''
+          observacao: ''
+          nr_dias_limite_acordo: 1
+          id_ligacao: 1
+          id_usuario: 1
+          usuario: ''
+          id_situacao_acordo: 1
+          situacao_acordo: ''
+          id_cliente_inquilino: 1
+          nome_cliente_inquilino: ''
   securitySchemes: {}
 x-extension-1: null
