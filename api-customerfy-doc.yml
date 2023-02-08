@@ -3264,6 +3264,27 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+  /cobranca/extra-judicial/carrega-processos:
+    get:
+      summary: Cobrança - Extra Judicial - Carregar processos cobrança
+      tags:
+        - Cobrança
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CobrancaExtraJudicialRetornoDtoModel'
+      operationId: get-cobranca-extra-judicial-carrega-processos
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
 components:
   schemas:
     CriarLigacaoModel:
@@ -23486,5 +23507,88 @@ components:
           situacao_acordo: ''
           id_cliente_inquilino: 1
           nome_cliente_inquilino: ''
+    CobrancaExtraJudicialRetornoDtoModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        tipo_registro:
+          type: string
+        id_assessoria:
+          type: integer
+        assessoria:
+          type: string
+        data_hora_deracao_arquivo:
+          type: string
+        data_movimento_arquivo:
+          type: string
+        cobranca_extra_judicial_retorno_detalhes:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              id_cobranca_extra_judicial_retorno:
+                type: integer
+              tipo_registro:
+                type: string
+              id_assessoria:
+                type: integer
+              assessoria:
+                type: string
+              cpf_cnpj_cliente:
+                type: string
+              id_ligacao:
+                type: integer
+              data_acionamento:
+                type: string
+              hora_acionamento:
+                type: string
+              tipo_acao:
+                type: string
+              descricao_acao:
+                type: string
+              valor:
+                type: string
+              data_agendamento:
+                type: string
+              ddd:
+                type: integer
+              telefone:
+                type: string
+              email_cliente:
+                type: string
+              cpf_acionador:
+                type: string
+              nome_acionador:
+                type: string
+      x-examples:
+        Example 1:
+          id: 1
+          tipo_registro: ''
+          id_assessoria: 1
+          assessoria: ''
+          data_hora_deracao_arquivo: ''
+          data_movimento_arquivo: ''
+          cobranca_extra_judicial_retorno_detalhes:
+            - id: 1
+              id_cobranca_extra_judicial_retorno: 1
+              tipo_registro: ''
+              id_assessoria: 1
+              assessoria: ''
+              cpf_cnpj_cliente: ''
+              id_ligacao: 1
+              data_acionamento: ''
+              hora_acionamento: ''
+              tipo_acao: ''
+              descricao_acao: ''
+              valor: ''
+              data_agendamento: ''
+              ddd: 1
+              telefone: ''
+              email_cliente: ''
+              cpf_acionador: ''
+              nome_acionador: ''
   securitySchemes: {}
 x-extension-1: null
