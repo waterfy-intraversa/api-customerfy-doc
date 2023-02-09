@@ -2927,20 +2927,13 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  fatura:
-                    type: string
+                type: string
       operationId: get-faturamento-fatura-imprimir-fatura
       parameters:
         - schema:
             type: integer
           in: query
           name: layout
-        - schema:
-            type: integer
-          in: query
-          name: id_fatura
         - schema:
             type: integer
           in: query
@@ -3026,7 +3019,7 @@ paths:
           name: id_ligacao
   /cadastro/ligacao/delete:
     post:
-      summary: ''
+      summary: Cadastro Ligação - Delete
       operationId: post-cadastro-ligacao-delete
       responses:
         '200':
@@ -3037,10 +3030,14 @@ paths:
             schema:
               $ref: '#/components/schemas/CriarLigacaoModel'
         description: ''
+      tags:
+        - Cadastro-Ligação
   /faturamento/verifica/emissao-declaracao-anual:
     get:
       summary: Faturamento - Verifica emissão declaração anual
-      tags: []
+      tags:
+        - Faturamento
+        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -3268,7 +3265,7 @@ paths:
             type: integer
           in: query
           name: id_ligacao
-  /venda/carregar-periodo:
+  /vendas/carregar/periodo:
     get:
       summary: Vendas - Carregar período
       tags:
@@ -3289,6 +3286,286 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+    parameters: []
+  /vendas/carregar/item-rubrica:
+    get:
+      summary: Vendas - Carregar item rubrica
+      tags:
+        - Vendas
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemRubricaDtoModel'
+      operationId: get-venda-carregar-item-rubrica
+      description: ''
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+    parameters: []
+  /vendas/carregar/venda-cliente:
+    get:
+      summary: Vendas - Carregar venda cliente
+      tags:
+        - Vendas
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendaClienteDtoModel'
+      operationId: get-vendas-carregar-venda-cliente
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /vendas/parametros/grupo-receita-fatura-servico:
+    get:
+      summary: Vendas - Get param grupo receita fatura serviços
+      tags:
+        - Vendas
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParamGrupoReceitaFaturaServicoDtoModel'
+      operationId: get-vendas-parametros-grupo-receita-fatura-servico
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_rubrica
+        - schema:
+            type: string
+          in: query
+          name: deb_cred
+  /faturamento/fatura/emitir/fatura-venda:
+    get:
+      summary: Faturamento - Emitir fatura venda
+      tags:
+        - Faturamento
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-faturamento-fatura-emitir-fatura-venda
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+        - schema:
+            type: array
+          in: query
+          name: id_faturas
+          description: List<Integer>
+        - schema:
+            type: string
+          in: query
+          name: layout
+  /vendas/save:
+    post:
+      summary: Vendas - Salvar venda
+      operationId: post-vendas-save
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendaDtoModel'
+      tags:
+        - Vendas
+        - Central-Atendimento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendaDtoModel'
+        description: ''
+  /vendas/carregar/incorporacoes:
+    get:
+      summary: Vendas - Carregar venda fat incorp
+      tags:
+        - Vendas
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VendaFatIncorpDtoModel'
+      operationId: get-vendas-carregar-incorporacoes
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /vendas/carregar/fatura-avulsa:
+    get:
+      summary: Vendas - Carregar venda fat avulsa
+      tags:
+        - Vendas
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VendaFatAvulsaDtoModel'
+      operationId: get-vendas-carregar-fatura-avulsa
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+        - schema:
+            type: boolean
+          in: query
+          name: antecipa_pagto
+  /vendas/fatura/cancelar:
+    post:
+      summary: Vendas - Cancelar fatura
+      operationId: post-vendas-fatura-cancelar
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Vendas
+        - Central-Atendimento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+        - schema:
+            type: integer
+          in: query
+          name: id_fatura
+  /vendas/pagamento/antecipar:
+    get:
+      summary: Vendas - Antecipar pagamento
+      tags:
+        - Vendas
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendaDtoModel'
+      operationId: get-vendas-pagamento-antecipar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_ligacao:
+                  type: integer
+                venda:
+                  $ref: '#/components/schemas/VendaDtoModel'
+                faturas_avulsas:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/VendaFatAvulsaDtoModel'
+                incorps:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/VendaFatIncorpDtoModel'
+        description: ''
+  /solicitacoes/listar/servicos-cadastro:
+    get:
+      summary: Solicitações - Listar serviços cadastro
+      tags:
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServicoDtoModel'
+      operationId: get-solicitacoes-listar-servicos-cadastro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+        - schema:
+            type: boolean
+          in: query
+          name: is_call_center_instance
+  /solicitacoes/listar/avisos-ligacao:
+    get:
+      summary: Solicitações - Listar avisos ligação
+      tags:
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrdemServicoAvisoDtoModel'
+      operationId: get-solicitacoes-listar-avisos-ligacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /solicitacoes/listar/avisos-logradouro:
+    get:
+      summary: Solicitações - Listar avisos logradouro
+      tags:
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrdemServicoAvisoDtoModel'
+      operationId: get-solicitacoes-listar-avisos-logradouro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_logradouro
 components:
   schemas:
     CriarLigacaoModel:
@@ -23611,5 +23888,1419 @@ components:
           descr: ''
           flag: ''
           tipo_ret: 1
+    ItemRubricaDtoModel:
+      type: object
+      properties:
+        descr:
+          type: string
+        codigo:
+          type: string
+        deb_cred:
+          type: string
+        valor:
+          type: number
+        id_classificacao_fiscal_rubrica:
+          type: integer
+        item_rubrica_imp_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              id_rubrica_imp:
+                type: integer
+              percentual:
+                type: number
+      x-examples:
+        Example 1:
+          descr: ''
+          codigo: ''
+          deb_cred: ''
+          valor: 1.1
+          id_classificacao_fiscal_rubrica: 1
+          item_rubrica_imp_vo:
+            - id_rubrica_imp: 1
+              percentual: 1.1
+    VendaClienteDtoModel:
+      type: object
+      properties:
+        data:
+          type: string
+        id_cidade:
+          type: integer
+        id_ligacao:
+          type: integer
+        id_ligacao_entrega:
+          type: integer
+        id_grupo:
+          type: integer
+        id_grupo_entrega:
+          type: integer
+        id_cliente_inquilino:
+          type: integer
+        grupo:
+          type: string
+        cliente:
+          type: string
+        cpf:
+          type: string
+        cnpj:
+          type: string
+        endereco:
+          type: string
+        id_ligacao_consolidadora:
+          type: integer
+        id_class_consumo:
+          type: integer
+        col_categorias:
+          type: array
+          items:
+            type: object
+            properties:
+              id_categoria:
+                type: integer
+              nr_economias:
+                type: integer
+              peso:
+                type: integer
+              id_sub_categoria:
+                type: integer
+              id_ligacao:
+                type: integer
+              prioridade:
+                type: integer
+              col_cons_minimo:
+                type: number
+              percentual_fat:
+                type: integer
+              taxa_de_serviço:
+                type: number
+              aluguel_hidrometro:
+                type: number
+              id_rubrica:
+                type: integer
+              valor_consumo_zero:
+                type: number
+      x-examples:
+        Example 1:
+          data: ''
+          id_cidade: 1
+          id_ligacao: 1
+          id_ligacao_entrega: 1
+          id_grupo: 1
+          id_grupo_entrega: 1
+          id_cliente_inquilino: 1
+          grupo: ''
+          cliente: ''
+          cpf: ''
+          cnpj: ''
+          endereco: ''
+          id_ligacao_consolidadora: 1
+          id_class_consumo: 1
+          col_categorias:
+            - id_categoria: 1
+              nr_economias: 1
+              peso: 1
+              id_sub_categoria: 1
+              id_ligacao: 1
+              prioridade: 1
+              col_cons_minimo: 1.1
+              percentual_fat: 1
+              taxa_de_serviço: 1.1
+              aluguel_hidrometro: 1.1
+              id_rubrica: 1
+              valor_consumo_zero: 1.1
+    ParamGrupoReceitaFaturaServicoDtoModel:
+      type: object
+      properties:
+        id_grupo_receita:
+          type: integer
+        id_rubrica_debito:
+          type: integer
+        id_rubrica_credito:
+          type: integer
+        percentual_rateio:
+          type: integer
+        id_classificacao_venda:
+          type: integer
+        id_produto:
+          type: integer
+        id_categoria:
+          type: integer
+      x-examples:
+        Example 1:
+          id_grupo_receita: 1
+          id_rubrica_debito: 1
+          id_rubrica_credito: 1
+          percentual_rateio: 1
+          id_classificacao_venda: 1
+          id_produto: 1
+          id_categoria: 1
+      description: ''
+    VendaDtoModel:
+      type: object
+      properties:
+        observacao:
+          type: string
+        valor:
+          type: number
+        valor_imposto:
+          type: number
+        venda_rubrica_vo:
+          type: array
+          items:
+            type: object
+            properties: {}
+        id_ligacao:
+          type: integer
+        id_ligacao_entrega:
+          type: integer
+        id_tipo_venda:
+          type: integer
+        data:
+          type: string
+        id_faturas:
+          type: array
+          items:
+            type: integer
+        id_cidade:
+          type: integer
+        id_grupo:
+          type: integer
+        id_grupo_entrega:
+          type: integer
+        id_cliente:
+          type: integer
+        id_usuario_cadastro:
+          type: integer
+        id_ligacao_consolidadora:
+          type: integer
+        id_periodos_faturas_a_recalcular:
+          type: array
+          items:
+            type: integer
+        id_taxa_financiamento:
+          type: integer
+        id_fatura_origem:
+          type: integer
+        id_parcelamento:
+          type: integer
+        id_tipo_parcelamento_acordo:
+          type: integer
+        id_class_consumo:
+          type: integer
+        col_categorias:
+          type: array
+          items:
+            type: object
+            properties:
+              id_categoria:
+                type: integer
+              nr_economias:
+                type: integer
+              peso:
+                type: integer
+              id_sub_categoria:
+                type: integer
+              id_ligacao:
+                type: integer
+              prioridade:
+                type: integer
+              vol_cons_minimo:
+                type: number
+              percentual_fat:
+                type: integer
+              taxa_de_serviço:
+                type: number
+              aluguel_hidrometro:
+                type: number
+              id_rubrica:
+                type: integer
+              valor_consumo_zero:
+                type: number
+        valor_uf_ir:
+          type: number
+        id_cliente_inquilino:
+          type: integer
+        id_classificacao_venda:
+          type: integer
+      x-examples:
+        Example 1:
+          observacao: ''
+          valor: 1.1
+          valor_imposto: 1.1
+          venda_rubrica_vo:
+            - {}
+          id_ligacao: 1
+          id_ligacao_entrega: 1
+          id_tipo_venda: 1
+          data: ''
+          id_faturas:
+            - 1
+          id_cidade: 1
+          id_grupo: 1
+          id_grupo_entrega: 1
+          id_cliente: 1
+          id_usuario_cadastro: 1
+          id_ligacao_consolidadora: 1
+          id_periodos_faturas_a_recalcular:
+            - 1
+          id_taxa_financiamento: 1
+          id_fatura_origem: 1
+          id_parcelamento: 1
+          id_tipo_parcelamento_acordo: 1
+          id_class_consumo: 1
+          col_categorias:
+            - id_categoria: 1
+              nr_economias: 1
+              peso: 1
+              id_sub_categoria: 1
+              id_ligacao: 1
+              prioridade: 1
+              vol_cons_minimo: 1.1
+              percentual_fat: 1
+              taxa_de_serviço: 1.1
+              aluguel_hidrometro: 1.1
+              id_rubrica: 1
+              valor_consumo_zero: 1.1
+          valor_uf_ir: 1.1
+          id_cliente_inquilino: 1
+          id_classificacao_venda: 1
+    VendaFatIncorpDtoModel:
+      type: object
+      properties:
+        id_tipo_venda:
+          type: integer
+        tipo_venda:
+          type: string
+        tipo_lancamento:
+          type: string
+        id_situacao_incorp:
+          type: integer
+        id_venda:
+          type: integer
+        data_lancto:
+          type: string
+        id_periodo_inicial:
+          type: integer
+        periodo_inicial:
+          type: string
+        id_rubrica:
+          type: integer
+        rubrica:
+          type: string
+        nr_parcelas:
+          type: integer
+        valor:
+          type: number
+        valor_imposto:
+          type: number
+        observacao:
+          type: string
+        origem:
+          type: string
+        id_usuario_cadastro:
+          type: integer
+        usuario_cadastro:
+          type: string
+        venda_fat_incorp_det_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              id_situacao_parcela:
+                type: integer
+              id_situacao_fatura:
+                type: integer
+              id_rubrica:
+                type: integer
+              situacao_fatura:
+                type: string
+              id_periodo_incorp:
+                type: integer
+              liberado_manual:
+                type: boolean
+              periodo_incorp:
+                type: string
+              rubrica:
+                type: string
+              parcela:
+                type: integer
+              valor:
+                type: number
+              valor_uf_ir:
+                type: number
+              valor_imposto:
+                type: number
+              id_fatura:
+                type: integer
+              id_tipo_cobranca:
+                type: integer
+              enviado:
+                type: boolean
+              observacao_cancelamento:
+                type: string
+              id_motivo_cancelamento_tcl:
+                type: integer
+              calculo_consumo_cimultaneo:
+                type: string
+              origem:
+                type: string
+              venda_fat_incorp_det_imposto_vo:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id_rubrica:
+                      type: integer
+                    valor:
+                      type: number
+              id_venda:
+                type: integer
+              id_venda_detalhe:
+                type: integer
+              id_ligacao:
+                type: integer
+        id_ligacao_consolidadora:
+          type: integer
+        parcela:
+          type: integer
+        id_venda_detalhe:
+          type: integer
+        id_detalhe_parcela:
+          type: integer
+        id_sit_parcela:
+          type: integer
+        id_parcelamento:
+          type: integer
+        id_ligacao:
+          type: integer
+        situacao:
+          type: string
+        id_cliente_inquilino:
+          type: integer
+      x-examples:
+        Example 1:
+          id_tipo_venda: 1
+          tipo_venda: ''
+          tipo_lancamento: ''
+          id_situacao_incorp: 1
+          id_venda: 1
+          data_lancto: ''
+          id_periodo_inicial: 1
+          periodo_inicial: ''
+          id_rubrica: 1
+          rubrica: ''
+          nr_parcelas: 1
+          valor: 1.1
+          valor_imposto: 1.1
+          observacao: ''
+          origem: ''
+          id_usuario_cadastro: 1
+          usuario_cadastro: ''
+          venda_fat_incorp_det_vo:
+            - id_situacao_parcela: 1
+              id_situacao_fatura: 1
+              id_rubrica: 1
+              situacao_fatura: ''
+              id_periodo_incorp: 1
+              liberado_manual: true
+              periodo_incorp: ''
+              rubrica: ''
+              parcela: 1
+              valor: 1.1
+              valor_uf_ir: 1.1
+              valor_imposto: 1.1
+              id_fatura: 1
+              id_tipo_cobranca: 1
+              enviado: true
+              observacao_cancelamento: ''
+              id_motivo_cancelamento_tcl: 1
+              calculo_consumo_cimultaneo: ''
+              origem: ''
+              venda_fat_incorp_det_imposto_vo:
+                - id_rubrica: 1
+                  valor: 1.1
+              id_venda: 1
+              id_venda_detalhe: 1
+              id_ligacao: 1
+          id_ligacao_consolidadora: 1
+          parcela: 1
+          id_venda_detalhe: 1
+          id_detalhe_parcela: 1
+          id_sit_parcela: 1
+          id_parcelamento: 1
+          id_ligacao: 1
+          situacao: ''
+          id_cliente_inquilino: 1
+    VendaFatAvulsaDtoModel:
+      type: object
+      properties:
+        id_tipo_venda:
+          type: integer
+        tipo_venda:
+          type: string
+        id_situacao_fatura:
+          type: integer
+        situacao_fatura:
+          type: string
+        id_venda:
+          type: integer
+        ids_venda_detalhe:
+          type: string
+        data_lancto:
+          type: string
+        nr_nf:
+          type: integer
+        vencimento:
+          type: string
+        valor:
+          type: number
+        valor_imposto:
+          type: number
+        observacao:
+          type: string
+        id_usuario_cadastro:
+          type: integer
+        usuario_cadastro:
+          type: string
+        id_fatura:
+          type: integer
+        venda_fat_avulsa_det_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              codigo:
+                type: integer
+              id_rubrica:
+                type: integer
+              rubrica:
+                type: string
+              valor:
+                type: number
+              valor_uf_ir:
+                type: number
+              valor_imposto:
+                type: number
+              venda_fat_avulsa_det_imposto_vo:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id_rubrica:
+                      type: integer
+                    valor:
+                      type: number
+        id_ligacao_consolidadora:
+          type: integer
+        id_tipo_cobranca:
+          type: integer
+        enviado:
+          type: boolean
+        enviado_cancelamento:
+          type: boolean
+        id_tipo_transacao:
+          type: integer
+        valor_uf_ir:
+          type: number
+        id_cliente_inquilino:
+          type: integer
+      x-examples:
+        Example 1:
+          id_tipo_venda: 1
+          tipo_venda: ''
+          id_situacao_fatura: 1
+          situacao_fatura: ''
+          id_venda: 1
+          ids_venda_detalhe: ''
+          data_lancto: ''
+          nr_nf: 1
+          vencimento: ''
+          valor: 1.1
+          valor_imposto: 1.1
+          observacao: ''
+          id_usuario_cadastro: 1
+          usuario_cadastro: ''
+          id_fatura: 1
+          venda_fat_avulsa_det_vo:
+            - codigo: 1
+              id_rubrica: 1
+              rubrica: ''
+              valor: 1.1
+              valor_uf_ir: 1.1
+              valor_imposto: 1.1
+              venda_fat_avulsa_det_imposto_vo:
+                - id_rubrica: 1
+                  valor: 1.1
+          id_ligacao_consolidadora: 1
+          id_tipo_cobranca: 1
+          enviado: true
+          enviado_cancelamento: true
+          id_tipo_transacao: 1
+          valor_uf_ir: 1.1
+          id_cliente_inquilino: 1
+    ServicoDtoModel:
+      type: object
+      properties:
+        instalacao_hidrometro:
+          type: boolean
+        instalacao_agua:
+          type: boolean
+        instalacao_esgoto:
+          type: boolean
+        id_cidade:
+          type: integer
+        servico:
+          type: string
+        cobrar:
+          type: string
+        id_grupo_servico:
+          type: integer
+        prazo:
+          type: number
+        prazo_cliente:
+          type: number
+        alerta:
+          type: number
+        unidade_temnpo:
+          type: string
+        pular_final_semana:
+          type: boolean
+        baixa_gera_nova_os:
+          type: boolean
+        id_dimensao:
+          type: integer
+        id_prioridade:
+          type: integer
+        ativo:
+          type: boolean
+        encerramento_automatico:
+          type: boolean
+        ligacao_nova:
+          type: boolean
+        checar_debitos:
+          type: boolean
+        herda_prazo:
+          type: boolean
+        transfere_dados:
+          type: boolean
+        nao_admite_duplicacao:
+          type: boolean
+        procedimento_execucao:
+          type: string
+        exige_dimensao_filho:
+          type: boolean
+        exige_cpf:
+          type: boolean
+        exige_rg:
+          type: boolean
+        id_centro_custo:
+          type: integer
+        agencia_virtual:
+          type: boolean
+        exige_cobranca:
+          type: boolean
+        email_responsavel:
+          type: string
+        Col_servico_rubrica_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              id_rubrica:
+                type: integer
+              tipo:
+                type: string
+              nr_parcelas:
+                type: integer
+              valor:
+                type: number
+              valor_total_ligacoes:
+                type: number
+              descricao:
+                type: string
+              id_servico:
+                type: integer
+              valor_imposto:
+                type: number
+              id_ordem_servico_detalhe:
+                type: integer
+              data:
+                type: string
+              vinculado:
+                type: string
+              tipo_baixa:
+                type: string
+              encerramento:
+                type: string
+              id_servico_pai:
+                type: integer
+              utilizar_ligacoes_vinculadas:
+                type: string
+              numero_ligacoes_informados:
+                type: integer
+              possui_os_pai:
+                type: string
+              id_os_pai:
+                type: integer
+              utilizar_ligacao_original:
+                type: string
+              id_ordem_servico:
+                type: integer
+              nr_max_parcelas:
+                type: integer
+              total_aux:
+                type: number
+              valor_servico:
+                type: number
+        col_servico_epi_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              id_epi:
+                type: integer
+        col_servico_tramite_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              id_tipo:
+                type: integer
+              depto_inicial:
+                type: boolean
+              pode_encerrar:
+                type: boolean
+              enviar_mobile:
+                type: boolean
+              encerrar_automatico_mobile:
+                type: boolean
+        col_servico_material_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              id_material_erp:
+                type: integer
+              id_material:
+                type: integer
+              nr_dimensoes:
+                type: integer
+              material:
+                type: string
+              sigla:
+                type: string
+              qtd:
+                type: number
+              valor:
+                type: number
+              valor_iss:
+                type: number
+        col_servico_vinculado_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              id_servico_vinculado:
+                type: integer
+              obrigatorio:
+                type: boolean
+              utilizar_propria_os:
+                type: boolean
+              data_hora_abertura_prevista:
+                type: boolean
+              utiliza_ligs_vinculadas:
+                type: boolean
+              utilizar_ligacao_original:
+                type: boolean
+              prazo_vinculado:
+                type: number
+              prazo_cliente_vinculado:
+                type: number
+              prazo_alerta_vinculado:
+                type: number
+              codigo_referencia:
+                type: string
+              descricao:
+                type: string
+              id_associado:
+                type: string
+        col_servico_associado_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              id_servico_associado:
+                type: integer
+              criterio:
+                type: string
+              id_os:
+                type: integer
+              id_servico:
+                type: integer
+              descricao:
+                type: string
+              data_hora_abertura:
+                type: string
+              data_hora_prevista_cliente:
+                type: string
+              bairro:
+                type: string
+              logradouro:
+                type: string
+              nr:
+                type: string
+              situacao_servico:
+                type: string
+        col_servico_documento_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              id_documento:
+                type: integer
+              id_departamento:
+                type: integer
+        col_servico_atributo_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              controle:
+                type: integer
+              id_servico:
+                type: integer
+              id_atributo:
+                type: integer
+              obrigatorio:
+                type: boolean
+              solicitar_data:
+                type: boolean
+              sigla_medicao1:
+                type: string
+              sigla_medicao2:
+                type: string
+              normalizado:
+                type: boolean
+              tipo_dados:
+                type: string
+              atributo:
+                type: string
+              nr_medicoes:
+                type: integer
+              sql_obter_atributos:
+                type: string
+              sql_atualizar_valor_atributo:
+                type: string
+              sql_obter_valor_atributo_atual:
+                type: string
+              normalizado_completo:
+                type: boolean
+        tipo_religacao:
+          type: string
+        tipo_corte:
+          type: string
+        codigo_referencia:
+          type: string
+        solicitar_ligs_vinculadas:
+          type: boolean
+        nr_max_ligs_vinculadas:
+          type: integer
+        prazo_vinculado:
+          type: number
+        prazo_cliente_vinculado:
+          type: number
+        prazo_alerta_vinculado:
+          type: number
+        encerramento_automatico_completo:
+          type: boolean
+        troca_hidrometro:
+          type: string
+        alteracao_cadastral:
+          type: string
+        has_gis_mobile:
+          type: boolean
+        has_avisos_mobile:
+          type: boolean
+        has_assinatura_cliente_mobile:
+          type: boolean
+        ligacao_esgoto:
+          type: boolean
+        enviar_pda:
+          type: boolean
+        liberar_serv_corte:
+          type: boolean
+        servico_dados:
+          type: array
+          items:
+            type: object
+            properties:
+              id_os:
+                type: integer
+              id_servico:
+                type: integer
+              descricao:
+                type: string
+              data_hora_abertura:
+                type: string
+              bairro:
+                type: string
+              logradouro:
+                type: string
+              nr:
+                type: string
+              nao_admite_duplicacao:
+                type: boolean
+              id_servico_abertura:
+                type: integer
+        servico_cc_unidade_negocio:
+          type: object
+          properties:
+            servico_call_center:
+              type: object
+              properties:
+                ativo:
+                  type: string
+                nome_reduzido:
+                  type: string
+                gestao:
+                  type: string
+                informacao:
+                  type: string
+                id_servico_inicial:
+                  type: string
+                status_unidade_negocio:
+                  type: boolean
+            id_unidade_negocio:
+              type: integer
+            id_servico_atual:
+              type: integer
+            requisito_unidade:
+              type: string
+            unidade_negocio:
+              type: string
+            documentacao:
+              type: string
+            servico_informacao:
+              type: array
+              items:
+                type: object
+                properties:
+                  id_servico_informacao:
+                    type: integer
+                  servico_informacao:
+                    type: string
+                  servico_resumo:
+                    type: object
+                    properties:
+                      id_servico:
+                        type: integer
+                      servico:
+                        type: string
+                      tipo_departamento_inicial:
+                        type: string
+                      data_prazo:
+                        type: string
+                      valor:
+                        type: number
+                      servico_vinculados:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id_servico:
+                              type: integer
+                            servico:
+                              type: string
+                            prazo:
+                              type: string
+                            prazo_cliente:
+                              type: string
+                            considerar_final_semana:
+                              type: string
+                            tipo_departamento_inicial:
+                              type: string
+                            unidade_tempo:
+                              type: string
+                            servicos_vinculados:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id_servico:
+                                    type: integer
+                                  servico:
+                                    type: string
+                                  prazo:
+                                    type: string
+                                  prazo_cliente:
+                                    type: string
+                                  considerar_final_semana:
+                                    type: string
+                                  tipo_departamento_inicial:
+                                    type: string
+                                  unidade_tempo:
+                                    type: string
+                                  servicos_vinculados:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties: {}
+                                  descricao:
+                                    type: string
+                            descricao:
+                              type: string
+                      servicos_associados:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id_os:
+                              type: integer
+                            id_servico:
+                              type: integer
+                            descricao:
+                              type: string
+                            data_hora_abertura:
+                              type: string
+                            data_hora_prevista_cliente:
+                              type: string
+                            bairro:
+                              type: string
+                            logradouro:
+                              type: string
+                            nr:
+                              type: string
+                            situacao_servico:
+                              type: string
+                      valor_servico_vinculado:
+                        type: number
+            servico_resumo_inicial:
+              type: object
+              properties:
+                id_servico:
+                  type: integer
+                servico:
+                  type: string
+                tipo_departamento_inicial:
+                  type: string
+                data_prazo:
+                  type: string
+                valor:
+                  type: number
+                servico_vinculados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id_servico:
+                        type: integer
+                      servico:
+                        type: string
+                      prazo:
+                        type: string
+                      prazo_cliente:
+                        type: string
+                      considerar_final_semana:
+                        type: string
+                      tipo_departamento_inicial:
+                        type: string
+                      unidade_tempo:
+                        type: string
+                      servicos_vinculados:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id_servico:
+                              type: integer
+                            servico:
+                              type: string
+                            prazo:
+                              type: string
+                            prazo_cliente:
+                              type: string
+                            considerar_final_semana:
+                              type: string
+                            tipo_departamento_inicial:
+                              type: string
+                            unidade_tempo:
+                              type: string
+                            servicos_vinculados:
+                              type: array
+                              items:
+                                type: object
+                                properties: {}
+                            descricao:
+                              type: string
+                      descricao:
+                        type: string
+                servicos_associados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id_os:
+                        type: integer
+                      id_servico:
+                        type: integer
+                      descricao:
+                        type: string
+                      data_hora_abertura:
+                        type: string
+                      data_hora_prevista_cliente:
+                        type: string
+                      bairro:
+                        type: string
+                      logradouro:
+                        type: string
+                      nr:
+                        type: string
+                      situacao_servico:
+                        type: string
+                valor_servico_vinculado:
+                  type: number
+            observacao:
+              type: string
+            servico_nao_atendido:
+              type: boolean
+            id_tipo_atendimento:
+              type: integer
+            tipo_atendimento:
+              type: string
+            id_cidade:
+              type: integer
+            emergencia:
+              type: boolean
+            tipo_atendimento_emergencial:
+              type: string
+            horario_ini_sem:
+              type: string
+            horario_fim_sem:
+              type: string
+            horario_inicio_final_sem_fer:
+              type: string
+            horario_final_semana_fer:
+              type: string
+            gestao:
+              type: string
+            cidade:
+              type: string
+        exibir_historico_agencia_virtual:
+          type: boolean
+        id_tipo_vistoria:
+          type: integer
+        tipo_vistoria:
+          type: boolean
+        id_area_classificao:
+          type: integer
+        notificacoes:
+          type: array
+          items:
+            type: object
+            properties:
+              id_servico:
+                type: integer
+              tipo:
+                type: string
+              destino:
+                type: string
+        emergencia:
+          type: boolean
+        tipo_atendimento:
+          type: string
+        hora_inicial_notificacao:
+          type: string
+        hora_final_notificacao:
+          type: string
+        hora_inicial_notificacao_final_semana_feriado:
+          type: string
+        hora_final_notificacao_final_semana_feriado:
+          type: string
+        remuneracao_poder_concedente:
+          type: boolean
+        nome_reduzido:
+          type: string
+      x-examples:
+        Example 1:
+          instalacao_hidrometro: true
+          instalacao_agua: true
+          instalacao_esgoto: true
+          id_cidade: 1
+          servico: string
+          cobrar: string
+          id_grupo_servico: 1
+          prazo: 1.1
+          prazo_cliente: 1.1
+          alerta: 1.1
+          unidade_temnpo: char
+          pular_final_semana: true
+          baixa_gera_nova_os: true
+          id_dimensao: 1
+          id_prioridade: 1
+          ativo: true
+          encerramento_automatico: true
+          ligacao_nova: true
+          checar_debitos: true
+          herda_prazo: true
+          transfere_dados: true
+          nao_admite_duplicacao: true
+          procedimento_execucao: string
+          exige_dimensao_filho: true
+          exige_cpf: true
+          exige_rg: true
+          id_centro_custo: 1
+          agencia_virtual: true
+          exige_cobranca: true
+          email_responsavel: string
+          Col_servico_rubrica_vo:
+            - id_rubrica: 1
+              tipo: char
+              nr_parcelas: 1
+              valor: 1.1
+              valor_total_ligacoes: 1.1
+              descricao: string
+              id_servico: 1
+              valor_imposto: 1.1
+              id_ordem_servico_detalhe: 1
+              data: string
+              vinculado: string
+              tipo_baixa: string
+              encerramento: string
+              id_servico_pai: 1
+              utilizar_ligacoes_vinculadas: string
+              numero_ligacoes_informados: 1
+              possui_os_pai: string
+              id_os_pai: 1
+              utilizar_ligacao_original: string
+              id_ordem_servico: 1
+              nr_max_parcelas: 1
+              total_aux: 1.1
+              valor_servico: 1.1
+          col_servico_epi_vo:
+            - id_epi: 1
+          col_servico_tramite_vo:
+            - id_tipo: 1
+              depto_inicial: true
+              pode_encerrar: true
+              enviar_mobile: true
+              encerrar_automatico_mobile: true
+          col_servico_material_vo:
+            - id_material_erp: 1
+              id_material: 1
+              nr_dimensoes: 1
+              material: string
+              sigla: string
+              qtd: 1.1
+              valor: 1.1
+              valor_iss: 1.1
+          col_servico_vinculado_vo:
+            - id_servico_vinculado: 1
+              obrigatorio: true
+              utilizar_propria_os: true
+              data_hora_abertura_prevista: true
+              utiliza_ligs_vinculadas: true
+              utilizar_ligacao_original: true
+              prazo_vinculado: 1.1
+              prazo_cliente_vinculado: 1.1
+              prazo_alerta_vinculado: 1.1
+              codigo_referencia: string
+              descricao: string
+              id_associado: string
+          col_servico_associado_vo:
+            - id_servico_associado: 1
+              criterio: char
+              id_os: 1
+              id_servico: 1
+              descricao: string
+              data_hora_abertura: string
+              data_hora_prevista_cliente: string
+              bairro: string
+              logradouro: string
+              nr: string
+              situacao_servico: string
+          col_servico_documento_vo:
+            - id_documento: 1
+              id_departamento: 1
+          col_servico_atributo_vo:
+            - controle: 1
+              id_servico: 1
+              id_atributo: 1
+              obrigatorio: true
+              solicitar_data: true
+              sigla_medicao1: string
+              sigla_medicao2: string
+              normalizado: true
+              tipo_dados: string
+              atributo: string
+              nr_medicoes: 1
+              sql_obter_atributos: string
+              sql_atualizar_valor_atributo: string
+              sql_obter_valor_atributo_atual: string
+              normalizado_completo: true
+          tipo_religacao: string
+          tipo_corte: string
+          codigo_referencia: string
+          solicitar_ligs_vinculadas: true
+          nr_max_ligs_vinculadas: 1
+          prazo_vinculado: 1.1
+          prazo_cliente_vinculado: 1.1
+          prazo_alerta_vinculado: 1.1
+          encerramento_automatico_completo: true
+          troca_hidrometro: string
+          alteracao_cadastral: string
+          has_gis_mobile: true
+          has_avisos_mobile: true
+          has_assinatura_cliente_mobile: true
+          ligacao_esgoto: true
+          enviar_pda: true
+          liberar_serv_corte: true
+          servico_dados:
+            - id_os: 1
+              id_servico: 1
+              descricao: string
+              data_hora_abertura: string
+              bairro: string
+              logradouro: string
+              nr: string
+              nao_admite_duplicacao: true
+              id_servico_abertura: 1
+          servico_cc_unidade_negocio:
+            servico_call_center:
+              ativo: string
+              nome_reduzido: string
+              gestao: string
+              informacao: string
+              id_servico_inicial: string
+              status_unidade_negocio: true
+            id_unidade_negocio: 1
+            id_servico_atual: 1
+            requisito_unidade: string
+            unidade_negocio: string
+            documentacao: string
+            servico_informacao:
+              - id_servico_informacao: 1
+                servico_informacao: string
+                servico_resumo:
+                  id_servico: 1
+                  servico: string
+                  tipo_departamento_inicial: string
+                  data_prazo: string
+                  valor: 1.1
+                  servico_vinculados:
+                    - id_servico: 1
+                      servico: string
+                      prazo: string
+                      prazo_cliente: string
+                      considerar_final_semana: string
+                      tipo_departamento_inicial: string
+                      unidade_tempo: string
+                      servicos_vinculados:
+                        - id_servico: 1
+                          servico: string
+                          prazo: string
+                          prazo_cliente: string
+                          considerar_final_semana: string
+                          tipo_departamento_inicial: string
+                          unidade_tempo: string
+                          servicos_vinculados:
+                            - {}
+                          descricao: string
+                      descricao: string
+                  servicos_associados:
+                    - id_os: 1
+                      id_servico: 1
+                      descricao: string
+                      data_hora_abertura: string
+                      data_hora_prevista_cliente: string
+                      bairro: string
+                      logradouro: string
+                      nr: string
+                      situacao_servico: string
+                  valor_servico_vinculado: 1.1
+            servico_resumo_inicial:
+              id_servico: 1
+              servico: string
+              tipo_departamento_inicial: string
+              data_prazo: string
+              valor: 1.1
+              servico_vinculados:
+                - id_servico: 1
+                  servico: string
+                  prazo: string
+                  prazo_cliente: string
+                  considerar_final_semana: string
+                  tipo_departamento_inicial: string
+                  unidade_tempo: string
+                  servicos_vinculados:
+                    - id_servico: 1
+                      servico: string
+                      prazo: string
+                      prazo_cliente: string
+                      considerar_final_semana: string
+                      tipo_departamento_inicial: string
+                      unidade_tempo: string
+                      servicos_vinculados:
+                        - {}
+                      descricao: string
+                  descricao: string
+              servicos_associados:
+                - id_os: 1
+                  id_servico: 1
+                  descricao: string
+                  data_hora_abertura: string
+                  data_hora_prevista_cliente: string
+                  bairro: string
+                  logradouro: string
+                  nr: string
+                  situacao_servico: string
+              valor_servico_vinculado: 1.1
+            observacao: string
+            servico_nao_atendido: true
+            id_tipo_atendimento: 1
+            tipo_atendimento: string
+            id_cidade: 1
+            emergencia: true
+            tipo_atendimento_emergencial: string
+            horario_ini_sem: string
+            horario_fim_sem: string
+            horario_inicio_final_sem_fer: string
+            horario_final_semana_fer: string
+            gestao: string
+            cidade: string
+          exibir_historico_agencia_virtual: true
+          id_tipo_vistoria: 1
+          tipo_vistoria: true
+          id_area_classificao: 1
+          notificacoes:
+            - id_servico: 1
+              tipo: string
+              destino: string
+          emergencia: true
+          tipo_atendimento: string
+          hora_inicial_notificacao: string
+          hora_final_notificacao: string
+          hora_inicial_notificacao_final_semana_feriado: string
+          hora_final_notificacao_final_semana_feriado: string
+          remuneracao_poder_concedente: true
+          nome_reduzido: string
+      description: ''
+    OrdemServicoAvisoDtoModel:
+      type: object
+      properties:
+        id_tramite:
+          type: integer
+        id_aviso:
+          type: integer
+        id_ligacao:
+          type: integer
+        aviso:
+          type: string
+      x-examples:
+        Example 1:
+          id_tramite: 1
+          id_aviso: 1
+          id_ligacao: 1
+          aviso: ''
   securitySchemes: {}
 x-extension-1: null
