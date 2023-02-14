@@ -1046,8 +1046,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CADocumentosContratosLigacaoModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/CADocumentosContratosLigacaoModel'
       operationId: get-central-atendimento-documentos-contratos-ligacao
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id_cidade
   /central-atendimento/documentos/dados-ligacao:
     get:
       summary: CA - Documentos - Dados Ligação
@@ -1066,10 +1073,6 @@ paths:
             type: integer
           in: query
           name: id_ligacao
-        - schema:
-            type: string
-          in: query
-          name: ordem_servico
   '/central-atendimento/ligacao/{id_ligacao}':
     parameters:
       - schema:
@@ -1089,11 +1092,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CALigacaoModel'
       operationId: get-central-atendimento-ligacao-id_ligacao
-      parameters:
-        - schema:
-            type: integer
-          in: query
-          name: id_ligacao
+      parameters: []
   '/central-atendimento/ligacao/{id_ligacao}/excecao':
     parameters:
       - schema:
@@ -1143,21 +1142,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CAPesquisaClienteModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/CAPesquisaClienteModel'
       operationId: get-central-atendimento-pesquisa-cliente
-  /central-atendimento/pesquisa-cliente/criterios:
-    get:
-      summary: CA - Pesquisa Cliente - Critérios
-      tags:
-        - Central-Atendimento
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CAPesquisaClienteCriterioModel'
-      operationId: get-central-atendimento-pesquisa-cliente-criterios
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                gran:
+                  type: integer
+                criterio:
+                  $ref: '#/components/schemas/CAPesquisaClienteCriterioModel'
+        description: ''
+  /central-atendimento/pesquisa-cliente/criterios: {}
   /central-atendimento/portal-servicos:
     get:
       summary: CA - Portal Serviços
@@ -1169,8 +1169,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CAPortalServicosModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/CAPortalServicosModel'
       operationId: get-central-atendimento-portal-servicos
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
   /central-atendimento/receitas-acessorias/historico:
     get:
       summary: CA - Receitas Acessórias - Histórico
@@ -1182,8 +1193,15 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CAReceitasAcessoriasHistoricoModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/CAReceitasAcessoriasHistoricoModel'
       operationId: get-central-atendimento-receitas-acessorias-historico
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
   '/cadastro/ligacao/{id_ligacao}/permite-alterar':
     parameters:
       - schema:
@@ -2053,7 +2071,7 @@ paths:
         - schema:
             type: number
           in: query
-          name: id_ligacao
+          name: id_cliente
     parameters: []
   /central-atedimento/ligacao/atendimento:
     get:
