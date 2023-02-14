@@ -3566,6 +3566,525 @@ paths:
             type: integer
           in: query
           name: id_logradouro
+  /solicitacoes/prazo-servico:
+    get:
+      summary: Solicitações - Calcular prazo serviço
+      tags:
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-solicitacoes-prazo-servico
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_servico
+  '/solicitacoes/obter/debitos/{id_ligacao}':
+    parameters:
+      - schema:
+          type: string
+        name: id_ligacao
+        in: path
+        required: true
+    get:
+      summary: Solicitações - Obter débitos
+      tags:
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-solicitacoes-obter-decitos-id_ligacao
+      parameters:
+        - schema:
+            type: array
+          in: query
+          name: id_servicos
+          description: List<Integer>
+  /solicitacoes/obter/id-os:
+    get:
+      summary: Solicitações - Obter ID ordem serviço
+      tags:
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      operationId: get-solicitacoes-obter-id-os
+    parameters: []
+  '/solicitacoes/obter/servicos-duplicados/{id_ligacao}':
+    parameters:
+      - schema:
+          type: string
+        name: id_ligacao
+        in: path
+        required: true
+    get:
+      summary: Solicitações - Obter serviços duplicados ligação
+      tags:
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServicoDadosDtoModel'
+      operationId: get-solicitacoes-obter-servicos-duplicados-id_ligacao
+      parameters:
+        - schema:
+            type: array
+          in: query
+          name: id_servicos
+          description: List<Integer>
+  '/solicitacoes/obter/servicos-associados/{id_bairro}/{id_logradouro}':
+    parameters:
+      - schema:
+          type: string
+        name: id_bairro
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: id_logradouro
+        in: path
+        required: true
+    get:
+      summary: Solicitações - Obter serviços associados bairro logradouro
+      tags:
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServicoDadosDtoModel'
+      operationId: get-solicitacoes-obter-servicos-associados-id_bairro-id_logradouro
+      parameters:
+        - schema:
+            type: array
+          in: query
+          name: id_servicos
+          description: List<Integer>
+  /solicitacoes/obter/rubrica-servicos:
+    get:
+      summary: Solicitações - Obter rubrica serviços
+      tags:
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServicoRubricaDtoModel'
+      operationId: get-solicitacoes-obter-rubrica-servicos
+      parameters:
+        - schema:
+            type: array
+          in: query
+          name: id_servicos
+          description: List<Integer>
+  /rubrica/getcaracter:
+    get:
+      summary: Cadastro - Grupo exibe rúbrica - Get caracter
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      operationId: get-rubrica-getcaracter
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+  /rubrica/save:
+    get:
+      summary: Cadastro - Grupo exibe rubirca - Salvar
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      operationId: get-rubrica-save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dados:
+                  $ref: '#/components/schemas/GrupoExibeRubricaDtoModel'
+                max_carac:
+                  type: integer
+  /grupo-exibe-rubrica/delete:
+    get:
+      summary: Cadastro - Grupo exibe rubrica - Delete
+      tags:
+        - Cadastro
+      responses: {}
+      operationId: get-grupo-exibe-rubrica-delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dados:
+                  $ref: '#/components/schemas/GrupoExibeRubricaDtoModel'
+        description: ''
+  /grupo-exibe-rubrica/carregar-registro:
+    get:
+      summary: Cadastro - Grupo exibe rubrica - Carregar registro
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrupoExibeRubricaDtoModel'
+      operationId: get-grupo-exibe-rubrica-carregar-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+  /cadastro/codigo-leitura/carregar-registro:
+    get:
+      summary: Cadastro - Código de leitura - Carregar registro
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroCodigoLeituraDtoModel'
+      operationId: get-cadastro-codigo-leitura-carregar-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+  /cadastro/codigo-leitura/delete:
+    get:
+      summary: Cadastro - Código de leitura - Excluir
+      tags:
+        - Cadastro
+      responses: {}
+      operationId: get-cadastro-codigo-leitura-delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cod_leitura:
+                  $ref: '#/components/schemas/CadastroCodigoLeituraDtoModel'
+  /medicao/validar/cadastro-com-grupos:
+    get:
+      summary: Medição - Validar cadastro com grupos
+      tags:
+        - Medição
+        - Cadastro
+      responses: {}
+      operationId: get-medicao-validar-cadastro-com-grupos
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+  /cadastro/excecao/save:
+    get:
+      summary: Cadastro - Exceção - Salvar
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      operationId: get-cadastro-excecao-save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                excecao_dto:
+                  $ref: '#/components/schemas/ExcecaoDtoModel'
+        description: ''
+  /cadastro/excecao/delete:
+    get:
+      summary: Cadastro - Exceção - Excluir
+      tags:
+        - Cadastro
+      responses: {}
+      operationId: get-cadastro-excecao-delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                excecao_dto:
+                  $ref: '#/components/schemas/ExcecaoDtoModel'
+  /cadastro/excecao/carregar-registro:
+    get:
+      summary: Cadastro - Exceção - Carregar registro
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExcecaoDtoModel'
+      operationId: get-cadastro-excecao-carregar-registro
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: id_excecao
+  /faturamento/consulta/mensagem-automacao:
+    get:
+      summary: Faturamento - Consultar mensagem automação
+      tags:
+        - Faturamento
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemAutomacaoDtoModel'
+      operationId: get-faturamento-consulta-mensagem-automacao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/MensagemAutomacaoDtoModel'
+        description: ''
+  /faturamento/consultar/tipo-leitura:
+    get:
+      summary: Faturamento - Consultar tipo leitura
+      tags:
+        - Faturamento
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrupoDtoModel'
+      operationId: get-faturamento-consultar-tipo-leitura
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+  /comum/obter/grupos:
+    get:
+      summary: Comum - Obter grupos
+      tags:
+        - Geral
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+      operationId: get-comum-obter-grupos
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+  /faturamento/mensagem-automacao/save:
+    get:
+      summary: Faturamento - Salvar mensagem automacao
+      tags:
+        - Cadastro
+        - Faturamento
+      responses: {}
+      operationId: get-faturamento-mensagem-automacao-save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/MensagemAutomacaoDtoModel'
+        description: ''
+      description: ''
+  /faturamento/mensagem-automacao/delete:
+    get:
+      summary: Faturamento - Excluir mensagem automação
+      tags:
+        - Faturamento
+        - Cadastro
+      responses: {}
+      operationId: get-faturamento-mensagem-automacao-delete
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_mensagem
+  /cadastro/grupo/carregar-grupo:
+    get:
+      summary: Cadastro - Grupo - Carregar grupo
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrupoDtoModel'
+      operationId: get-cadastro-grupo-carregar-grupo
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id_grupo
+  /comum/obter/periodo:
+    get:
+      summary: Comum - Obter período
+      tags:
+        - Geral
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemComboDtoModel'
+      operationId: get-comum-obter-periodo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+        - schema:
+            type: string
+          in: query
+          name: periodo
+  /cadastro/grupo/save:
+    get:
+      summary: Cadastro - Grupo - Salvar
+      tags:
+        - Cadastro
+      operationId: get-cadastro-grupo-save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grupo:
+                  $ref: '#/components/schemas/GrupoDtoModel'
+        description: ''
+  /tipo-faturamento/save:
+    get:
+      summary: Tipo Faturamento - Salvar
+      tags:
+        - Tipo-Faturamento
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      operationId: get-tipo-faturamento-save
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tf_dto:
+                  $ref: '#/components/schemas/TipoFaturamentoDtoModel'
+        description: ''
+  /tipo-faturamento/delete:
+    get:
+      summary: Tipo Faturamento - Excluir
+      tags:
+        - Tipo-Faturamento
+        - Cadastro
+      responses: {}
+      operationId: get-tipo-faturamento-delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tf_dto:
+                  $ref: '#/components/schemas/TipoFaturamentoDtoModel'
+  /tipo-faturamento/carregar-registro:
+    get:
+      summary: Tipo Faturamento - Carregar registro
+      tags:
+        - Tipo-Faturamento
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TipoFaturamentoDtoModel'
+      operationId: get-tipo-faturamento-carregar-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
 components:
   schemas:
     CriarLigacaoModel:
@@ -25302,5 +25821,373 @@ components:
           id_aviso: 1
           id_ligacao: 1
           aviso: ''
+    ServicoDadosDtoModel:
+      type: object
+      properties:
+        id_os:
+          type: integer
+        id_servico:
+          type: integer
+        descricao:
+          type: string
+        data_hora_abertura:
+          type: string
+        bairro:
+          type: string
+        logradouro:
+          type: string
+        nr:
+          type: string
+        nao_admite_duplicacao:
+          type: boolean
+        id_servico_abertura:
+          type: integer
+      x-examples:
+        Example 1:
+          id_os: 1
+          id_servico: 1
+          descricao: ''
+          data_hora_abertura: ''
+          bairro: ''
+          logradouro: ''
+          nr: ''
+          nao_admite_duplicacao: true
+          id_servico_abertura: 1
+    ServicoRubricaDtoModel:
+      type: object
+      properties:
+        id_rubrica:
+          type: integer
+        tipo:
+          type: string
+        nr_parcelas:
+          type: integer
+        valor:
+          type: number
+        valor_total_ligacoes:
+          type: number
+        descricao:
+          type: string
+        id_servico:
+          type: integer
+        serico:
+          type: string
+        valor_imposto:
+          type: number
+        id_ordem_servico_detalhe:
+          type: integer
+        data:
+          type: string
+        vinculado:
+          type: string
+        tipo_baixa:
+          type: string
+        encerramento:
+          type: string
+        id_servico_pai:
+          type: integer
+        utilizar_ligs_vinculadas:
+          type: string
+        numero_ligacoes_informados:
+          type: integer
+        possui_os_pai:
+          type: string
+        id_os_pai:
+          type: integer
+        utilizar_ligacao_original:
+          type: string
+        id_ordem_servico:
+          type: integer
+        nr_max_parcelas:
+          type: integer
+        total_aux:
+          type: number
+        valor_servico:
+          type: number
+      x-examples:
+        Example 1:
+          id_rubrica: 1
+          tipo: ''
+          nr_parcelas: 1
+          valor: 1.1
+          valor_total_ligacoes: 1.1
+          descricao: ''
+          id_servico: 1
+          serico: ''
+          valor_imposto: 1.1
+          id_ordem_servico_detalhe: 1
+          data: ''
+          vinculado: ''
+          tipo_baixa: ''
+          encerramento: ''
+          id_servico_pai: 1
+          utilizar_ligs_vinculadas: ''
+          numero_ligacoes_informados: 1
+          possui_os_pai: ''
+          id_os_pai: 1
+          utilizar_ligacao_original: ''
+          id_ordem_servico: 1
+          nr_max_parcelas: 1
+          total_aux: 1.1
+          valor_servico: 1.1
+    GrupoExibeRubricaDtoModel:
+      type: object
+      properties:
+        alterado:
+          type: boolean
+        novo:
+          type: boolean
+        grupo_exibe_rubrica:
+          type: string
+        id_cidade:
+          type: integer
+        exibe_periodo:
+          type: string
+        ordem_impressao:
+          type: integer
+        embutir_imposto:
+          type: boolean
+      x-examples:
+        Example 1:
+          alterado: true
+          novo: true
+          grupo_exibe_rubrica: ''
+          id_cidade: 1
+          exibe_periodo: ''
+          ordem_impressao: 1
+          embutir_imposto: true
+    CadastroCodigoLeituraDtoModel:
+      type: object
+      properties:
+        id_codigo_leitura:
+          type: integer
+        codigo_leitura:
+          type: string
+        msg_coletor:
+          type: string
+        id_criterio_fat:
+          type: integer
+        criterio_faturamento_fixo:
+          type: string
+        considerar_para_media:
+          type: string
+        padrao:
+          type: string
+        aceita_leitura:
+          type: string
+        id_cidade:
+          type: integer
+        repasse:
+          type: string
+        repasse_simultanea:
+          type: string
+        leitura_HM_nao_confere:
+          type: string
+        id_prevencao_acidentes:
+          type: integer
+        enviar_coletor:
+          type: string
+        padrao_recalculo:
+          type: string
+        msg_fatura:
+          type: string
+        estimada:
+          type: string
+        imprimir_aviso_impedimento_leitura:
+          type: string
+        emite_aviso_retencao:
+          type: string
+        alterar_categoria:
+          type: string
+        alterar_nr_economias:
+          type: string
+      x-examples:
+        Example 1:
+          id_codigo_leitura: 1
+          codigo_leitura: ''
+          msg_coletor: ''
+          id_criterio_fat: 1
+          criterio_faturamento_fixo: ''
+          considerar_para_media: ''
+          padrao: ''
+          aceita_leitura: ''
+          id_cidade: 1
+          repasse: ''
+          repasse_simultanea: ''
+          leitura_HM_nao_confere: ''
+          id_prevencao_acidentes: 1
+          enviar_coletor: ''
+          padrao_recalculo: ''
+          msg_fatura: ''
+          estimada: ''
+          imprimir_aviso_impedimento_leitura: ''
+          emite_aviso_retencao: ''
+          alterar_categoria: ''
+          alterar_nr_economias: ''
+    MensagemAutomacaoDtoModel:
+      type: object
+      properties:
+        data_inicial:
+          type: string
+        data_final:
+          type: string
+        mensagem:
+          type: string
+        id_cidade:
+          type: integer
+        prioridade:
+          type: integer
+        tipo_leitura:
+          type: string
+        id_grupo:
+          type: integer
+        grupo:
+          type: string
+        id_bairro:
+          type: integer
+        bairro:
+          type: string
+        id_logradouro:
+          type: integer
+        lograouro:
+          type: string
+        id_ligacao:
+          type: integer
+      x-examples:
+        Example 1:
+          data_inicial: ''
+          data_final: ''
+          mensagem: ''
+          id_cidade: 1
+          prioridade: 1
+          tipo_leitura: ''
+          id_grupo: 1
+          grupo: ''
+          id_bairro: 1
+          bairro: ''
+          id_logradouro: 1
+          lograouro: ''
+          id_ligacao: 1
+    GrupoDtoModel:
+      type: object
+      properties:
+        id_grupo:
+          type: integer
+        nome_grupo:
+          type: string
+        id_cidade:
+          type: integer
+        nome_cidade:
+          type: string
+        descricao:
+          type: string
+        selecionado:
+          type: boolean
+        total_simultanea:
+          type: integer
+        total_convencional:
+          type: integer
+        mensagem_obs:
+          type: string
+        id_usuario_mensagem_obs:
+          type: integer
+        nome_usuario_mensagem_obs:
+          type: string
+        data_hora_mensagem_obs:
+          type: string
+        ordem:
+          type: integer
+        vencto_padrao:
+          type: integer
+        exige_critica:
+          type: boolean
+        reaviso_debito:
+          type: boolean
+        grupo_lig_estima:
+          type: boolean
+        corte_light:
+          type: boolean
+        fisc_corte:
+          type: boolean
+        estimadas:
+          type: boolean
+        retorno_coletor:
+          type: boolean
+        calculo_consumo:
+          type: boolean
+        calculo_faturamento:
+          type: boolean
+        tipo_leitura:
+          type: string
+        mensagem_canhoto_esgoto:
+          type: string
+      x-examples:
+        Example 1:
+          id_grupo: 1
+          nome_grupo: ''
+          id_cidade: 1
+          nome_cidade: ''
+          descricao: ''
+          selecionado: false
+          total_simultanea: 1
+          total_convencional: 1
+          mensagem_obs: ''
+          id_usuario_mensagem_obs: 1
+          nome_usuario_mensagem_obs: ''
+          data_hora_mensagem_obs: ''
+          ordem: 1
+          vencto_padrao: 1
+          exige_critica: true
+          reaviso_debito: true
+          grupo_lig_estima: true
+          corte_light: true
+          fisc_corte: true
+          estimadas: true
+          retorno_coletor: true
+          calculo_consumo: true
+          calculo_faturamento: true
+          tipo_leitura: ''
+          mensagem_canhoto_esgoto: ''
+    TipoFaturamentoDtoModel:
+      type: object
+      properties:
+        alterado:
+          type: boolean
+        novo:
+          type: boolean
+        id_produto_media_fat:
+          type: integer
+        tipo_faturamento:
+          type: string
+        produto_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              id_produto:
+                type: integer
+              produto:
+                type: string
+              percentual:
+                type: number
+              tipo_faturamento:
+                type: string
+              id_tipo_faturamento:
+                type: integer
+              vol_fat:
+                type: integer
+      x-examples:
+        Example 1:
+          alterado: false
+          novo: true
+          id_produto_media_fat: 1
+          tipo_faturamento: ''
+          produto_vo:
+            - id_produto: 1
+              produto: ''
+              percentual: 1.1
+              tipo_faturamento: ''
+              id_tipo_faturamento: 1
+              vol_fat: 1
   securitySchemes: {}
 x-extension-1: null
