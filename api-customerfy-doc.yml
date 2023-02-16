@@ -1157,7 +1157,6 @@ paths:
                 criterio:
                   $ref: '#/components/schemas/CAPesquisaClienteCriterioModel'
         description: ''
-  /central-atendimento/pesquisa-cliente/criterios: {}
   /central-atendimento/portal-servicos:
     get:
       summary: CA - Portal Serviços
@@ -1219,10 +1218,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  permite_alterar:
-                    type: boolean
+                type: boolean
                 x-examples:
                   Example 1:
                     permite_alterar: false
@@ -1244,10 +1240,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  fatuamento_iniciado:
-                    type: boolean
+                type: boolean
       operationId: get-cadastro-ligacao-faturamento-iniciado
       description: 'Valida pelo id do grupo, se o ciclo do faturamento foi iniciado. Chamada feita ao clicar no botão salvar'
       parameters:
@@ -1284,10 +1277,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  unidade_operacional:
-                    type: integer
+                type: integer
       operationId: get-user-unidade-operacional
       description: Chamada para buscar a unidade operacional do usuario logado. Feita no momento em que a tela de cadastro de ligação é aberta
       tags:
@@ -1303,10 +1293,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  utiliza_doc_angola:
-                    type: boolean
+                type: boolean
       operationId: get-cadastro-ligacao-documento-angola
       description: |-
         Chamada para validar, pelo id da cidade, se utiliza documento Angola. 
@@ -1480,10 +1467,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  parametro:
-                    type: string
+                type: string
       operationId: get-comum-listar-parametro
       description: ''
       parameters:
@@ -1502,10 +1486,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id_roteiro:
-                    type: integer
+                type: integer
       operationId: get-cadastro-ligacao-facilitador-roteiro-identificacao
       description: 'Chamada para retornar o id do roteiro de leitura com base no grupo, setor, rota, e quadra'
       parameters:
@@ -1536,10 +1517,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  permite:
-                    type: boolean
+                type: boolean
       operationId: get-seguranca-permissao-funcao
       description: Chamada relizada para retornar se uma função pode ser utilizada ou não
       parameters:
@@ -1558,10 +1536,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  versao:
-                    type: string
+                type: string
       operationId: get-comum-versao
       description: Chamada realizada após o login que retorna a versão da aplicação
   /cobranca/parametros/load-parametro:
@@ -1575,10 +1550,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  parametro:
-                    type: integer
+                type: integer
       operationId: get-cobranca-load-parametro
       parameters:
         - schema:
@@ -1610,10 +1582,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  contratos_abertos:
-                    type: integer
+                type: integer
       operationId: get-cadastro-ligacao-contrato-locacao-contratos-abertos
       description: ''
       parameters:
@@ -1732,10 +1701,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  iniciado:
-                    type: boolean
+                type: boolean
       operationId: get-cronograma-ger-fases-ciclo-faturamento
       parameters:
         - schema:
@@ -1837,10 +1803,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  exibir_semaforo:
-                    type: boolean
+                type: boolean
       operationId: get-faturamento-parametros-exibir-semaforo
       description: Chamada feita ao pesquisar uma ligação na central de atendimento
       parameters:
@@ -1860,10 +1823,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  exibir_corte_light:
-                    type: boolean
+                type: boolean
       operationId: get-cobranca-parametros-exibir-corte-light
       description: Chamada feita ao pesquisar uma ligação na central de atendimento
       parameters:
@@ -1883,10 +1843,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  utiliza_debito_pregresso:
-                    type: boolean
+                type: boolean
       operationId: get-faturamento-parametros-debito-pregresso
       description: Chamada feita ao pesquisar uma ligação na central de atendimento
       parameters:
@@ -1925,10 +1882,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  negativacao_fase:
-                    type: integer
+                type: integer
       operationId: get-cobranca-negativacao-fase
       description: Chamada feita ao buscar uma ligação na central de atendimento
       parameters:
@@ -1984,10 +1938,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  entrega_alternativa:
-                    type: string
+                type: string
       operationId: get-cadastro-ligacao-verifica-tipo-entrega-alternativa
       parameters:
         - schema:
@@ -2005,10 +1956,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  validado:
-                    type: boolean
+                type: boolean
       operationId: get-cadastro-ligacao-validar-dados-identificacao
       parameters:
         - schema:
@@ -2172,10 +2120,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  total:
-                    type: integer
+                type: integer
       operationId: get-medicao-historico-total-consumo
       parameters:
         - schema:
@@ -2261,10 +2206,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  habilitar:
-                    type: boolean
+                type: boolean
       operationId: get-faturamento-habilitar-cx-timbre
   /comum/listar-combo:
     get:
@@ -2321,10 +2263,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  total:
-                    type: integer
+                type: integer
       operationId: get-faturamento-historico-total
       parameters:
         - schema:
@@ -2343,10 +2282,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  total:
-                    type: integer
+                type: integer
       operationId: get-faturamento-historico-total-cliente
       parameters:
         - schema:
@@ -2464,10 +2400,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  fatura_impressao:
-                    type: string
+                type: string
       operationId: get-faturamento-faturas-fatura-final
       requestBody:
         content:
@@ -2536,10 +2469,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  exibe_rubrica_imposto:
-                    type: boolean
+                type: boolean
       operationId: get-faturamento-parametros-rubrica-imposto
       parameters:
         - schema:
@@ -2684,10 +2614,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id_categoria:
-                    type: integer
+                type: integer
       operationId: get-faturamento-buscar-categoria-principal
       parameters:
         - schema:
@@ -2723,10 +2650,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  parametro:
-                    type: boolean
+                type: boolean
       operationId: get-comum-listar-parametro-bool
       parameters:
         - schema:
@@ -2863,14 +2787,10 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  valido:
-                    type: boolean
+                type: boolean
               examples:
                 Example 1:
-                  value:
-                    valido: true
+                  value: true
       operationId: get-faturamento-verifica-data-contrato-locacao
       parameters:
         - schema:
@@ -2919,10 +2839,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  contrato:
-                    type: string
+                type: string
       operationId: get-faturamento-parcelamento-imprimir-contrato
       parameters:
         - schema:
@@ -2961,13 +2878,15 @@ paths:
           in: query
           name: pesquisar_cidade
   /faturamento/fatura/marcar-impressa:
-    get:
+    post:
       summary: Faturamento - Marcar fatura impressa
+      operationId: post-faturamento-fatura-marcar-impressa
+      responses:
+        '200':
+          description: OK
       tags:
-        - Faturamento
         - Central-Atendimento
-      responses: {}
-      operationId: get-faturamento-fatura-marcar-impressa
+        - Faturamento
       parameters:
         - schema:
             type: integer
@@ -3164,32 +3083,41 @@ paths:
             schema:
               $ref: '#/components/schemas/FiltroProcessoJuridicoDtoModel'
   /cobranca/processo/juridico/add:
-    get:
+    post:
       summary: Cobrança - Adicionar processo
+      operationId: post-cobranca-processo-juridico-add
+      responses:
+        '200':
+          description: OK
       tags:
-        - Cobrança
         - Central-Atendimento
-      responses: {}
-      operationId: get-cobranca-processo-juridico-add
+        - Cobrança
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FiltroProcessoJuridicoDtoModel'
+              type: object
+              properties:
+                filtro_dto:
+                  $ref: '#/components/schemas/FiltroProcessoJuridicoDtoModel'
   /cobranca/processo/juridico/inativar:
-    get:
+    post:
       summary: Cobrança - Inativar processo
+      operationId: post-cobranca-processo-juridico-inativar
+      responses:
+        '200':
+          description: OK
       tags:
-        - Cobrança
         - Central-Atendimento
-      responses: {}
-      operationId: get-cobranca-processo-juridico-inativar
-      parameters: []
+        - Cobrança
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FiltroProcessoJuridicoDtoModel'
+              type: object
+              properties:
+                filtro_dto:
+                  $ref: '#/components/schemas/FiltroProcessoJuridicoDtoModel'
   /cobranca/acordos/faturas:
     get:
       summary: Cobrança - Acordos - Obter faturas acordo
@@ -3229,18 +3157,23 @@ paths:
           in: query
           name: id_ligacao
   /cobranca/acordos/save:
-    get:
+    post:
       summary: Cobrança - Acordos - Salvar acordo
+      operationId: post-cobranca-acordos-save
+      responses:
+        '200':
+          description: OK
       tags:
-        - Cobrança
         - Central-Atendimento
-      responses: {}
-      operationId: get-cobranca-acordos-save
+        - Cobrança
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AcordoDtoModel'
+              type: object
+              properties:
+                acordo:
+                  $ref: '#/components/schemas/AcordoDtoModel'
   /cobranca/acordos/consulta-acordos:
     get:
       summary: Cobrança - Acordos - Consultar acordo
@@ -3739,11 +3672,10 @@ paths:
             type: integer
           in: query
           name: id_cidade
-  /rubrica/save:
-    get:
+  /grupo-exibe-rubrica/save:
+    post:
       summary: Cadastro - Grupo exibe rubirca - Salvar
-      tags:
-        - Cadastro
+      operationId: post-rubrica-save
       responses:
         '200':
           description: OK
@@ -3751,7 +3683,8 @@ paths:
             application/json:
               schema:
                 type: integer
-      operationId: get-rubrica-save
+      tags:
+        - Cadastro
       requestBody:
         content:
           application/json:
@@ -3762,13 +3695,16 @@ paths:
                   $ref: '#/components/schemas/GrupoExibeRubricaDtoModel'
                 max_carac:
                   type: integer
+    parameters: []
   /grupo-exibe-rubrica/delete:
-    get:
+    post:
       summary: Cadastro - Grupo exibe rubrica - Delete
+      operationId: post-grupo-exibe-rubrica-delete
+      responses:
+        '200':
+          description: OK
       tags:
         - Cadastro
-      responses: {}
-      operationId: get-grupo-exibe-rubrica-delete
       requestBody:
         content:
           application/json:
@@ -3777,7 +3713,6 @@ paths:
               properties:
                 dados:
                   $ref: '#/components/schemas/GrupoExibeRubricaDtoModel'
-        description: ''
   /grupo-exibe-rubrica/carregar-registro:
     get:
       summary: Cadastro - Grupo exibe rubrica - Carregar registro
@@ -3815,12 +3750,14 @@ paths:
           in: query
           name: id
   /cadastro/codigo-leitura/delete:
-    get:
+    post:
       summary: Cadastro - Código de leitura - Excluir
+      operationId: post-cadastro-codigo-leitura-delete
+      responses:
+        '200':
+          description: OK
       tags:
         - Cadastro
-      responses: {}
-      operationId: get-cadastro-codigo-leitura-delete
       requestBody:
         content:
           application/json:
@@ -3843,18 +3780,14 @@ paths:
           in: query
           name: id_cidade
   /cadastro/excecao/save:
-    get:
+    post:
       summary: Cadastro - Exceção - Salvar
-      tags:
-        - Cadastro
+      operationId: post-cadastro-excecao-save
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: integer
-      operationId: get-cadastro-excecao-save
+      tags:
+        - Cadastro
       requestBody:
         content:
           application/json:
@@ -3863,14 +3796,15 @@ paths:
               properties:
                 excecao_dto:
                   $ref: '#/components/schemas/ExcecaoDtoModel'
-        description: ''
   /cadastro/excecao/delete:
-    get:
+    post:
       summary: Cadastro - Exceção - Excluir
+      operationId: post-cadastro-excecao-delete
+      responses:
+        '200':
+          description: OK
       tags:
         - Cadastro
-      responses: {}
-      operationId: get-cadastro-excecao-delete
       requestBody:
         content:
           application/json:
@@ -3960,31 +3894,33 @@ paths:
           in: query
           name: id_cidade
   /faturamento/mensagem-automacao/save:
-    get:
+    post:
       summary: Faturamento - Salvar mensagem automacao
+      operationId: post-faturamento-mensagem-automacao-save
+      responses:
+        '200':
+          description: OK
       tags:
-        - Cadastro
         - Faturamento
-      responses: {}
-      operationId: get-faturamento-mensagem-automacao-save
+        - Cadastro
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                dto:
+                dados:
                   $ref: '#/components/schemas/MensagemAutomacaoDtoModel'
-        description: ''
-      description: ''
   /faturamento/mensagem-automacao/delete:
-    get:
+    post:
       summary: Faturamento - Excluir mensagem automação
+      operationId: post-faturamento-mensagem-automacao-delete
+      responses:
+        '200':
+          description: OK
       tags:
-        - Faturamento
         - Cadastro
-      responses: {}
-      operationId: get-faturamento-mensagem-automacao-delete
+        - Faturamento
       parameters:
         - schema:
             type: integer
@@ -4317,22 +4253,26 @@ paths:
           in: query
           name: id_ligacao
   /solicitacoes/pendencias/estornar:
-    get:
+    post:
       summary: Solicitações - Estornar pendência
+      operationId: post-solicitacoes-pendencias-estornar
+      responses:
+        '200':
+          description: OK
       tags:
         - Central-Atendimento
-      responses: {}
-      operationId: get-solicitacoes-pendencias-estornar
-      parameters:
-        - schema:
-            type: array
-          in: query
-          name: id_os_detalhe
-          description: List<Integer>
-        - schema:
-            type: string
-          in: query
-          name: fator_gerador
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_os_detalhe:
+                  type: array
+                  items:
+                    type: integer
+                fator_gerador:
+                  type: string
   '/solicitacoes/ocorrencia-operacional/{id_ligacao}':
     parameters:
       - schema:
@@ -4391,12 +4331,14 @@ paths:
           in: query
           name: id_usuario
   /cadastro/medidor/save:
-    get:
+    post:
       summary: Cadastro - Medidor - Salvar medidor
+      operationId: post-cadastro-medidor-save
+      responses:
+        '200':
+          description: OK
       tags:
         - Cadastro
-      responses: {}
-      operationId: get-cadastro-medidor-save
       requestBody:
         content:
           application/json:
@@ -4442,10 +4384,9 @@ paths:
           in: query
           name: id_medidor
   /cadastro/indice-reajuste/save:
-    get:
+    post:
       summary: Cadastro - Índice Reajuste - Salvar indice reajuste
-      tags:
-        - Cadastro
+      operationId: post-cadastro-indice-reajuste-save
       responses:
         '200':
           description: OK
@@ -4455,7 +4396,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CorrecaoMonetariaProRataDtoModel'
-      operationId: get-cadastro-indice-reajuste-save
+      tags:
+        - Cadastro
       requestBody:
         content:
           application/json:
@@ -4465,12 +4407,14 @@ paths:
                 dados:
                   $ref: '#/components/schemas/IndiceReajusteDtoModel'
   /cadastro/indice-reajuste/verifica/indice-atraso:
-    get:
+    post:
       summary: Cadastro - Índice Reajuste - Verifica índice atraso
+      operationId: post-cadastro-indice-reajuste-verifica-indice-atraso
+      responses:
+        '200':
+          description: OK
       tags:
         - Cadastro
-      responses: {}
-      operationId: get-cadastro-indice-reajuste-verifica-indice-atraso
       parameters:
         - schema:
             type: integer
