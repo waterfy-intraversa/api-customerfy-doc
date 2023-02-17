@@ -4438,6 +4438,83 @@ paths:
             type: integer
           in: query
           name: id_indice
+  /cadastro/debito-automatico/obter/debito-automatico:
+    get:
+      summary: Cadastro - Débito automático - Obter débito automático VO
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DebitoAutomaticoDtoModel'
+      operationId: get-cadastro-debito-automatico-obter-debito-automatico
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cadastro/debito-automatico/save:
+    post:
+      summary: Cadastro - Débito automático - Salvar débito automático
+      operationId: post-cadastro-debito-automatico-save
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dados:
+                  $ref: '#/components/schemas/DebitoAutomaticoDtoModel'
+  /cadastro/debito-automatico/inativar:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-cadastro-debito-automatico-inativar
+    post:
+      summary: Cadastro - Débito automático - Inativar débito automático
+      operationId: post-cadastro-debito-automatico-inativar
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dados:
+                  $ref: '#/components/schemas/DebitoAutomaticoDtoModel'
+  /cadastro/debito-automatico/get-dados-ligacao:
+    get:
+      summary: Cadastro - Débito automático - Get dados ligação
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CriarLigacaoModel'
+      operationId: get-cadastro-debito-automatico-get-dados-ligacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
 components:
   schemas:
     CriarLigacaoModel:
@@ -32746,5 +32823,46 @@ components:
                   path: ''
               observacao: ''
               dt_execucao_aparelho: ''
+    DebitoAutomaticoDtoModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        id_ligacao:
+          type: integer
+        id_arrecadador:
+          type: integer
+        arrecadador:
+          type: string
+        seq_deb_auto:
+          type: string
+        ativo:
+          type: boolean
+        cod_agencia:
+          type: string
+        cod_conta:
+          type: string
+        data_cadastro:
+          type: string
+        data_inativacao:
+          type: string
+        id_usuario:
+          type: integer
+        codigo_cliente_banco:
+          type: string
+      x-examples:
+        Example 1:
+          id: 1
+          id_ligacao: 1
+          id_arrecadador: 1
+          arrecadador: ''
+          seq_deb_auto: ''
+          ativo: true
+          cod_agencia: ''
+          cod_conta: ''
+          data_cadastro: ''
+          data_inativacao: ''
+          id_usuario: 1
+          codigo_cliente_banco: ''
   securitySchemes: {}
 x-extension-1: null
