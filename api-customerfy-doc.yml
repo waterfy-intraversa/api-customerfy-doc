@@ -1851,9 +1851,9 @@ paths:
             type: integer
           in: query
           name: id_cidade
-  /cadastro/instalacao/medidor/historico:
+  /cadastro/instalacao-medidor/carrega/historico:
     get:
-      summary: Cadastro - Instalação - Carrega histórico medidor
+      summary: Cadastro - Instalação Medidor - Carrega histórico medidor
       tags:
         - Central-Atendimento
       responses:
@@ -1862,7 +1862,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CAInstalacaoMedidorModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/CAInstalacaoMedidorModel'
       operationId: get-cadastro-instalacao-medidor-historico
       description: Chamada feita ao pesquisar uma ligação na central de atendimento
       parameters:
@@ -1870,6 +1872,7 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+    parameters: []
   /cobranca/negativacao-fase:
     get:
       summary: Cobrança - Busca negativação fase
@@ -2249,8 +2252,7 @@ paths:
           in: query
           name: sql
       tags:
-        - Cadastro-Ligação
-        - Central-Atendimento
+        - Geral
   /faturamento/historico/total:
     get:
       summary: Faturamento - Total histórico
@@ -4476,11 +4478,6 @@ paths:
                 dados:
                   $ref: '#/components/schemas/DebitoAutomaticoDtoModel'
   /cadastro/debito-automatico/inativar:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-cadastro-debito-automatico-inativar
     post:
       summary: Cadastro - Débito automático - Inativar débito automático
       operationId: post-cadastro-debito-automatico-inativar
@@ -4515,6 +4512,158 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+  /cadastro/instalacao-medidor/carrega/dados-ligacao-inst-medidor:
+    get:
+      summary: Cadastro - Instalação Medidor - Carrega dados ligação inst medidor
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DadosLigacaoInstMedidorDtoModel'
+      operationId: get-cadastro-instalacao-medidor-carrega-dados-ligacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+    parameters: []
+  /cadastro/instalacao-medidor/validar-troca:
+    get:
+      summary: Cadastro - Instalação Medidor - Validar troca
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-cadastro-instalacao-medidor-validar-troca
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_periodo_leitura_ant
+        - schema:
+            type: integer
+          in: query
+          name: id_grupo
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cadastro/instalacao-medidor/delete:
+    post:
+      summary: Cadastro - Instalação Medidor - Excluir medidor
+      operationId: post-cadastro-instalacao-medidor-delete
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dados:
+                  $ref: '#/components/schemas/CAInstalacaoMedidorModel'
+        description: ''
+  /cadastro/instalacao-medidor/carrega/registro:
+    get:
+      summary: Cadastro - Instalação Medidor - Carrega registro
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CAInstalacaoMedidorModel'
+      operationId: get-cadastro-instalacao-medidor-carrega-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+  /cadastro/tipo-entrega/carrega-registro:
+    get:
+      summary: Cadastro - Tipo Entrega - Carrega registro
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TipoEntregaDtoModel'
+      operationId: get-cadastro-tipo-entrega-carrega-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+  /rubrica/carregar-registro:
+    get:
+      summary: Rubrica - Carrega registro
+      tags:
+        - Rubrica
+      responses: {}
+      operationId: get-rubrica-carregar-registro
+  /cadastro/indicadores-operacionais/cidade-periodo:
+    get:
+      summary: Cadastro - Indicadores operacionais por cidade periodo
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IndicadorOperacionalDto'
+      operationId: get-cadastro-indicadores-operacionais-cidade-e-periodo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+        - schema:
+            type: integer
+          in: query
+          name: id_periodo
+    parameters: []
+  /cadastro/indicadores-operacionais/updateall:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-cadastro-indicadores-operacionais-updateall
+    post:
+      summary: Cadastro - Indicadores operacionais - Atualizar todos indicador detalhe
+      operationId: post-cadastro-indicadores-operacionais-updateall
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/IndicadorOperacionalDto'
 components:
   schemas:
     CriarLigacaoModel:
@@ -32864,5 +33013,149 @@ components:
           data_inativacao: ''
           id_usuario: 1
           codigo_cliente_banco: ''
+    DadosLigacaoInstMedidorDtoModel:
+      type: object
+      properties:
+        id_cidade:
+          type: integer
+        cliente:
+          type: string
+        situacao_ligacao:
+          type: string
+        endereco:
+          type: string
+        grupo:
+          type: string
+        medidor:
+          type: string
+        periodo:
+          type: string
+        aceita_medidor:
+          type: string
+        id_medidor:
+          type: integer
+        id_grupo:
+          type: integer
+        id_periodo:
+          type: integer
+        ultima_leitura:
+          type: integer
+        projete_consumo:
+          type: boolean
+        data_ligacao:
+          type: string
+        id_equipe:
+          type: integer
+        equipe:
+          type: string
+        lacre:
+          type: string
+        id_motivo_troca:
+          type: integer
+        motivo_troca:
+          type: string
+        id_programa_troca:
+          type: integer
+        programa_troca:
+          type: string
+        leitura_retirada:
+          type: integer
+        volume_residual:
+          type: integer
+      x-examples:
+        Example 1:
+          id_cidade: 1
+          cliente: ''
+          situacao_ligacao: ''
+          endereco: ''
+          grupo: ''
+          medidor: ''
+          periodo: ''
+          aceita_medidor: ''
+          id_medidor: 1
+          id_grupo: 1
+          id_periodo: 1
+          ultima_leitura: 1
+          projete_consumo: true
+          data_ligacao: ''
+          id_equipe: 1
+          equipe: ''
+          lacre: ''
+          id_motivo_troca: 1
+          motivo_troca: ''
+          id_programa_troca: 1
+          programa_troca: ''
+          leitura_retirada: 1
+          volume_residual: 1
+    TipoEntregaDtoModel:
+      type: object
+      properties:
+        tipo_entrega:
+          type: string
+        dividir_cobranca_mesmo_endereco:
+          type: string
+        rubrica:
+          type: array
+          items:
+            type: object
+            properties:
+              id_cidade:
+                type: integer
+              cidade:
+                type: string
+              id_rubrica:
+                type: integer
+              rubrica:
+                type: string
+              valor:
+                type: number
+        email:
+          type: string
+        assunto_email:
+          type: string
+        texto_email:
+          type: string
+      x-examples:
+        Example 1:
+          tipo_entrega: ''
+          dividir_cobranca_mesmo_endereco: ''
+          rubrica:
+            - id_cidade: 1
+              cidade: ''
+              id_rubrica: 1
+              rubrica: ''
+              valor: 1.1
+          email: ''
+          assunto_email: ''
+          texto_email: ''
+    IndicadorOperacionalDto:
+      type: object
+      properties:
+        id_indicador:
+          type: integer
+        id_indicador_detalhe:
+          type: integer
+        id_periodo:
+          type: integer
+        id_cidade:
+          type: integer
+        indicador:
+          type: string
+        unidade:
+          type: string
+        valor:
+          type: string
+        observacao:
+          type: string
+      x-examples:
+        Example 1:
+          id_indicador: 1
+          id_indicador_detalhe: 1
+          id_periodo: 1
+          id_cidade: 1
+          indicador: ''
+          unidade: ''
+          valor: ''
+          observacao: ''
   securitySchemes: {}
 x-extension-1: null
