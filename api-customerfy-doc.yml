@@ -3769,13 +3769,15 @@ paths:
                 cod_leitura:
                   $ref: '#/components/schemas/CadastroCodigoLeituraDtoModel'
   /medicao/validar/cadastro-com-grupos:
-    get:
+    post:
       summary: Medição - Validar cadastro com grupos
+      operationId: post-medicao-validar-cadastro-com-grupos
+      responses:
+        '200':
+          description: OK
       tags:
-        - Medição
         - Cadastro
-      responses: {}
-      operationId: get-medicao-validar-cadastro-com-grupos
+        - Medição
       parameters:
         - schema:
             type: integer
@@ -4644,11 +4646,6 @@ paths:
           name: id_periodo
     parameters: []
   /cadastro/indicadores-operacionais/updateall:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-cadastro-indicadores-operacionais-updateall
     post:
       summary: Cadastro - Indicadores operacionais - Atualizar todos indicador detalhe
       operationId: post-cadastro-indicadores-operacionais-updateall
@@ -4664,6 +4661,152 @@ paths:
               type: array
               items:
                 $ref: '#/components/schemas/IndicadorOperacionalDto'
+  /gerfases/cronograma/carrega-parametros:
+    get:
+      summary: Cadastro - Cronograma - Carrega parâmetros cronograma
+      tags:
+        - Cadastro
+        - Cronograma
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParametrosCronogramaDtoModel'
+      operationId: get-gerfases-cronograma-carrega-parametros
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+  /gerfases/cronograma/carregar-replicador:
+    get:
+      summary: GerFases - Cronograma - Carregar replicador cronograma
+      tags:
+        - Cronograma
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReplicadorCronogramaDtoModel'
+      operationId: get-gerfases-cronograma-carregar-replicador
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: grupo
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+        - schema:
+            type: integer
+          in: query
+          name: id_periodo
+  /gerfases/cronograma/salvar-replicador:
+    post:
+      summary: GerFases - Cronograma - Salvar replicador cronograma
+      operationId: post-gerfases-cronograma-salvar-replicador
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cronograma
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                replicadores:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ReplicadorCronogramaDtoModel'
+  /gerfases/cronograma/save:
+    post:
+      summary: GerFases - Cronograma - Salvar cronograma
+      operationId: post-gerfases-cronograma-save
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cronograma
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_cidade:
+                  type: integer
+                id_grupo:
+                  type: integer
+                id_periodo:
+                  type: integer
+                cronograma:
+                  $ref: '#/components/schemas/CronogramaDtoModel'
+                cronograma_original:
+                  $ref: '#/components/schemas/CronogramaDtoModel'
+        description: ''
+  /cadastro/documento/tipo-ligacao:
+    get:
+      summary: Cadastro - Documento - Listar documento tipo ligação
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DocumentoTipoLigacaoDtoModel'
+      operationId: get-cadastro-documento-tipo-ligacao
+  /cadastro/documento/save:
+    post:
+      summary: Cadastro - Documento - Salvar documento
+      operationId: post-cadastro-documento-save
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  documento:
+                    $ref: '#/components/schemas/DocumentosModel'
+      tags:
+        - Cadastro
+  /central-atendimento/pesquisa-cliente/imprimir-pesquisa:
+    get:
+      summary: Central Atendimento - Pesquisa Cliente - Imprimir pesquisa
+      tags:
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-central-atendimento-pesquisa-cliente-imprimir-pesquisa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pesquisa:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/PesquisaClienteDtoModel'
 components:
   schemas:
     CriarLigacaoModel:
@@ -33157,5 +33300,341 @@ components:
           unidade: ''
           valor: ''
           observacao: ''
+    ParametrosCronogramaDtoModel:
+      type: object
+      properties:
+        id_cidade:
+          type: integer
+        interv_separacao_leit:
+          type: integer
+        interv_envio_coletor_leit:
+          type: integer
+        interv_retorno_leit:
+          type: integer
+        interv_repasse_leit:
+          type: integer
+        interv_ret_repasse_leite:
+          type: integer
+        interv_calculo_leit:
+          type: integer
+        interv_impressao_leit:
+          type: integer
+        interv_entrega_fat_venc:
+          type: integer
+        nr_min_dias_cons:
+          type: integer
+        nr_max_dias_cons:
+          type: integer
+        nr_min_dias_venc:
+          type: integer
+        nr_max_dias_venc:
+          type: integer
+        nr_min_dias_sep_imp:
+          type: integer
+        nr_max_dias_sep_imp:
+          type: integer
+      x-examples:
+        Example 1:
+          id_cidade: 1
+          interv_separacao_leit: 1
+          interv_envio_coletor_leit: 1
+          interv_retorno_leit: 1
+          interv_repasse_leit: 1
+          interv_ret_repasse_leite: 1
+          interv_calculo_leit: 1
+          interv_impressao_leit: 1
+          interv_entrega_fat_venc: 1
+          nr_min_dias_cons: 1
+          nr_max_dias_cons: 1
+          nr_min_dias_venc: 1
+          nr_max_dias_venc: 1
+          nr_min_dias_sep_imp: 1
+          nr_max_dias_sep_imp: 1
+    ReplicadorCronogramaDtoModel:
+      type: object
+      properties:
+        id_cidade:
+          type: integer
+        cidade:
+          type: string
+        id_grupo:
+          type: integer
+        grupo:
+          type: string
+        id_periodo:
+          type: integer
+        cronograma:
+          type: object
+          properties:
+            col_fase_cronograma:
+              type: array
+              items:
+                type: object
+                properties:
+                  id_fase:
+                    type: integer
+                  seq_exec:
+                    type: integer
+                  fase:
+                    type: string
+                  data_prev:
+                    type: string
+                  hora_prev:
+                    type: string
+                  data_exec:
+                    type: string
+                  id_usuario:
+                    type: integer
+                  usuario:
+                    type: string
+                  status:
+                    type: string
+            grupo:
+              type: integer
+            seq:
+              type: integer
+            periodo:
+              type: string
+            periodo_anterior:
+              type: integer
+            data_envio_coletor:
+              type: string
+            data_vencimento:
+              type: string
+            data_leitura:
+              type: string
+            data_entrega:
+              type: string
+            data_proxima_leitura:
+              type: string
+            data_inicio_venda:
+              type: string
+            data_termino_venda:
+              type: string
+            dias_per_venda:
+              type: integer
+            qtd_rotas:
+              type: integer
+            qtd_leituras:
+              type: integer
+            vol_medido:
+              type: integer
+            vol_faturado:
+              type: integer
+            qtd_ligacoes:
+              type: integer
+            nr_economias:
+              type: integer
+            coleta_coordenada_gps:
+              type: string
+      x-examples:
+        Example 1:
+          id_cidade: 1
+          cidade: ''
+          id_grupo: 1
+          grupo: ''
+          id_periodo: 1
+          cronograma:
+            col_fase_cronograma:
+              - id_fase: 1
+                seq_exec: 1
+                fase: string
+                data_prev: string
+                hora_prev: string
+                data_exec: string
+                id_usuario: 1
+                usuario: string
+                status: string
+            grupo: 1
+            seq: 1
+            periodo: string
+            periodo_anterior: 1
+            data_envio_coletor: string
+            data_vencimento: string
+            data_leitura: string
+            data_entrega: string
+            data_proxima_leitura: string
+            data_inicio_venda: string
+            data_termino_venda: string
+            dias_per_venda: 1
+            qtd_rotas: 1
+            qtd_leituras: 1
+            vol_medido: 1
+            vol_faturado: 1
+            qtd_ligacoes: 1
+            nr_economias: 1
+            coleta_coordenada_gps: string
+    DocumentoTipoLigacaoDtoModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        documento_tipo:
+          type: string
+        imagem:
+          type: boolean
+        altura:
+          type: integer
+        largura:
+          type: integer
+      x-examples:
+        Example 1:
+          id: 1
+          documento_tipo: ''
+          imagem: true
+          altura: 1
+          largura: 1
+    PesquisaClienteDtoModel:
+      type: object
+      properties:
+        id_cidade:
+          type: integer
+        cidade:
+          type: string
+        id_bairro:
+          type: integer
+        bairro:
+          type: string
+        id_distrito:
+          type: integer
+        distrito:
+          type: string
+        id_logradouro:
+          type: integer
+        logradouro:
+          type: string
+        nr_imovel:
+          type: string
+        complemento:
+          type: string
+        id_ligacao:
+          type: integer
+        id_cliente:
+          type: integer
+        cliente:
+          type: string
+        nome_inquilino:
+          type: string
+        id_bacia:
+          type: integer
+        bacia:
+          type: string
+        id_zona_pressao:
+          type: integer
+        zona_pressao:
+          type: string
+        id_sub_distrito:
+          type: integer
+        sub_distrito:
+          type: string
+        inscricao:
+          type: string
+        id_medidor:
+          type: integer
+        medidor:
+          type: string
+        telefone:
+          type: string
+        id_grupo:
+          type: integer
+        grupo:
+          type: string
+        rota:
+          type: string
+        situacao_ligacao:
+          type: string
+        cobranca_fase:
+          type: string
+        quadra:
+          type: string
+        lote:
+          type: string
+        cavalete:
+          type: string
+        setor:
+          type: string
+        identificacao:
+          type: string
+        fone:
+          type: string
+        fone_inquilino:
+          type: string
+        email_inquilino:
+          type: string
+        email:
+          type: string
+        hidrometro:
+          type: string
+        rota_leitura:
+          type: string
+        nr_imovel_antigo:
+          type: string
+        tipo_faturamento:
+          type: string
+        tipo_cobranca:
+          type: string
+        numero_moradores:
+          type: integer
+        numero_lacre:
+          type: string
+        nr_ponteiro:
+          type: integer
+        categoria_economia:
+          type: string
+        cep:
+          type: string
+        cpf_cnpj:
+          type: string
+      x-examples:
+        Example 1:
+          id_cidade: 1
+          cidade: ''
+          id_bairro: 1
+          bairro: ''
+          id_distrito: 1
+          distrito: ''
+          id_logradouro: 1
+          logradouro: ''
+          nr_imovel: ''
+          complemento: ''
+          id_ligacao: 1
+          id_cliente: 1
+          cliente: ''
+          nome_inquilino: ''
+          id_bacia: 1
+          bacia: ''
+          id_zona_pressao: 1
+          zona_pressao: ''
+          id_sub_distrito: 1
+          sub_distrito: ''
+          inscricao: ''
+          id_medidor: 1
+          medidor: ''
+          telefone: ''
+          id_grupo: 1
+          grupo: ''
+          rota: ''
+          situacao_ligacao: ''
+          cobranca_fase: ''
+          quadra: ''
+          lote: ''
+          cavalete: ''
+          setor: ''
+          identificacao: ''
+          fone: ''
+          fone_inquilino: ''
+          email_inquilino: ''
+          email: ''
+          hidrometro: ''
+          rota_leitura: ''
+          nr_imovel_antigo: ''
+          tipo_faturamento: ''
+          tipo_cobranca: ''
+          numero_moradores: 1
+          numero_lacre: ''
+          nr_ponteiro: 1
+          categoria_economia: ''
+          cep: ''
+          cpf_cnpj: ''
   securitySchemes: {}
 x-extension-1: null
