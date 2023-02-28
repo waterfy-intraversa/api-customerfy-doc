@@ -4807,6 +4807,68 @@ paths:
                   type: array
                   items:
                     $ref: '#/components/schemas/PesquisaClienteDtoModel'
+  /cadastro/campanha-informativa/filtrar:
+    get:
+      summary: Cadastro - Campanha informativa - Filtrar
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroCampanhaDtoModel'
+      operationId: get-cadastro-campanha-informativa-filtrar
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                campanha:
+                  $ref: '#/components/schemas/CadastroCampanhaDtoModel'
+        description: ''
+  /cadastro/campanha-informativa/save:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-cadastro-campanha-informativa-save
+    post:
+      summary: Cadastro - Campanha informativa - Salvar
+      operationId: post-cadastro-campanha-informativa-save
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                campanha:
+                  $ref: '#/components/schemas/CadastroCampanhaDtoModel'
+  /cadastro/campanha-informativa/carregar-registro:
+    get:
+      summary: Cadastro - Campanha informativa - Carregar registro
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroCampanhaDtoModel'
+      operationId: get-cadastro-campanha-informativa-carregar-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_campanha
 components:
   schemas:
     CriarLigacaoModel:
@@ -33636,5 +33698,85 @@ components:
           categoria_economia: ''
           cep: ''
           cpf_cnpj: ''
+    CadastroCampanhaDtoModel:
+      type: object
+      properties:
+        situacao:
+          type: integer
+        id_cidade:
+          type: integer
+        id_grupo:
+          type: integer
+        id_periodo:
+          type: integer
+        filtro_categoria:
+          type: boolean
+        lista_id_categoria:
+          type: string
+        categoria:
+          type: array
+          items:
+            type: integer
+        de_filtro_vol_medido_medio:
+          type: number
+        ate_filtro_vol_medido_medeio:
+          type: number
+        de_filtro_vol_faturado_medio:
+          type: number
+        ate_filtro_vol_faturado_medio:
+          type: number
+        de_filtro_val_total_debitos:
+          type: number
+        ate_filtro_val_total_debitos:
+          type: number
+        de_filtro_tot_faturas_debito:
+          type: number
+        ate_filto_tot_faturas_debito:
+          type: number
+        incluir_ligacoes_inativas:
+          type: boolean
+        incluir_ligacoes_cotadas:
+          type: boolean
+        mensagem:
+          type: string
+        ligacoes:
+          type: array
+          items:
+            type: integer
+        chk_filtro_vol_medido_medio:
+          type: boolean
+        chk_filtro_vol_faturado_medio:
+          type: boolean
+        chk_filtro_val_total_debitos:
+          type: boolean
+        chk_filtro_tot_faturas_debito:
+          type: boolean
+      x-examples:
+        Example 1:
+          situacao: 1
+          id_cidade: 1
+          id_grupo: 1
+          id_periodo: 1
+          filtro_categoria: false
+          lista_id_categoria: ''
+          categoria:
+            - 1
+          de_filtro_vol_medido_medio: 1.1
+          ate_filtro_vol_medido_medeio: 1.1
+          de_filtro_vol_faturado_medio: 1.1
+          ate_filtro_vol_faturado_medio: 1.1
+          de_filtro_val_total_debitos: 1.1
+          ate_filtro_val_total_debitos: 1.1
+          de_filtro_tot_faturas_debito: 1.1
+          ate_filto_tot_faturas_debito: 1.1
+          incluir_ligacoes_inativas: false
+          incluir_ligacoes_cotadas: false
+          mensagem: ''
+          ligacoes:
+            - 1
+          chk_filtro_vol_medido_medio: false
+          chk_filtro_vol_faturado_medio: false
+          chk_filtro_val_total_debitos: false
+          chk_filtro_tot_faturas_debito: false
   securitySchemes: {}
 x-extension-1: null
