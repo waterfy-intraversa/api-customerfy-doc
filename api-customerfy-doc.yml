@@ -4613,13 +4613,25 @@ paths:
             type: integer
           in: query
           name: id
-  /rubrica/carregar-registro:
+  /cadastro/rubrica/carregar-registro:
     get:
-      summary: Rubrica - Carrega registro
-      tags:
-        - Rubrica
-      responses: {}
+      summary: Cadastro - Rubrica - Carregar registro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RubricaDtoModel'
       operationId: get-rubrica-carregar-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_rubrica
+      tags:
+        - Cadastro
+    parameters: []
   /cadastro/indicadores-operacionais/cidade-periodo:
     get:
       summary: Cadastro - Indicadores operacionais por cidade periodo
@@ -4830,11 +4842,6 @@ paths:
                   $ref: '#/components/schemas/CadastroCampanhaDtoModel'
         description: ''
   /cadastro/campanha-informativa/save:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-cadastro-campanha-informativa-save
     post:
       summary: Cadastro - Campanha informativa - Salvar
       operationId: post-cadastro-campanha-informativa-save
@@ -4869,6 +4876,283 @@ paths:
             type: integer
           in: query
           name: id_campanha
+  /cadastro/condominio/tipo-macro-medidor:
+    get:
+      summary: Cadastro - Condomínio - Get tipo macro medidor
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+      operationId: get-cadastro-condominio-tipo-macro-medidor
+  /cadastro/condominio/consultar-condominio:
+    get:
+      summary: Cadastro - Condomínio - Consultar condomínio
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CondominioDtoModel'
+      operationId: get-cadastro-condominio-consultar-condominio
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao_macro
+  /cadastro/condominio/carregar-ligacao-micro:
+    get:
+      summary: Cadastro - Condomínio - Carregar ligação micro
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CondominioDetalheDtoModel'
+      operationId: get-cadastro-condominio-carregar-ligacao-micro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao_micro
+  /cadastro/condominio/consiste-condominio:
+    post:
+      summary: Cadastro - Condomínio - Consiste condomínio
+      operationId: post-cadastro-condominio-consiste-condominio
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                condominio:
+                  $ref: '#/components/schemas/CondominioDtoModel'
+        description: ''
+  /cadastro/condominio/save:
+    post:
+      summary: Cadastro - Condomínio - Salvar condomínio
+      operationId: post-cadastro-condominio-save
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                condominio:
+                  $ref: '#/components/schemas/CondominioDtoModel'
+                log:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/LogDetalheDtoModel'
+        description: ''
+  /cadastro/condominio/delete:
+    post:
+      summary: Cadastro - Condomínio - Excluir condomínio
+      operationId: post-cadastro-condominio-delete
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_condominio
+  /cadastro/condominio/verifica/ligacao-macro:
+    get:
+      summary: Cadastro - Condomínio - Verifica ligação macro
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      operationId: get-cadastro-condominio-verifica-ligacao-macro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /solicitacoes/gestao-servico/validar/dept-usuario:
+    get:
+      summary: Solicitações - Gestão Serviços - Validar departamento usuário
+      tags:
+        - Central-Atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-solicitacoes-gestao-servico-validar-dept-usuario
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_os
+        - schema:
+            type: integer
+          in: query
+          name: id_servico
+  /cadastro/subcategoria/save:
+    post:
+      summary: Cadastro - Subcategoria - Salvar subcategoria
+      operationId: post-cadastro-subcategoria-save
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subcategoria:
+                  $ref: '#/components/schemas/SubcategoriaDtoModel'
+  /cadastro/subcategoria/carregar:
+    get:
+      summary: Cadastro - Subcategoria - Carregar subcategoria
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubcategoriaDtoModel'
+      operationId: get-cadastro-subcategoria-carregar
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_subcategoria
+  /cadastro/mensagem/retencao-forcada/save:
+    post:
+      summary: Cadastro - Salvar mensagem retenção forçada
+      operationId: post-cadastro-mensagem-retencao-forcada-save
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mensagem_retencao_forcada:
+                  $ref: '#/components/schemas/MensagemRetencaoForcadaDtoModel'
+  /cadastro/mensagem/retencao-forcada/delete:
+    post:
+      summary: Cadastro - Excluir mensagem retenção forçada
+      operationId: post-cadastro-mensagem-retencao-forcada-delete
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mensagem_retencao_forcada:
+                  $ref: '#/components/schemas/MensagemRetencaoForcadaDtoModel'
+        description: ''
+  /cadastro/mensagem/retencao-forcada/obter:
+    get:
+      summary: Cadastro - Obter mensagem retenção forçada
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemRetencaoForcadaDtoModel'
+      operationId: get-cadastro-mensagem-retencao-forcada-obter
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id_mensagem
+  /cadastro/rubrica/save:
+    post:
+      summary: Cadastro - Rubrica - Salvar
+      operationId: post-cadastro-rubrica-save
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rubrica:
+                  $ref: '#/components/schemas/RubricaDtoModel'
+  /cadastro/rubrica/delete:
+    post:
+      summary: Cadastro - Rubrica - Excluir
+      operationId: post-cadastro-rubrica-delete
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rubrica:
+                  $ref: '#/components/schemas/RubricaDtoModel'
 components:
   schemas:
     CriarLigacaoModel:
@@ -33778,5 +34062,247 @@ components:
           chk_filtro_vol_faturado_medio: false
           chk_filtro_val_total_debitos: false
           chk_filtro_tot_faturas_debito: false
+    CondominioDtoModel:
+      type: object
+      properties:
+        id_cidade:
+          type: integer
+        id_ligacao_macro:
+          type: integer
+        id_tipo_macro_medidor:
+          type: integer
+        condominio_detalhe:
+          type: array
+          items:
+            type: object
+            properties:
+              id_condominio:
+                type: integer
+              id_ligacao_micro:
+                type: integer
+              cliente:
+                type: string
+              nr_economias:
+                type: integer
+        nr_economias:
+          type: integer
+      x-examples:
+        Example 1:
+          id_cidade: 1
+          id_ligacao_macro: 1
+          id_tipo_macro_medidor: 1
+          condominio_detalhe:
+            - id_condominio: 1
+              id_ligacao_micro: 1
+              cliente: ''
+              nr_economias: 1
+          nr_economias: 1
+    CondominioDetalheDtoModel:
+      type: object
+      properties:
+        id_condominio:
+          type: integer
+        id_ligacao_micro:
+          type: integer
+        cliente:
+          type: string
+        nr_economias:
+          type: integer
+      x-examples:
+        Example 1:
+          id_condominio: 1
+          id_ligacao_micro: 1
+          cliente: ''
+          nr_economias: 1
+    LogDetalheDtoModel:
+      type: object
+      properties:
+        campo_alterado:
+          type: string
+        dados_pre_alteracao:
+          type: string
+        dados_pos_alteracao:
+          type: string
+      x-examples:
+        Example 1:
+          campo_alterado: ''
+          dados_pre_alteracao: ''
+          dados_pos_alteracao: ''
+    SubcategoriaDtoModel:
+      type: object
+      properties:
+        sub_categoria:
+          type: string
+        sigla:
+          type: string
+        base_calc:
+          type: number
+        esgoto_diferenciado:
+          type: string
+        imovel_desabitado:
+          type: string
+        unidade_mensuracao:
+          type: object
+          properties:
+            unidade_mensuracao:
+              type: string
+        percentual_desconto:
+          type: number
+        col_categorias:
+          type: array
+          items:
+            type: object
+            properties:
+              id_categoria:
+                type: integer
+              id_sub_categoria:
+                type: integer
+              categoria:
+                type: string
+              nr_economias:
+                type: integer
+              peso:
+                type: integer
+              isento:
+                type: string
+              prioridade:
+                type: integer
+              descricao:
+                type: string
+              selecionado:
+                type: boolean
+              vol_cons_minimo:
+                type: number
+              sigla:
+                type: string
+              percentual_fat:
+                type: integer
+              ordem_impressao:
+                type: integer
+              id_cidade:
+                type: integer
+              cidade:
+                type: string
+              consumo_minimo_retencao:
+                type: number
+              imprimir_msg_excedente_cobrado:
+                type: string
+              aplicar_acrescimo_parc_ufir:
+                type: string
+              id_categoria_destino:
+                type: integer
+              vol_fat_maximo:
+                type: number
+              unificar_econ_cate_destino:
+                type: string
+              val_taxa_servico:
+                type: number
+              val_aluguel_hidrometro:
+                type: number
+              id_rubrica:
+                type: integer
+              val_cons_zero:
+                type: number
+              ordem_categoria_exebicao:
+                type: integer
+              servicos_ambientais:
+                type: number
+        aplica_desconto:
+          type: string
+        baixa_renda:
+          type: string
+        col_descontos:
+          type: array
+          items:
+            type: object
+            properties:
+              id_sub_categoria:
+                type: integer
+              produto:
+                type: string
+              id_produto:
+                type: integer
+              id_sub_categoria_tipo_desconto:
+                type: integer
+              sub_categoria_tipo_desconto:
+                type: string
+              volume_maximo:
+                type: integer
+              valor_desconto:
+                type: number
+      x-examples:
+        Example 1:
+          sub_categoria: ''
+          sigla: ''
+          base_calc: 1.1
+          esgoto_diferenciado: ''
+          imovel_desabitado: ''
+          unidade_mensuracao:
+            unidade_mensuracao: ''
+          percentual_desconto: 1.1
+          col_categorias:
+            - id_categoria: 1
+              id_sub_categoria: 1
+              categoria: ''
+              nr_economias: 1
+              peso: 1
+              isento: ''
+              prioridade: 1
+              descricao: ''
+              selecionado: false
+              vol_cons_minimo: 1.1
+              sigla: ''
+              percentual_fat: 1
+              ordem_impressao: 1
+              id_cidade: 1
+              cidade: ''
+              consumo_minimo_retencao: 1.1
+              imprimir_msg_excedente_cobrado: ''
+              aplicar_acrescimo_parc_ufir: ''
+              id_categoria_destino: 1
+              vol_fat_maximo: 1.1
+              unificar_econ_cate_destino: ''
+              val_taxa_servico: 1.1
+              val_aluguel_hidrometro: 1.1
+              id_rubrica: 1
+              val_cons_zero: 1.1
+              ordem_categoria_exebicao: 1
+              servicos_ambientais: 1.1
+          aplica_desconto: ''
+          baixa_renda: ''
+          col_descontos:
+            - id_sub_categoria: 1
+              produto: ''
+              id_produto: 1
+              id_sub_categoria_tipo_desconto: 1
+              sub_categoria_tipo_desconto: ''
+              volume_maximo: 1
+              valor_desconto: 1.1
+    MensagemRetencaoForcadaDtoModel:
+      type: object
+      properties:
+        id_ligacao:
+          type: integer
+        ativo:
+          type: boolean
+        nome_consumidor:
+          type: string
+        id_periodo_inicial:
+          type: integer
+        id_periodo_final:
+          type: integer
+        mensagem:
+          type: string
+        log_alteracao:
+          type: string
+      x-examples:
+        Example 1:
+          id_ligacao: 1
+          ativo: false
+          nome_consumidor: ''
+          id_periodo_inicial: 1
+          id_periodo_final: 1
+          mensagem: ''
+          log_alteracao: ''
   securitySchemes: {}
 x-extension-1: null
