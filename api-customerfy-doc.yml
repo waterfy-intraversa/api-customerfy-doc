@@ -5153,6 +5153,49 @@ paths:
               properties:
                 rubrica:
                   $ref: '#/components/schemas/RubricaDtoModel'
+  /cadastro/analise-agua/save:
+    post:
+      summary: Cadastro - Análise água - Salvar análise
+      operationId: post-cadastro-analise-agua-save
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                analise:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AnaliseAguaParametrosDtoModel'
+  /cadastro/analise-agua/get-analise:
+    get:
+      summary: Cadastro - Análise água - Get análise
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AnaliseAguaParametrosDtoModel'
+      operationId: get-cadastro-analise-agua-get-analise
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_periodo
+        - schema:
+            type: integer
+          in: query
+          name: id_fonte_abastecimento
 components:
   schemas:
     CriarLigacaoModel:
@@ -34304,5 +34347,59 @@ components:
           id_periodo_final: 1
           mensagem: ''
           log_alteracao: ''
+    AnaliseAguaParametrosDtoModel:
+      type: object
+      properties:
+        id_fonte_abastecimento:
+          type: integer
+        parametro:
+          type: string
+        ordem_exib:
+          type: integer
+        unidade_medida:
+          type: string
+        val_max_permitido:
+          type: string
+        nr_amostras:
+          type: integer
+        analise_agua_resultados:
+          type: object
+          properties:
+            id_periodo:
+              type: integer
+            id_periodo_ref:
+              type: integer
+            val_medio:
+              type: string
+            val_min_detectado:
+              type: string
+            val_max_detectado:
+              type: string
+            nr_amostras_realizadas:
+              type: string
+            nr_amostras_fora_padrao:
+              type: string
+            perc_amostras_conf_apos_rec:
+              type: string
+        ativo:
+          type: string
+      x-examples:
+        Example 1:
+          id_fonte_abastecimento: 1
+          parametro: ''
+          ordem_exib: 1
+          unidade_medida: ''
+          val_max_permitido: ''
+          nr_amostras: 1
+          analise_agua_resultados:
+            id_periodo: 1
+            id_periodo_ref: 1
+            val_medio: ''
+            val_min_detectado: ''
+            val_max_detectado: ''
+            nr_amostras_realizadas: ''
+            nr_amostras_fora_padrao: ''
+            perc_amostras_conf_apos_rec: ''
+          ativo: ''
   securitySchemes: {}
 x-extension-1: null
