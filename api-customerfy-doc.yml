@@ -5358,6 +5358,32 @@ paths:
             type: integer
           in: query
           name: id_mensagem
+  /comum/obter/list-periodos:
+    get:
+      summary: Comum - Obter períodos
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: 09d2yso0g26ea
+      operationId: get-comum-obter-list-periodos
+      tags:
+        - Geral
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+        - schema:
+            type: string
+          in: query
+          name: periodo
 components:
   schemas:
     CriarLigacaoModel:
