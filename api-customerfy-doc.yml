@@ -5196,6 +5196,168 @@ paths:
             type: integer
           in: query
           name: id_fonte_abastecimento
+  /cadastro/consolidacao-faturas/consiste-ligacao:
+    get:
+      summary: Cadastro - Consolidação faturas - Consiste ligação consolidação
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+      operationId: get-cadastro-consolidacao-faturas-consiste-ligacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+        - schema:
+            type: integer
+          in: query
+          name: id_consolidacao
+  /cadastro/consolidacao-faturas/carrega-dados-ligacao:
+    get:
+      summary: Cadastro - Consolidação faturas - Carregar dados ligação
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsolidacaoArrecadacaoDetDtoModel'
+      operationId: get-cadastro-consolidacao-faturas-carrega-dados-ligacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_ligacao
+  /cadastro/consolidacao-faturas/carregar-registro:
+    get:
+      summary: Cadastro - Consolidação faturas - Carregar registro
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsolidacaoArrecadacaoDtoModel'
+      operationId: get-cadastro-consolidacao-faturas-carregar-registro
+      description: ''
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_consolidacao
+  /cadastro/consolidacao-faturas/save:
+    post:
+      summary: Cadastro - Consolidação faturas - Salvar
+      operationId: post-cadastro-consolidacao-faturas-save
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      tags:
+        - Cadastro
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consolidacao:
+                  $ref: '#/components/schemas/ConsolidacaoArrecadacaoDtoModel'
+                  x-stoplight:
+                    id: 9pvtseq916xoy
+  /cadastro/mensagens-fatura/get-mensagens:
+    get:
+      summary: Cadastro - Mensgens na fatura - Get mensagens fatura
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MensagensFaturaDtoModel'
+                  x-stoplight:
+                    id: digxh8ob7f7ed
+      operationId: get-cadastro-mensagens-fatura-get-mensagens
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+  /faturamento/consulta/parametros-cadastro:
+    get:
+      summary: Faturamento - Consulta parâmetros cadastro
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CAParametrosCadastroModel'
+      operationId: get-faturamento-consulta-parametros-cadastro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
+  /cadastro/mensagens-fatura/save:
+    post:
+      summary: Cadastro - Mensagens na fatura - Salvar mensagem
+      operationId: post-faturamento-mensagens-fatura-save
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mensagem:
+                  $ref: '#/components/schemas/MensagensFaturaDtoModel'
+                  x-stoplight:
+                    id: l13hhtg802ut1
+    parameters: []
+  /cadastro/mensagens-fatura/delete:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-cadastro-mensagens-fatura-delete
+    post:
+      summary: Cadastro - Mensagens na fatura - Excluir mensagem
+      operationId: post-cadastro-mensagens-fatura-delete
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_mensagem
 components:
   schemas:
     CriarLigacaoModel:
@@ -27182,6 +27344,8 @@ components:
     GrupoDtoModel:
       type: object
       properties:
+        id:
+          type: integer
         id_grupo:
           type: integer
         nome_grupo:
@@ -27232,8 +27396,15 @@ components:
           type: string
         mensagem_canhoto_esgoto:
           type: string
+        grupo_ativo:
+          type: boolean
+        id_periodo_primeiro_faturamento:
+          type: integer
+        periodo_primeiro_faturamento:
+          type: string
       x-examples:
         Example 1:
+          id: 1
           id_grupo: 1
           nome_grupo: ''
           id_cidade: 1
@@ -27259,6 +27430,9 @@ components:
           calculo_faturamento: true
           tipo_leitura: ''
           mensagem_canhoto_esgoto: ''
+          grupo_ativo: true
+          id_periodo_primeiro_faturamento: 1
+          periodo_primeiro_faturamento: ''
     TipoFaturamentoDtoModel:
       type: object
       properties:
@@ -34401,5 +34575,72 @@ components:
             nr_amostras_fora_padrao: ''
             perc_amostras_conf_apos_rec: ''
           ativo: ''
+    ConsolidacaoArrecadacaoDetDtoModel:
+      type: object
+      properties:
+        id_ligacao:
+          type: integer
+        id_consolidacao_arrecadacao:
+          type: integer
+        nome_cliente:
+          type: string
+        logradouro:
+          type: string
+        numero_imovel:
+          type: string
+        bairro:
+          type: string
+        id_fatura:
+          type: integer
+        id_guia:
+          type: integer
+        valor_fatura:
+          type: number
+        data_vencimento:
+          type: string
+        situacao_ligacao:
+          type: string
+        id_cidade:
+          type: integer
+        cidade:
+          type: string
+      x-examples:
+        Example 1:
+          id_ligacao: 1
+          id_consolidacao_arrecadacao: 1
+          nome_cliente: ''
+          logradouro: ''
+          numero_imovel: ''
+          bairro: ''
+          id_fatura: 1
+          id_guia: 1
+          valor_fatura: 1.1
+          data_vencimento: ''
+          situacao_ligacao: ''
+          id_cidade: 1
+          cidade: ''
+    MensagensFaturaDtoModel:
+      type: object
+      properties:
+        data_inicial:
+          type: string
+        data_final:
+          type: string
+        mensagem:
+          type: string
+        id_cidade:
+          type: integer
+        prioridade:
+          type: integer
+        tipo_leitura:
+          type: string
+      x-examples:
+        Example 1:
+          data_inicial: ''
+          data_final: ''
+          mensagem: ''
+          id_cidade: 1
+          prioridade: 1
+          tipo_leitura: ''
   securitySchemes: {}
 x-extension-1: null
