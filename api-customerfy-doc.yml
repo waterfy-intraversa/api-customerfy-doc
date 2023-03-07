@@ -31032,6 +31032,19 @@ components:
           id_venda: 1
     IndiceReajusteDtoModel:
       type: object
+      x-examples:
+        Example 1:
+          indice_reajuste: ''
+          id_cidade: 1
+          id_usuario: 1
+          indice_reajuste_detalhes:
+            - id_indice_reajuste: 1
+              id_periodo: 1
+              periodo: ''
+              periodo_seq: 1
+              percentual: 1.1
+              valor: 1.1
+          usuario: ''
       properties:
         indice_reajuste:
           type: string
@@ -31058,19 +31071,10 @@ components:
                 type: number
         usuario:
           type: string
-      x-examples:
-        Example 1:
-          indice_reajuste: ''
-          id_cidade: 1
-          id_usuario: 1
-          indice_reajuste_detalhes:
-            - id_indice_reajuste: 1
-              id_periodo: 1
-              periodo: ''
-              periodo_seq: 1
-              percentual: 1.1
-              valor: 1.1
-          usuario: ''
+        id:
+          type: integer
+          x-stoplight:
+            id: ppgtc713gz92c
     CadastroOSServicoDtoModel:
       type: object
       properties:
