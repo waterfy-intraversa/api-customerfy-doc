@@ -1270,7 +1270,7 @@ paths:
           name: id_ligacao
   /user/unidade-operacional:
     get:
-      summary: Retorna unidade operacional - Usuario logado
+      summary: Comum - Obter unidade operacional usuario logado
       responses:
         '200':
           description: OK
@@ -1281,7 +1281,7 @@ paths:
       operationId: get-user-unidade-operacional
       description: Chamada para buscar a unidade operacional do usuario logado. Feita no momento em que a tela de cadastro de ligação é aberta
       tags:
-        - User
+        - Geral
   /cadastro/parametros/documento-angola:
     get:
       summary: Cadastro - Parametros - Valida se utiliza documento Angola
@@ -1864,7 +1864,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CAInstalacaoMedidorModel'
+                  $ref: '#/components/schemas/InstalacaoMedidorDtoModel'
       operationId: get-cadastro-instalacao-medidor-historico
       description: Chamada feita ao pesquisar uma ligação na central de atendimento
       parameters:
@@ -4575,7 +4575,7 @@ paths:
               type: object
               properties:
                 dados:
-                  $ref: '#/components/schemas/CAInstalacaoMedidorModel'
+                  $ref: '#/components/schemas/InstalacaoMedidorDtoModel'
         description: ''
   /cadastro/instalacao-medidor/carrega/registro:
     get:
@@ -4588,7 +4588,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CAInstalacaoMedidorModel'
+                $ref: '#/components/schemas/InstalacaoMedidorDtoModel'
       operationId: get-cadastro-instalacao-medidor-carrega-registro
       parameters:
         - schema:
@@ -5384,6 +5384,19 @@ paths:
             type: string
           in: query
           name: periodo
+  /cliente/altera/visualizacao/rfc-e-pensionista:
+    get:
+      summary: Cadastro - Cliente - Alterar visualização RFC e pensionista
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+      operationId: get-cliente-altera-visualizacao-rfc-e-pensionista
 components:
   schemas:
     CriarLigacaoModel:
@@ -10947,103 +10960,103 @@ components:
                     data_atualizacao: string
                     repasse: true
                     atualizado: true
-    CAInstalacaoMedidorModel:
-      type: array
-      items:
-        type: object
-        properties:
-          alterado:
-            type: boolean
-          novo:
-            type: boolean
-          lacre:
-            type: string
-          id_ligacao:
-            type: integer
-          id_medidor:
-            type: integer
-          medidor:
-            type: string
-          id_medidor_atual:
-            type: integer
-          id_programa_troca:
-            type: integer
-          programa_troca:
-            type: string
-          leitura_retirada:
-            type: integer
-          leitura_instalacao:
-            type: integer
-          volume_residual:
-            type: integer
-          id_equipe:
-            type: integer
-          equipe:
-            type: string
-          dt_retirada:
-            type: string
-          observacao:
-            type: string
-          id_periodo:
-            type: integer
-          id_grupo:
-            type: integer
-          id_periodo_instalacao:
-            type: integer
-          periodo_instalacao:
-            type: string
-          id_periodo_anterior:
-            type: integer
-          periodo_anterior:
-            type: string
-          id_periodo_util_residuo:
-            type: integer
-          periodo_util_residuo:
-            type: string
-          seq_id_periodo_util_residuo:
-            type: integer
-          id_medidor_motivo_troca:
-            type: integer
-          medido_motivo_troca:
-            type: string
-          id_ordem_servico_detalhe:
-            type: integer
-          dt_instalacao:
-            type: string
-          projeta_consumo:
-            type: string
+    InstalacaoMedidorDtoModel:
+      type: object
+      x-stoplight:
+        id: 701e599321d10
+      properties:
+        alterado:
+          type: boolean
+        novo:
+          type: boolean
+        lacre:
+          type: string
+        id_ligacao:
+          type: integer
+        id_medidor:
+          type: integer
+        medidor:
+          type: string
+        id_medidor_atual:
+          type: integer
+        id_programa_troca:
+          type: integer
+        programa_troca:
+          type: string
+        leitura_retirada:
+          type: integer
+        leitura_instalacao:
+          type: integer
+        volume_residual:
+          type: integer
+        id_equipe:
+          type: integer
+        equipe:
+          type: string
+        dt_retirada:
+          type: string
+        observacao:
+          type: string
+        id_periodo:
+          type: integer
+        id_grupo:
+          type: integer
+        id_periodo_instalacao:
+          type: integer
+        periodo_instalacao:
+          type: string
+        id_periodo_anterior:
+          type: integer
+        periodo_anterior:
+          type: string
+        id_periodo_util_residuo:
+          type: integer
+        periodo_util_residuo:
+          type: string
+        seq_id_periodo_util_residuo:
+          type: integer
+        id_medidor_motivo_troca:
+          type: integer
+        medido_motivo_troca:
+          type: string
+        id_ordem_servico_detalhe:
+          type: integer
+        dt_instalacao:
+          type: string
+        projeta_consumo:
+          type: string
       x-examples:
         Example 1:
-          - alterado: true
-            novo: true
-            lacre: string
-            id_ligacao: 1
-            id_medidor: 1
-            medidor: string
-            id_medidor_atual: 1
-            id_programa_troca: 1
-            programa_troca: string
-            leitura_retirada: 1
-            leitura_instalacao: 1
-            volume_residual: 1
-            id_equipe: 1
-            equipe: string
-            dt_retirada: string
-            observacao: string
-            id_periodo: 1
-            id_grupo: 1
-            id_periodo_instalacao: 1
-            periodo_instalacao: string
-            id_periodo_anterior: 1
-            periodo_anterior: string
-            id_periodo_util_residuo: 1
-            periodo_util_residuo: string
-            seq_id_periodo_util_residuo: 1
-            id_medidor_motivo_troca: 1
-            medido_motivo_troca: string
-            id_ordem_servico_detalhe: 1
-            dt_instalacao: string
-            projeta_consumo: string
+          alterado: true
+          novo: true
+          lacre: string
+          id_ligacao: 1
+          id_medidor: 1
+          medidor: string
+          id_medidor_atual: 1
+          id_programa_troca: 1
+          programa_troca: string
+          leitura_retirada: 1
+          leitura_instalacao: 1
+          volume_residual: 1
+          id_equipe: 1
+          equipe: string
+          dt_retirada: string
+          observacao: string
+          id_periodo: 1
+          id_grupo: 1
+          id_periodo_instalacao: 1
+          periodo_instalacao: string
+          id_periodo_anterior: 1
+          periodo_anterior: string
+          id_periodo_util_residuo: 1
+          periodo_util_residuo: string
+          seq_id_periodo_util_residuo: 1
+          id_medidor_motivo_troca: 1
+          medido_motivo_troca: string
+          id_ordem_servico_detalhe: 1
+          dt_instalacao: string
+          projeta_consumo: string
     CAComboExcecaoModel:
       type: array
       items:
