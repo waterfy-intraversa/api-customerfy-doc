@@ -5380,10 +5380,6 @@ paths:
             type: integer
           in: query
           name: id_cidade
-        - schema:
-            type: string
-          in: query
-          name: periodo
   /cliente/altera/visualizacao/rfc-e-pensionista:
     get:
       summary: Cadastro - Cliente - Alterar visualização RFC e pensionista
