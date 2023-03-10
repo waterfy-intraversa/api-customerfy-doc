@@ -1114,7 +1114,7 @@ paths:
       operationId: get-central-atendimento-ligacao-id_ligacao-excecao
   /cadastro/parametros-cadastro:
     get:
-      summary: CA - Parametros Cadastro
+      summary: Cadastro - Parâmetros Cadastro
       tags:
         - Parâmetros
       responses:
@@ -5340,11 +5340,6 @@ paths:
                     id: l13hhtg802ut1
     parameters: []
   /cadastro/mensagens-fatura/delete:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-cadastro-mensagens-fatura-delete
     post:
       summary: Cadastro - Mensagens na fatura - Excluir mensagem
       operationId: post-cadastro-mensagens-fatura-delete
@@ -5393,6 +5388,116 @@ paths:
               schema:
                 type: boolean
       operationId: get-cliente-altera-visualizacao-rfc-e-pensionista
+  /cadastro/cliente/save:
+    post:
+      summary: Cadastro - Cliente - Salvar
+      operationId: post-cadastro-cliente-save
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cliente_dto:
+                  $ref: '#/components/schemas/ClienteDtoModel'
+                  x-stoplight:
+                    id: 35moelc2m0e3z
+                parametros_cadastro:
+                  $ref: '#/components/schemas/CAParametrosCadastroModel'
+                  x-stoplight:
+                    id: 8iq8nw00qmnmg
+  /cadastro/cliente/delete:
+    post:
+      summary: Cadastro - Cliente - Excluir
+      operationId: post-cadastro-cliente-delete
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cliente_dto:
+                  $ref: '#/components/schemas/ClienteDtoModel'
+                  x-stoplight:
+                    id: e428w0fgfe9nr
+        description: ''
+  /cadastro/cliente/carregar-registro:
+    get:
+      summary: Cadastro - Cliente - Carregar Registro
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClienteDtoModel'
+      operationId: get-cadastro-cliente-carregar-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cliente
+  /cadastro/ligacao/validar/nr-inscricao:
+    get:
+      summary: Cadastro - Ligação - Validar nr inscrição
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+      operationId: get-cadastro-ligacao-validar-nr-inscricao
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: nr_inscricao
+        - schema:
+            type: string
+          in: query
+          name: id_ligacao
+  /cadastro/ligacao-provisoria/save:
+    post:
+      summary: Cadastro - Ligação Provisória - Salvar provisória
+      operationId: post-cadastro-ligacao-provisoria-save
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ligacao_dto:
+                  type: array
+                  x-stoplight:
+                    id: 5t4klrg7e677y
+                  items:
+                    $ref: '#/components/schemas/CriarLigacaoModel'
+                    x-stoplight:
+                      id: fvpdr6qa0hffx
 components:
   schemas:
     CriarLigacaoModel:
@@ -34702,5 +34807,124 @@ components:
           id_cidade: 1
           prioridade: 1
           tipo_leitura: ''
+    ClienteDtoModel:
+      type: object
+      properties:
+        data_nascimento:
+          type: string
+        data_exp_rg:
+          type: string
+        id_cidade:
+          type: integer
+        cidade:
+          type: string
+        cliente:
+          type: string
+        tp_cliente:
+          type: string
+        bairro:
+          type: string
+        logradouro:
+          type: string
+        nr_imovel:
+          type: string
+        complemento:
+          type: string
+        rg:
+          type: string
+        cpf:
+          type: string
+        cnpj:
+          type: string
+        fone_fixo:
+          type: string
+        fone_movel:
+          type: string
+        email:
+          type: string
+        observacao:
+          type: string
+        nome_pai:
+          type: string
+        nome_mae:
+          type: string
+        nr_ligacoes:
+          type: integer
+        total_debitos:
+          type: number
+        total_parcelamentos:
+          type: number
+        col_ligacao:
+          type: array
+          items:
+            type: object
+            properties:
+              id_cliente:
+                type: integer
+              id_ligacao:
+                type: integer
+              nome_inquilino:
+                type: string
+              endereco:
+                type: string
+        id_bairro:
+          type: integer
+        id_logradouro:
+          type: integer
+        id_sexo:
+          type: integer
+        id_usuario_cadastro:
+          type: integer
+        cep:
+          type: integer
+        possui_debito:
+          type: boolean
+        retorno_serasa:
+          type: string
+        rcs:
+          type: string
+        rfc:
+          type: string
+        jubilado:
+          type: boolean
+      x-examples:
+        Example 1:
+          data_nascimento: string
+          data_exp_rg: string
+          id_cidade: 1
+          cidade: string
+          cliente: string
+          tp_cliente: string
+          bairro: string
+          logradouro: string
+          nr_imovel: string
+          complemento: string
+          rg: string
+          cpf: string
+          cnpj: string
+          fone_fixo: string
+          fone_movel: string
+          email: string
+          observacao: string
+          nome_pai: string
+          nome_mae: string
+          nr_ligacoes: 1
+          total_debitos: 1.1
+          total_parcelamentos: 1.1
+          col_ligacao:
+            - id_cliente: 1
+              id_ligacao: 1
+              nome_inquilino: string
+              endereco: string
+          id_bairro: 1
+          id_logradouro: 1
+          id_sexo: 1
+          id_usuario_cadastro: 1
+          cep: 1
+          possui_debito: true
+          retorno_serasa: string
+          rcs: string
+          rfc: string
+          jubilado: true
   securitySchemes: {}
 x-extension-1: null
