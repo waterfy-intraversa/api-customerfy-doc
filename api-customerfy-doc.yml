@@ -5498,6 +5498,29 @@ paths:
                     $ref: '#/components/schemas/CriarLigacaoModel'
                     x-stoplight:
                       id: fvpdr6qa0hffx
+  /cadastro/codigo-leitura/save:
+    post:
+      summary: Cadastro - Código leitura - Salvar
+      operationId: post-cadastro-codigo-leitura-save
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cod_leitura:
+                  $ref: '#/components/schemas/CadastroCodigoLeituraDtoModel'
+                  x-stoplight:
+                    id: 1qo18hh6bbekc
 components:
   schemas:
     CriarLigacaoModel:
