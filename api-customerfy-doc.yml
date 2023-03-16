@@ -19677,38 +19677,80 @@ components:
     ExcecaoDtoModel:
       type: object
       properties:
+        novo:
+          type: boolean
+        id_cidade:
+          type: integer
         excecao:
+          type: string
+        momento_calculo:
           type: string
         id_excecao_tipo:
           type: integer
-        excecao_tipo:
-          type: string
         id_excecao_aplicacao:
           type: integer
-        excecao_aplicacao:
+        tipo_fat_admitido:
           type: string
-        exige_percentual:
+        perda_comercial:
           type: boolean
-        exige_valor:
+        retencao_forcada:
           type: boolean
-        momento_calculo:
-          type: string
-        ordem_aplicacao:
+        aceita_em_lig_cons:
+          type: boolean
+        considerar_no_recalculo:
+          type: boolean
+        aplica_excecao_ligacao_cortada:
+          type: boolean
+        permite_ligacao_filho:
+          type: boolean
+        id_excecao_ajuste_valor:
           type: integer
-        ordem_tipo:
+        ativa:
+          type: boolean
+        considerar_recalculo_simultanea:
+          type: boolean
+        cadastravel:
+          type: boolean
+        id_rubrica:
+          type: integer
+        excecao_produto_DTO:
+          type: array
+          items:
+            type: object
+            properties:
+              id_produto:
+                type: integer
+              id_rubrica:
+                type: integer
+        visualizada_pelo_call_center:
+          type: boolean
+        id_motivo:
           type: integer
       x-examples:
         Example 1:
-          excecao: string
+          novo: true
+          id_cidade: 1
+          excecao: ''
+          momento_calculo: ''
           id_excecao_tipo: 1
-          excecao_tipo: string
           id_excecao_aplicacao: 1
-          excecao_aplicacao: string
-          exige_percentual: true
-          exige_valor: true
-          momento_calculo: string
-          ordem_aplicacao: 1
-          ordem_tipo: 1
+          tipo_fat_admitido: ''
+          perda_comercial: true
+          retencao_forcada: true
+          aceita_em_lig_cons: true
+          considerar_no_recalculo: true
+          aplica_excecao_ligacao_cortada: true
+          permite_ligacao_filho: true
+          id_excecao_ajuste_valor: 1
+          ativa: true
+          considerar_recalculo_simultanea: true
+          cadastravel: true
+          id_rubrica: 1
+          excecao_produto_DTO:
+            - id_produto: 1
+              id_rubrica: 1
+          visualizada_pelo_call_center: true
+          id_motivo: 1
     RecalculoDtoModel:
       type: object
       properties:
