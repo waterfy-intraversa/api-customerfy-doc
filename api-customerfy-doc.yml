@@ -5521,6 +5521,23 @@ paths:
                   $ref: '#/components/schemas/CadastroCodigoLeituraDtoModel'
                   x-stoplight:
                     id: 1qo18hh6bbekc
+  /cadastro/servico/get-meses:
+    get:
+      summary: Cadastro Serviço - Get meses
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: qq9pyechhvh38
+      operationId: get-cadastro-servico-get-meses
 components:
   schemas:
     CriarLigacaoModel:
