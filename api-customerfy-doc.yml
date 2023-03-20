@@ -5538,6 +5538,24 @@ paths:
                   x-stoplight:
                     id: qq9pyechhvh38
       operationId: get-cadastro-servico-get-meses
+  /cadastro/msg-quitacao-anual/carregar-msg:
+    get:
+      summary: Faturamento - Carregar msg quitação anual
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MensagemQuitacaoAnualDtoModel'
+      operationId: get-cadastro-msg-quitacao-anual-carregar-msg
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id_cidade
 components:
   schemas:
     CriarLigacaoModel:
@@ -35008,5 +35026,34 @@ components:
           rcs: string
           rfc: string
           jubilado: true
+    MensagemQuitacaoAnualDtoModel:
+      type: object
+      properties:
+        id_cidade:
+          type: integer
+        carencia:
+          type: integer
+        msg:
+          type: string
+        tag:
+          type: string
+        normal:
+          type: string
+        avulsa:
+          type: string
+        parcelamento:
+          type: string
+        mes_inicio_mensagem:
+          type: integer
+      x-examples:
+        Example 1:
+          id_cidade: 1
+          carencia: 1
+          msg: ''
+          tag: ''
+          normal: ''
+          avulsa: ''
+          parcelamento: ''
+          mes_inicio_mensagem: 1
   securitySchemes: {}
 x-extension-1: null
