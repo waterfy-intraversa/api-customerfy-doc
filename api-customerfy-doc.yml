@@ -7079,6 +7079,24 @@ components:
                             type: string
                           tipoRet:
                             type: integer
+                ufs:
+                  type: object
+                  properties:
+                    dados:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          idStr:
+                            type: string
+                          descr:
+                            type: string
+                          flag:
+                            type: string
+                          tipoRet:
+                            type: integer
             instalacao:
               type: object
               properties:
@@ -7621,6 +7639,13 @@ components:
                     flag: string
                     tipoRet: 1
               grupos:
+                dados:
+                  - id: 1
+                    idStr: string
+                    descr: string
+                    flag: string
+                    tipoRet: 1
+              ufs:
                 dados:
                   - id: 1
                     idStr: string
