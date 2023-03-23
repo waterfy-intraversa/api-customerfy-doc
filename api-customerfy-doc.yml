@@ -883,7 +883,7 @@ paths:
                       utiliza_documentos_angola: true
                       cpf_cnpj_obrigatorio: true
       operationId: get-list-combos
-      description: 'Chamada para popular os list combos especificos à tela de cadastro de ligação, e a flags e parametros necessários ao funcionamento da tela. Chamada feita quando a tela é aberta.'
+      description: 'Chamada para popular os list combos especificos à tela de cadastro de ligação, e a flags e parametros necessários ao funcionamento da tela. Chamada feita quando a tela é aberta. '
     parameters: []
   /carrega-menu:
     get:
@@ -5556,6 +5556,117 @@ paths:
             type: integer
           in: query
           name: id_cidade
+  /consolidacao/arrecadacao/get-consolidacao:
+    get:
+      summary: Consolidação Arrecadação - Get consolidação arrecadação
+      tags:
+        - Consolidação-Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConsolidacaoArrecadacaoDtoModel'
+                  x-stoplight:
+                    id: dp9m608ralhw1
+      operationId: get-consolidacao-arrecadacao-get-consolidacao
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mes:
+                  type: integer
+                  x-stoplight:
+                    id: obkq511p3fkcx
+                ano:
+                  type: integer
+                  x-stoplight:
+                    id: 1v426e4wne28l
+                consolidacao:
+                  type: array
+                  x-stoplight:
+                    id: uuz279wfjf9hp
+                  items:
+                    $ref: '#/components/schemas/ConsolidacaoArrecadacaoDtoModel'
+                    x-stoplight:
+                      id: 653g13wi6ckqo
+        description: ''
+  /consolidacao/arrecadacao/imprimir-guia:
+    get:
+      summary: Consolidação Arrecadação - Imprimir guia consolidação
+      tags:
+        - Consolidação-Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImpressaoGuiaConsolidacaoDtoModel'
+      operationId: get-consolidacao-arrecadacao-imprimir-guia
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mes:
+                  type: integer
+                  x-stoplight:
+                    id: b7qs70innx28s
+                ano:
+                  type: integer
+                  x-stoplight:
+                    id: 61qdtysdbdcfb
+                consolidacoes:
+                  type: array
+                  x-stoplight:
+                    id: kr0syo8uirszx
+                  items:
+                    $ref: '#/components/schemas/ConsolidacaoArrecadacaoDtoModel'
+                    x-stoplight:
+                      id: u87t5ljlxtmih
+  /consolidacao/arrecadacao/imprimir-faturas:
+    get:
+      summary: Consolidação Arrecadação - Imprimir faturas consolidação arrecadação
+      tags:
+        - Consolidação-Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-consolidacao-arrecadacao-imprimir-faturas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids_consolidacao:
+                  type: array
+                  x-stoplight:
+                    id: se9smdx9ohcbn
+                  items:
+                    x-stoplight:
+                      id: 9e9cd607mhsi9
+                    type: integer
+                mes:
+                  type: integer
+                  x-stoplight:
+                    id: caa9wlp4xriq7
+                ano:
+                  type: integer
+                  x-stoplight:
+                    id: 3xzehdnmeemjh
 components:
   schemas:
     CriarLigacaoModel:
@@ -35080,5 +35191,19 @@ components:
           avulsa: ''
           parcelamento: ''
           mes_inicio_mensagem: 1
+    ImpressaoGuiaConsolidacaoDtoModel:
+      type: object
+      properties:
+        sql:
+          type: string
+        guia_analitica:
+          type: boolean
+        id_cidade:
+          type: integer
+      x-examples:
+        Example 1:
+          sql: ''
+          guia_analitica: false
+          id_cidade: 1
   securitySchemes: {}
 x-extension-1: null
