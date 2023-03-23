@@ -5667,6 +5667,66 @@ paths:
                   type: integer
                   x-stoplight:
                     id: 3xzehdnmeemjh
+  /faturamento/atraso-encargo/save:
+    post:
+      summary: Faturamento - Atraso Encargo - Salvar
+      operationId: post-faturamento-atraso-encargo-save
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dado:
+                  $ref: '#/components/schemas/AtrasoEncargoDtoModel'
+                  x-stoplight:
+                    id: i4qdft82j7rjt
+  /faturamento/atraso-encargo/delete:
+    post:
+      summary: Faturamento - Atraso Encargo - Excluir
+      operationId: post-faturamento-atraso-encargo-delete
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dado:
+                  $ref: '#/components/schemas/AtrasoEncargoDtoModel'
+                  x-stoplight:
+                    id: 4b50ek8i9wbwc
+  /faturamento/atraso-encargo/carregar-registro:
+    get:
+      summary: Faturamento - Atraso Encargo - Carregar registro
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtrasoEncargoDtoModel'
+      operationId: get-faturamento-atraso-encargo-carregar-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
 components:
   schemas:
     CriarLigacaoModel:
@@ -6140,36 +6200,185 @@ components:
               properties:
                 imprime_dados_cliente:
                   type: string
-                id_cliente_inquilino:
+                alterado:
+                  type: boolean
+                novo:
+                  type: boolean
+                id_cliente:
                   type: integer
-                nome_inquilino:
-                  type: string
                 data_nascimento:
                   type: string
-                fone_fixo:
+                rg_data_expedicao:
                   type: string
-                fone_movel:
-                  type: string
-                tipo_pessoa:
-                  type: string
-                email_inquilino:
-                  type: string
-                rg_inquilino:
-                  type: string
-                cpf_inquilino:
-                  type: string
-                cnpj_inquilino:
-                  type: string
-                rcs_inquilino:
-                  type: string
-                data_expedicao_rg:
-                  type: string
-                numero_moradores:
+                id_cidade:
                   type: integer
-                ddd_residencial:
+                cidade:
+                  type: string
+                cliente:
+                  type: string
+                tipo_cliente:
+                  type: string
+                bairro:
+                  type: string
+                logradouro:
+                  type: string
+                num_imovel:
+                  type: string
+                complemento:
+                  type: string
+                rg:
+                  type: string
+                cpf:
+                  type: string
+                cnpj:
+                  type: string
+                telefone:
+                  type: string
+                ddd_fixo:
+                  type: string
+                celular:
+                  type: string
+                ddd_movel:
+                  type: string
+                email:
+                  type: string
+                observacao:
+                  type: string
+                nome_pai:
+                  type: string
+                nome_mae:
+                  type: string
+                qt_ligacoes:
                   type: integer
-                ddd_celular:
+                total_debitos:
+                  type: number
+                total_parcelamento:
+                  type: number
+                col_ligacao:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id_cliente:
+                        type: integer
+                      id_ligacao:
+                        type: integer
+                      endereco:
+                        type: string
+                      nome_inquilino:
+                        type: string
+                id_bairro:
                   type: integer
+                id_logradouro:
+                  type: integer
+                id_sexo:
+                  type: integer
+                id_usuario_cadastro:
+                  type: integer
+                cep:
+                  type: integer
+                possui_debito:
+                  type: boolean
+                retorno_serasa:
+                  type: string
+                rcs:
+                  type: string
+                rfc:
+                  type: string
+                jubilado:
+                  type: boolean
+            inquilino_morador:
+              type: object
+              properties:
+                imprime_dados_cliente:
+                  type: string
+                alterado:
+                  type: boolean
+                novo:
+                  type: boolean
+                id_cliente:
+                  type: integer
+                data_nascimento:
+                  type: string
+                rg_data_expedicao:
+                  type: string
+                id_cidade:
+                  type: integer
+                cidade:
+                  type: string
+                cliente:
+                  type: string
+                tipo_cliente:
+                  type: string
+                bairro:
+                  type: string
+                logradouro:
+                  type: string
+                num_imovel:
+                  type: string
+                complemento:
+                  type: string
+                rg:
+                  type: string
+                cpf:
+                  type: string
+                cnpj:
+                  type: string
+                telefone:
+                  type: string
+                ddd_fixo:
+                  type: string
+                celular:
+                  type: string
+                ddd_movel:
+                  type: string
+                email:
+                  type: string
+                observacao:
+                  type: string
+                nome_pai:
+                  type: string
+                nome_mae:
+                  type: string
+                qt_ligacoes:
+                  type: integer
+                total_debitos:
+                  type: number
+                total_parcelamento:
+                  type: number
+                col_ligacao:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id_cliente:
+                        type: integer
+                      id_ligacao:
+                        type: integer
+                      endereco:
+                        type: string
+                      nome_inquilino:
+                        type: string
+                id_bairro:
+                  type: integer
+                id_logradouro:
+                  type: integer
+                id_sexo:
+                  type: integer
+                id_usuario_cadastro:
+                  type: integer
+                cep:
+                  type: integer
+                possui_debito:
+                  type: boolean
+                retorno_serasa:
+                  type: string
+                rcs:
+                  type: string
+                rfc:
+                  type: string
+                jubilado:
+                  type: boolean
       x-examples:
         Example 1:
           envia_coletor: string
@@ -6397,21 +6606,92 @@ components:
             id_elevatoria: 1
             inquilino:
               imprime_dados_cliente: string
-              id_cliente_inquilino: 1
-              nome_inquilino: string
+              alterado: true
+              novo: true
+              id_cliente: 1
               data_nascimento: string
-              fone_fixo: string
-              fone_movel: string
-              tipo_pessoa: string
-              email_inquilino: string
-              rg_inquilino: string
-              cpf_inquilino: string
-              cnpj_inquilino: string
-              rcs_inquilino: string
-              data_expedicao_rg: string
-              numero_moradores: 1
-              ddd_residencial: 1
-              ddd_celular: 1
+              rg_data_expedicao: string
+              id_cidade: 1
+              cidade: string
+              cliente: string
+              tipo_cliente: string
+              bairro: string
+              logradouro: string
+              num_imovel: string
+              complemento: string
+              rg: string
+              cpf: string
+              cnpj: string
+              telefone: string
+              ddd_fixo: string
+              celular: string
+              ddd_movel: string
+              email: string
+              observacao: string
+              nome_pai: string
+              nome_mae: string
+              qt_ligacoes: 1
+              total_debitos: 1.1
+              total_parcelamento: 1.1
+              col_ligacao:
+                - id_cliente: 1
+                  id_ligacao: 1
+                  endereco: string
+                  nome_inquilino: string
+              id_bairro: 1
+              id_logradouro: 1
+              id_sexo: 1
+              id_usuario_cadastro: 1
+              cep: 1
+              possui_debito: true
+              retorno_serasa: string
+              rcs: string
+              rfc: string
+              jubilado: true
+            inquilino_morador:
+              imprime_dados_cliente: string
+              alterado: true
+              novo: true
+              id_cliente: 1
+              data_nascimento: string
+              rg_data_expedicao: string
+              id_cidade: 1
+              cidade: string
+              cliente: string
+              tipo_cliente: string
+              bairro: string
+              logradouro: string
+              num_imovel: string
+              complemento: string
+              rg: string
+              cpf: string
+              cnpj: string
+              telefone: string
+              ddd_fixo: string
+              celular: string
+              ddd_movel: string
+              email: string
+              observacao: string
+              nome_pai: string
+              nome_mae: string
+              qt_ligacoes: 1
+              total_debitos: 1.1
+              total_parcelamento: 1.1
+              col_ligacao:
+                - id_cliente: 1
+                  id_ligacao: 1
+                  endereco: string
+                  nome_inquilino: string
+              id_bairro: 1
+              id_logradouro: 1
+              id_sexo: 1
+              id_usuario_cadastro: 1
+              cep: 1
+              possui_debito: true
+              retorno_serasa: string
+              rcs: string
+              rfc: string
+              jubilado: true
     UtilsModel:
       type: object
       properties:
@@ -35205,5 +35485,28 @@ components:
           sql: ''
           guia_analitica: false
           id_cidade: 1
+    AtrasoEncargoDtoModel:
+      type: object
+      properties:
+        novo:
+          type: boolean
+        id_cidade:
+          type: integer
+        atraso_encargo:
+          type: string
+        taxa_atraso_vo:
+          type: array
+          items:
+            type: object
+            properties:
+              id_taxa_atraso:
+                type: integer
+      x-examples:
+        Example 1:
+          novo: true
+          id_cidade: 1
+          atraso_encargo: ''
+          taxa_atraso_vo:
+            - id_taxa_atraso: 1
   securitySchemes: {}
 x-extension-1: null
