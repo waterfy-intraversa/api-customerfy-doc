@@ -5727,6 +5727,100 @@ paths:
             type: integer
           in: query
           name: id
+  /divida-ativa/exibir-debitos:
+    get:
+      summary: Faturamento - Dívida Ativa - Exibir débitos
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DebitosDtoModel'
+                  x-stoplight:
+                    id: a9sizzdrziu0k
+      operationId: get-divida-ativa-exibir-debitos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filtro:
+                  $ref: '#/components/schemas/FiltroDividaAtivaDtoModel'
+                  x-stoplight:
+                    id: 2ttof85iozxmh
+  /monitoramento-notificacao/os-corte/listar-emails:
+    get:
+      summary: Gestão de Serviços - Listar emails
+      tags:
+        - Gestão-Serviços
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MonitoramentoNotificacaoOSCorteDtoModel'
+                  x-stoplight:
+                    id: bf748m1xeelpv
+      operationId: get-monitoramento-notificacao-os-corte-listar-emails
+      parameters:
+        - schema:
+            type: boolean
+          in: query
+          name: b
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+      description: ''
+  /monitoramento-notificacao/os-corte/obter-usuario-cidades:
+    get:
+      summary: Gestão de serviços - Obter usuario cidades
+      tags:
+        - Gestão-Serviços
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: tfjrz33z5qb77
+      operationId: get-monitoramento-notificacao-os-corte-obter-usuario-cidades
+  /cadastro/tipo-entrega/save:
+    post:
+      summary: Cadastro - Tipo Entrega - Salvar
+      operationId: post-cadastro-tipo-entrega-save
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      tags:
+        - Cadastro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dado:
+                  $ref: '#/components/schemas/TipoEntregaDtoModel'
+                  x-stoplight:
+                    id: mi4j0sgnoabnl
 components:
   schemas:
     CriarLigacaoModel:
@@ -35508,5 +35602,305 @@ components:
           atraso_encargo: ''
           taxa_atraso_vo:
             - id_taxa_atraso: 1
+    DebitosDtoModel:
+      type: object
+      properties:
+        id_cliente:
+          type: integer
+        id_cidade:
+          type: integer
+        id_ligacao:
+          type: integer
+        id_grupo:
+          type: integer
+        cliente:
+          type: string
+        endereco:
+          type: string
+        grupo:
+          type: string
+        qtd_faturas:
+          type: integer
+        valor_faturas:
+          type: number
+        faturas:
+          type: array
+          items:
+            type: object
+            properties:
+              id_fatura:
+                type: integer
+              vencimento:
+                type: string
+              valor:
+                type: number
+        categoria:
+          type: string
+        id_categoria:
+          type: string
+        id_faturas:
+          type: string
+        selecionado:
+          type: boolean
+      x-examples:
+        Example 1:
+          id_cliente: 1
+          id_cidade: 1
+          id_ligacao: 1
+          id_grupo: 1
+          cliente: ''
+          endereco: ''
+          grupo: ''
+          qtd_faturas: 1
+          valor_faturas: 1.1
+          faturas:
+            - id_fatura: 1
+              vencimento: ''
+              valor: 1.1
+          categoria: ''
+          id_categoria: ''
+          id_faturas: ''
+          selecionado: false
+    FiltroDividaAtivaDtoModel:
+      type: object
+      properties:
+        id_cidade:
+          type: integer
+        id_grupo:
+          type: integer
+        lista_id_categoria:
+          type: string
+        lista_id_grupo:
+          type: string
+        id_periodo_de:
+          type: integer
+        id_periodo_ate:
+          type: integer
+        vencimento_de:
+          type: string
+        vencimento_ate:
+          type: string
+        valor_limite_de:
+          type: number
+        valor_limite_ate:
+          type: number
+        quantidade_faturas_de:
+          type: integer
+        quantidade_faturas_ate:
+          type: integer
+        id_usuario:
+          type: integer
+        v_grupo:
+          type: array
+          items:
+            type: object
+            properties:
+              id_grupo:
+                type: integer
+              nome_grupo:
+                type: string
+              id_cidade:
+                type: integer
+              nome_cidade:
+                type: string
+              descricao:
+                type: string
+              selecionado:
+                type: boolean
+              total_simultanea:
+                type: integer
+              total_convencional:
+                type: integer
+              mensagem_obs:
+                type: string
+              id_usuario_mensagem_obs:
+                type: integer
+              nome_ususario_mensagem_obs:
+                type: string
+              data_hora_mensagem_obs:
+                type: string
+              ordem:
+                type: integer
+              vencto_padrao:
+                type: integer
+              exige_critica:
+                type: boolean
+              reaviso_debito:
+                type: boolean
+              grupo_lig_estima:
+                type: boolean
+              corte_light:
+                type: boolean
+              fisc_corte:
+                type: boolean
+              estimadas:
+                type: boolean
+              retorno_coletor:
+                type: boolean
+              calculo_consumo:
+                type: boolean
+              calculo_faturamento:
+                type: boolean
+              tipo_leitura:
+                type: string
+              mensagem_canhoto_esgoto:
+                type: string
+        v_categoria:
+          type: array
+          items:
+            type: object
+            properties:
+              id_categoria:
+                type: integer
+              id_sub_categoria:
+                type: integer
+              categoria:
+                type: string
+              nr_economias:
+                type: integer
+              peso:
+                type: integer
+              isento:
+                type: string
+              prioridade:
+                type: integer
+              descricao:
+                type: string
+              selecionado:
+                type: boolean
+              vol_cons_minimo:
+                type: number
+              sigla:
+                type: string
+              percentual_fat:
+                type: integer
+              ordem_impressao:
+                type: integer
+              id_cidade:
+                type: integer
+              cidade:
+                type: string
+              consumo_minimo_retencao:
+                type: number
+              imprimir_msg_excedente_cobrado:
+                type: string
+              aplicar_acrescimo_parc_uf_ir:
+                type: string
+              id_categoria_destino:
+                type: integer
+              vol_fat_maximo:
+                type: number
+              unificar_econ_cate_destino:
+                type: string
+              val_taxa_servico:
+                type: number
+              val_aluguel_hidrometro:
+                type: number
+              id_rubrica:
+                type: integer
+              val_cons_zero:
+                type: number
+              ordem_categoria_exibicao:
+                type: integer
+              servicos_ambientais:
+                type: number
+        utiliza_divisao_fatura:
+          type: string
+      x-examples:
+        Example 1:
+          id_cidade: 1
+          id_grupo: 1
+          lista_id_categoria: ''
+          lista_id_grupo: ''
+          id_periodo_de: 1
+          id_periodo_ate: 1
+          vencimento_de: ''
+          vencimento_ate: ''
+          valor_limite_de: 1.1
+          valor_limite_ate: 1.1
+          quantidade_faturas_de: 1
+          quantidade_faturas_ate: 1
+          id_usuario: 1
+          v_grupo:
+            - id_grupo: 1
+              nome_grupo: ''
+              id_cidade: 1
+              nome_cidade: ''
+              descricao: ''
+              selecionado: true
+              total_simultanea: 1
+              total_convencional: 1
+              mensagem_obs: ''
+              id_usuario_mensagem_obs: 1
+              nome_ususario_mensagem_obs: ''
+              data_hora_mensagem_obs: ''
+              ordem: 1
+              vencto_padrao: 1
+              exige_critica: true
+              reaviso_debito: true
+              grupo_lig_estima: true
+              corte_light: true
+              fisc_corte: true
+              estimadas: true
+              retorno_coletor: true
+              calculo_consumo: true
+              calculo_faturamento: true
+              tipo_leitura: ''
+              mensagem_canhoto_esgoto: ''
+          v_categoria:
+            - id_categoria: 1
+              id_sub_categoria: 1
+              categoria: ''
+              nr_economias: 1
+              peso: 1
+              isento: ''
+              prioridade: 1
+              descricao: ''
+              selecionado: true
+              vol_cons_minimo: 1.1
+              sigla: ''
+              percentual_fat: 1
+              ordem_impressao: 1
+              id_cidade: 1
+              cidade: ''
+              consumo_minimo_retencao: 1.1
+              imprimir_msg_excedente_cobrado: ''
+              aplicar_acrescimo_parc_uf_ir: ''
+              id_categoria_destino: 1
+              vol_fat_maximo: 1.1
+              unificar_econ_cate_destino: ''
+              val_taxa_servico: 1.1
+              val_aluguel_hidrometro: 1.1
+              id_rubrica: 1
+              val_cons_zero: 1.1
+              ordem_categoria_exibicao: 1
+              servicos_ambientais: 1.1
+          utiliza_divisao_fatura: ''
+    MonitoramentoNotificacaoOSCorteDtoModel:
+      type: object
+      properties:
+        id_ligacao:
+          type: integer
+        id_os:
+          type: integer
+        numero_lote:
+          type: integer
+        data_hora_envio:
+          type: string
+        status:
+          type: string
+        mensagem_erro:
+          type: string
+        tentativa_envio:
+          type: integer
+      x-examples:
+        Example 1:
+          id_ligacao: 1
+          id_os: 1
+          numero_lote: 1
+          data_hora_envio: ''
+          status: ''
+          mensagem_erro: ''
+          tentativa_envio: 1
   securitySchemes: {}
 x-extension-1: null
