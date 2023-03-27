@@ -2220,23 +2220,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  combo:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        idStr:
-                          type: string
-                        descr:
-                          type: string
-                        flag:
-                          type: string
-                        tipoRet:
-                          type: integer
+                type: array
                 x-examples:
                   Example 1:
                     combo:
@@ -2245,6 +2229,10 @@ paths:
                         descr: string
                         flag: string
                         tipoRet: 1
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: wz167jpft8qkt
       operationId: get-comum-listar-combo
       parameters:
         - schema:
@@ -5821,6 +5809,32 @@ paths:
                   $ref: '#/components/schemas/TipoEntregaDtoModel'
                   x-stoplight:
                     id: mi4j0sgnoabnl
+  /gestao-servicos/os/obter/dados-arquivo-lote:
+    get:
+      summary: Gestão serviços - Obter dados arquivo OS lote
+      tags:
+        - Gestão-Serviços
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeracaoOSLoteDtoModel'
+                  x-stoplight:
+                    id: 0cn683g2ep49f
+      operationId: get-gestao-servicos-os-obter-dados-arquivo-lote
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: arquivo
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
 components:
   schemas:
     CriarLigacaoModel:
@@ -35902,5 +35916,97 @@ components:
           status: ''
           mensagem_erro: ''
           tentativa_envio: 1
+    GeracaoOSLoteDtoModel:
+      type: object
+      properties:
+        id_ligacao:
+          type: integer
+        id_servico:
+          type: integer
+        observacao_comercial:
+          type: string
+        observacao_os:
+          type: string
+        data_importacao:
+          type: string
+        observacao_atendimento:
+          type: string
+        observacao_tecnica:
+          type: string
+        situacao:
+          type: string
+        fase_cobranca:
+          type: string
+        aumento_consumo:
+          type: integer
+        id_cidade:
+          type: integer
+        motivo:
+          type: string
+        erro_salvar_os:
+          type: string
+        ligacao_consistente:
+          type: boolean
+        servico_duplicado:
+          type: boolean
+        servico_consistente:
+          type: boolean
+        id_logradouro:
+          type: integer
+        id_bairro:
+          type: integer
+        id_cliente:
+          type: integer
+        id_sub_distrito:
+          type: integer
+        id_zona_pressao:
+          type: integer
+        id_bacia:
+          type: integer
+        id_medidor:
+          type: integer
+        id_grupo:
+          type: integer
+        id_rota:
+          type: integer
+        complemento:
+          type: string
+        cliente:
+          type: string
+        nr_imovel:
+          type: string
+        id_distrito:
+          type: integer
+      x-examples:
+        Example 1:
+          id_ligacao: 1
+          id_servico: 1
+          observacao_comercial: ''
+          observacao_os: ''
+          data_importacao: ''
+          observacao_atendimento: ''
+          observacao_tecnica: ''
+          situacao: ''
+          fase_cobranca: ''
+          aumento_consumo: 1
+          id_cidade: 1
+          motivo: ''
+          erro_salvar_os: ''
+          ligacao_consistente: false
+          servico_duplicado: false
+          servico_consistente: false
+          id_logradouro: 1
+          id_bairro: 1
+          id_cliente: 1
+          id_sub_distrito: 1
+          id_zona_pressao: 1
+          id_bacia: 1
+          id_medidor: 1
+          id_grupo: 1
+          id_rota: 1
+          complemento: ''
+          cliente: ''
+          nr_imovel: ''
+          id_distrito: 1
   securitySchemes: {}
 x-extension-1: null
