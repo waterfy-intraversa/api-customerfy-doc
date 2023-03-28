@@ -5835,6 +5835,128 @@ paths:
             type: integer
           in: query
           name: idCidade
+  /ligacao/obter/categorias:
+    get:
+      summary: Ligação - Obter categorias
+      tags:
+        - Ligação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-ligacao-obter-categorias
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: 86916q9e2ev0z
+                list:
+                  type: array
+                  x-stoplight:
+                    id: 6g3bvjzji8qg1
+                  items:
+                    $ref: '#/components/schemas/LigacaoCategoriaDtoModel'
+                    x-stoplight:
+                      id: 5e6j8z9nnzwa0
+        description: ''
+  /medicao/historico-informativo/get-historico:
+    get:
+      summary: Medição - Histórico informativo - Get histórico informativo
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HistoricoInformativoDtoModel'
+                  x-stoplight:
+                    id: w13vbyj025535
+      operationId: get-medicao-historico-informativo-get-historico
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hIVO:
+                  $ref: '#/components/schemas/HistoricoInformativoDtoModel'
+                  x-stoplight:
+                    id: hm465gg0wbndd
+  /medicao/historico-informativo/save:
+    post:
+      summary: Medição - Histórico informativo - Salvar histórico informativo
+      operationId: post-medicao-historico-informativo-save
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hIVO:
+                  $ref: '#/components/schemas/HistoricoInformativoDtoModel'
+                  x-stoplight:
+                    id: 4wds3ywop8j5y
+  /gerfases/fase/fase-atual:
+    get:
+      summary: GerFases - Leitura - Fase atual
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaseDtoModel'
+      operationId: get-gerfases-fase-fase-atual
+      tags:
+        - Leitura
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+  /progress-bar/obter-progressao:
+    get:
+      summary: ProgressBar - Obter progressão
+      tags:
+        - ProgressBar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessoDtoModel'
+      operationId: get-progress-bar-obter-progressao
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: processo
+        - schema:
+            type: integer
+          in: query
+          name: perc
 components:
   schemas:
     CriarLigacaoModel:
@@ -36008,5 +36130,181 @@ components:
           cliente: ''
           nr_imovel: ''
           id_distrito: 1
+    LigacaoCategoriaDtoModel:
+      type: object
+      properties:
+        idCategoria:
+          type: integer
+        idSubCategoria:
+          type: integer
+        qtdEconomia:
+          type: integer
+        categoria:
+          type: string
+        subCategoria:
+          type: string
+        percentualFat:
+          type: integer
+        identTabela:
+          type: integer
+        idUnidadeMensuracao:
+          type: string
+        valorUnidade:
+          type: number
+        volumeEstimado:
+          type: integer
+        pesoFaturado:
+          type: integer
+        baseCalc:
+          type: number
+        corLinha:
+          type: string
+        categoriaPrincipal:
+          type: boolean
+      x-examples:
+        Example 1:
+          idCategoria: 1
+          idSubCategoria: 1
+          qtdEconomia: 1
+          categoria: ''
+          subCategoria: ''
+          percentualFat: 1
+          identTabela: 1
+          idUnidadeMensuracao: ''
+          valorUnidade: 1.1
+          volumeEstimado: 1
+          pesoFaturado: 1
+          baseCalc: 1.1
+          corLinha: ''
+          categoriaPrincipal: true
+    HistoricoInformativoDtoModel:
+      type: object
+      properties:
+        historico:
+          type: string
+        data_hora_cadastro:
+          type: string
+        id_cidade:
+          type: integer
+        id_ligacao:
+          type: integer
+        consumidor:
+          type: string
+        categoria:
+          type: string
+        situacao:
+          type: string
+        id_situacao_ligacao:
+          type: integer
+        cobranca_fase:
+          type: string
+        id_cobranca_fase:
+          type: integer
+        id_usuario:
+          type: integer
+        usuario:
+          type: string
+        data_ini:
+          type: string
+        data_fim:
+          type: string
+      x-examples:
+        Example 1:
+          historico: ''
+          data_hora_cadastro: ''
+          id_cidade: 1
+          id_ligacao: 1
+          consumidor: ''
+          categoria: ''
+          situacao: ''
+          id_situacao_ligacao: 1
+          cobranca_fase: ''
+          id_cobranca_fase: 1
+          id_usuario: 1
+          usuario: ''
+          data_ini: ''
+          data_fim: ''
+    FaseDtoModel:
+      type: object
+      properties:
+        fase:
+          type: string
+        idPeriodo:
+          type: integer
+        seqPeriodo:
+          type: integer
+        idFase:
+          type: integer
+        periodo:
+          type: string
+        valida:
+          type: string
+        msg:
+          type: string
+        dataPrev:
+          type: string
+        tolAntes:
+          type: integer
+        tolDepois:
+          type: integer
+        apenasNoPrazo:
+          type: string
+        status:
+          type: string
+        exigeInicio:
+          type: string
+      x-examples:
+        Example 1:
+          fase: ''
+          idPeriodo: 1
+          seqPeriodo: 1
+          idFase: 1
+          periodo: ''
+          valida: ''
+          msg: ''
+          dataPrev: ''
+          tolAntes: 1
+          tolDepois: 1
+          apenasNoPrazo: ''
+          status: ''
+          exigeInicio: ''
+    ProcessoDtoModel:
+      type: object
+      properties:
+        pid:
+          type: integer
+        qtdAExecutar:
+          type: integer
+        qtdExecutada:
+          type: integer
+        percentual:
+          type: integer
+        idUsuario:
+          type: integer
+        ultimoPercentual:
+          type: integer
+        acao:
+          type: string
+        chave:
+          type: string
+        pararProcesso:
+          type: boolean
+        prioridade:
+          type: integer
+        lastAction:
+          type: integer
+      x-examples:
+        Example 1:
+          pid: 1
+          qtdAExecutar: 1
+          qtdExecutada: 1
+          percentual: 1
+          idUsuario: 1
+          ultimoPercentual: 1
+          acao: ''
+          chave: ''
+          pararProcesso: false
+          prioridade: 1
+          lastAction: 1
   securitySchemes: {}
 x-extension-1: null
