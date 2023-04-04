@@ -2548,7 +2548,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HistoricoGuiaDtoModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/HistoricoGuiaDtoModel'
+                  x-stoplight:
+                    id: a48nudb8h18bk
       operationId: get-faturamento-historico-guia
       parameters:
         - schema:
