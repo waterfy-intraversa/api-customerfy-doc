@@ -2129,7 +2129,7 @@ paths:
         - schema:
             type: integer
           in: query
-          name: id_ligacao
+          name: i_idLigacao
   /medicao/historico/consumo:
     get:
       summary: Medição - Histórico consumo
@@ -6354,6 +6354,182 @@ paths:
             type: integer
           in: query
           name: idLigacaoMacro
+  /medicao/carregar/medicao-detalhe:
+    get:
+      summary: Medição - Carregar medição detalhe
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MedicaoDetalheDtoModel'
+      operationId: get-medicao-carregar-medicao-detalhe
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idLigacao
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+  /medicao/carregar/dados-consolidacao:
+    get:
+      summary: Medição - Carregar dados consolidação
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DadosConsolidadosDtoModel'
+      operationId: get-medicao-carregar-dados-consolidacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idLigacao
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+  /cadastro/documentos/obter-documentos/ocorrencias-leitura:
+    get:
+      summary: Cadastro Documentos - Obter documento ocorrencia leitura
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OcorrenciaLeituraDtoModel'
+                  x-stoplight:
+                    id: bd8isb4wroipq
+      operationId: get-cadastro-documentos-obter-documentos-ocorrencias-leitura
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+  /medicao/leitura/salvar-alteracao:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-medicao-leitura-salvar-alteracao
+    post:
+      summary: Medição - Salvar alteração leitura
+      operationId: post-medicao-leitura-salvar-alteracao
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_coletor:
+                  $ref: '#/components/schemas/ColetorDtoModel'
+                  x-stoplight:
+                    id: l0mmg6gn6ojmv
+                i_idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: zktn1r0i8fp17
+  /faturamento/emitir/declaracao-anual:
+    get:
+      summary: Faturamento - Emitir declaração anual débitos
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-faturamento-emitir-declaracao-anual
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+        - schema:
+            type: integer
+          in: query
+          name: idClienteInquilino
+        - schema:
+            type: integer
+          in: query
+          name: ano
+  /faturamento/emitir/declaracao-negativa:
+    get:
+      summary: Faturamento - Emitir declaração negativa débitos
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-faturamento-emitir-declaracao-negativa
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+        - schema:
+            type: integer
+          in: query
+          name: idClienteInquilino
+  /faturamento/emitir/declaracao-positiva:
+    get:
+      summary: Faturamento - Emitir declaração positiva débitos
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-faturamento-emitir-declaracao-positiva
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+        - schema:
+            type: integer
+          in: query
+          name: idClienteInquilino
 components:
   schemas:
     CriarLigacaoModel:
@@ -40238,5 +40414,395 @@ components:
           impresso_reaviso: true
           coluna_cor: 1
           original: true
+    MedicaoDetalheDtoModel:
+      type: object
+      properties:
+        idGrupo:
+          type: integer
+        grupo:
+          type: string
+        idTipoLigacao:
+          type: integer
+        tipoLigacao:
+          type: string
+        categoria:
+          type: string
+        nrMedidor:
+          type: string
+        dtInstalacaoMMedidor:
+          type: string
+        idSituacaoLigacao:
+          type: integer
+        situacaoLigacao:
+          type: string
+        idLeiturista:
+          type: integer
+        leiturista:
+          type: string
+        dataLeitura:
+          type: string
+        horaLeitura:
+          type: string
+        diasConsumo:
+          type: integer
+        nrMesesMedia:
+          type: integer
+        mediaVolMed:
+          type: integer
+        leitura:
+          type: integer
+        idCodLeitura:
+          type: integer
+        codLeitura:
+          type: string
+        idOcorrencia1:
+          type: integer
+        ocorrencia1:
+          type: string
+        idCriticaMedicao:
+          type: integer
+        criticaMedicao:
+          type: string
+        idLeituristaPreRepasse:
+          type: integer
+        leituristaPreRepasse:
+          type: string
+        dataLeituraPreRepasse:
+          type: string
+        diasConsumoPreRepasse:
+          type: integer
+        leituraPreRepasse:
+          type: integer
+        idCodLeituraPreRepasse:
+          type: integer
+        codLeituraPreRepasse:
+          type: string
+        idOcorrencia1PreRepasse:
+          type: integer
+        ocorrencia1PreRepasse:
+          type: string
+        idCriticaMedicaoPreRepasse:
+          type: integer
+        criticaMedicaoPreRepasse:
+          type: string
+        volMedidoOri:
+          type: integer
+        volMedidoOriPreRepasse:
+          type: integer
+        leituraHM:
+          type: integer
+        volumeReduzido:
+          type: integer
+        desconsMedia:
+          type: string
+        medicaoDetalheCriticaMedicaoVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idCriticaMedicao:
+                type: integer
+              criticaMedicao:
+                type: string
+              percVarConsMin:
+                type: number
+              percVarConsMax:
+                type: number
+              volMedidoOri:
+                type: integer
+        diasConsumoRegistrado:
+          type: integer
+        diasVenda:
+          type: integer
+        limiteInferiorDiario:
+          type: number
+        limiteSuperiorDiario:
+          type: number
+        mediaDiaria:
+          type: number
+        mediaApurada:
+          type: number
+      x-examples:
+        Example 1:
+          idGrupo: 1
+          grupo: ''
+          idTipoLigacao: 1
+          tipoLigacao: ''
+          categoria: ''
+          nrMedidor: ''
+          dtInstalacaoMMedidor: ''
+          idSituacaoLigacao: 1
+          situacaoLigacao: ''
+          idLeiturista: 1
+          leiturista: ''
+          dataLeitura: ''
+          horaLeitura: ''
+          diasConsumo: 1
+          nrMesesMedia: 1
+          mediaVolMed: 1
+          leitura: 1
+          idCodLeitura: 1
+          codLeitura: ''
+          idOcorrencia1: 1
+          ocorrencia1: ''
+          idCriticaMedicao: 1
+          criticaMedicao: ''
+          idLeituristaPreRepasse: 1
+          leituristaPreRepasse: ''
+          dataLeituraPreRepasse: ''
+          diasConsumoPreRepasse: 1
+          leituraPreRepasse: 1
+          idCodLeituraPreRepasse: 1
+          codLeituraPreRepasse: ''
+          idOcorrencia1PreRepasse: 1
+          ocorrencia1PreRepasse: ''
+          idCriticaMedicaoPreRepasse: 1
+          criticaMedicaoPreRepasse: ''
+          volMedidoOri: 1
+          volMedidoOriPreRepasse: 1
+          leituraHM: 1
+          volumeReduzido: 1
+          desconsMedia: ''
+          medicaoDetalheCriticaMedicaoVO:
+            - idCriticaMedicao: 1
+              criticaMedicao: ''
+              percVarConsMin: 1.1
+              percVarConsMax: 1.1
+              volMedidoOri: 1
+          diasConsumoRegistrado: 1
+          diasVenda: 1
+          limiteInferiorDiario: 1.1
+          limiteSuperiorDiario: 1.1
+          mediaDiaria: 1.1
+          mediaApurada: 1.1
+    DadosConsolidadosDtoModel:
+      type: object
+      properties:
+        idPeriodo:
+          type: integer
+        periodo:
+          type: string
+        idLigacaoCons:
+          type: integer
+        idClienteCons:
+          type: integer
+        clienteCons:
+          type: string
+        enderecoCons:
+          type: string
+        medidorCons:
+          type: string
+        idTipoFaturamentoCons:
+          type: integer
+        tipoFaturamentoCons:
+          type: string
+        produtoVolumeConsVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idProduto:
+                type: integer
+              produto:
+                type: string
+              volFatOri:
+                type: integer
+              volFat:
+                type: number
+              volFatCons:
+                type: integer
+              tcf:
+                type: string
+              idTcf:
+                type: integer
+        historicoConsumoConsVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idPeriodo:
+                type: integer
+              periodo:
+                type: string
+              idLigacaoCons:
+                type: integer
+              volumesFaturadosVO:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idProduto:
+                      type: integer
+                    produto:
+                      type: string
+                    volFatOri:
+                      type: integer
+                    volFat:
+                      type: number
+                    volFatCons:
+                      type: integer
+                    tcf:
+                      type: string
+                    idTcf:
+                      type: integer
+        ligacoesConsolidadasVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idLigacao:
+                type: integer
+              nrMedidor:
+                type: string
+              idTipoFaturamento:
+                type: integer
+              tipoFaturmento:
+                type: string
+              endereco:
+                type: string
+              volMedido:
+                type: integer
+              produtoVolumeVO:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idProduto:
+                      type: integer
+                    produto:
+                      type: string
+                    volFatOri:
+                      type: integer
+                    volFat:
+                      type: number
+                    volFatCons:
+                      type: integer
+                    tcf:
+                      type: string
+                    idTcf:
+                      type: integer
+        detalheVolumeCons:
+          type: array
+          items:
+            type: object
+            properties:
+              tipoFaturamento:
+                type: string
+              volumeMedido:
+                type: integer
+      x-examples:
+        Example 1:
+          idPeriodo: 1
+          periodo: ''
+          idLigacaoCons: 1
+          idClienteCons: 1
+          clienteCons: ''
+          enderecoCons: ''
+          medidorCons: ''
+          idTipoFaturamentoCons: 1
+          tipoFaturamentoCons: ''
+          produtoVolumeConsVO:
+            - idProduto: 1
+              produto: ''
+              volFatOri: 1
+              volFat: 1.1
+              volFatCons: 1
+              tcf: ''
+              idTcf: 1
+          historicoConsumoConsVO:
+            - idPeriodo: 1
+              periodo: ''
+              idLigacaoCons: 1
+              volumesFaturadosVO:
+                - idProduto: 1
+                  produto: ''
+                  volFatOri: 1
+                  volFat: 1.1
+                  volFatCons: 1
+                  tcf: ''
+                  idTcf: 1
+          ligacoesConsolidadasVO:
+            - idLigacao: 1
+              nrMedidor: ''
+              idTipoFaturamento: 1
+              tipoFaturmento: ''
+              endereco: ''
+              volMedido: 1
+              produtoVolumeVO:
+                - idProduto: 1
+                  produto: ''
+                  volFatOri: 1
+                  volFat: 1.1
+                  volFatCons: 1
+                  tcf: ''
+                  idTcf: 1
+          detalheVolumeCons:
+            - tipoFaturamento: ''
+              volumeMedido: 1
+    OcorrenciaLeituraDtoModel:
+      type: object
+      properties:
+        ocorrenciaLeitura:
+          type: string
+        fotos:
+          type: array
+          items:
+            type: object
+            properties:
+              id_documento_tipo:
+                type: integer
+              id_documento_motivo:
+                type: integer
+              nome_arquivo:
+                type: string
+              arquivo:
+                type: string
+              documento_tipo:
+                type: string
+              documento_motivo:
+                type: string
+              altura:
+                type: integer
+              largura:
+                type: integer
+              imagem:
+                type: boolean
+              id_ocorrencia_leitura:
+                type: integer
+              ocorrencia_leitura:
+                type: string
+              obs:
+                type: string
+              pdf:
+                type: boolean
+              id_periodo:
+                type: integer
+              id_ocorrencia:
+                type: integer
+              path:
+                type: string
+        observacao:
+          type: string
+      x-examples:
+        Example 1:
+          ocorrenciaLeitura: ''
+          fotos:
+            - id_documento_tipo: 1
+              id_documento_motivo: 1
+              nome_arquivo: ''
+              arquivo: ''
+              documento_tipo: ''
+              documento_motivo: ''
+              altura: 1
+              largura: 1
+              imagem: true
+              id_ocorrencia_leitura: 1
+              ocorrencia_leitura: ''
+              obs: ''
+              pdf: true
+              id_periodo: 1
+              id_ocorrencia: 1
+              path: ''
+          observacao: ''
   securitySchemes: {}
 x-extension-1: null
