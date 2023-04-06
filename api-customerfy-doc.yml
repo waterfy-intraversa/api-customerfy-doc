@@ -6534,6 +6534,115 @@ paths:
             type: integer
           in: query
           name: idClienteInquilino
+  /comum/listar-parametro-int:
+    get:
+      summary: Comum - Listar Parâmetro Int
+      tags:
+        - Geral
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      operationId: get-comum-listar-parametro-int
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: sql
+  /medicao/verifica/dados-coletor-estimadas:
+    get:
+      summary: Medição - Verificar dados coletor estimadas
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+      operationId: get-medicao-verifica-dados-coletor-estimadas
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idCidade
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+      description: ''
+  /medicao/roteiros/carregar-rotas/list:
+    get:
+      summary: Medição - Carregar rotas - List
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SeparacaoRotaDtoModel'
+                  x-stoplight:
+                    id: 38ji8qlp5bvit
+      operationId: get-medicao-roteiros-carregar-rotas-list
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: i_granularidade
+        - schema:
+            type: boolean
+          in: query
+          name: i_cortadas
+        - schema:
+            type: boolean
+          in: query
+          name: i_estimadas
+        - schema:
+            type: boolean
+          in: query
+          name: i_corteLight
+        - schema:
+            type: integer
+          in: query
+          name: i_idCidade
+  /faturamento/carrega/parametros-ano-quitacao:
+    get:
+      summary: Faturamento - Carrega parâmetros ano quitação
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeraAnoQuitacaoDtoModel'
+      operationId: get-faturamento-carrega-parametros-ano-quitacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
 components:
   schemas:
     CriarLigacaoModel:
@@ -40808,5 +40917,19 @@ components:
               id_ocorrencia: 1
               path: ''
           observacao: ''
+    GeraAnoQuitacaoDtoModel:
+      type: object
+      properties:
+        mesInicioMensagem:
+          type: integer
+        consideraDeclaracaoAnual:
+          type: string
+        haRegistrosAnoAnterior:
+          type: string
+      x-examples:
+        Example 1:
+          mesInicioMensagem: 1
+          consideraDeclaracaoAnual: ''
+          haRegistrosAnoAnterior: ''
   securitySchemes: {}
 x-extension-1: null
