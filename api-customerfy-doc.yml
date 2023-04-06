@@ -6429,11 +6429,6 @@ paths:
           in: query
           name: idPeriodo
   /medicao/leitura/salvar-alteracao:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-medicao-leitura-salvar-alteracao
     post:
       summary: Medição - Salvar alteração leitura
       operationId: post-medicao-leitura-salvar-alteracao
@@ -6643,6 +6638,215 @@ paths:
             type: integer
           in: query
           name: idPeriodo
+  /faturamento/get-dados-periodo:
+    get:
+      summary: Faturamento - Get dados período
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeriodoDtoModel'
+      operationId: get-faturamento-get-dados-periodo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+  /medicao/leitura/gerar-dados-coletor:
+    post:
+      summary: Medição - Gerar dados coletor
+      operationId: post-medicao-leitura-gerar-dados-coletor
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: 8sb4dgdb519z0
+                idGrupo:
+                  type: integer
+                  x-stoplight:
+                    id: p0e05ff0r3vbi
+                idPèriodo:
+                  type: integer
+                  x-stoplight:
+                    id: wfwtp1jijrem6
+                estimadas:
+                  type: boolean
+                  x-stoplight:
+                    id: yn6gl4f73led7
+                rotas:
+                  type: array
+                  x-stoplight:
+                    id: pl3hx0zo15mgn
+                  items:
+                    $ref: '#/components/schemas/SeparacaoRotaDtoModel'
+                    x-stoplight:
+                      id: 2tb5nsck4yh0b
+  /medicao/leitura/calcular-estimadas:
+    post:
+      summary: Medição - Calcular estimadas
+      operationId: post-medicao-leitura-calcular-estimadas
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Medição
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+  /faturamento/mensagem/obter/msg-fatura:
+    get:
+      summary: Faturamento - Obter msg fatura
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-faturamento-mensagem-obter-msg-fatura
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_id
+        - schema:
+            type: string
+          in: query
+          name: i_idNivelMsg
+        - schema:
+            type: integer
+          in: query
+          name: origemTela
+  /faturamento/mensagem/salvar-msg-fatura:
+    post:
+      summary: Faturamento - Salvar msg fatura
+      operationId: post-faturamento-mensagem-salvar-msg-fatura
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Faturamento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_id
+        - schema:
+            type: integer
+          in: query
+          name: i_idNivelMsg
+        - schema:
+            type: string
+          in: query
+          name: i_msg
+  /medicao/load-obs-grupo-leitura:
+    get:
+      summary: Medição - Load observações grupo leitura
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrupoDtoModel'
+      operationId: get-medicao-load-obs-grupo-leitura
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idUnidadeOperacional
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+  /medicao/save-obs-grupo-leitura:
+    post:
+      summary: Medição - Salvar observações grupo leitura
+      operationId: post-medicao-save-obs-grupo-leitura
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrupoDtoModel'
+      tags:
+        - Medição
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idUnidadeOperacional
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: string
+          in: query
+          name: observacoes
+  /medicao/print-obs-grupo-leitura:
+    post:
+      summary: Medição - Imprimir observações grupo leitura
+      operationId: post-medicao-print-obs-grupo-leitura
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Medição
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idUnidadeOperacional
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
 components:
   schemas:
     CriarLigacaoModel:
@@ -40931,5 +41135,16 @@ components:
           mesInicioMensagem: 1
           consideraDeclaracaoAnual: ''
           haRegistrosAnoAnterior: ''
+    PeriodoDtoModel:
+      type: object
+      properties:
+        ano:
+          type: integer
+        mes:
+          type: integer
+      x-examples:
+        Example 1:
+          ano: 1
+          mes: 1
   securitySchemes: {}
 x-extension-1: null
