@@ -6847,6 +6847,94 @@ paths:
             type: integer
           in: query
           name: i_idGrupo
+      description: ''
+  /importacao-leiturista/carregar:
+    get:
+      summary: Importação Leiturista - Carregar
+      tags:
+        - Importação-Leiturista
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImportacaoLeituristaDtoModel'
+                  x-stoplight:
+                    id: h4edlqbgr9pnp
+      operationId: get-importacao-leiturista-carregar
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+  /importacao-leiturista/salvar:
+    post:
+      summary: Importação Leiturista - Salvar
+      operationId: post-importacao-leiturista-salvar
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Importação-Leiturista
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                listaImportacaoLeituraDto:
+                  type: array
+                  x-stoplight:
+                    id: 08hmvlqwwna7j
+                  items:
+                    $ref: '#/components/schemas/ImportacaoLeituristaDtoModel'
+                    x-stoplight:
+                      id: ulnr8y3iwjxoa
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: 5120531vcmkfc
+                idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: qtaoeljzvdeyf
+  /importacao-leiturista/importar:
+    get:
+      summary: Importação Leiturista - Importar
+      tags:
+        - Importação-Leiturista
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImportacaoLeituristaDtoModel'
+                  x-stoplight:
+                    id: 8lx1o7ohyv4ts
+      operationId: get-importacao-leiturista-importar
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+        - schema:
+            type: string
+          in: query
+          name: nomeArquivo
 components:
   schemas:
     CriarLigacaoModel:
@@ -41146,5 +41234,52 @@ components:
         Example 1:
           ano: 1
           mes: 1
+    ImportacaoLeituristaDtoModel:
+      type: object
+      properties:
+        idCidade:
+          type: integer
+        idPeriodo:
+          type: integer
+        mes:
+          type: integer
+        ano:
+          type: integer
+        periodoDesc:
+          type: string
+        idGrupo:
+          type: integer
+        rota:
+          type: integer
+        tipoEnvio:
+          type: integer
+        tipoEnvioDesc:
+          type: string
+        matricula:
+          type: integer
+        leiturista:
+          type: string
+        idUsuario:
+          type: integer
+        usuario:
+          type: string
+        dataHora:
+          type: string
+      x-examples:
+        Example 1:
+          idCidade: 1
+          idPeriodo: 1
+          mes: 1
+          ano: 1
+          periodoDesc: ''
+          idGrupo: 1
+          rota: 1
+          tipoEnvio: 1
+          tipoEnvioDesc: ''
+          matricula: 1
+          leiturista: ''
+          idUsuario: 1
+          usuario: ''
+          dataHora: ''
   securitySchemes: {}
 x-extension-1: null
