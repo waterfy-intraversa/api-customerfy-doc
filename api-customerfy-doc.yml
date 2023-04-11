@@ -1468,6 +1468,9 @@ paths:
             text/plain:
               schema:
                 type: string
+              examples:
+                Example 1:
+                  value: string
       operationId: get-comum-listar-parametro
       description: ''
       parameters:
@@ -5359,6 +5362,25 @@ paths:
                   $ref: '#/components/schemas/ItemComboDtoModel'
                   x-stoplight:
                     id: 09d2yso0g26ea
+              examples:
+                Example 1:
+                  value:
+                    - id_str: '3661'
+                      descr: 02/2022
+                      flag: string
+                      tipo_ret: 0
+                    - id_str: '3662'
+                      descr: 03/2022
+                      flag: string
+                      tipo_ret: 0
+                    - id_str: '3663'
+                      descr: 04/2022
+                      flag: string
+                      tipo_ret: 0
+                    - id_str: '3664'
+                      descr: 05/2022
+                      flag: string
+                      tipo_ret: 0
       operationId: get-comum-obter-list-periodos
       tags:
         - Geral
