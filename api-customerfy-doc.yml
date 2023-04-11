@@ -1216,7 +1216,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
                 x-examples:
@@ -1238,7 +1238,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-cadastro-ligacao-faturamento-iniciado
@@ -1275,7 +1275,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-user-unidade-operacional
@@ -1291,7 +1291,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-cadastro-ligacao-documento-angola
@@ -1487,7 +1487,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-cadastro-ligacao-facilitador-roteiro-identificacao
@@ -1518,7 +1518,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-seguranca-permissao-funcao
@@ -1537,7 +1537,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-comum-versao
@@ -1551,7 +1551,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-cobranca-load-parametro
@@ -1562,18 +1562,19 @@ paths:
           name: id_ligacao
     parameters: []
   /cadastro/ligacao/documento/download:
-    get:
+    post:
       summary: Cadastro Ligação - Documentos - Download
+      operationId: post-cadastro-ligacao-documento-download
+      responses:
+        '200':
+          description: OK
       tags:
         - Cadastro-Ligação
-      responses: {}
-      operationId: get-cadastro-ligacao-documento-download
-      description: Chamada para fazer download do documento selecionado.
       parameters:
         - schema:
             type: integer
           in: query
-          name: id_documento
+          name: idDocumento
   /cadastro/ligacao/contrato-locacao/contratos-abertos:
     get:
       summary: Cadastro Ligação - Contratos Locação - Abertos
@@ -1583,7 +1584,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-cadastro-ligacao-contrato-locacao-contratos-abertos
@@ -1702,7 +1703,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-cronograma-ger-fases-ciclo-faturamento
@@ -1804,7 +1805,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-faturamento-parametros-exibir-semaforo
@@ -1824,7 +1825,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-cobranca-parametros-exibir-corte-light
@@ -1844,7 +1845,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-faturamento-parametros-debito-pregresso
@@ -1886,7 +1887,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-cobranca-negativacao-fase
@@ -1942,7 +1943,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-cadastro-ligacao-verifica-tipo-entrega-alternativa
@@ -1960,7 +1961,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-cadastro-ligacao-validar-dados-identificacao
@@ -2073,25 +2074,27 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                properties:
-                  id_ligacao:
-                    type: integer
+                type: integer
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CriarLigacaoModel'
+              type: object
+              properties:
+                ligacaoAtendimentoDto:
+                  $ref: '#/components/schemas/CALigacaoAtendimentoModel'
+                  x-stoplight:
+                    id: kx2cs7bdzoad0
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: hd7la9etcu3c4
           application/xml:
             schema:
               $ref: '#/components/schemas/CriarLigacaoModel'
-      parameters:
-        - schema:
-            type: integer
-          in: query
-          name: id_ligacao
+      parameters: []
       tags:
         - Central-Atendimento
   /gerfases/cronograma/exibir:
@@ -2124,7 +2127,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-medicao-historico-total-consumo
@@ -2210,7 +2213,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-faturamento-habilitar-cx-timbre
@@ -2254,7 +2257,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-faturamento-historico-total
@@ -2273,7 +2276,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-faturamento-historico-total-cliente
@@ -2391,7 +2394,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-faturamento-faturas-fatura-final
@@ -2460,7 +2463,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-faturamento-parametros-rubrica-imposto
@@ -2609,7 +2612,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-faturamento-buscar-categoria-principal
@@ -2645,7 +2648,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-comum-listar-parametro-bool
@@ -2688,10 +2691,7 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    dados:
-                      type: string
+                  type: string
       operationId: get-cadastro-ligacao-carrega-ligacao-consolidadora
       parameters:
         - schema:
@@ -2782,7 +2782,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
               examples:
@@ -2834,7 +2834,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-faturamento-parcelamento-imprimir-contrato
@@ -2857,7 +2857,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-faturamento-fatura-imprimir-fatura
@@ -2976,7 +2976,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-faturamento-verifica-emissao-declaracao-anual
@@ -3144,7 +3144,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-cobranca-acordos-verificar-os
@@ -3310,7 +3310,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-faturamento-fatura-emitir-fatura-venda
@@ -3523,7 +3523,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-solicitacoes-prazo-servico
@@ -3547,7 +3547,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-solicitacoes-obter-decitos-id_ligacao
@@ -3566,7 +3566,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-solicitacoes-obter-id-os
@@ -3660,7 +3660,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-rubrica-getcaracter
@@ -3677,7 +3677,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       tags:
@@ -3990,7 +3990,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       tags:
@@ -4051,7 +4051,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-vendas-get-perc-rubrica-imposto
@@ -4109,7 +4109,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-solicitacoes-os-protocolo-enviar-email
@@ -4130,7 +4130,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-solicitacoes-os-emitir-fatura
@@ -4373,7 +4373,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-cadastro-medidor-check-ativo
@@ -4537,7 +4537,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-cadastro-instalacao-medidor-validar-troca
@@ -4800,7 +4800,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-central-atendimento-pesquisa-cliente-imprimir-pesquisa
@@ -4950,7 +4950,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       tags:
@@ -4991,7 +4991,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-cadastro-condominio-verifica-ligacao-macro
@@ -5009,7 +5009,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-solicitacoes-gestao-servico-validar-dept-usuario
@@ -5065,7 +5065,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       tags:
@@ -5200,7 +5200,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-cadastro-consolidacao-faturas-consiste-ligacao
@@ -5258,7 +5258,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       tags:
@@ -5398,7 +5398,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-cliente-altera-visualizacao-rfc-e-pensionista
@@ -5410,7 +5410,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       tags:
@@ -5476,7 +5476,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-cadastro-ligacao-validar-nr-inscricao
@@ -5520,7 +5520,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       tags:
@@ -5655,7 +5655,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-consolidacao-arrecadacao-imprimir-faturas
@@ -5689,7 +5689,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       tags:
@@ -5820,7 +5820,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       tags:
@@ -5869,7 +5869,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       tags:
@@ -6370,7 +6370,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       tags:
@@ -6482,7 +6482,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-faturamento-emitir-declaracao-anual
@@ -6512,7 +6512,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-faturamento-emitir-declaracao-negativa
@@ -6534,7 +6534,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-faturamento-emitir-declaracao-positiva
@@ -6560,7 +6560,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: integer
       operationId: get-comum-listar-parametro-int
@@ -6578,7 +6578,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: boolean
       operationId: get-medicao-verifica-dados-coletor-estimadas
@@ -6744,7 +6744,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-faturamento-mensagem-obter-msg-fatura
@@ -6855,7 +6855,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       tags:
@@ -13666,124 +13666,425 @@ components:
     CAClienteLigacaoAtendimentoModel:
       type: object
       properties:
-        data_nascimento:
-          type: string
-        data_exp_rg:
-          type: string
         id_cidade:
           type: integer
+        id_bacia:
+          type: integer
+        id_zona_pressão:
+          type: integer
+        id_sub_distrito:
+          type: integer
+        id_medidor:
+          type: integer
+        id_grupo:
+          type: integer
+        sub_distrito:
+          type: string
+        id_cliente:
+          type: integer
+        id_cliente_inqquilino:
+          type: integer
+        id_bairro:
+          type: integer
+        id_sub_bairro:
+          type: integer
+        id_distrito:
+          type: integer
+        id_logradouro:
+          type: integer
+        nome_cliente:
+          type: string
         cidade:
           type: string
-        cliente:
+        cidade_entrega:
           type: string
-        tp_cliente:
-          type: string
-        bairro:
+        distrito:
           type: string
         logradouro:
           type: string
         nr_imovel:
+          type: integer
+        cep:
+          type: string
+        bairro:
+          type: string
+        sub_bairro:
           type: string
         complemento:
           type: string
-        rg:
+        zona_pressao:
           type: string
-        cpf:
+        bacia:
           type: string
-        cnpj:
+        zona_macro:
           type: string
-        fone_fixo:
+        quadra:
           type: string
-        fone_movel:
+        lote:
           type: string
-        email:
+        inscricao:
           type: string
-        observacao:
+        grupo:
           type: string
-        nome_pai:
-          type: string
-        nome_mae:
-          type: string
-        nr_ligacoes:
+        rota:
           type: integer
-        total_debitos:
-          type: number
-        total_parcelamentos:
-          type: number
-        col_ligacao:
+        quadra_rota:
+          type: integer
+        sequencia:
+          type: integer
+        id_ligacao_entrega:
+          type: integer
+        tipo_entrega:
+          type: string
+        logradouro_entrega:
+          type: string
+        nr_imovel_entrega:
+          type: integer
+        cep_entrega:
+          type: string
+        bairro_entrega:
+          type: string
+        sub_bairro_entrega:
+          type: string
+        grupo_entrega:
+          type: string
+        rota_entrega:
+          type: integer
+        quadra_entrega:
+          type: integer
+        sequencia_entrega:
+          type: integer
+        sub_unidade_entrega:
+          type: integer
+        complemento_entrega:
+          type: string
+        tipo_faturamento:
+          type: string
+        tipo_cobranca:
+          type: string
+        situacao_ligacao:
+          type: string
+        cobraca_fase:
+          type: string
+        classe_consumo:
+          type: string
+        tipo_irregularidade:
+          type: string
+        consolidadora:
+          type: string
+        obs_consolidacao:
+          type: string
+        id_ligacao_consolidadora:
+          type: integer
+        cliente_consolidador:
+          type: string
+        medidor_consolidador:
+          type: string
+        tipo_ligacao:
+          type: string
+        medidor:
+          type: string
+        data_instalacao:
+          type: string
+        data_instalacao_agua:
+          type: string
+        data_instalacao_esgoto:
+          type: string
+        ano_fabricacao:
+          type: string
+        situacao:
+          type: string
+        nr_ponteiros:
+          type: string
+        medidor_marca:
+          type: string
+        medidor_modelo:
+          type: string
+        medidor_tipo:
+          type: string
+        medidor_tecnologia:
+          type: string
+        medidor_vazao:
+          type: string
+        medidor_classe:
+          type: string
+        possui_lacre:
+          type: string
+        inquilino:
+          type: string
+        inquilino_fone_fixo:
+          type: string
+        inquilino_fone_movel:
+          type: string
+        inquilino_email:
+          type: string
+        tipo_pavimento:
+          type: string
+        tipo_rede:
+          type: string
+        padrao_instalacao:
+          type: string
+        posicao_rede:
+          type: string
+        tipo_cavalete:
+          type: string
+        situacao_cavalet:
+          type: string
+        tipo_esgotamento:
+          type: string
+        fonte_abastecimento:
+          type: string
+        sistema_esgotamento_sanitario:
+          type: string
+        reservatorio:
+          type: string
+        piscina:
+          type: string
+        rg_inquilino:
+          type: string
+        cpf_inquilino:
+          type: string
+        cnpj_inquilino:
+          type: string
+        numero_moradores:
+          type: integer
+        nr_economias_cons:
+          type: integer
+        ligacao_categoria:
           type: array
           items:
             type: object
             properties:
-              id_cliente:
+              id_categoria:
                 type: integer
-              id_ligacao:
+              id_sub_categoria:
                 type: integer
-              nome_inquilino:
+              qtd_economia:
+                type: integer
+              percentual_fat:
+                type: integer
+              categoria:
                 type: string
-              endereco:
+              sub_categoria:
                 type: string
-        id_bairro:
+              id_unidade_mensuracao:
+                type: integer
+              unidade_mensuracao:
+                type: string
+              valor_unidade:
+                type: number
+              volume_estimado:
+                type: integer
+              peso_faturado:
+                type: integer
+              base_calc:
+                type: number
+              cor_linha:
+                type: string
+              categoria_principal:
+                type: boolean
+              taxa_de_servico:
+                type: number
+              aluguel_hidrometro:
+                type: number
+              valor_consumo_zero:
+                type: number
+              servico_ambiental:
+                type: number
+        nr_imovel_antigo:
+          type: string
+        grupo_ident:
+          type: string
+        setor_ident:
+          type: string
+        quadra_ident:
+          type: string
+        lote_ident:
+          type: string
+        cavalete_ident:
+          type: string
+        rota_ident:
           type: integer
-        id_logradouro:
+        id_ordem_servico:
           type: integer
-        id_sexo:
+        id_tipo_entrega:
           type: integer
-        id_usuario_cadastro:
+        id_grupo_entrega:
           type: integer
-        cep:
+        setor_entrega:
           type: integer
-        possui_debito:
+        setor_leitura:
+          type: integer
+        rota_leitura:
+          type: integer
+        quadra_leitura:
+          type: integer
+        seq_leitura:
+          type: integer
+        sub_unidade_leitura:
+          type: integer
+        telefone_cliente:
+          type: string
+        id_sistema_tratamento:
+          type: integer
+        sistema_tratamento:
+          type: string
+        id_ligacao_consolidadora_arrecadacao:
+          type: integer
+        soleira_negativa:
           type: boolean
-        retorno_serasa:
+        classificacao_uso:
           type: string
-        rcs:
+        rcs_inquilino:
           type: string
-        rfc:
+        rfc_inquilino:
           type: string
-        jubilado:
-          type: boolean
+        tipo_calcada:
+          type: string
+        observacao_cavalete:
+          type: string
+        observacao_ligacao:
+          type: string
       x-examples:
         Example 1:
-          data_nascimento: string
-          data_exp_rg: string
           id_cidade: 1
-          cidade: string
-          cliente: string
-          tp_cliente: string
-          bairro: string
-          logradouro: string
-          nr_imovel: string
-          complemento: string
-          rg: string
-          cpf: string
-          cnpj: string
-          fone_fixo: string
-          fone_movel: string
-          email: string
-          observacao: string
-          nome_pai: string
-          nome_mae: string
-          nr_ligacoes: 1
-          total_debitos: 1.1
-          total_parcelamentos: 1.1
-          col_ligacao:
-            - id_cliente: 1
-              id_ligacao: 1
-              nome_inquilino: string
-              endereco: string
+          id_bacia: 1
+          id_zona_pressão: 1
+          id_sub_distrito: 1
+          id_medidor: 1
+          id_grupo: 1
+          sub_distrito: string
+          id_cliente: 1
+          id_cliente_inqquilino: 1
           id_bairro: 1
+          id_sub_bairro: 1
+          id_distrito: 1
           id_logradouro: 1
-          id_sexo: 1
-          id_usuario_cadastro: 1
-          cep: 1
-          possui_debito: true
-          retorno_serasa: string
-          rcs: string
-          rfc: string
-          jubilado: true
-      x-stoplight:
-        id: 4ebecb2362e55
+          nome_cliente: string
+          cidade: string
+          cidade_entrega: string
+          distrito: string
+          logradouro: string
+          nr_imovel: 1
+          cep: string
+          bairro: string
+          sub_bairro: string
+          complemento: string
+          zona_pressao: string
+          bacia: string
+          zona_macro: string
+          quadra: string
+          lote: string
+          inscricao: string
+          grupo: string
+          rota: 1
+          quadra_rota: 1
+          sequencia: 1
+          id_ligacao_entrega: 1
+          tipo_entrega: string
+          logradouro_entrega: string
+          nr_imovel_entrega: 1
+          cep_entrega: string
+          bairro_entrega: string
+          sub_bairro_entrega: string
+          grupo_entrega: string
+          rota_entrega: 1
+          quadra_entrega: 1
+          sequencia_entrega: 1
+          sub_unidade_entrega: 1
+          complemento_entrega: string
+          tipo_faturamento: string
+          tipo_cobranca: string
+          situacao_ligacao: string
+          cobraca_fase: string
+          classe_consumo: string
+          tipo_irregularidade: string
+          consolidadora: string
+          obs_consolidacao: string
+          id_ligacao_consolidadora: 1
+          cliente_consolidador: string
+          medidor_consolidador: string
+          tipo_ligacao: string
+          medidor: string
+          data_instalacao: string
+          data_instalacao_agua: string
+          data_instalacao_esgoto: string
+          ano_fabricacao: string
+          situacao: string
+          nr_ponteiros: string
+          medidor_marca: string
+          medidor_modelo: string
+          medidor_tipo: string
+          medidor_tecnologia: string
+          medidor_vazao: string
+          medidor_classe: string
+          possui_lacre: string
+          inquilino: string
+          inquilino_fone_fixo: string
+          inquilino_fone_movel: string
+          inquilino_email: string
+          tipo_pavimento: string
+          tipo_rede: string
+          padrao_instalacao: string
+          posicao_rede: string
+          tipo_cavalete: string
+          situacao_cavalet: string
+          tipo_esgotamento: string
+          fonte_abastecimento: string
+          sistema_esgotamento_sanitario: string
+          reservatorio: string
+          piscina: string
+          rg_inquilino: string
+          cpf_inquilino: string
+          cnpj_inquilino: string
+          numero_moradores: 1
+          nr_economias_cons: 1
+          ligacao_categoria:
+            - id_categoria: 1
+              id_sub_categoria: 1
+              qtd_economia: 1
+              percentual_fat: 1
+              categoria: string
+              sub_categoria: string
+              id_unidade_mensuracao: 1
+              unidade_mensuracao: string
+              valor_unidade: 1.1
+              volume_estimado: 1
+              peso_faturado: 1
+              base_calc: 1.1
+              cor_linha: string
+              categoria_principal: true
+              taxa_de_servico: 1.1
+              aluguel_hidrometro: 1.1
+              valor_consumo_zero: 1.1
+              servico_ambiental: 1.1
+          nr_imovel_antigo: string
+          grupo_ident: string
+          setor_ident: string
+          quadra_ident: string
+          lote_ident: string
+          cavalete_ident: string
+          rota_ident: 1
+          id_ordem_servico: 1
+          id_tipo_entrega: 1
+          id_grupo_entrega: 1
+          setor_entrega: 1
+          setor_leitura: 1
+          rota_leitura: 1
+          quadra_leitura: 1
+          seq_leitura: 1
+          sub_unidade_leitura: 1
+          telefone_cliente: string
+          id_sistema_tratamento: 1
+          sistema_tratamento: string
+          id_ligacao_consolidadora_arrecadacao: 1
+          soleira_negativa: true
+          classificacao_uso: string
+          rcs_inquilino: string
+          rfc_inquilino: string
+          tipo_calcada: string
+          observacao_cavalete: string
+          observacao_ligacao: string
     CALigacaoAtendimentoModel:
       type: object
       properties:
