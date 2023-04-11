@@ -1465,7 +1465,7 @@ paths:
         '200':
           description: OK
           content:
-            application/json:
+            text/plain:
               schema:
                 type: string
       operationId: get-comum-listar-parametro
@@ -6935,6 +6935,102 @@ paths:
             type: string
           in: query
           name: nomeArquivo
+  /medicao/carregar-retorno-repasse:
+    get:
+      summary: Medição - Carregar retorno repasse
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ColetorDetalheDtoModel'
+                  x-stoplight:
+                    id: 4hzz5borcr880
+      operationId: get-medicao-carregar-retorno-repasse
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: i_idLeiturista
+  /roteirizacao/roteirizacao-em-massa/carregar:
+    get:
+      summary: Roteirização - Carregar roteirização em massa
+      tags:
+        - Roteirização
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogRoteirizacaoEmMassaDtoModel'
+                  x-stoplight:
+                    id: r1xn9qldqpzvu
+      operationId: get-roteirizacao-carregar-roteirizacao-em-massa
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+    parameters: []
+  /roteirizacao/roteirizacao-em-massa/desfazer:
+    post:
+      summary: Roteirização - Desfazer roteirização em massa
+      operationId: post-roteirizacao-roteirizacao-em-massa-desfazer
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Roteirização
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                log:
+                  $ref: '#/components/schemas/LogRoteirizacaoEmMassaDtoModel'
+                  x-stoplight:
+                    id: wje5r1pzdwyx7
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: ee5oz2gi55fgu
+        description: ''
+  /roteirizacao/roteirizacao-em-massa/salvar:
+    post:
+      summary: Roteirização - Salvar roteirização em massa
+      operationId: post-roteirizacao-roteirizacao-em-massa-salvar
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Roteirização
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dados:
+                  $ref: '#/components/schemas/LogRoteirizacaoEmMassaDtoModel'
+                  x-stoplight:
+                    id: 2h4ztoic7xs89
 components:
   schemas:
     CriarLigacaoModel:
@@ -41281,5 +41377,88 @@ components:
           idUsuario: 1
           usuario: ''
           dataHora: ''
+    LogRoteirizacaoEmMassaDtoModel:
+      type: object
+      properties:
+        idCidade:
+          type: integer
+        cidade:
+          type: string
+        idGrupo:
+          type: integer
+        grupo:
+          type: string
+        rota:
+          type: integer
+        rotaNova:
+          type: integer
+        seqIni:
+          type: integer
+        seqFin:
+          type: integer
+        seqIniNova:
+          type: integer
+        data:
+          type: string
+        hora:
+          type: string
+        idUsuario:
+          type: integer
+        usuario:
+          type: string
+        incremento:
+          type: integer
+        revertido:
+          type: string
+        logRoteirizacaoEmMassaDetVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idLogDetalhe:
+                type: integer
+              idLigacao:
+                type: integer
+              rota:
+                type: integer
+              rotaNova:
+                type: integer
+              seq:
+                type: integer
+              seqNova:
+                type: integer
+        inicial:
+          type: boolean
+        nova:
+          type: boolean
+        parcial:
+          type: boolean
+      x-examples:
+        Example 1:
+          idCidade: 1
+          cidade: ''
+          idGrupo: 1
+          grupo: ''
+          rota: 1
+          rotaNova: 1
+          seqIni: 1
+          seqFin: 1
+          seqIniNova: 1
+          data: ''
+          hora: ''
+          idUsuario: 1
+          usuario: ''
+          incremento: 1
+          revertido: ''
+          logRoteirizacaoEmMassaDetVO:
+            - idLogDetalhe: 1
+              idLigacao: 1
+              rota: 1
+              rotaNova: 1
+              seq: 1
+              seqNova: 1
+          inicial: false
+          nova: false
+          parcial: false
   securitySchemes: {}
 x-extension-1: null
