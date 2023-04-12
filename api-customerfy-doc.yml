@@ -14208,6 +14208,10 @@ components:
           type: string
         data_instalacao:
           type: string
+        data_instalacao_agua:
+          type: string
+        data_instalacao_esgoto:
+          type: string
         ano_fabricacao:
           type: string
         situacao:
@@ -14248,7 +14252,7 @@ components:
           type: string
         situacao_cavalet:
           type: string
-        '''tipo_esgotamento':
+        tipo_esgotamento:
           type: string
         fonte_abastecimento:
           type: string
@@ -14425,6 +14429,8 @@ components:
           tipo_ligacao: string
           medidor: string
           data_instalacao: string
+          data_instalacao_agua: string
+          data_instalacao_esgoto: string
           ano_fabricacao: string
           situacao: string
           nr_ponteiros: string
@@ -14445,7 +14451,7 @@ components:
           posicao_rede: string
           tipo_cavalete: string
           situacao_cavalet: string
-          '''tipo_esgotamento': string
+          tipo_esgotamento: string
           fonte_abastecimento: string
           sistema_esgotamento_sanitario: string
           reservatorio: string
