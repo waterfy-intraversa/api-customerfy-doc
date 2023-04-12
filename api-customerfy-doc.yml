@@ -2327,11 +2327,9 @@ paths:
                 $ref: '#/components/schemas/UsuarioDtoModel'
       operationId: get-seguranca-user-usuario-logado
   /faturamento/simulacao/fatura-final:
-    get:
-      summary: Faturamento - Simula Fatura Final
-      tags:
-        - Faturamento
-        - Central-Atendimento
+    post:
+      summary: Faturamento - Simular fatura final
+      operationId: post-faturamento-simulacao-fatura-final
       responses:
         '200':
           description: OK
@@ -2339,7 +2337,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SimulacaoFinalDtoModel'
-      operationId: get-faturamento-simulacao-fatura-final
+      tags:
+        - Central-Atendimento
+        - Faturamento
       requestBody:
         content:
           application/json:
@@ -2363,7 +2363,7 @@ paths:
                 data_vencimento:
                   type: string
                 faturar_consumo_mes:
-                  type: boolean
+                  type: string
                 gerar_os_corte:
                   type: boolean
                 cobrar_encargos:
@@ -2380,7 +2380,7 @@ paths:
                   motivo_emissao: string
                   data_leitura: string
                   data_vencimento: string
-                  faturar_consumo_mes: true
+                  faturar_consumo_mes: string
                   gerar_os_corte: true
                   cobrar_encargos: true
                   id_cliente_inquilino: 1
