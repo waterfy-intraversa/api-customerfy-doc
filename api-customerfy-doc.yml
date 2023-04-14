@@ -1132,10 +1132,9 @@ paths:
           name: id_cidade
     parameters: []
   /central-atendimento/pesquisa-cliente:
-    get:
-      summary: CA - Pesquisa Cliente
-      tags:
-        - Central-Atendimento
+    post:
+      summary: CA- Pesquisa Cliente
+      operationId: post-central-atendimento-pesquisa-cliente
       responses:
         '200':
           description: OK
@@ -1145,7 +1144,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CAPesquisaClienteModel'
-      operationId: get-central-atendimento-pesquisa-cliente
+                  x-stoplight:
+                    id: l6a49etopkp2g
+      tags:
+        - Central-Atendimento
       requestBody:
         content:
           application/json:
@@ -1154,9 +1156,12 @@ paths:
               properties:
                 gran:
                   type: integer
+                  x-stoplight:
+                    id: 48wis4umw09wo
                 criterio:
                   $ref: '#/components/schemas/CAPesquisaClienteCriterioModel'
-        description: ''
+                  x-stoplight:
+                    id: b59wuv7wx3qeb
   /central-atendimento/portal-servicos:
     get:
       summary: CA - Portal Serviços
@@ -2385,11 +2390,9 @@ paths:
                   cobrar_encargos: true
                   id_cliente_inquilino: 1
   /faturamento/faturas/fatura-final:
-    get:
+    post:
       summary: Faturamento - Gerar Fatura Final
-      tags:
-        - Faturamento
-        - Central-Atendimento
+      operationId: post-faturamento-faturas-fatura-final
       responses:
         '200':
           description: OK
@@ -2397,12 +2400,19 @@ paths:
             text/plain:
               schema:
                 type: string
-      operationId: get-faturamento-faturas-fatura-final
+      tags:
+        - Central-Atendimento
+        - Faturamento
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SimulacaoFinalDtoModel'
+              type: object
+              properties:
+                simulacao:
+                  $ref: '#/components/schemas/SimulacaoFinalDtoModel'
+                  x-stoplight:
+                    id: aemb0uq0rjt7a
   /faturamento/excecao:
     get:
       summary: Faturamento - Obter Excecao
@@ -2754,11 +2764,9 @@ paths:
                     id: 2122
       operationId: get-cadastro-ligacao-documento-id_documento
   /faturamento/parcelamento/calcular-parcelas-validar:
-    get:
+    post:
       summary: Faturamento - Calcular parcelas validar
-      tags:
-        - Faturamento
-        - Central-Atendimento
+      operationId: post-faturamento-parcelamento-calcular-parcelas-validar
       responses:
         '200':
           description: OK
@@ -2766,18 +2774,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
-      operationId: get-faturamento-parcelamento-calcular-parcelas-validar
+      tags:
+        - Central-Atendimento
+        - Faturamento
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
+              type: object
+              properties:
+                i_dado:
+                  $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
+                  x-stoplight:
+                    id: p2xnrvklx302o
   /faturamento/verifica/data-contrato-locacao:
-    get:
+    post:
       summary: Faturamento - Verificar data contrato locação associado
-      tags:
-        - Faturamento
-        - Central-Atendimento
+      operationId: post-faturamento-verifica-data-contrato-locacao
       responses:
         '200':
           description: OK
@@ -2785,27 +2798,28 @@ paths:
             text/plain:
               schema:
                 type: boolean
-              examples:
-                Example 1:
-                  value: true
-      operationId: get-faturamento-verifica-data-contrato-locacao
-      parameters:
-        - schema:
-            type: integer
-          in: query
-          name: id_ligacao
+      tags:
+        - Central-Atendimento
+        - Faturamento
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
+                  x-stoplight:
+                    id: 9utuzb6nyaxt7
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: oo8f7itefmtfc
         description: ''
   /faturamento/parcelamento/salvar-parcelas:
-    get:
+    post:
       summary: Faturamento - Salvar parcelas
-      tags:
-        - Faturamento
-        - Central-Atendimento
+      operationId: post-faturamento-parcelamento-salvar-parcelas
       responses:
         '200':
           description: OK
@@ -2813,17 +2827,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
-      operationId: get-faturamento-parcelamento-salvar-parcelas
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: tipo_campanha
+      tags:
+        - Central-Atendimento
+        - Faturamento
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
+              type: object
+              properties:
+                i_dado:
+                  $ref: '#/components/schemas/ParcelamentoDadosDtoModel'
+                  x-stoplight:
+                    id: 6pkinafky4ogh
+                tipoCampanha:
+                  type: string
+                  x-stoplight:
+                    id: l6xfzin8cuuws
   /faturamento/parcelamento/imprimir-contrato:
     get:
       summary: Faturamento - Imprimir Contrato
@@ -3061,11 +3081,9 @@ paths:
           in: query
           name: id_ligacao
   /cobranca/processo/juridico:
-    get:
+    post:
       summary: Cobrança - Obter processos jurídicos
-      tags:
-        - Cobrança
-        - Central-Atendimento
+      operationId: post-cobranca-processo-juridico
       responses:
         '200':
           description: OK
@@ -3073,12 +3091,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProcessoJuridicoDtoModel'
-      operationId: get-cobranca-processo-juridico
+      tags:
+        - Central-Atendimento
+        - Cobrança
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FiltroProcessoJuridicoDtoModel'
+              type: object
+              properties:
+                filtro:
+                  $ref: '#/components/schemas/FiltroProcessoJuridicoDtoModel'
+                  x-stoplight:
+                    id: wi0jdr2rmzfpk
   /cobranca/processo/juridico/add:
     post:
       summary: Cobrança - Adicionar processo
@@ -3414,11 +3439,9 @@ paths:
           in: query
           name: id_fatura
   /vendas/pagamento/antecipar:
-    get:
+    post:
       summary: Vendas - Antecipar pagamento
-      tags:
-        - Vendas
-        - Central-Atendimento
+      operationId: post-vendas-pagamento-antecipar
       responses:
         '200':
           description: OK
@@ -3426,25 +3449,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/VendaDtoModel'
-      operationId: get-vendas-pagamento-antecipar
+      tags:
+        - Central-Atendimento
+        - Vendas
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                id_ligacao:
+                idLigacao:
                   type: integer
+                  x-stoplight:
+                    id: h3rj6jsiheaez
                 venda:
                   $ref: '#/components/schemas/VendaDtoModel'
-                faturas_avulsas:
+                  x-stoplight:
+                    id: b7jfas329v9e8
+                faturasAvulsas:
                   type: array
+                  x-stoplight:
+                    id: i2mnbnujy6s92
                   items:
                     $ref: '#/components/schemas/VendaFatAvulsaDtoModel'
+                    x-stoplight:
+                      id: 5x7leve8lgyjo
                 incorps:
                   type: array
+                  x-stoplight:
+                    id: nfhcvwsxzu425
                   items:
                     $ref: '#/components/schemas/VendaFatIncorpDtoModel'
+                    x-stoplight:
+                      id: dfyf2kjcjqjb7
         description: ''
   /solicitacoes/listar/servicos-cadastro:
     get:
@@ -3831,11 +3868,9 @@ paths:
           in: query
           name: id_excecao
   /faturamento/consulta/mensagem-automacao:
-    get:
+    post:
       summary: Faturamento - Consultar mensagem automação
-      tags:
-        - Faturamento
-        - Cadastro
+      operationId: post-faturamento-consulta-mensagem-automacao
       responses:
         '200':
           description: OK
@@ -3843,7 +3878,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MensagemAutomacaoDtoModel'
-      operationId: get-faturamento-consulta-mensagem-automacao
+      tags:
+        - Cadastro
+        - Faturamento
       requestBody:
         content:
           application/json:
@@ -3852,7 +3889,8 @@ paths:
               properties:
                 dto:
                   $ref: '#/components/schemas/MensagemAutomacaoDtoModel'
-        description: ''
+                  x-stoplight:
+                    id: 497u1biichudg
   /faturamento/consultar/tipo-leitura:
     get:
       summary: Faturamento - Consultar tipo leitura
@@ -4101,10 +4139,9 @@ paths:
           in: query
           name: id_os
   /solicitacoes/os/protocolo/enviar-email:
-    get:
+    post:
       summary: Solicitações - Envio protocolo atendimento email
-      tags:
-        - Central-Atendimento
+      operationId: post-solicitacoes-os-protocolo-enviar-email
       responses:
         '200':
           description: OK
@@ -4112,7 +4149,8 @@ paths:
             text/plain:
               schema:
                 type: boolean
-      operationId: get-solicitacoes-os-protocolo-enviar-email
+      tags:
+        - Central-Atendimento
       requestBody:
         content:
           application/json:
@@ -4121,6 +4159,8 @@ paths:
               properties:
                 protocolo:
                   $ref: '#/components/schemas/ProtocoloOSDtoModel'
+                  x-stoplight:
+                    id: wo44i5efujicl
   /solicitacoes/os/emitir-fatura:
     get:
       summary: Solicitações - Emitir fatura OS
@@ -4792,10 +4832,9 @@ paths:
       tags:
         - Cadastro
   /central-atendimento/pesquisa-cliente/imprimir-pesquisa:
-    get:
+    post:
       summary: Central Atendimento - Pesquisa Cliente - Imprimir pesquisa
-      tags:
-        - Central-Atendimento
+      operationId: post-central-atendimento-pesquisa-cliente-imprimir-pesquisa
       responses:
         '200':
           description: OK
@@ -4803,7 +4842,8 @@ paths:
             text/plain:
               schema:
                 type: string
-      operationId: get-central-atendimento-pesquisa-cliente-imprimir-pesquisa
+      tags:
+        - Central-Atendimento
       requestBody:
         content:
           application/json:
@@ -4812,13 +4852,16 @@ paths:
               properties:
                 pesquisa:
                   type: array
+                  x-stoplight:
+                    id: 3qtaan7btnxez
                   items:
                     $ref: '#/components/schemas/PesquisaClienteDtoModel'
+                    x-stoplight:
+                      id: j2j9cf44z32wq
   /cadastro/campanha-informativa/filtrar:
-    get:
+    post:
       summary: Cadastro - Campanha informativa - Filtrar
-      tags:
-        - Cadastro
+      operationId: post-cadastro-campanha-informativa-filtrar
       responses:
         '200':
           description: OK
@@ -4826,7 +4869,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CadastroCampanhaDtoModel'
-      operationId: get-cadastro-campanha-informativa-filtrar
+      tags:
+        - Cadastro
       requestBody:
         content:
           application/json:
@@ -4835,7 +4879,8 @@ paths:
               properties:
                 campanha:
                   $ref: '#/components/schemas/CadastroCampanhaDtoModel'
-        description: ''
+                  x-stoplight:
+                    id: q833aikdp3cbp
   /cadastro/campanha-informativa/save:
     post:
       summary: Cadastro - Campanha informativa - Salvar
@@ -5571,10 +5616,9 @@ paths:
           in: query
           name: id_cidade
   /consolidacao/arrecadacao/get-consolidacao:
-    get:
+    post:
       summary: Consolidação Arrecadação - Get consolidação arrecadação
-      tags:
-        - Consolidação-Arrecadação
+      operationId: post-consolidacao-arrecadacao-get-consolidacao
       responses:
         '200':
           description: OK
@@ -5585,9 +5629,9 @@ paths:
                 items:
                   $ref: '#/components/schemas/ConsolidacaoArrecadacaoDtoModel'
                   x-stoplight:
-                    id: dp9m608ralhw1
-      operationId: get-consolidacao-arrecadacao-get-consolidacao
-      parameters: []
+                    id: iyfefignhx8il
+      tags:
+        - Consolidação-Arrecadação
       requestBody:
         content:
           application/json:
@@ -5597,25 +5641,23 @@ paths:
                 mes:
                   type: integer
                   x-stoplight:
-                    id: obkq511p3fkcx
+                    id: n8s006hccz7tf
                 ano:
                   type: integer
                   x-stoplight:
-                    id: 1v426e4wne28l
+                    id: lyu1iu6pxs6a3
                 consolidacao:
                   type: array
                   x-stoplight:
-                    id: uuz279wfjf9hp
+                    id: gn41bmcyjzuhw
                   items:
                     $ref: '#/components/schemas/ConsolidacaoArrecadacaoDtoModel'
                     x-stoplight:
-                      id: 653g13wi6ckqo
-        description: ''
+                      id: 1i1xofj42m6a8
   /consolidacao/arrecadacao/imprimir-guia:
-    get:
+    post:
       summary: Consolidação Arrecadação - Imprimir guia consolidação
-      tags:
-        - Consolidação-Arrecadação
+      operationId: post-consolidacao-arrecadacao-imprimir-guia
       responses:
         '200':
           description: OK
@@ -5623,7 +5665,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImpressaoGuiaConsolidacaoDtoModel'
-      operationId: get-consolidacao-arrecadacao-imprimir-guia
+      tags:
+        - Consolidação-Arrecadação
       requestBody:
         content:
           application/json:
@@ -5633,24 +5676,24 @@ paths:
                 mes:
                   type: integer
                   x-stoplight:
-                    id: b7qs70innx28s
+                    id: hi90s56jd0svy
                 ano:
                   type: integer
                   x-stoplight:
-                    id: 61qdtysdbdcfb
+                    id: c40voswubd518
                 consolidacoes:
                   type: array
                   x-stoplight:
-                    id: kr0syo8uirszx
+                    id: rud2xbft24nz0
                   items:
                     $ref: '#/components/schemas/ConsolidacaoArrecadacaoDtoModel'
                     x-stoplight:
-                      id: u87t5ljlxtmih
+                      id: uefxzqhsyy783
+        description: ''
   /consolidacao/arrecadacao/imprimir-faturas:
-    get:
+    post:
       summary: Consolidação Arrecadação - Imprimir faturas consolidação arrecadação
-      tags:
-        - Consolidação-Arrecadação
+      operationId: post-consolidacao-arrecadacao-imprimir-faturas
       responses:
         '200':
           description: OK
@@ -5658,29 +5701,28 @@ paths:
             text/plain:
               schema:
                 type: string
-      operationId: get-consolidacao-arrecadacao-imprimir-faturas
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                ids_consolidacao:
+                id_consolidacao:
                   type: array
                   x-stoplight:
-                    id: se9smdx9ohcbn
+                    id: 1wixmg9tozvcy
                   items:
                     x-stoplight:
-                      id: 9e9cd607mhsi9
+                      id: rvw8y18c1x4iu
                     type: integer
                 mes:
                   type: integer
                   x-stoplight:
-                    id: caa9wlp4xriq7
+                    id: tk1cj5e1qi9bq
                 ano:
                   type: integer
                   x-stoplight:
-                    id: 3xzehdnmeemjh
+                    id: bq5mzf6evmnl9
   /faturamento/atraso-encargo/save:
     post:
       summary: Faturamento - Atraso Encargo - Salvar
@@ -5742,10 +5784,9 @@ paths:
           in: query
           name: id
   /divida-ativa/exibir-debitos:
-    get:
+    post:
       summary: Faturamento - Dívida Ativa - Exibir débitos
-      tags:
-        - Faturamento
+      operationId: post-divida-ativa-exibir-debitos
       responses:
         '200':
           description: OK
@@ -5756,8 +5797,9 @@ paths:
                 items:
                   $ref: '#/components/schemas/DebitosDtoModel'
                   x-stoplight:
-                    id: a9sizzdrziu0k
-      operationId: get-divida-ativa-exibir-debitos
+                    id: rm5w3nyq3rwcw
+      tags:
+        - Faturamento
       requestBody:
         content:
           application/json:
@@ -5767,7 +5809,7 @@ paths:
                 filtro:
                   $ref: '#/components/schemas/FiltroDividaAtivaDtoModel'
                   x-stoplight:
-                    id: 2ttof85iozxmh
+                    id: i3n80x7kna9av
   /monitoramento-notificacao/os-corte/listar-emails:
     get:
       summary: Gestão de Serviços - Listar emails
@@ -5893,10 +5935,9 @@ paths:
                     x-stoplight:
                       id: 70s8pvlaaalhx
   /medicao/historico-informativo/get-historico:
-    get:
+    post:
       summary: Medição - Histórico informativo - Get histórico informativo
-      tags:
-        - Medição
+      operationId: post-medicao-historico-informativo-get-historico
       responses:
         '200':
           description: OK
@@ -5907,8 +5948,9 @@ paths:
                 items:
                   $ref: '#/components/schemas/HistoricoInformativoDtoModel'
                   x-stoplight:
-                    id: w13vbyj025535
-      operationId: get-medicao-historico-informativo-get-historico
+                    id: x4jzgcnorxnuc
+      tags:
+        - Medição
       requestBody:
         content:
           application/json:
@@ -5918,7 +5960,7 @@ paths:
                 hIVO:
                   $ref: '#/components/schemas/HistoricoInformativoDtoModel'
                   x-stoplight:
-                    id: hm465gg0wbndd
+                    id: fd5ut7aiytkoj
   /medicao/historico-informativo/save:
     post:
       summary: Medição - Histórico informativo - Salvar histórico informativo
@@ -5983,10 +6025,9 @@ paths:
           in: query
           name: perc
   /leitura/coletor/gerar-arq-magn:
-    get:
+    post:
       summary: Leitura - Coletor - Gerar arg magn coletor
-      tags:
-        - Leitura
+      operationId: post-leitura-coletor-gerar-arq-magn
       responses:
         '200':
           description: OK
@@ -5997,8 +6038,9 @@ paths:
                 items:
                   $ref: '#/components/schemas/ColetorDtoModel'
                   x-stoplight:
-                    id: xv3g75gjwvjjg
-      operationId: get-leitura-coletor-gerar-arq-magn
+                    id: 4a1fi294chvwu
+      tags:
+        - Leitura
       requestBody:
         content:
           application/json:
@@ -6008,28 +6050,27 @@ paths:
                 idCidade:
                   type: integer
                   x-stoplight:
-                    id: 8516xlo6ljvce
+                    id: kzauz1ifu0x8q
                 idGrupo:
                   type: integer
                   x-stoplight:
-                    id: xrlpkzirc4uzu
+                    id: t8u5w48uujdy1
                 idPeriodo:
                   type: integer
                   x-stoplight:
-                    id: rywdrw7bauh3i
+                    id: 3vga9qdeo1vzq
                 colColetor:
                   type: array
                   x-stoplight:
-                    id: mcpufrera9bxg
+                    id: uo486mwtm75k7
                   items:
                     $ref: '#/components/schemas/ColetorDtoModel'
                     x-stoplight:
-                      id: gxdjiusfsw8ch
+                      id: 0x4iyhzdzsu4j
                 medicaoParcial:
                   type: boolean
                   x-stoplight:
-                    id: azhfelbzti770
-        description: ''
+                    id: 3xhgf32ndhm79
   /progress-bar/parar-progressão:
     get:
       summary: PregressBar - Parar progressão
@@ -6154,10 +6195,9 @@ paths:
                     id: 8xwbk66c9n1aw
         description: ''
   /faturamento/cadastro/decreto/get-decreto-faixas:
-    get:
+    post:
       summary: Faturamento - Cadastro - Decreto - Get decreto faixas
-      tags:
-        - Fatruamento
+      operationId: post-faturamento-cadastro-decreto-get-decreto-faixas
       responses:
         '200':
           description: OK
@@ -6168,8 +6208,9 @@ paths:
                 items:
                   $ref: '#/components/schemas/DecretoCategoriaDtoModel'
                   x-stoplight:
-                    id: rtk3kkk7gawl4
-      operationId: get-faturamento-cadastro-decreto-get-decreto-faixas
+                    id: awnck0l4bemg6
+      tags:
+        - Faturamento
       requestBody:
         content:
           application/json:
@@ -6179,11 +6220,11 @@ paths:
                 decretoCategoriaDto:
                   type: array
                   x-stoplight:
-                    id: d5ria1xbud78k
+                    id: q01tb6fd6f9th
                   items:
                     $ref: '#/components/schemas/DecretoCategoriaDtoModel'
                     x-stoplight:
-                      id: w9vvgy21kxyoj
+                      id: st8f5rdrylzv4
         description: ''
   /medicao/roteiros/carregar-rotas:
     get:
