@@ -4193,24 +4193,25 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/CadastroOSDtoModel'
+          headers: {}
       operationId: get-solicitacoes-protocolo-carrega-protocolo-atendimento
       parameters:
         - schema:
-            type: integer
+            type: string
           in: query
-          name: id_os
+          name: idOs
         - schema:
-            type: integer
+            type: string
           in: query
-          name: id_ligacao
+          name: idLigacao
         - schema:
-            type: integer
+            type: string
           in: query
-          name: id_logradouro
+          name: idLogradouro
         - schema:
             type: boolean
           in: query
-          name: is_instance_call_center
+          name: isInstanceCallCenter
   /solicitacoes/carrega-os:
     get:
       summary: Solicitações - Carrega OS
@@ -7094,6 +7095,256 @@ paths:
                   $ref: '#/components/schemas/LogRoteirizacaoEmMassaDtoModel'
                   x-stoplight:
                     id: 2h4ztoic7xs89
+  '/comum/queries/tela/{idTela}':
+    parameters:
+      - schema:
+          type: string
+        name: idTela
+        in: path
+        required: true
+    get:
+      summary: Comum - Get queries por tela
+      tags:
+        - Geral
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QueriesDtoModel'
+                  x-stoplight:
+                    id: 1b3f5ow6yrjgn
+      operationId: get-comum-queries-tela-idTela
+  '/comum/queries/parametros/{idQuery}':
+    parameters:
+      - schema:
+          type: string
+        name: idQuery
+        in: path
+        required: true
+    get:
+      summary: Comum - Get parametros query
+      tags:
+        - Geral
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ParametrosQueriesDtoModel'
+                  x-stoplight:
+                    id: pmaesd5sovshy
+      operationId: get-comum-queries-parametros-idQuery
+  /medicao/leitura/carregar-retorno-manual:
+    get:
+      summary: Medição - Leitura - Carregar retorno manual
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ColetorDtoModel'
+                  x-stoplight:
+                    id: uoz03lknm6ly8
+      operationId: get-medicao-leitura-carregar-retorno-manual
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+  /calculo-faturamento/get-categoria:
+    get:
+      summary: Calculo Faturamento - Get categoria
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CategoriaDtoModel'
+                  x-stoplight:
+                    id: 1jrdpm0xyi96u
+      operationId: get-calculo-faturamento-get-categoria
+      tags:
+        - Calculo-Faturamento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /calcula-faturamento/get-tipo-faturamento:
+    get:
+      summary: Calculo Faturamento - Get tipo faturamento
+      tags:
+        - Calculo-Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: 3pyg3bg6g8m08
+      operationId: get-calcula-faturamento-get-tipo-faturamento
+  /calculo-faturamento/get-decreto:
+    get:
+      summary: Calculo Faturamento - Get decreto
+      tags:
+        - Calculo-Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: x0cox7y6zaud0
+      operationId: get-calculo-faturamento-get-decreto
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /calculo-faturamento/listar-coluna-produtos:
+    get:
+      summary: Calculo Faturamento - Listar coluna produtos
+      tags:
+        - Calculo-Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: ctxbcd2zkyq42
+                  type: string
+      operationId: get-calculo-faturamento-listar-coluna-produtos
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idTipoFaturamento
+  /calculo-faturamento/get-decreto-vigente:
+    get:
+      summary: Calculo Faturamento - Get decreto vigente
+      tags:
+        - Calculo-Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      operationId: get-calculo-faturamento-get-decreto-vigente
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idCidade
+  /calculo-faturamento/simular-dados:
+    post:
+      summary: Calculo Faturamento - Simular dados
+      operationId: post-calculo-faturamento-simular-dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SimulacaoDtoModel'
+                  x-stoplight:
+                    id: 0iuzyxro2i9vv
+      tags:
+        - Calculo-Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                simulacao:
+                  $ref: '#/components/schemas/SimulacaoDadosDtoModel'
+                  x-stoplight:
+                    id: t9jvj4qksfepz
+  /vendas/incorporacoes/carregar-pendentes:
+    get:
+      summary: Vendas - Carregar incorporações pendentes
+      tags:
+        - Vendas
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CriticaIncorporacaoDtoModel'
+                  x-stoplight:
+                    id: ypl50wa66dm1u
+      operationId: get-vendas-incorporacoes-carregar-pendentes
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+  /vendas/incorporacoes/incondicionais/save:
+    post:
+      summary: Vendas - Salvar incorporações incondicionais
+      operationId: post-vendas-incorporacoes-incondicionais-save
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Vendas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                venda:
+                  type: array
+                  x-stoplight:
+                    id: j0i57cm865k46
+                  items:
+                    $ref: '#/components/schemas/CriticaIncorporacaoDtoModel'
+                    x-stoplight:
+                      id: vl835mlz7cdoe
+        description: ''
 components:
   schemas:
     CriarLigacaoModel:
@@ -41830,5 +42081,225 @@ components:
           inicial: false
           nova: false
           parcial: false
+    ParametrosQueriesDtoModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        id_query:
+          type: integer
+        id_tela:
+          type: integer
+        ordem:
+          type: integer
+        parametro:
+          type: string
+        tipo:
+          type: string
+      x-examples:
+        Example 1:
+          id: 0
+          id_query: 0
+          id_tela: 0
+          ordem: 0
+          parametro: string
+          tipo: string
+    QueriesDtoModel:
+      type: object
+      properties:
+        ca_menu:
+          type: string
+        ca_sub_menu:
+          type: string
+        chamada:
+          type: string
+        id:
+          type: integer
+        id_tela:
+          type: integer
+        seq:
+          type: integer
+        sql:
+          type: string
+      x-examples:
+        Example 1:
+          ca_menu: string
+          ca_sub_menu: string
+          chamada: string
+          id: 0
+          id_tela: 0
+          seq: 0
+          sql: string
+    CategoriaDtoModel:
+      type: object
+      properties:
+        idCategoria:
+          type: integer
+        categoria:
+          type: string
+        nrEconomias:
+          type: integer
+        peso:
+          type: integer
+        isento:
+          type: string
+        check:
+          type: boolean
+        prioridade:
+          type: integer
+        percentualFat:
+          type: integer
+        volConsMinimo:
+          type: number
+        faixaInicial:
+          type: number
+        volFaturado:
+          type: number
+        nrEconomiaExcecao:
+          type: integer
+      x-examples:
+        Example 1:
+          idCategoria: 1
+          categoria: string
+          nrEconomias: 1
+          peso: 1
+          isento: string
+          check: true
+          prioridade: 1
+          percentualFat: 1
+          volConsMinimo: 1.1
+          faixaInicial: 1.1
+          volFaturado: 1.1
+          nrEconomiaExcecao: 1
+    SimulacaoDadosDtoModel:
+      title: SimulacaoDadosDtoModel
+      x-stoplight:
+        id: 5u0pke7l8si04
+      type: object
+      properties:
+        id:
+          type: string
+      description: ''
+    SimulacaoDtoModel:
+      type: object
+      properties:
+        idCategoria:
+          type: integer
+        categoria:
+          type: string
+        idDecreto:
+          type: integer
+        idTipoFaturamento:
+          type: integer
+        subTotalValorAgua:
+          type: number
+        subTotalValorEsgoto:
+          type: number
+        subTotalConsumo:
+          type: number
+        subTotal:
+          type: number
+        total:
+          type: number
+        nrEconomiasTotalLigacao:
+          type: integer
+        nrEconomiasCategoria:
+          type: integer
+        colResultadosCategoria:
+          type: array
+          items:
+            type: object
+            properties:
+              idProduto:
+                type: integer
+              produto:
+                type: string
+              consumo:
+                type: number
+              valorAgua:
+                type: number
+              faixa:
+                type: string
+              faturado:
+                type: number
+              valorEsgoto:
+                type: number
+              valorTotal:
+                type: number
+              nrEconomias:
+                type: integer
+              percentualFat:
+                type: integer
+      x-examples:
+        Example 1:
+          idCategoria: 1
+          categoria: string
+          idDecreto: 1
+          idTipoFaturamento: 1
+          subTotalValorAgua: 1.1
+          subTotalValorEsgoto: 1.1
+          subTotalConsumo: 1.1
+          subTotal: 1.1
+          total: 1.1
+          nrEconomiasTotalLigacao: 1
+          nrEconomiasCategoria: 1
+          colResultadosCategoria:
+            - idProduto: 1
+              produto: string
+              consumo: 1.1
+              valorAgua: 1.1
+              faixa: string
+              faturado: 1.1
+              valorEsgoto: 1.1
+              valorTotal: 1.1
+              nrEconomias: 1
+              percentualFat: 1
+    CriticaIncorporacaoDtoModel:
+      type: object
+      properties:
+        idLigacao:
+          type: integer
+        clienteGerador:
+          type: string
+        cpfCnpjGerador:
+          type: string
+        idVendaDetParcela:
+          type: integer
+        valor:
+          type: number
+        nrParcelas:
+          type: string
+        clienteAtual:
+          type: string
+        cpfCnpjAtual:
+          type: string
+        liberar:
+          type: boolean
+        periodo:
+          type: string
+        idPeriodoIncorporacao:
+          type: integer
+        periodoPreIncorporacao:
+          type: string
+        idPeriodoPreIncorporacao:
+          type: integer
+        IdPeriodoOrigemIncorporacao:
+          type: integer
+      x-examples:
+        Example 1:
+          idLigacao: 1
+          clienteGerador: ''
+          cpfCnpjGerador: ''
+          idVendaDetParcela: 1
+          valor: 1.1
+          nrParcelas: ''
+          clienteAtual: ''
+          cpfCnpjAtual: ''
+          liberar: false
+          periodo: ''
+          idPeriodoIncorporacao: 1
+          periodoPreIncorporacao: ''
+          idPeriodoPreIncorporacao: 1
+          IdPeriodoOrigemIncorporacao: 1
   securitySchemes: {}
 x-extension-1: null
