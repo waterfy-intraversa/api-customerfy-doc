@@ -2102,9 +2102,9 @@ paths:
       parameters: []
       tags:
         - Central-Atendimento
-  /gerfases/cronograma/exibir:
+  '/cronograma/exibir/{idLigacao}':
     get:
-      summary: GerFases - Exibir Cronograma
+      summary: GerFases - Exibir Cronograma (idLigação)
       tags:
         - Cronograma
         - Central-Atendimento
@@ -2116,12 +2116,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/CronogramaDtoModel'
       operationId: get-ger-fases-cronograma-exibir
-      parameters:
-        - schema:
-            type: integer
-          in: query
-          name: id_ligacao
-    parameters: []
+      parameters: []
+    parameters:
+      - schema:
+          type: string
+        name: idLigacao
+        in: path
+        required: true
   /medicao/historico/total-consumo:
     get:
       summary: Medição - Total histórico consumo
@@ -5981,7 +5982,7 @@ paths:
                   $ref: '#/components/schemas/HistoricoInformativoDtoModel'
                   x-stoplight:
                     id: 4wds3ywop8j5y
-  /gerfases/fase/fase-atual:
+  /cronograma/gerfases/fase/fase-atual:
     get:
       summary: GerFases - Leitura - Fase atual
       responses:
@@ -6003,6 +6004,7 @@ paths:
             type: integer
           in: query
           name: idPeriodo
+    parameters: []
   /progress-bar/obter-progressao:
     get:
       summary: ProgressBar - Obter progressão
@@ -7345,6 +7347,100 @@ paths:
                     x-stoplight:
                       id: vl835mlz7cdoe
         description: ''
+  /arrecadacao/importar-dados/importar-arquivos:
+    get:
+      summary: Arrecadação - Importar Arquivos
+      tags:
+        - Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArrecadacaoDtoModel'
+                  x-stoplight:
+                    id: fejdnn2yi1h9j
+      operationId: get-arrecadacao-importar-arquivos
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+    parameters: []
+  /arrecadacao/importar-dados/baixa-manual/arrecadador:
+    get:
+      summary: Arrecadação - Obter dados arrecadador
+      tags:
+        - Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaixaManualDtoModel'
+      operationId: get-arrecadacao-importar-dados-baixa-manual-arrecadador
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idArrecadador
+  '/cronograma/exibir/{idLigacao}/{seq}':
+    parameters:
+      - schema:
+          type: string
+        name: idLigacao
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: seq
+        in: path
+        required: true
+    get:
+      summary: 'GerFases - Exibir Cronograma (idLigação, seq)'
+      tags:
+        - Cronograma
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CronogramaDtoModel'
+      operationId: get-cronograma-exibir-idLigacao-seq
+  '/cronograma/exibir/{i_idCidade}/{i_idGrupo}/{i_idPeriodo}':
+    parameters:
+      - schema:
+          type: string
+        name: i_idCidade
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: i_idGrupo
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: i_idPeriodo
+        in: path
+        required: true
+    get:
+      summary: 'GerFases - Exibir Cronograma (idCidade, idGrupo, idPeriodo)'
+      tags:
+        - Cronograma
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CronogramaDtoModel'
+      operationId: get-cronograma-exibir-i_idCidade-i_idGrupo-i_idPeriodo
 components:
   schemas:
     CriarLigacaoModel:
@@ -42301,5 +42397,2917 @@ components:
           periodoPreIncorporacao: ''
           idPeriodoPreIncorporacao: 1
           IdPeriodoOrigemIncorporacao: 1
+    ArrecadacaoDtoModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        idArrecadador:
+          type: integer
+        idUnidadeOperacional:
+          type: integer
+        idUsuarioImportacao:
+          type: integer
+        dataGeracaoArquivo:
+          type: string
+        arrecadador:
+          type: string
+        codConvenio:
+          type: string
+        arquivo:
+          type: string
+        tipoBaixa:
+          type: string
+        sequencia:
+          type: integer
+        debitoAutomatico:
+          type: boolean
+        qtdRegistoArquivo:
+          type: integer
+        qtdRegistoArquivoCorreto:
+          type: integer
+        qtdRegistoArquivoInconsistente:
+          type: integer
+        valorTotalArquivo:
+          type: integer
+        valorTotalArrecadado:
+          type: integer
+        falhaIntegridade:
+          type: boolean
+        falhaIncosistencia:
+          type: boolean
+        falhaNSA:
+          type: boolean
+        salvar:
+          type: boolean
+        arrecadacaoTipoRegistro:
+          type: array
+          items:
+            type: object
+            properties:
+              idTipoRegistro:
+                type: integer
+              tipoRegistro:
+                type: string
+              descricao:
+                type: string
+              qtdeRegistro:
+                type: integer
+              qtdeRegistroCorreto:
+                type: integer
+              qtdeRegistroInconsistente:
+                type: integer
+              valor:
+                type: integer
+              mostrar:
+                type: boolean
+              nivelErro:
+                type: integer
+              arrecadacaoDetalhe:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    codBarraInconsistente:
+                      type: string
+                    slip:
+                      type: integer
+                    verCodBarra:
+                      type: integer
+                    idTipoTransacao:
+                      type: integer
+                    tipoTransacao:
+                      type: string
+                    idFatura:
+                      type: integer
+                    idFaturaBaixa:
+                      type: integer
+                    idGuia:
+                      type: integer
+                    idFaturaSituacao:
+                      type: integer
+                    idPeriodo:
+                      type: integer
+                    idCidade:
+                      type: integer
+                    periodo:
+                      type: string
+                    idLigacao:
+                      type: integer
+                    dataPagto:
+                      type: string
+                    dataCredito:
+                      type: string
+                    valor:
+                      type: integer
+                    valorRepassado:
+                      type: integer
+                    valorFatura:
+                      type: integer
+                    valorGuia:
+                      type: integer
+                    idTipoMovimentoDA:
+                      type: integer
+                    tipoMovimentoDA:
+                      type: string
+                    codigoClienteRegistroB:
+                      type: string
+                    agencia:
+                      type: string
+                    contaCorrente:
+                      type: string
+                    dataOpcaoDA:
+                      type: string
+                    dataVenctoDebito:
+                      type: string
+                    idDebitoAutomaticoRetorno:
+                      type: string
+                    debitoAutomaticoRetorno:
+                      type: string
+                    tipoRetorno:
+                      type: string
+                    gravarHistoricoRetornoDA:
+                      type: boolean
+                    idInconsistenciaArrec:
+                      type: integer
+                    situacao:
+                      type: string
+                    obs:
+                      type: string
+                    nivelErro:
+                      type: integer
+                    pagamentoInconsistente:
+                      type: boolean
+                    alteracaoDA:
+                      type: boolean
+                    valorAcrescimos:
+                      type: integer
+                    idTipoRetorno:
+                      type: integer
+                    dvCliente:
+                      type: string
+                    posic94100:
+                      type: integer
+                    quantRepetidos:
+                      type: integer
+                    posic108116:
+                      type: string
+                    posic116117:
+                      type: string
+                    enviado:
+                      type: string
+                    codigoBarraSemDV:
+                      type: string
+                    dvCodigoBarra:
+                      type: integer
+                    taxaPercentualFoz:
+                      type: integer
+                    taxaBanco:
+                      type: integer
+                    taxaFoz:
+                      type: integer
+                    taxaPoderConcedente:
+                      type: integer
+                    faturasNegociadas:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          idFaturaOrigem:
+                            type: integer
+                          idLigacao:
+                            type: integer
+                          idLigacaoEntrega:
+                            type: integer
+                          idLigacaoConsolidadora:
+                            type: integer
+                          idPeriodo:
+                            type: integer
+                          idPeriodoImpressao:
+                            type: integer
+                          faturaSituacao:
+                            type: string
+                          valorDebitos:
+                            type: integer
+                          leituraAtual:
+                            type: integer
+                          volMedido:
+                            type: integer
+                          dataLeitura:
+                            type: string
+                          volFat:
+                            type: integer
+                          dataVencimento:
+                            type: string
+                          dataEntrega:
+                            type: string
+                          dataPagto:
+                            type: string
+                          colFaturaDetalheVO:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                parcela:
+                                  type: integer
+                                nrParcelas:
+                                  type: integer
+                                idRubrica:
+                                  type: integer
+                                idTipoExcecao:
+                                  type: integer
+                                idClassificacaoFiscalRubrica:
+                                  type: integer
+                                valor:
+                                  type: integer
+                                volFatIndividual:
+                                  type: integer
+                                colFaturaDetalheImpostoVO:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      idRubrica:
+                                        type: integer
+                                      valor:
+                                        type: integer
+                                      rubrica:
+                                        type: string
+                                idProduto:
+                                  type: integer
+                                idVendaDetalheParcela:
+                                  type: integer
+                                valorImposto:
+                                  type: integer
+                                valorTotal:
+                                  type: integer
+                                idExcecao:
+                                  type: integer
+                                idExcecaoAplicacao:
+                                  type: integer
+                                idLigacaoExcecao:
+                                  type: integer
+                                parcelamento:
+                                  type: boolean
+                                idPeriodoRef:
+                                  type: integer
+                                periodoRef:
+                                  type: string
+                                mes:
+                                  type: integer
+                                ano:
+                                  type: integer
+                                exibirFatura:
+                                  type: boolean
+                                considerarTotalFatura:
+                                  type: boolean
+                                idGrupoExibe:
+                                  type: integer
+                                rubrica:
+                                  type: string
+                                rubricaResumida:
+                                  type: string
+                                idGrupoRubrica:
+                                  type: integer
+                                idGrupoReceita:
+                                  type: integer
+                                produto:
+                                  type: string
+                                poderConcedente:
+                                  type: string
+                                referencia:
+                                  type: string
+                                idLigacaoSeguro:
+                                  type: integer
+                                codRubrica:
+                                  type: string
+                                aliquotaISS:
+                                  type: integer
+                                aliquotaICMS:
+                                  type: integer
+                                aliquotaPis:
+                                  type: integer
+                                aliquotaCofins:
+                                  type: integer
+                                aliquotaINSS:
+                                  type: integer
+                                baseCalculoISS:
+                                  type: integer
+                                baseCalculoICMS:
+                                  type: integer
+                                baseCalculoPis:
+                                  type: integer
+                                baseCalculoCofins:
+                                  type: integer
+                                baseCalculoINSS:
+                                  type: integer
+                                baseCalculoGeral:
+                                  type: integer
+                                valorISS:
+                                  type: integer
+                                valorICMS:
+                                  type: integer
+                                valorPis:
+                                  type: integer
+                                valorCofins:
+                                  type: integer
+                                valorINSS:
+                                  type: integer
+                                valorGeral:
+                                  type: integer
+                          colFaturaExcecaoVO:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                idProduto:
+                                  type: integer
+                                idVendaDetalheParcela:
+                                  type: integer
+                                valorImposto:
+                                  type: integer
+                                valorTotal:
+                                  type: integer
+                                idExcecao:
+                                  type: integer
+                                idExcecaoAplicacao:
+                                  type: integer
+                                idLigacaoExcecao:
+                                  type: integer
+                                parcelamento:
+                                  type: boolean
+                                idPeriodoRef:
+                                  type: integer
+                                periodoRef:
+                                  type: string
+                                mes:
+                                  type: integer
+                                ano:
+                                  type: integer
+                                exibirFatura:
+                                  type: boolean
+                                considerarTotalFatura:
+                                  type: boolean
+                                idGrupoExibe:
+                                  type: integer
+                                rubrica:
+                                  type: string
+                                rubricaResumida:
+                                  type: string
+                                idGrupoRubrica:
+                                  type: integer
+                                idGrupoReceita:
+                                  type: integer
+                                produto:
+                                  type: string
+                                poderConcedente:
+                                  type: string
+                                referencia:
+                                  type: string
+                                idLigacaoSeguro:
+                                  type: integer
+                                codRubrica:
+                                  type: string
+                                aliquotaISS:
+                                  type: integer
+                                aliquotaICMS:
+                                  type: integer
+                                aliquotaPis:
+                                  type: integer
+                                aliquotaCofins:
+                                  type: integer
+                                aliquotaINSS:
+                                  type: integer
+                                baseCalculoISS:
+                                  type: integer
+                                baseCalculoICMS:
+                                  type: integer
+                                baseCalculoPis:
+                                  type: integer
+                                baseCalculoCofins:
+                                  type: integer
+                                baseCalculoINSS:
+                                  type: integer
+                                baseCalculoGeral:
+                                  type: integer
+                                valorISS:
+                                  type: integer
+                                valorICMS:
+                                  type: integer
+                                valorPis:
+                                  type: integer
+                                valorCofins:
+                                  type: integer
+                                valorINSS:
+                                  type: integer
+                                valorGeral:
+                                  type: integer
+                                excecao:
+                                  type: string
+                                idLigacao:
+                                  type: integer
+                                idExcecaoTipo:
+                                  type: integer
+                                tipoFaturamento:
+                                  type: string
+                                percentual:
+                                  type: integer
+                                valor:
+                                  type: integer
+                                carga:
+                                  type: integer
+                                dia:
+                                  type: string
+                                idClassificacaoFiscal:
+                                  type: integer
+                                idExcecaoMotivo:
+                                  type: integer
+                                observacao:
+                                  type: string
+                                automatica:
+                                  type: boolean
+                                momentoCalculo:
+                                  type: string
+                                ordemAplicacao:
+                                  type: integer
+                                ordemTipo:
+                                  type: integer
+                                excecaoAplicada:
+                                  type: string
+                                retroativo:
+                                  type: boolean
+                                consideraCriticaConsumoSimultanea:
+                                  type: string
+                                retencaoForcada:
+                                  type: string
+                          idCidade:
+                            type: integer
+                          valor:
+                            type: integer
+                          valorImposto:
+                            type: integer
+                          idFaturaSituacao:
+                            type: integer
+                          idTipoCobranca:
+                            type: integer
+                          idGrupo:
+                            type: integer
+                          idGrupoEntrega:
+                            type: integer
+                          idTipoTransacao:
+                            type: integer
+                          tipoTransacao:
+                            type: string
+                          idUsuarioCancto:
+                            type: integer
+                          nrEconCons:
+                            type: integer
+                          enviado:
+                            type: boolean
+                          enviadoCancelamento:
+                            type: boolean
+                          idTaxaFinanciamento:
+                            type: integer
+                          houvePagamento:
+                            type: boolean
+                          idFaturaOriginal:
+                            type: integer
+                          ordemGrupoEntrega:
+                            type: integer
+                          ordemGrupoLeitura:
+                            type: integer
+                          mensagensPrevencao:
+                            type: string
+                          periodo:
+                            type: string
+                          idConsolidacaoArrecadacao:
+                            type: integer
+                          faturaEmitida:
+                            type: string
+                          colCategorias:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                idCategoria:
+                                  type: integer
+                                nrEconomias:
+                                  type: integer
+                                peso:
+                                  type: integer
+                                idSubCategoria:
+                                  type: integer
+                                idLigacao:
+                                  type: integer
+                                prioridade:
+                                  type: integer
+                                volConsMinimo:
+                                  type: integer
+                                percentualFat:
+                                  type: integer
+                                taxadeservico:
+                                  type: integer
+                                aluguelhidrometro:
+                                  type: integer
+                                idrubrica:
+                                  type: integer
+                                valorconsumozero:
+                                  type: integer
+                          idTipoParcelamentoAcordo:
+                            type: integer
+                          idFaturaBaixa:
+                            type: integer
+                          vendaCreditoVO:
+                            type: object
+                            properties:
+                              observacao:
+                                type: string
+                              valor:
+                                type: number
+                              valor_imposto:
+                                type: number
+                              venda_rubrica_vo:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id_rubrica:
+                                      type: integer
+                                    codigo:
+                                      type: string
+                                    deb_cred:
+                                      type: string
+                                    rubrica:
+                                      type: string
+                                    valor:
+                                      type: number
+                                    valor_imposto:
+                                      type: number
+                                    valor_entrada:
+                                      type: number
+                                    vencimento:
+                                      type: string
+                                    nr_parcelas:
+                                      type: integer
+                                    id_periodo_inicial:
+                                      type: integer
+                                    venda_rubrica_detalhe_vo:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          id_rubrica:
+                                            type: integer
+                                          id_fatura_incorp:
+                                            type: integer
+                                          id_periodo_incorp:
+                                            type: integer
+                                          id_periodo_ref:
+                                            type: integer
+                                          preiodo_incorp:
+                                            type: string
+                                          rubrica:
+                                            type: string
+                                          nr_parcela:
+                                            type: integer
+                                          nr_parcelas:
+                                            type: integer
+                                          valor_faturado:
+                                            type: number
+                                          valor_a_faturar:
+                                            type: number
+                                          valor_imposto_faturado:
+                                            type: number
+                                          valor_imposto_a_faturar:
+                                            type: number
+                                          fatura_a_vulsa:
+                                            type: boolean
+                                          vencimento:
+                                            type: string
+                                          id_ligacao_seguro:
+                                            type: integer
+                                          venda_rubrica_detalhe_imposto_vo:
+                                            type: array
+                                            items:
+                                              type: object
+                                              properties:
+                                                id_rubrica:
+                                                  type: integer
+                                                valor:
+                                                  type: number
+                                    id_classificacao_fiscal:
+                                      type: integer
+                                    id_classificacao_fiscal_rubrica:
+                                      type: integer
+                                    item_rubrica_vo:
+                                      type: object
+                                      properties:
+                                        descr:
+                                          type: string
+                                        codigo:
+                                          type: string
+                                        deb_cred:
+                                          type: string
+                                        valor:
+                                          type: number
+                                        id_classificacao_fiscal_rubrica:
+                                          type: integer
+                                        item_rubrica_imp_vo:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              id_rubrica_imp:
+                                                type: integer
+                                              percentual:
+                                                type: number
+                                    id_servico_pai:
+                                      type: integer
+                                    id_os_detalhe:
+                                      type: integer
+                                    valor_uf_ir:
+                                      type: number
+                              id_ligacao:
+                                type: integer
+                              id_ligacao_entrega:
+                                type: integer
+                              id_tipo_venda:
+                                type: integer
+                              data:
+                                type: string
+                              id_faturas:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                              id_cidade:
+                                type: integer
+                              id_grupo:
+                                type: integer
+                              id_grupo_entrega:
+                                type: integer
+                              id_cliente:
+                                type: integer
+                              id_usuario_cadastro:
+                                type: integer
+                              id_ligacao_consolidadora:
+                                type: integer
+                              id_periodos_faturas_a_recalcular:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                              id_taxa_financiamento:
+                                type: integer
+                              id_fatura_origem:
+                                type: integer
+                              id_parcelamento:
+                                type: integer
+                              id_tipo_parcelamento_acordo:
+                                type: integer
+                              id_class_consumo:
+                                type: integer
+                              col_categorias:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id_categoria:
+                                      type: integer
+                                    nr_economias:
+                                      type: integer
+                                    peso:
+                                      type: integer
+                                    id_sub_categoria:
+                                      type: integer
+                                    id_ligacao:
+                                      type: integer
+                                    prioridade:
+                                      type: integer
+                                    vol_cons_minimo:
+                                      type: number
+                                    percentual_fat:
+                                      type: integer
+                                    taxa_de_servico:
+                                      type: number
+                                    aluguel_hidrometro:
+                                      type: number
+                                    id_rubrica:
+                                      type: integer
+                                    valor_consumo_zero:
+                                      type: number
+                              valor_uf_ir:
+                                type: number
+                              id_cliente_inquilino:
+                                type: integer
+                              id_classificacao_venda:
+                                type: integer
+                          nome:
+                            type: string
+                          cpf:
+                            type: string
+                          cnpj:
+                            type: string
+                          calculoConsumoSimultanea:
+                            type: string
+                          tipoLeitura:
+                            type: string
+                          anacritefetuada:
+                            type: string
+                          emissao:
+                            type: string
+                          situacao:
+                            type: string
+                          alteracao:
+                            type: string
+                          faturaDebitos:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                idFatura:
+                                  type: integer
+                                idFaturaEmAtraso:
+                                  type: integer
+                                periodo:
+                                  type: string
+                                vencimento:
+                                  type: string
+                                valorTotal:
+                                  type: integer
+                                valor:
+                                  type: integer
+                                valorImposto:
+                                  type: integer
+                          faturaImportada:
+                            type: string
+                          enviaColetor:
+                            type: string
+                          colCoeficienteReducao:
+                            type: array
+                            items:
+                              type: integer
+                          dataPagamentoProvisorio:
+                            type: string
+                          idClassConsumo:
+                            type: integer
+                          idFaturaRecalculada:
+                            type: integer
+                          utilizar:
+                            type: boolean
+                          sel:
+                            type: boolean
+                          pertenceConsolidacaoArrecadacao:
+                            type: boolean
+                          valorTCL:
+                            type: integer
+                          nrDiasConsumo:
+                            type: integer
+                          idTipoFaturamento:
+                            type: integer
+                          idProcessoCorte:
+                            type: integer
+                          msg:
+                            type: string
+                          valorTotalImpostoAproximado:
+                            type: number
+                          baseCalculoTotalImpostoAproximado:
+                            type: number
+                          percentualTotalImpostoAproximado:
+                            type: number
+                          calculadoRecursosHidricos:
+                            type: boolean
+                          impostoInformativoCalculado:
+                            type: boolean
+                          idCategoriaPrincipal:
+                            type: integer
+                          idSubCategoriaPrincipal:
+                            type: integer
+                          idClienteInquilino:
+                            type: integer
+                          idContratoNegociacao:
+                            type: integer
+                          seqPeriodoInicioContratoNegociacao:
+                            type: integer
+                          encargoAdiantado:
+                            type: boolean
+                          idOrgaoPublico:
+                            type: integer
+                          idOrgaoprivateo:
+                            type: integer
+                          idTipoEntrega:
+                            type: integer
+                          emailDestinatario:
+                            type: string
+                          email:
+                            type: string
+                          assuntoEmail:
+                            type: string
+                          corpoEmail:
+                            type: string
+                          cidade:
+                            type: string
+                          pagamentoParcialRajada:
+                            type: string
+                          importadaSistemaTerceiros:
+                            type: string
+                          idCobrancaFase:
+                            type: integer
+                          calculoConsolidacaoConsEfet:
+                            type: boolean
+                          timbrada:
+                            type: boolean
+                          calculadoTaxaRegulacao:
+                            type: boolean
+                          periodoImportacaoOrigem:
+                            type: string
+                          dataMovimento:
+                            type: string
+                          rcs:
+                            type: string
+                          idRubrica:
+                            type: integer
+                          rubrica:
+                            type: string
+                          diaInicioCobranca:
+                            type: integer
+                          diaFimCobranca:
+                            type: integer
+                          idTipoPeriodo:
+                            type: integer
+                          percentual:
+                            type: integer
+                          tipoTaxaAtraso:
+                            type: string
+                          idTipoTaxaAtraso:
+                            type: integer
+                          idIndiceReajuste:
+                            type: integer
+                          idAtrasoEncargo:
+                            type: integer
+                          idRubricaOrigem:
+                            type: integer
+                          rubricaOrigem:
+                            type: string
+                          dataPagamento:
+                            type: string
+                          timbre:
+                            type: string
+                          faturaImpressa:
+                            type: boolean
+                          enderecoAlternativo:
+                            type: boolean
+                          dadosMedicaoDet:
+                            type: object
+                            properties:
+                              idLigacao:
+                                type: integer
+                              idLigacaoConsolidadora:
+                                type: integer
+                              colFatDadosMedProdutoVO:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    idProduto:
+                                      type: integer
+                                    produto:
+                                      type: string
+                                    idRubrica:
+                                      type: integer
+                                    rubrica:
+                                      type: string
+                                    volFat:
+                                      type: integer
+                                    volFatCons:
+                                      type: integer
+                                    idGrupoReceita:
+                                      type: integer
+                                    idLigacao:
+                                      type: integer
+                              colFatDadosMedCategVO:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    idCategoria:
+                                      type: integer
+                                    nrEconomias:
+                                      type: integer
+                                    peso:
+                                      type: integer
+                                    idSubCategoria:
+                                      type: integer
+                                    idLigacao:
+                                      type: integer
+                                    prioridade:
+                                      type: integer
+                                    volConsMinimo:
+                                      type: integer
+                                    percentualFat:
+                                      type: integer
+                                    taxadeservico:
+                                      type: integer
+                                    aluguelhidrometro:
+                                      type: integer
+                                    idrubrica:
+                                      type: integer
+                                    valorconsumozero:
+                                      type: integer
+                              colFatDadosMedExcecaoVO:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    idExcecao:
+                                      type: integer
+                                    idTipoFaturamento:
+                                      type: integer
+                                    percentual:
+                                      type: integer
+                                    valor:
+                                      type: integer
+                                    idExcecaoTipo:
+                                      type: integer
+                                    idExcecaoAplicacao:
+                                      type: integer
+                                    idLigacao:
+                                      type: integer
+                              volMedido:
+                                type: integer
+                              leituraEfetuada:
+                                type: string
+                              ligacaoCortada:
+                                type: string
+                              idTipoMacroMedidor:
+                                type: integer
+                              idLigacaoMacroMedidor:
+                                type: integer
+                              consolidadora:
+                                type: boolean
+                          coletorDetalhe:
+                            type: object
+                            properties:
+                              dataHoraLeitura:
+                                type: string
+                              dataHoraUltimaLeitura:
+                                type: string
+                              idLigacao:
+                                type: integer
+                              corteLight:
+                                type: boolean
+                              fiscCorte:
+                                type: boolean
+                              tipoCorte:
+                                type: integer
+                              rotaLeit:
+                                type: integer
+                              quadraLeit:
+                                type: integer
+                              seqLeitura:
+                                type: integer
+                              subUnidLeitura:
+                                type: integer
+                              idCodLeituraAnterior:
+                                type: integer
+                              idCodLeituraPreRepasse:
+                                type: integer
+                              leituraAnterior:
+                                type: integer
+                              leituraAtual:
+                                type: integer
+                              leituraReal:
+                                type: integer
+                              leituraAtualPreRepasse:
+                                type: integer
+                              idCodigoLeitura:
+                                type: integer
+                              mediaConsumo:
+                                type: integer
+                              mediaConsumoPreRepasse:
+                                type: integer
+                              idOcorLeitura1:
+                                type: integer
+                              idOcorLeitura2:
+                                type: integer
+                              idOcorLeitura3:
+                                type: integer
+                              idOcorLeituraPreRepasse1:
+                                type: integer
+                              idOcorLeituraPreRepasse2:
+                                type: integer
+                              idOcorLeituraPreRepasse3:
+                                type: integer
+                              nrDebitos:
+                                type: integer
+                              valTotDebitos:
+                                type: integer
+                              logradouro:
+                                type: string
+                              nrImovel:
+                                type: integer
+                              complemento:
+                                type: string
+                              nomeCliente:
+                                type: string
+                              idDistrito:
+                                type: integer
+                              ligacaoNova:
+                                type: boolean
+                              leituraEfetuada:
+                                type: boolean
+                              leituraEfetuadaPreRepasse:
+                                type: boolean
+                              mensagensPrevencao:
+                                type: string
+                              idMedidor:
+                                type: integer
+                              medidor:
+                                type: string
+                              idTipoEntrega:
+                                type: integer
+                              categoria:
+                                type: string
+                              maxIdCategoria:
+                                type: integer
+                              qtdCategorias:
+                                type: integer
+                              idLeituristaRepasse:
+                                type: integer
+                              idCliente:
+                                type: integer
+                              idTipoLigacao:
+                                type: integer
+                              nrTentativas:
+                                type: integer
+                              corteLightEfetuado:
+                                type: boolean
+                              idLigacaoProcessoCorteLight:
+                                type: integer
+                              idMotivoNaoExecCorteLight:
+                                type: integer
+                              validado:
+                                type: boolean
+                              manterDadosPreRepasse:
+                                type: boolean
+                              idCobrancaFase:
+                                type: integer
+                              idPeriodo:
+                                type: integer
+                              ligacaoCorte:
+                                type: object
+                                properties:
+                                  idLigacao:
+                                    type: integer
+                                  dataCorte:
+                                    type: string
+                                  idTipoCorte:
+                                    type: integer
+                                  leituraCorte:
+                                    type: integer
+                                  residuoCorte:
+                                    type: integer
+                                  residuoPendente:
+                                    type: integer
+                                  residuoPendenteUtilizado:
+                                    type: integer
+                                  leituraReligacao:
+                                    type: integer
+                                  fraude:
+                                    type: string
+                                  idCicloUsoResiduo:
+                                    type: integer
+                                  obs:
+                                    type: string
+                                  dataReligacao:
+                                    type: string
+                              religacao:
+                                type: object
+                                properties:
+                                  religPosSupressao:
+                                    type: string
+                                  idLigacao:
+                                    type: integer
+                                  residuoReligacao:
+                                    type: integer
+                                  leituraCorte:
+                                    type: integer
+                                  idCicloUsoResiduo:
+                                    type: integer
+                                  religada:
+                                    type: string
+                                  dataCorte:
+                                    type: string
+                              idTipoMacroMedidor:
+                                type: integer
+                              idLigacaoMacroMedidor:
+                                type: integer
+                              calculoConsumo:
+                                type: object
+                                properties:
+                                  idLigacao:
+                                    type: integer
+                                  consMedido:
+                                    type: integer
+                                  consMedidoPreRepasse:
+                                    type: integer
+                                  consMedidoIndividualOri:
+                                    type: integer
+                                  consMedidoIndividual:
+                                    type: integer
+                                  consMedidoIndividualPreRepasse:
+                                    type: integer
+                                  consMedidoIndividualOriPreRepasse:
+                                    type: integer
+                                  idExcecaoMedido:
+                                    type: integer
+                                  nrPonteiros:
+                                    type: integer
+                                  leitMedidorRet:
+                                    type: integer
+                                  leitMedidorNovo:
+                                    type: integer
+                                  idPeriodoTrocaMedidor:
+                                    type: integer
+                                  nrEconomias:
+                                    type: integer
+                                  idCritFat:
+                                    type: integer
+                                  volResidual:
+                                    type: integer
+                                  volResidualPreRepasse:
+                                    type: integer
+                                  volResidualUtilizado:
+                                    type: integer
+                                  volResidualUtilizadoPreRepasse:
+                                    type: integer
+                                  medidorTrocado:
+                                    type: boolean
+                                  confirmarLeitura:
+                                    type: boolean
+                                  idCriticaMedicao:
+                                    type: integer
+                                  idCriticaMedicaoPreRepasse:
+                                    type: integer
+                                  creditoAteVolMin:
+                                    type: integer
+                                  creditoAteVolMinPreRepasse:
+                                    type: integer
+                                  creditoAcimaVolMin:
+                                    type: integer
+                                  creditoAcimaVolMinPreRepasse:
+                                    type: integer
+                                  creditoAteVolMinCicloAnt:
+                                    type: integer
+                                  creditoAcimaVolMinCicloAnt:
+                                    type: integer
+                                  volResidualCicloAnt:
+                                    type: integer
+                                  volResidualUtilizadoCicloAnt:
+                                    type: integer
+                                  volResidualUtilizadoCicloAntPreRepasse:
+                                    type: integer
+                                  mediaConsMedido:
+                                    type: integer
+                                  mediaConsMedidoPreRepasse:
+                                    type: integer
+                                  critFatFixo:
+                                    type: boolean
+                                  nrDiasConsLigNova:
+                                    type: integer
+                                  idProdutoMediaFat:
+                                    type: integer
+                                  idLigacaoConsolidadora:
+                                    type: integer
+                                  consolidadora:
+                                    type: boolean
+                                  ligacaoNovaNaoCobrada:
+                                    type: boolean
+                                  siglaCriticaMedicao:
+                                    type: string
+                                  calculoConsumoExcecao:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        idLigacao:
+                                          type: integer
+                                        idExcecao:
+                                          type: integer
+                                        idExcecaoTipo:
+                                          type: integer
+                                        idExcecaoAplicacao:
+                                          type: integer
+                                        idTipoFaturamento:
+                                          type: integer
+                                        idProduto:
+                                          type: integer
+                                        percentual:
+                                          type: integer
+                                        valor:
+                                          type: integer
+                                        momentoCalculo:
+                                          type: string
+                                        idLigacaoExcecao:
+                                          type: integer
+                                        idExcecaoMotivo:
+                                          type: integer
+                                        automatica:
+                                          type: boolean
+                                        aplicarExcecaoLigacaooCortada:
+                                          type: boolean
+                                  calculoConsumoProduto:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        idLigacao:
+                                          type: integer
+                                        idProduto:
+                                          type: integer
+                                        tipoProduto:
+                                          type: string
+                                        volFatOri:
+                                          type: integer
+                                        volFatConsOri:
+                                          type: integer
+                                        idExcecaoFat:
+                                          type: integer
+                                        volFatCons:
+                                          type: integer
+                                        volFat:
+                                          type: integer
+                                        mediaConsFat:
+                                          type: integer
+                                        mediaConsFatOriginal:
+                                          type: integer
+                                        volFatSomaFilhos:
+                                          type: integer
+                                        volMedSomaFilhos:
+                                          type: integer
+                                        credAteVolMin:
+                                          type: integer
+                                        credAcimaVolMin:
+                                          type: integer
+                                        creditoUtilizado:
+                                          type: integer
+                                        isentoConsolidacao:
+                                          type: boolean
+                                        cortado:
+                                          type: boolean
+                                        novo:
+                                          type: boolean
+                                        produtoNovo:
+                                          type: boolean
+                                        idTipoCalculo:
+                                          type: integer
+                                        bloqueiaDesconsiderarMedia:
+                                          type: string
+                                        estimavel:
+                                          type: boolean
+                                        cobrarConsumoNaoFaturadoProximoCiclo:
+                                          type: boolean
+                                        volConsumoMinimo:
+                                          type: integer
+                                        nrDiasConsumo:
+                                          type: integer
+                                        volumeRemanescente:
+                                          type: integer
+                                        colCalculoConsumoProdutoCategoria:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              idMedicaoDetalheProduto:
+                                                type: integer
+                                              idCategoria:
+                                                type: integer
+                                              volumeFaturado:
+                                                type: integer
+                                        idMedicaoDetalheProduto:
+                                          type: integer
+                                        existeVolumeRemanescente:
+                                          type: boolean
+                                  idTipoFaturamento:
+                                    type: integer
+                                  idTipoFaturamentoCons:
+                                    type: integer
+                                  binTipoFaturamento:
+                                    type: integer
+                                  binTipoFaturamentoCons:
+                                    type: integer
+                                  binTipoFaturamentoConsLigacao:
+                                    type: integer
+                                  idCidade:
+                                    type: integer
+                                  dataInstalacaoAgua:
+                                    type: string
+                                  dataInstalacaoEsgoto:
+                                    type: string
+                                  nrDiasConsLigacaoAgua:
+                                    type: integer
+                                  nrDiasConsLigacaoEsgoto:
+                                    type: integer
+                                  idTipoCalculoProdMediaFat:
+                                    type: integer
+                                  criticaRepasseSimultanea:
+                                    type: string
+                                  limiteInferior:
+                                    type: boolean
+                              coletorDetalheAlteracao:
+                                type: object
+                                properties:
+                                  idLigacao:
+                                    type: integer
+                                  endNovo:
+                                    type: string
+                                  nrMedidorNovo:
+                                    type: string
+                                  categoriaNova:
+                                    type: string
+                                  nrPonteirosNovo:
+                                    type: integer
+                                  observacao:
+                                    type: string
+                                  msgLivre:
+                                    type: string
+                                  idSituacaoCavaleteNovo:
+                                    type: integer
+                                  nomeCliente:
+                                    type: string
+                                  ligacaoCategoria:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        idCategoria:
+                                          type: integer
+                                        idSubCategoria:
+                                          type: integer
+                                        qtdEconomia:
+                                          type: integer
+                                        categoria:
+                                          type: string
+                                        subCategoria:
+                                          type: string
+                                        percentualFat:
+                                          type: integer
+                                        identTabela:
+                                          type: integer
+                                        idUnidadeMensuracao:
+                                          type: integer
+                                        unidadeMensuracao:
+                                          type: string
+                                        valorUnidade:
+                                          type: integer
+                                        volumeEstimado:
+                                          type: integer
+                                        pesoFaturado:
+                                          type: integer
+                                        baseCalc:
+                                          type: integer
+                                        corLinha:
+                                          type: string
+                                        categoriaPrincipal:
+                                          type: boolean
+                              volMedido:
+                                type: integer
+                              volMedidoOri:
+                                type: integer
+                              volMedidoConsolidado:
+                                type: integer
+                              idCriticaMedicao:
+                                type: integer
+                              idCodLeitura:
+                                type: integer
+                              volFat:
+                                type: integer
+                              volFatOri:
+                                type: integer
+                              volFatCons:
+                                type: integer
+                              anaCritEfetuada:
+                                type: string
+                              coletorDetalheFatura:
+                                type: object
+                                properties:
+                                  idFatura:
+                                    type: integer
+                                  idLigacao:
+                                    type: integer
+                                  idCidade:
+                                    type: integer
+                                  idPeriodo:
+                                    type: integer
+                                  idGrupo:
+                                    type: integer
+                                  entregaCliente:
+                                    type: integer
+                                  enderecoAlternativo:
+                                    type: boolean
+                                  valorTotalFatura:
+                                    type: integer
+                                  valorCreditoRemanescenteTotal:
+                                    type: integer
+                                  dataVencimento:
+                                    type: string
+                                  faturaImpressa:
+                                    type: boolean
+                                  valorTotalImpostoAproximado:
+                                    type: integer
+                                  baseCalculoTotalImpostoAproximado:
+                                    type: integer
+                                  percentualTotalImpostoAproximado:
+                                    type: integer
+                              colColetorDetalheCategoria:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    idFatura:
+                                      type: integer
+                                    idLigacao:
+                                      type: integer
+                                    idCidade:
+                                      type: integer
+                                    idGrupo:
+                                      type: integer
+                                    idPeriodo:
+                                      type: integer
+                                    idLeituraDetalhe:
+                                      type: integer
+                                    idCategoria:
+                                      type: integer
+                                    idSubCategoria:
+                                      type: integer
+                                    qtdEconomias:
+                                      type: integer
+                                    peso:
+                                      type: integer
+                                    consumo:
+                                      type: integer
+                                    economiasAgua:
+                                      type: integer
+                                    valorAgua:
+                                      type: integer
+                                    economiasEsgoto:
+                                      type: integer
+                                    valorEsgoto:
+                                      type: integer
+                              empresaCliente:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    codigoEmpresa:
+                                      type: integer
+                                    valorCalculadoTodosProdutos:
+                                      type: integer
+                                    valorServicoEmpresa:
+                                      type: integer
+                                    valorCreditoEmpresa:
+                                      type: integer
+                                    valorCreditoRemanescenteEmpresa:
+                                      type: integer
+                                    valorTotalEmpresa:
+                                      type: integer
+                                    valorArsaeEmpresa:
+                                      type: integer
+                                    coletorDetalheProdutoVOs:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          codigoProduto:
+                                            type: integer
+                                          situacaoProduto:
+                                            type: integer
+                                          valorCalculadoProduto:
+                                            type: integer
+                                          valorServicoProduto:
+                                            type: integer
+                                          valorCreditoProduto:
+                                            type: integer
+                                          valorArsaeProduto:
+                                            type: integer
+                                          valorCreditoRemanescenteProduto:
+                                            type: integer
+                                          valorTotalProduto:
+                                            type: integer
+                                          volFat:
+                                            type: integer
+                                          colCategoria:
+                                            type: array
+                                            items:
+                                              type: object
+                                              properties:
+                                                codigo:
+                                                  type: integer
+                                                consumo:
+                                                  type: integer
+                                                economias:
+                                                  type: integer
+                                                valor:
+                                                  type: integer
+                                                aliquotaISS:
+                                                  type: integer
+                                                aliquotaICMS:
+                                                  type: integer
+                                                aliquotaPis:
+                                                  type: integer
+                                                aliquotaCofins:
+                                                  type: integer
+                                                aliquotaINSS:
+                                                  type: integer
+                                                baseCalculoISS:
+                                                  type: integer
+                                                baseCalculoICMS:
+                                                  type: integer
+                                                baseCalculoPis:
+                                                  type: integer
+                                                baseCalculoCofins:
+                                                  type: integer
+                                                baseCalculoINSS:
+                                                  type: integer
+                                                baseCalculoGeral:
+                                                  type: integer
+                                                valorISS:
+                                                  type: integer
+                                                valorICMS:
+                                                  type: integer
+                                                valorPis:
+                                                  type: integer
+                                                valorCofins:
+                                                  type: integer
+                                                valorINSS:
+                                                  type: integer
+                                                idRubrica:
+                                                  type: integer
+                                          colExcecao:
+                                            type: array
+                                            items:
+                                              type: object
+                                              properties:
+                                                idExcecao:
+                                                  type: integer
+                                                idRubrica:
+                                                  type: integer
+                                                volumeLimite:
+                                                  type: integer
+                                                valor:
+                                                  type: integer
+                                                valorImpresso:
+                                                  type: integer
+                                                excecaoAplicada:
+                                                  type: string
+                                                aliquotaISS:
+                                                  type: integer
+                                                aliquotaICMS:
+                                                  type: integer
+                                                aliquotaPis:
+                                                  type: integer
+                                                aliquotaCofins:
+                                                  type: integer
+                                                aliquotaINSS:
+                                                  type: integer
+                                                baseCalculoISS:
+                                                  type: integer
+                                                baseCalculoICMS:
+                                                  type: integer
+                                                baseCalculoPis:
+                                                  type: integer
+                                                baseCalculoCofins:
+                                                  type: integer
+                                                baseCalculoINSS:
+                                                  type: integer
+                                                baseCalculoGeral:
+                                                  type: integer
+                                                valorISS:
+                                                  type: integer
+                                                valorICMS:
+                                                  type: integer
+                                                valorPis:
+                                                  type: integer
+                                                valorCofins:
+                                                  type: integer
+                                                valorINSS:
+                                                  type: integer
+                                          idTipoCalculoFaturado:
+                                            type: integer
+                                          volumeRemanescente:
+                                            type: integer
+                                    coletorDetalheServicoVOs:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          idLeituraDetalheEmpresa:
+                                            type: integer
+                                          descricao:
+                                            type: string
+                                          nrParcelas:
+                                            type: integer
+                                          parcela:
+                                            type: integer
+                                          valor:
+                                            type: integer
+                                          valorImpresso:
+                                            type: integer
+                                          credito:
+                                            type: string
+                                          gerarCreditoRemanescente:
+                                            type: string
+                                          coletorDetalheExcecaoServicoVOs:
+                                            type: array
+                                            items:
+                                              type: object
+                                              properties:
+                                                idLeituraDetalheServico:
+                                                  type: integer
+                                                idExcecao:
+                                                  type: integer
+                                                codigoInterno:
+                                                  type: integer
+                                                idRubrica:
+                                                  type: integer
+                                                valor:
+                                                  type: integer
+                                                valorImpresso:
+                                                  type: integer
+                                                imprimirRubrica:
+                                                  type: string
+                                                aliquotaISS:
+                                                  type: integer
+                                                aliquotaICMS:
+                                                  type: integer
+                                                aliquotaPis:
+                                                  type: integer
+                                                aliquotaCofins:
+                                                  type: integer
+                                                aliquotaINSS:
+                                                  type: integer
+                                                baseCalculoISS:
+                                                  type: integer
+                                                baseCalculoICMS:
+                                                  type: integer
+                                                baseCalculoPis:
+                                                  type: integer
+                                                baseCalculoCofins:
+                                                  type: integer
+                                                baseCalculoINSS:
+                                                  type: integer
+                                                baseCalculoGeral:
+                                                  type: integer
+                                                valorISS:
+                                                  type: integer
+                                                valorICMS:
+                                                  type: integer
+                                                valorPis:
+                                                  type: integer
+                                                valorCofins:
+                                                  type: integer
+                                                valorINSS:
+                                                  type: integer
+                                          codigoInterno:
+                                            type: integer
+                                          aliquotaISS:
+                                            type: integer
+                                          aliquotaICMS:
+                                            type: integer
+                                          aliquotaPis:
+                                            type: integer
+                                          aliquotaCofins:
+                                            type: integer
+                                          aliquotaINSS:
+                                            type: integer
+                                          baseCalculoISS:
+                                            type: integer
+                                          baseCalculoICMS:
+                                            type: integer
+                                          baseCalculoPis:
+                                            type: integer
+                                          baseCalculoCofins:
+                                            type: integer
+                                          baseCalculoINSS:
+                                            type: integer
+                                          baseCalculoGeral:
+                                            type: integer
+                                          valorISS:
+                                            type: integer
+                                          valorICMS:
+                                            type: integer
+                                          valorPis:
+                                            type: integer
+                                          valorCofins:
+                                            type: integer
+                                          valorINSS:
+                                            type: integer
+                              volumeEstimado:
+                                type: integer
+                              volConsMinimo:
+                                type: integer
+                              volConsMinimoFat:
+                                type: integer
+                              liglogradouro:
+                                type: string
+                              ligtitulo:
+                                type: string
+                              ligtipo:
+                                type: string
+                              lignumero:
+                                type: string
+                              ligbairro:
+                                type: string
+                              ligcomplemento:
+                                type: string
+                              ligcep:
+                                type: string
+                              seq:
+                                type: integer
+                              seqAnterior:
+                                type: integer
+                              ligacaoAutoLeitura:
+                                type: boolean
+                              reterConta:
+                                type: boolean
+                              nrEconomiaCons:
+                                type: integer
+                              leituraHM:
+                                type: integer
+                              coletarCoordenadaGPS:
+                                type: boolean
+                              latitudeGPS:
+                                type: string
+                              longitudeGPS:
+                                type: string
+                              volumeReduzido:
+                                type: integer
+                              nrDiasConsumo:
+                                type: integer
+                              msgRetencaoForcada:
+                                type: string
+                              dataInstalacaoAgua:
+                                type: string
+                              dataInstalacaoEsgoto:
+                                type: string
+                              colColetorDetalheCoeficiente:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    codigo:
+                                      type: string
+                              idFonteAlternativa:
+                                type: integer
+                              fonteAlternativaAplicarMinimo:
+                                type: boolean
+                              percentualEsgoto:
+                                type: integer
+                              imovelDesabitado:
+                                type: boolean
+                              codigoAlarme:
+                                type: integer
+                              hd:
+                                type: string
+                              listFoto:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    idLigacaoDocumento:
+                                      type: integer
+                                    enderecoImagem:
+                                      type: string
+                                    idOcorrenciaLeitura:
+                                      type: integer
+                                    imagemBase64:
+                                      type: string
+                              situacaoCavaleteNova:
+                                type: string
+                              avisoDebitoEmitido:
+                                type: boolean
+                              idEntregaAvisoDebito:
+                                type: integer
+                              idMensagemNotificacao:
+                                type: integer
+                              idLeituristaPreRepasse:
+                                type: integer
+                              dataRepasse:
+                                type: string
+                              horaRepasse:
+                                type: string
+                              endereco:
+                                type: string
+                              nome:
+                                type: string
+                              ligacao:
+                                type: string
+                              msgPrevencaoColetor:
+                                type: string
+                              avisoDebitoImpressoCorretamente:
+                                type: boolean
+                              rota:
+                                type: integer
+                              enviadoColetor:
+                                type: boolean
+                              retornadoColetor:
+                                type: boolean
+                              calculoConsumoRealizado:
+                                type: boolean
+                              faturasEntregaAlternativa:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    idFatura:
+                                      type: integer
+                                    idEntregaAvisoDebito:
+                                      type: integer
+                                    faturaImpressa:
+                                      type: boolean
+                              impressoReaviso:
+                                type: boolean
+                              colunaCor:
+                                type: integer
+                              original:
+                                type: boolean
+                          idParctoOrigem:
+                            type: integer
+                          dataEmissaoOrigem:
+                            type: string
+                          cadastroAtual:
+                            type: boolean
+                    seqPeriodoFatura:
+                      type: integer
+              colArrecadacaoTipoRegistroDataCreditoVO:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    dataCredito:
+                      type: string
+                    qtdRegistros:
+                      type: integer
+                    valor:
+                      type: integer
+        dvCodigoCliente:
+          type: boolean
+        arquivoParcialRajada:
+          type: boolean
+        idCidade:
+          type: integer
+        numeroBanco:
+          type: integer
+      x-examples:
+        Example 1:
+          id: 0
+          idArrecadador: -1
+          idUnidadeOperacional: -1
+          idUsuarioImportacao: -1
+          dataGeracaoArquivo: ''
+          arrecadador: ''
+          codConvenio: ''
+          arquivo: ''
+          tipoBaixa: ''
+          sequencia: 0
+          debitoAutomatico: false
+          qtdRegistoArquivo: 0
+          qtdRegistoArquivoCorreto: 0
+          qtdRegistoArquivoInconsistente: 0
+          valorTotalArquivo: 0
+          valorTotalArrecadado: 0
+          falhaIntegridade: false
+          falhaIncosistencia: false
+          falhaNSA: false
+          salvar: false
+          arrecadacaoTipoRegistro:
+            - idTipoRegistro: -1
+              tipoRegistro: ' '
+              descricao: ''
+              qtdeRegistro: 0
+              qtdeRegistroCorreto: 0
+              qtdeRegistroInconsistente: 0
+              valor: 0
+              mostrar: false
+              nivelErro: 1
+              arrecadacaoDetalhe:
+                - codBarraInconsistente: ''
+                  slip: 0
+                  verCodBarra: 0
+                  idTipoTransacao: -1
+                  tipoTransacao: ''
+                  idFatura: -1
+                  idFaturaBaixa: -1
+                  idGuia: -1
+                  idFaturaSituacao: -1
+                  idPeriodo: -1
+                  idCidade: -1
+                  periodo: ''
+                  idLigacao: -1
+                  dataPagto: ''
+                  dataCredito: ''
+                  valor: 0
+                  valorRepassado: 0
+                  valorFatura: 0
+                  valorGuia: 0
+                  idTipoMovimentoDA: -1
+                  tipoMovimentoDA: ''
+                  codigoClienteRegistroB: ''
+                  agencia: ''
+                  contaCorrente: ''
+                  dataOpcaoDA: ''
+                  dataVenctoDebito: ''
+                  idDebitoAutomaticoRetorno: ''
+                  debitoAutomaticoRetorno: ''
+                  tipoRetorno: ''
+                  gravarHistoricoRetornoDA: false
+                  idInconsistenciaArrec: 0
+                  situacao: ''
+                  obs: ''
+                  nivelErro: 0
+                  pagamentoInconsistente: false
+                  alteracaoDA: false
+                  valorAcrescimos: 0
+                  idTipoRetorno: 0
+                  dvCliente: ''
+                  posic94100: 0
+                  quantRepetidos: 0
+                  posic108116: ''
+                  posic116117: ''
+                  enviado: ''
+                  codigoBarraSemDV: ''
+                  dvCodigoBarra: 1
+                  taxaPercentualFoz: 0
+                  taxaBanco: 0
+                  taxaFoz: 0
+                  taxaPoderConcedente: 0
+                  faturasNegociadas:
+                    - idFaturaOrigem: 1
+                      idLigacao: 0
+                      idLigacaoEntrega: 0
+                      idLigacaoConsolidadora: 0
+                      idPeriodo: 0
+                      idPeriodoImpressao: 0
+                      faturaSituacao: ''
+                      valorDebitos: 0
+                      leituraAtual: 0
+                      volMedido: 0
+                      dataLeitura: ''
+                      volFat: 0
+                      dataVencimento: ''
+                      dataEntrega: ''
+                      dataPagto: ''
+                      colFaturaDetalheVO:
+                        - parcela: 0
+                          nrParcelas: 1
+                          idRubrica: 0
+                          idTipoExcecao: 0
+                          idClassificacaoFiscalRubrica: 0
+                          valor: 0
+                          volFatIndividual: 0
+                          colFaturaDetalheImpostoVO:
+                            - idRubrica: 0
+                              valor: 0
+                              rubrica: ''
+                          idProduto: 0
+                          idVendaDetalheParcela: 0
+                          valorImposto: 0
+                          valorTotal: 0
+                          idExcecao: 0
+                          idExcecaoAplicacao: 0
+                          idLigacaoExcecao: 0
+                          parcelamento: false
+                          idPeriodoRef: -1
+                          periodoRef: ''
+                          mes: 0
+                          ano: 0
+                          exibirFatura: true
+                          considerarTotalFatura: true
+                          idGrupoExibe: 0
+                          rubrica: ''
+                          rubricaResumida: ''
+                          idGrupoRubrica: 0
+                          idGrupoReceita: -1
+                          produto: ''
+                          poderConcedente: ''
+                          referencia: ''
+                          idLigacaoSeguro: 0
+                          codRubrica: ''
+                          aliquotaISS: 0
+                          aliquotaICMS: 0
+                          aliquotaPis: 0
+                          aliquotaCofins: 0
+                          aliquotaINSS: 0
+                          baseCalculoISS: 0
+                          baseCalculoICMS: 0
+                          baseCalculoPis: 0
+                          baseCalculoCofins: 0
+                          baseCalculoINSS: 0
+                          baseCalculoGeral: 0
+                          valorISS: 0
+                          valorICMS: 0
+                          valorPis: 0
+                          valorCofins: 0
+                          valorINSS: 0
+                          valorGeral: 0
+                      colFaturaExcecaoVO:
+                        - idProduto: 0
+                          idVendaDetalheParcela: 0
+                          valorImposto: 0
+                          valorTotal: 0
+                          idExcecao: 0
+                          idExcecaoAplicacao: 0
+                          idLigacaoExcecao: 0
+                          parcelamento: false
+                          idPeriodoRef: -1
+                          periodoRef: ''
+                          mes: 0
+                          ano: 0
+                          exibirFatura: true
+                          considerarTotalFatura: true
+                          idGrupoExibe: 0
+                          rubrica: ''
+                          rubricaResumida: ''
+                          idGrupoRubrica: 0
+                          idGrupoReceita: -1
+                          produto: ''
+                          poderConcedente: ''
+                          referencia: ''
+                          idLigacaoSeguro: 0
+                          codRubrica: ''
+                          aliquotaISS: 0
+                          aliquotaICMS: 0
+                          aliquotaPis: 0
+                          aliquotaCofins: 0
+                          aliquotaINSS: 0
+                          baseCalculoISS: 0
+                          baseCalculoICMS: 0
+                          baseCalculoPis: 0
+                          baseCalculoCofins: 0
+                          baseCalculoINSS: 0
+                          baseCalculoGeral: 0
+                          valorISS: 0
+                          valorICMS: 0
+                          valorPis: 0
+                          valorCofins: 0
+                          valorINSS: 0
+                          valorGeral: 0
+                          excecao: ''
+                          idLigacao: 0
+                          idExcecaoTipo: 0
+                          tipoFaturamento: ''
+                          percentual: 0
+                          valor: 0
+                          carga: 0
+                          dia: '0'
+                          idClassificacaoFiscal: 0
+                          idExcecaoMotivo: 0
+                          observacao: ''
+                          automatica: false
+                          momentoCalculo: F
+                          ordemAplicacao: 0
+                          ordemTipo: 0
+                          excecaoAplicada: S
+                          retroativo: false
+                          consideraCriticaConsumoSimultanea: ''
+                          retencaoForcada: ''
+                      idCidade: 0
+                      valor: 0
+                      valorImposto: 0
+                      idFaturaSituacao: 0
+                      idTipoCobranca: 0
+                      idGrupo: 0
+                      idGrupoEntrega: 0
+                      idTipoTransacao: 0
+                      tipoTransacao: ''
+                      idUsuarioCancto: 0
+                      nrEconCons: 0
+                      enviado: false
+                      enviadoCancelamento: false
+                      idTaxaFinanciamento: 0
+                      houvePagamento: false
+                      idFaturaOriginal: 0
+                      ordemGrupoEntrega: 0
+                      ordemGrupoLeitura: 0
+                      mensagensPrevencao: ''
+                      periodo: ''
+                      idConsolidacaoArrecadacao: 0
+                      faturaEmitida: 'N'
+                      colCategorias:
+                        - idCategoria: 0
+                          nrEconomias: 0
+                          peso: 0
+                          idSubCategoria: 0
+                          idLigacao: 0
+                          prioridade: 0
+                          volConsMinimo: 0
+                          percentualFat: 0
+                          taxadeservico: 0
+                          aluguelhidrometro: 0
+                          idrubrica: 0
+                          valorconsumozero: 0
+                      idTipoParcelamentoAcordo: 0
+                      idFaturaBaixa: 0
+                      vendaCreditoVO:
+                        observacao: string
+                        valor: 1.1
+                        valor_imposto: 1.1
+                        venda_rubrica_vo:
+                          - id_rubrica: 1
+                            codigo: string
+                            deb_cred: string
+                            rubrica: string
+                            valor: 1.1
+                            valor_imposto: 1.1
+                            valor_entrada: 1.1
+                            vencimento: string
+                            nr_parcelas: 1
+                            id_periodo_inicial: 1
+                            venda_rubrica_detalhe_vo:
+                              - id_rubrica: 1
+                                id_fatura_incorp: 1
+                                id_periodo_incorp: 1
+                                id_periodo_ref: 1
+                                preiodo_incorp: string
+                                rubrica: string
+                                nr_parcela: 1
+                                nr_parcelas: 1
+                                valor_faturado: 1.1
+                                valor_a_faturar: 1.1
+                                valor_imposto_faturado: 1.1
+                                valor_imposto_a_faturar: 1.1
+                                fatura_a_vulsa: true
+                                vencimento: string
+                                id_ligacao_seguro: 1
+                                venda_rubrica_detalhe_imposto_vo:
+                                  - id_rubrica: 1
+                                    valor: 1.1
+                            id_classificacao_fiscal: 1
+                            id_classificacao_fiscal_rubrica: 1
+                            item_rubrica_vo:
+                              descr: string
+                              codigo: string
+                              deb_cred: string
+                              valor: 1.1
+                              id_classificacao_fiscal_rubrica: 1
+                              item_rubrica_imp_vo:
+                                - id_rubrica_imp: 1
+                                  percentual: 1.1
+                            id_servico_pai: 1
+                            id_os_detalhe: 1
+                            valor_uf_ir: 1.1
+                        id_ligacao: 1
+                        id_ligacao_entrega: 1
+                        id_tipo_venda: 1
+                        data: string
+                        id_faturas:
+                          - id: 1
+                        id_cidade: 1
+                        id_grupo: 1
+                        id_grupo_entrega: 1
+                        id_cliente: 1
+                        id_usuario_cadastro: 1
+                        id_ligacao_consolidadora: 1
+                        id_periodos_faturas_a_recalcular:
+                          - id: 1
+                        id_taxa_financiamento: 1
+                        id_fatura_origem: 1
+                        id_parcelamento: 1
+                        id_tipo_parcelamento_acordo: 1
+                        id_class_consumo: 1
+                        col_categorias:
+                          - id_categoria: 1
+                            nr_economias: 1
+                            peso: 1
+                            id_sub_categoria: 1
+                            id_ligacao: 1
+                            prioridade: 1
+                            vol_cons_minimo: 1.1
+                            percentual_fat: 1
+                            taxa_de_servico: 1.1
+                            aluguel_hidrometro: 1.1
+                            id_rubrica: 1
+                            valor_consumo_zero: 1.1
+                        valor_uf_ir: 1.1
+                        id_cliente_inquilino: 1
+                        id_classificacao_venda: 1
+                      nome: ''
+                      cpf: ''
+                      cnpj: ''
+                      calculoConsumoSimultanea: ''
+                      tipoLeitura: ''
+                      anacritefetuada: ''
+                      emissao: ''
+                      situacao: ''
+                      alteracao: ''
+                      faturaDebitos:
+                        - idFatura: 0
+                          idFaturaEmAtraso: 0
+                          periodo: ''
+                          vencimento: ''
+                          valorTotal: 0
+                          valor: 0
+                          valorImposto: 0
+                      faturaImportada: 'N'
+                      enviaColetor: 'N'
+                      colCoeficienteReducao:
+                        - 1
+                      dataPagamentoProvisorio: ''
+                      idClassConsumo: 0
+                      idFaturaRecalculada: 0
+                      utilizar: false
+                      sel: false
+                      pertenceConsolidacaoArrecadacao: false
+                      valorTCL: 0
+                      nrDiasConsumo: 0
+                      idTipoFaturamento: 1
+                      idProcessoCorte: 0
+                      msg: ''
+                      valorTotalImpostoAproximado: 1.1
+                      baseCalculoTotalImpostoAproximado: 1.1
+                      percentualTotalImpostoAproximado: 1.1
+                      calculadoRecursosHidricos: false
+                      impostoInformativoCalculado: false
+                      idCategoriaPrincipal: 0
+                      idSubCategoriaPrincipal: 0
+                      idClienteInquilino: 1
+                      idContratoNegociacao: 1
+                      seqPeriodoInicioContratoNegociacao: 1
+                      encargoAdiantado: false
+                      idOrgaoPublico: 1
+                      idOrgaoprivateo: 1
+                      idTipoEntrega: 1
+                      emailDestinatario: ''
+                      email: ''
+                      assuntoEmail: ''
+                      corpoEmail: ''
+                      cidade: ''
+                      pagamentoParcialRajada: 'N'
+                      importadaSistemaTerceiros: 'N'
+                      idCobrancaFase: 0
+                      calculoConsolidacaoConsEfet: false
+                      timbrada: false
+                      calculadoTaxaRegulacao: false
+                      periodoImportacaoOrigem: ''
+                      dataMovimento: ''
+                      rcs: ''
+                      idRubrica: 0
+                      rubrica: ''
+                      diaInicioCobranca: 0
+                      diaFimCobranca: 0
+                      idTipoPeriodo: 0
+                      percentual: 0
+                      tipoTaxaAtraso: ''
+                      idTipoTaxaAtraso: 0
+                      idIndiceReajuste: 0
+                      idAtrasoEncargo: 0
+                      idRubricaOrigem: 0
+                      rubricaOrigem: ''
+                      dataPagamento: ''
+                      timbre: ''
+                      faturaImpressa: false
+                      enderecoAlternativo: false
+                      dadosMedicaoDet:
+                        idLigacao: 0
+                        idLigacaoConsolidadora: 0
+                        colFatDadosMedProdutoVO:
+                          - idProduto: 0
+                            produto: ''
+                            idRubrica: 0
+                            rubrica: ''
+                            volFat: 0
+                            volFatCons: 0
+                            idGrupoReceita: -1
+                            idLigacao: 0
+                        colFatDadosMedCategVO:
+                          - idCategoria: 0
+                            nrEconomias: 0
+                            peso: 0
+                            idSubCategoria: 0
+                            idLigacao: 0
+                            prioridade: 0
+                            volConsMinimo: 0
+                            percentualFat: 0
+                            taxadeservico: 0
+                            aluguelhidrometro: 0
+                            idrubrica: 0
+                            valorconsumozero: 0
+                        colFatDadosMedExcecaoVO:
+                          - idExcecao: 0
+                            idTipoFaturamento: 0
+                            percentual: 0
+                            valor: 0
+                            idExcecaoTipo: 0
+                            idExcecaoAplicacao: 0
+                            idLigacao: 0
+                        volMedido: 0
+                        leituraEfetuada: S
+                        ligacaoCortada: 'N'
+                        idTipoMacroMedidor: 0
+                        idLigacaoMacroMedidor: 0
+                        consolidadora: false
+                      coletorDetalhe:
+                        dataHoraLeitura: ''
+                        dataHoraUltimaLeitura: ''
+                        idLigacao: 0
+                        corteLight: false
+                        fiscCorte: false
+                        tipoCorte: 0
+                        rotaLeit: 0
+                        quadraLeit: 0
+                        seqLeitura: 0
+                        subUnidLeitura: 0
+                        idCodLeituraAnterior: 0
+                        idCodLeituraPreRepasse: 0
+                        leituraAnterior: 0
+                        leituraAtual: 0
+                        leituraReal: 0
+                        leituraAtualPreRepasse: 0
+                        idCodigoLeitura: 0
+                        mediaConsumo: 0
+                        mediaConsumoPreRepasse: 0
+                        idOcorLeitura1: -1
+                        idOcorLeitura2: -1
+                        idOcorLeitura3: -1
+                        idOcorLeituraPreRepasse1: 0
+                        idOcorLeituraPreRepasse2: 0
+                        idOcorLeituraPreRepasse3: 0
+                        nrDebitos: 0
+                        valTotDebitos: 0
+                        logradouro: ''
+                        nrImovel: 0
+                        complemento: ''
+                        nomeCliente: ''
+                        idDistrito: 0
+                        ligacaoNova: false
+                        leituraEfetuada: false
+                        leituraEfetuadaPreRepasse: false
+                        mensagensPrevencao: ''
+                        idMedidor: 0
+                        medidor: ''
+                        idTipoEntrega: 0
+                        categoria: ''
+                        maxIdCategoria: 0
+                        qtdCategorias: 0
+                        idLeituristaRepasse: 0
+                        idCliente: 0
+                        idTipoLigacao: 0
+                        nrTentativas: 0
+                        corteLightEfetuado: false
+                        idLigacaoProcessoCorteLight: 0
+                        idMotivoNaoExecCorteLight: 0
+                        validado: false
+                        manterDadosPreRepasse: false
+                        idCobrancaFase: 0
+                        idPeriodo: 0
+                        ligacaoCorte:
+                          idLigacao: 0
+                          dataCorte: ''
+                          idTipoCorte: 0
+                          leituraCorte: 0
+                          residuoCorte: 0
+                          residuoPendente: 0
+                          residuoPendenteUtilizado: 0
+                          leituraReligacao: 0
+                          fraude: 'N'
+                          idCicloUsoResiduo: 0
+                          obs: ''
+                          dataReligacao: ''
+                        religacao:
+                          religPosSupressao: 'N'
+                          idLigacao: 0
+                          residuoReligacao: 0
+                          leituraCorte: 0
+                          idCicloUsoResiduo: 0
+                          religada: 'N'
+                          dataCorte: ''
+                        idTipoMacroMedidor: 0
+                        idLigacaoMacroMedidor: 0
+                        calculoConsumo:
+                          idLigacao: 0
+                          consMedido: 0
+                          consMedidoPreRepasse: 0
+                          consMedidoIndividualOri: 0
+                          consMedidoIndividual: 0
+                          consMedidoIndividualPreRepasse: 0
+                          consMedidoIndividualOriPreRepasse: 0
+                          idExcecaoMedido: 0
+                          nrPonteiros: 0
+                          leitMedidorRet: 0
+                          leitMedidorNovo: 0
+                          idPeriodoTrocaMedidor: 0
+                          nrEconomias: 0
+                          idCritFat: 0
+                          volResidual: 0
+                          volResidualPreRepasse: 0
+                          volResidualUtilizado: 0
+                          volResidualUtilizadoPreRepasse: 0
+                          medidorTrocado: false
+                          confirmarLeitura: false
+                          idCriticaMedicao: 0
+                          idCriticaMedicaoPreRepasse: 0
+                          creditoAteVolMin: 0
+                          creditoAteVolMinPreRepasse: 0
+                          creditoAcimaVolMin: 0
+                          creditoAcimaVolMinPreRepasse: 0
+                          creditoAteVolMinCicloAnt: 0
+                          creditoAcimaVolMinCicloAnt: 0
+                          volResidualCicloAnt: 0
+                          volResidualUtilizadoCicloAnt: 0
+                          volResidualUtilizadoCicloAntPreRepasse: 0
+                          mediaConsMedido: 0
+                          mediaConsMedidoPreRepasse: 0
+                          critFatFixo: false
+                          nrDiasConsLigNova: 0
+                          idProdutoMediaFat: 0
+                          idLigacaoConsolidadora: 0
+                          consolidadora: false
+                          ligacaoNovaNaoCobrada: false
+                          siglaCriticaMedicao: ''
+                          calculoConsumoExcecao:
+                            - idLigacao: 0
+                              idExcecao: -1
+                              idExcecaoTipo: -1
+                              idExcecaoAplicacao: -1
+                              idTipoFaturamento: -1
+                              idProduto: -1
+                              percentual: 0
+                              valor: 0
+                              momentoCalculo: ''
+                              idLigacaoExcecao: -1
+                              idExcecaoMotivo: -1
+                              automatica: false
+                              aplicarExcecaoLigacaooCortada: true
+                          calculoConsumoProduto:
+                            - idLigacao: 0
+                              idProduto: 0
+                              tipoProduto: ''
+                              volFatOri: 0
+                              volFatConsOri: 0
+                              idExcecaoFat: 0
+                              volFatCons: 0
+                              volFat: 0
+                              mediaConsFat: 0
+                              mediaConsFatOriginal: 0
+                              volFatSomaFilhos: 0
+                              volMedSomaFilhos: 0
+                              credAteVolMin: 0
+                              credAcimaVolMin: 0
+                              creditoUtilizado: 0
+                              isentoConsolidacao: true
+                              cortado: true
+                              novo: false
+                              produtoNovo: false
+                              idTipoCalculo: 0
+                              bloqueiaDesconsiderarMedia: ''
+                              estimavel: false
+                              cobrarConsumoNaoFaturadoProximoCiclo: false
+                              volConsumoMinimo: 0
+                              nrDiasConsumo: 0
+                              volumeRemanescente: 0
+                              colCalculoConsumoProdutoCategoria:
+                                - idMedicaoDetalheProduto: 0
+                                  idCategoria: 0
+                                  volumeFaturado: 0
+                              idMedicaoDetalheProduto: 0
+                              existeVolumeRemanescente: false
+                          idTipoFaturamento: 0
+                          idTipoFaturamentoCons: 0
+                          binTipoFaturamento: 0
+                          binTipoFaturamentoCons: 0
+                          binTipoFaturamentoConsLigacao: 0
+                          idCidade: 0
+                          dataInstalacaoAgua: ''
+                          dataInstalacaoEsgoto: ''
+                          nrDiasConsLigacaoAgua: 0
+                          nrDiasConsLigacaoEsgoto: 0
+                          idTipoCalculoProdMediaFat: 0
+                          criticaRepasseSimultanea: ''
+                          limiteInferior: false
+                        coletorDetalheAlteracao:
+                          idLigacao: 0
+                          endNovo: ''
+                          nrMedidorNovo: ''
+                          categoriaNova: ''
+                          nrPonteirosNovo: 0
+                          observacao: ''
+                          msgLivre: ''
+                          idSituacaoCavaleteNovo: 0
+                          nomeCliente: ''
+                          ligacaoCategoria:
+                            - idCategoria: 0
+                              idSubCategoria: 0
+                              qtdEconomia: 0
+                              categoria: ''
+                              subCategoria: ''
+                              percentualFat: 1
+                              identTabela: 0
+                              idUnidadeMensuracao: 0
+                              unidadeMensuracao: ''
+                              valorUnidade: 0
+                              volumeEstimado: 0
+                              pesoFaturado: 0
+                              baseCalc: 0
+                              corLinha: ''
+                              categoriaPrincipal: false
+                        volMedido: 0
+                        volMedidoOri: 0
+                        volMedidoConsolidado: 0
+                        idCriticaMedicao: 0
+                        idCodLeitura: 0
+                        volFat: 0
+                        volFatOri: 0
+                        volFatCons: 0
+                        anaCritEfetuada: ''
+                        coletorDetalheFatura:
+                          idFatura: 0
+                          idLigacao: 0
+                          idCidade: 0
+                          idPeriodo: 0
+                          idGrupo: 0
+                          entregaCliente: 0
+                          enderecoAlternativo: false
+                          valorTotalFatura: 0
+                          valorCreditoRemanescenteTotal: 0
+                          dataVencimento: ''
+                          faturaImpressa: false
+                          valorTotalImpostoAproximado: 0
+                          baseCalculoTotalImpostoAproximado: 0
+                          percentualTotalImpostoAproximado: 0
+                        colColetorDetalheCategoria:
+                          - idFatura: 0
+                            idLigacao: 0
+                            idCidade: 0
+                            idGrupo: 0
+                            idPeriodo: 0
+                            idLeituraDetalhe: 0
+                            idCategoria: 0
+                            idSubCategoria: 0
+                            qtdEconomias: 0
+                            peso: 0
+                            consumo: 0
+                            economiasAgua: 0
+                            valorAgua: 0
+                            economiasEsgoto: 0
+                            valorEsgoto: 0
+                        empresaCliente:
+                          - codigoEmpresa: 0
+                            valorCalculadoTodosProdutos: 0
+                            valorServicoEmpresa: 0
+                            valorCreditoEmpresa: 0
+                            valorCreditoRemanescenteEmpresa: 0
+                            valorTotalEmpresa: 0
+                            valorArsaeEmpresa: 0
+                            coletorDetalheProdutoVOs:
+                              - codigoProduto: 0
+                                situacaoProduto: 0
+                                valorCalculadoProduto: 0
+                                valorServicoProduto: 0
+                                valorCreditoProduto: 0
+                                valorArsaeProduto: 0
+                                valorCreditoRemanescenteProduto: 0
+                                valorTotalProduto: 0
+                                volFat: 0
+                                colCategoria:
+                                  - codigo: 0
+                                    consumo: 0
+                                    economias: 0
+                                    valor: 0
+                                    aliquotaISS: 0
+                                    aliquotaICMS: 0
+                                    aliquotaPis: 0
+                                    aliquotaCofins: 0
+                                    aliquotaINSS: 0
+                                    baseCalculoISS: 0
+                                    baseCalculoICMS: 0
+                                    baseCalculoPis: 0
+                                    baseCalculoCofins: 0
+                                    baseCalculoINSS: 0
+                                    baseCalculoGeral: 0
+                                    valorISS: 0
+                                    valorICMS: 0
+                                    valorPis: 0
+                                    valorCofins: 0
+                                    valorINSS: 0
+                                    idRubrica: 0
+                                colExcecao:
+                                  - idExcecao: 0
+                                    idRubrica: 0
+                                    volumeLimite: 0
+                                    valor: 0
+                                    valorImpresso: 0
+                                    excecaoAplicada: ''
+                                    aliquotaISS: 0
+                                    aliquotaICMS: 0
+                                    aliquotaPis: 0
+                                    aliquotaCofins: 0
+                                    aliquotaINSS: 0
+                                    baseCalculoISS: 0
+                                    baseCalculoICMS: 0
+                                    baseCalculoPis: 0
+                                    baseCalculoCofins: 0
+                                    baseCalculoINSS: 0
+                                    baseCalculoGeral: 0
+                                    valorISS: 0
+                                    valorICMS: 0
+                                    valorPis: 0
+                                    valorCofins: 0
+                                    valorINSS: 0
+                                idTipoCalculoFaturado: 0
+                                volumeRemanescente: 0
+                            coletorDetalheServicoVOs:
+                              - idLeituraDetalheEmpresa: 0
+                                descricao: ''
+                                nrParcelas: 0
+                                parcela: 0
+                                valor: 0
+                                valorImpresso: 0
+                                credito: ''
+                                gerarCreditoRemanescente: ''
+                                coletorDetalheExcecaoServicoVOs:
+                                  - idLeituraDetalheServico: 0
+                                    idExcecao: 0
+                                    codigoInterno: 0
+                                    idRubrica: 0
+                                    valor: 0
+                                    valorImpresso: 0
+                                    imprimirRubrica: ''
+                                    aliquotaISS: 0
+                                    aliquotaICMS: 0
+                                    aliquotaPis: 0
+                                    aliquotaCofins: 0
+                                    aliquotaINSS: 0
+                                    baseCalculoISS: 0
+                                    baseCalculoICMS: 0
+                                    baseCalculoPis: 0
+                                    baseCalculoCofins: 0
+                                    baseCalculoINSS: 0
+                                    baseCalculoGeral: 0
+                                    valorISS: 0
+                                    valorICMS: 0
+                                    valorPis: 0
+                                    valorCofins: 0
+                                    valorINSS: 0
+                                codigoInterno: 0
+                                aliquotaISS: 0
+                                aliquotaICMS: 0
+                                aliquotaPis: 0
+                                aliquotaCofins: 0
+                                aliquotaINSS: 0
+                                baseCalculoISS: 0
+                                baseCalculoICMS: 0
+                                baseCalculoPis: 0
+                                baseCalculoCofins: 0
+                                baseCalculoINSS: 0
+                                baseCalculoGeral: 0
+                                valorISS: 0
+                                valorICMS: 0
+                                valorPis: 0
+                                valorCofins: 0
+                                valorINSS: 0
+                        volumeEstimado: 0
+                        volConsMinimo: 0
+                        volConsMinimoFat: 0
+                        liglogradouro: ''
+                        ligtitulo: ''
+                        ligtipo: ''
+                        lignumero: ''
+                        ligbairro: ''
+                        ligcomplemento: ''
+                        ligcep: ''
+                        seq: 0
+                        seqAnterior: 0
+                        ligacaoAutoLeitura: false
+                        reterConta: false
+                        nrEconomiaCons: 0
+                        leituraHM: -1
+                        coletarCoordenadaGPS: false
+                        latitudeGPS: ''
+                        longitudeGPS: ''
+                        volumeReduzido: 0
+                        nrDiasConsumo: 0
+                        msgRetencaoForcada: ''
+                        dataInstalacaoAgua: ''
+                        dataInstalacaoEsgoto: ''
+                        colColetorDetalheCoeficiente:
+                          - codigo: ''
+                        idFonteAlternativa: 0
+                        fonteAlternativaAplicarMinimo: false
+                        percentualEsgoto: 0
+                        imovelDesabitado: false
+                        codigoAlarme: 0
+                        hd: ''
+                        listFoto:
+                          - idLigacaoDocumento: 1
+                            enderecoImagem: ''
+                            idOcorrenciaLeitura: 0
+                            imagemBase64: ''
+                        situacaoCavaleteNova: ''
+                        avisoDebitoEmitido: false
+                        idEntregaAvisoDebito: 0
+                        idMensagemNotificacao: 0
+                        idLeituristaPreRepasse: 0
+                        dataRepasse: ''
+                        horaRepasse: ''
+                        endereco: ''
+                        nome: ''
+                        ligacao: ''
+                        msgPrevencaoColetor: ''
+                        avisoDebitoImpressoCorretamente: false
+                        rota: 0
+                        enviadoColetor: true
+                        retornadoColetor: true
+                        calculoConsumoRealizado: true
+                        faturasEntregaAlternativa:
+                          - idFatura: 0
+                            idEntregaAvisoDebito: 0
+                            faturaImpressa: false
+                        impressoReaviso: false
+                        colunaCor: 0
+                        original: false
+                      idParctoOrigem: 1
+                      dataEmissaoOrigem: ''
+                      cadastroAtual: false
+                  seqPeriodoFatura: 0
+              colArrecadacaoTipoRegistroDataCreditoVO:
+                - dataCredito: ''
+                  qtdRegistros: 0
+                  valor: 0
+          dvCodigoCliente: false
+          arquivoParcialRajada: false
+          idCidade: 0
+          numeroBanco: 0
+    BaixaManualDtoModel:
+      type: object
+      properties:
+        codConvenioArrecadacao:
+          type: string
+        idArrecadador:
+          type: integer
+        arrecadador:
+          type: string
+        seqArrecadador:
+          type: integer
+        qtdRegistro:
+          type: integer
+        codRemessa:
+          type: integer
+        IdentServico:
+          type: string
+        seqEnvioDebAuto:
+          type: string
+        valorTotal:
+          type: integer
+        baixaManualDetalhe:
+          type: array
+          items:
+            type: object
+            properties:
+              agencia:
+                type: string
+              dataPagamento:
+                type: string
+              dataCredito:
+                type: string
+              idFatura:
+                type: integer
+              idLigacao:
+                type: integer
+              vencimento:
+                type: string
+              idTipoTransacao:
+                type: integer
+              tipoTransacao:
+                type: string
+              idPeriodo:
+                type: integer
+              periodo:
+                type: string
+              valor:
+                type: integer
+              codigoBarras:
+                type: string
+              faturaImportada:
+                type: string
+              guia:
+                type: boolean
+              idFaturaSituacao:
+                type: integer
+              sequencia:
+                type: integer
+              idFaturaOriginal:
+                type: integer
+              caixa:
+                type: object
+                properties:
+                  idCaixaMovimento:
+                    type: integer
+                  idTipoMovimentoCaixa:
+                    type: integer
+                  dataMovimento:
+                    type: string
+                  idDocumento:
+                    type: integer
+                  valor:
+                    type: integer
+                  idUsuario:
+                    type: integer
+                  idcaixaoperacao:
+                    type: integer
+                  valorDinheiro:
+                    type: integer
+                  valorCheque:
+                    type: integer
+                  valorCartao:
+                    type: integer
+                  valorTransferencia:
+                    type: integer
+                  valorTroco:
+                    type: integer
+                  valorDivida:
+                    type: integer
+                  valorAbono:
+                    type: integer
+                  valorIncorporar:
+                    type: integer
+                  idFaturaAbonada:
+                    type: integer
+                  vlrFaturaAbonada:
+                    type: integer
+                  idArrecadacao:
+                    type: integer
+                  isSegVia:
+                    type: boolean
+              retornadocoletor:
+                type: string
+              faturaemitida:
+                type: string
+        numeroBanco:
+          type: integer
+        idCaixaMovimento:
+          type: integer
+        idCaixaOperacao:
+          type: integer
+        idArrecadacao:
+          type: integer
+      x-examples:
+        Example 1:
+          codConvenioArrecadacao: ' '
+          idArrecadador: -1
+          arrecadador: ''
+          seqArrecadador: -1
+          qtdRegistro: -1
+          codRemessa: 0
+          IdentServico: ''
+          seqEnvioDebAuto: ''
+          valorTotal: 0
+          baixaManualDetalhe:
+            - agencia: ''
+              dataPagamento: ''
+              dataCredito: ''
+              idFatura: -1
+              idLigacao: -1
+              vencimento: ''
+              idTipoTransacao: -1
+              tipoTransacao: ''
+              idPeriodo: -1
+              periodo: ''
+              valor: 0
+              codigoBarras: ''
+              faturaImportada: 'N'
+              guia: false
+              idFaturaSituacao: 0
+              sequencia: 1
+              idFaturaOriginal: -1
+              caixa:
+                idCaixaMovimento: 0
+                idTipoMovimentoCaixa: 0
+                dataMovimento: ''
+                idDocumento: 0
+                valor: 0
+                idUsuario: 0
+                idcaixaoperacao: 0
+                valorDinheiro: 0
+                valorCheque: 0
+                valorCartao: 0
+                valorTransferencia: 0
+                valorTroco: 0
+                valorDivida: 0
+                valorAbono: 0
+                valorIncorporar: 0
+                idFaturaAbonada: -1
+                vlrFaturaAbonada: 0
+                idArrecadacao: 1
+                isSegVia: false
+              retornadocoletor: ''
+              faturaemitida: ''
+          numeroBanco: 0
+          idCaixaMovimento: 0
+          idCaixaOperacao: 0
+          idArrecadacao: 1
   securitySchemes: {}
 x-extension-1: null
