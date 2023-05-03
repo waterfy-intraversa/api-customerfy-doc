@@ -6011,9 +6011,9 @@ paths:
                   $ref: '#/components/schemas/HistoricoInformativoDtoModel'
                   x-stoplight:
                     id: 4wds3ywop8j5y
-  /cronograma/gerfases/fase/fase-atual:
+  /gerfases/fase/fase-atual:
     get:
-      summary: GerFases - Leitura - Fase atual
+      summary: GerFases - Fase atual
       responses:
         '200':
           description: OK
@@ -8599,6 +8599,255 @@ paths:
             type: integer
           in: query
           name: i_idLigacao
+  /tramnite-encerramento/obter/servico-atributo:
+    get:
+      summary: Tramite Encerramento - Obter serviço atributo
+      tags:
+        - Tramite-Encerramento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServicoAtributoDtoModel'
+                  x-stoplight:
+                    id: onkzamc97mqv9
+      operationId: get-tramnite-encerramento-obter-servico-atributo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idServico
+  /tramite-encerramento/carrega/alteracao-cadastral:
+    get:
+      summary: Tramite Encerramento - Carrega alteração cadastral
+      tags:
+        - Tramite-Encerramento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlteracaoCadastralDtoModel'
+      operationId: get-tramite-encerramento-carrega-alteracao-cadastrla
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+    parameters: []
+  /os-mobile-carga-dados/obter/carga-os:
+    get:
+      summary: OS Mobile Carga Dados - Obter carga OS
+      tags:
+        - OS-Mobile-Carga-Dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DadosTramiteDtoModel'
+      operationId: get-os-mobile-carga-dados-obter-carga-os
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idOSDetalhe
+  /tramite-encerramento/obter/rubrica/os-detalhe:
+    get:
+      summary: Tramite Encerramento - Obter rubrica ordem serviço detalhe
+      tags:
+        - Tramite-Encerramento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServicoRubricaDtoModel'
+                  x-stoplight:
+                    id: u0ns0rz8ggfz3
+      operationId: get-tramite-encerramento-obter-rubrica-os-detalhe
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idOrdemServicoDetalhe
+  /tramite-encerramento/encerrar-os:
+    post:
+      summary: Tramite Encerramento - Encerrar ordem serviço
+      operationId: post-tramite-encerramento-encerrar-os
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Tramite-Encerramento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                os:
+                  $ref: '#/components/schemas/CadastroOSDtoModel'
+                  x-stoplight:
+                    id: nx9rmxrjo8p1b
+  /tramite-encerramento/tramitar-os:
+    post:
+      summary: Tramite Encerramento - Load ordem serviço
+      operationId: post-tramite-encerramento-tramitar-os
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Tramite-Encerramento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                os:
+                  $ref: '#/components/schemas/CadastroOSDtoModel'
+                  x-stoplight:
+                    id: awxy6s7mgepyf
+  /enviar-fatura-email/verifica/envio:
+    get:
+      summary: Enviar Fatura Email - Verficar envio fatura email
+      tags:
+        - Enviar-Fatura-Email
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+      operationId: get-enviar-fatura-email-verifica-envio
+  '/critica-medicao/validar/ligacoes/critica/rota-convencional/{idPeriodo}/{idGrupo}':
+    parameters:
+      - schema:
+          type: string
+        name: idPeriodo
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: idGrupo
+        in: path
+        required: true
+    post:
+      summary: Critíca Medição - Validar ligações critica by período grupo rota convencional
+      operationId: post-critica-medicao-validar-ligacoes-critica-rota-convencional-idPeriodo-idGrupo
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Critíca-Medição
+  /faturamento/obter/emissao-fatura-vo:
+    get:
+      summary: Faturamento - Obter emissão fatura VO
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelatorioEmissaoFaturaDto'
+      operationId: get-faturamento-obter-emissao-fatura-vo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+        - schema:
+            type: string
+          in: query
+          name: i_idGrupo
+  /faturamento/fatura-sem-msg:
+    get:
+      summary: Faturamento - Fatura sem msg
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-faturamento-fatura-sem-msg
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+  /faturamento/obter/tipo-impressao:
+    get:
+      summary: Faturamento - Obter tipo impressão
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-faturamento-obter-tipo-impressao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /faturamento/load/consolidacoes-disponiveis-imp:
+    get:
+      summary: Faturamento - Load consolidações disponiveis impressão
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-faturamento-load-consolidacoes-disponiveis-imp
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+  /enviar-fatura-email/obter/id-processo-envio:
+    post:
+      summary: Enviar Fatura Email - Obter ID processo envio fatura email
+      operationId: post-enviar-fatura-email-obter-id-processo-envio
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Enviar-Fatura-Email
 components:
   schemas:
     CriarLigacaoModel:
@@ -50384,5 +50633,1144 @@ components:
               descr: ''
               flag: ''
               tipoRet: 1
+    ServicoAtributoDtoModel:
+      type: object
+      properties:
+        controle:
+          type: integer
+        idservico:
+          type: integer
+        idatributo:
+          type: integer
+        obrigatorio:
+          type: boolean
+        solicitarData:
+          type: boolean
+        siglamedicao1:
+          type: string
+        siglamedicao2:
+          type: string
+        normalizado:
+          type: boolean
+        tipoDados:
+          type: string
+        atributo:
+          type: string
+        nrmedicoes:
+          type: integer
+        sqlObterAtributos:
+          type: string
+        sqlAtualizarVlrAtributo:
+          type: string
+        sqlObterVlrAtributoAtual:
+          type: string
+        normalizadoCompleto:
+          type: boolean
+      x-examples:
+        Example 1:
+          controle: 1
+          idservico: 1
+          idatributo: 1
+          obrigatorio: false
+          solicitarData: false
+          siglamedicao1: ''
+          siglamedicao2: ''
+          normalizado: false
+          tipoDados: ''
+          atributo: ''
+          nrmedicoes: 1
+          sqlObterAtributos: ''
+          sqlAtualizarVlrAtributo: ''
+          sqlObterVlrAtributoAtual: ''
+          normalizadoCompleto: false
+      description: ''
+    AlteracaoCadastralDtoModel:
+      type: object
+      properties:
+        idSituacaoLigacao:
+          type: integer
+        idTipoFaturamento:
+          type: integer
+        categorias:
+          type: array
+          items:
+            type: object
+            properties:
+              idCategoria:
+                type: integer
+              idSubCategoria:
+                type: integer
+              qtdEconomia:
+                type: integer
+              categoria:
+                type: string
+              subCategoria:
+                type: string
+              percentualFat:
+                type: integer
+              identTabela:
+                type: integer
+              idUnidadeMensuracao:
+                type: integer
+              unidadeMensuracao:
+                type: string
+              valorUnidade:
+                type: number
+              volumeEstimado:
+                type: integer
+              pesoFaturado:
+                type: integer
+              baseCalc:
+                type: number
+              corLinha:
+                type: string
+              categoriaPrincipal:
+                type: boolean
+      x-examples:
+        Example 1:
+          idSituacaoLigacao: 1
+          idTipoFaturamento: 1
+          categorias:
+            - idCategoria: 1
+              idSubCategoria: 1
+              qtdEconomia: 1
+              categoria: ''
+              subCategoria: ''
+              percentualFat: 1
+              identTabela: 1
+              idUnidadeMensuracao: 1
+              unidadeMensuracao: ''
+              valorUnidade: 1.1
+              volumeEstimado: 1
+              pesoFaturado: 1
+              baseCalc: 1.1
+              corLinha: ''
+              categoriaPrincipal: false
+    DadosTramiteDtoModel:
+      type: object
+      properties:
+        servicoBaixa:
+          type: object
+          properties:
+            idServicoSan:
+              type: string
+            CodServico:
+              type: string
+            NomeServico:
+              type: string
+            Regras:
+              type: object
+              properties:
+                Confirmacao:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                hasMaterial:
+                  type: string
+                hasGis:
+                  type: string
+                hasDimensao:
+                  type: string
+                hasAvisos:
+                  type: string
+                hasAssinatura:
+                  type: string
+                Atributos:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      IsObrigatorio:
+                        type: string
+                      HasData:
+                        type: string
+                      NumMedicao:
+                        type: string
+                      TipoValor:
+                        type: string
+                      Atributo:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                      ValoresIniciais:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            Filtro:
+                              type: string
+                            Codigo:
+                              type: string
+                            Valor:
+                              type: string
+                      ValoresFinais:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            Filtro:
+                              type: string
+                            Codigo:
+                              type: string
+                            Valor:
+                              type: string
+                Corte:
+                  type: object
+                  properties:
+                    Agentes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                    Empresas:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                    TiposCorte:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                    Motivos:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                Religacao:
+                  type: object
+                  properties:
+                    Agentes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                TrocaHidrometro:
+                  type: object
+                  properties:
+                    Motivos:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                    Executores:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                    ProgramasTroca:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                InstalacaoHidrometro:
+                  type: object
+                  properties:
+                    Motivos:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                    Executores:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                    Programas:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                Dimensao:
+                  type: object
+                  properties:
+                    HasComprimento:
+                      type: string
+                    HasLargura:
+                      type: string
+                    HasProfundidade:
+                      type: string
+                ServicosVinculados:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      ServicoVinculado:
+                        type: object
+                        properties:
+                          Filtro:
+                            type: string
+                          Codigo:
+                            type: string
+                          Valor:
+                            type: string
+                      IsObrigatorio:
+                        type: string
+                Avisos:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      Filtro:
+                        type: string
+                      Codigo:
+                        type: string
+                      Valor:
+                        type: string
+        equipeExecutora:
+          type: object
+          properties:
+            Filtro:
+              type: string
+            Codigo:
+              type: string
+            Valor:
+              type: string
+        colaborador:
+          type: object
+          properties:
+            idlocal:
+              type: integer
+            idServico:
+              type: integer
+            idServicoBaixa:
+              type: integer
+            idDistritoAtual:
+              type: integer
+            idDistritoDestino:
+              type: integer
+            idDeptoAtual:
+              type: integer
+            idDeptoDestino:
+              type: integer
+            idOSDetalhe:
+              type: integer
+            idSeqTram:
+              type: integer
+            dhinitram:
+              type: string
+            dhiniexectram:
+              type: string
+            dhfinexecprevista:
+              type: string
+            dhfinexec:
+              type: string
+            idequipeexec:
+              type: integer
+            idequipeexecbaixa:
+              type: integer
+            dhdeslocamento:
+              type: string
+            dhfintramite:
+              type: string
+            encerrada:
+              type: string
+            obs:
+              type: string
+            stimprime:
+              type: string
+            baixadireta:
+              type: string
+            transfentredistrito:
+              type: string
+            idSetorServicoAtual:
+              type: integer
+            idSetorServicoDestino:
+              type: integer
+            distritoDestino:
+              type: string
+            deptoDestino:
+              type: string
+            equipe:
+              type: string
+            fone:
+              type: string
+            tipoBaixa:
+              type: string
+            encarregado:
+              type: string
+            colaboradores:
+              type: string
+            motivoPendencia:
+              type: string
+            fatoGerador:
+              type: string
+            instalacaoMedidorVO:
+              type: object
+              properties:
+                alterado:
+                  type: boolean
+                novo:
+                  type: boolean
+                lacre:
+                  type: string
+                idLigacao:
+                  type: integer
+                idMedidor:
+                  type: integer
+                medidor:
+                  type: string
+                idMedidorAtual:
+                  type: integer
+                idProgramaTroca:
+                  type: integer
+                programaTroca:
+                  type: string
+                leituraRetirada:
+                  type: integer
+                leituraInstalação:
+                  type: integer
+                volumeResidual:
+                  type: integer
+                idEquipe:
+                  type: integer
+                equipe:
+                  type: string
+                dtRetirada:
+                  type: string
+                observacao:
+                  type: string
+                idPeriodo:
+                  type: integer
+                idGrupo:
+                  type: integer
+                idPeriodoInstalacao:
+                  type: integer
+                periodoInstalacao:
+                  type: string
+                idPeriodoAnt:
+                  type: integer
+                periodoAnt:
+                  type: string
+                idPeriodoUtilResiduo:
+                  type: integer
+                periodoUtilResiduo:
+                  type: string
+                seqIdPeriodoUtilResiduo:
+                  type: integer
+                idMedidorMotivoTroca:
+                  type: integer
+                medidorMotivoTroca:
+                  type: string
+                idOrdemServicoDetalhe:
+                  type: integer
+                dtInstalacao:
+                  type: string
+                projetaConsumo:
+                  type: string
+            cadastroOSAltCadastral:
+              type: object
+              properties:
+                idSituacaoLigacao:
+                  type: integer
+                idTipoFaturamento:
+                  type: integer
+                categorias:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      idCategoria:
+                        type: integer
+                      idSubCategoria:
+                        type: integer
+                      qtdEconomia:
+                        type: integer
+                      categoria:
+                        type: string
+                      subCategoria:
+                        type: string
+                      percentualFat:
+                        type: integer
+                      identTabela:
+                        type: integer
+                      idUnidadeMensuracao:
+                        type: integer
+                      unidadeMensuracao:
+                        type: string
+                      valorUnidade:
+                        type: number
+                      volumeEstimado:
+                        type: integer
+                      pesoFaturado:
+                        type: integer
+                      baseCalc:
+                        type: number
+                      corLinha:
+                        type: string
+                      categoriaPrincipal:
+                        type: boolean
+            colTramiteIntegranteEquipesVO:
+              type: array
+              items:
+                type: object
+                properties:
+                  idTramite:
+                    type: integer
+                  idEquipe:
+                    type: integer
+                  idColaborador:
+                    type: integer
+                  dataHoraInicio:
+                    type: string
+                  dataHoraFim:
+                    type: string
+                  colaborador:
+                    type: string
+        idTipoEncerramento:
+          type: integer
+        dtHrIniDeslocamento:
+          type: string
+        dtHrIniExecucao:
+          type: string
+        dtHrFimExecucao:
+          type: string
+        observacao:
+          type: string
+        avisos:
+          type: array
+          items:
+            type: object
+            properties:
+              idTramite:
+                type: integer
+              idAviso:
+                type: integer
+              idLigacao:
+                type: integer
+              aviso:
+                type: string
+        dimensaoProfundidade:
+          type: string
+        dimensaoComprimento:
+          type: string
+        dimensaoLargura:
+          type: string
+        servicosVinculados:
+          type: array
+          items:
+            type: object
+            properties:
+              idServico:
+                type: integer
+              idOrdemServicoDetalhe:
+                type: integer
+              descricao:
+                type: string
+              nrDimensoes:
+                type: integer
+              comprimento:
+                type: number
+              largura:
+                type: number
+              profundidade:
+                type: number
+              area:
+                type: number
+              obrigatorio:
+                type: boolean
+              utilizarPropriaOS:
+                type: boolean
+              gerarOS:
+                type: string
+              observacao:
+                type: string
+              observacaoAtendimento:
+                type: string
+              dataHoraAberturaPrevista:
+                type: boolean
+              dataHoraAberturaPrevistaValor:
+                type: string
+              servico:
+                type: string
+              servicoVinculadoAdicionado:
+                type: string
+              codigoReferencia:
+                type: string
+              utilizarLingsVinculadas:
+                type: string
+              utilizarLigacaoOriginal:
+                type: string
+              idUsuarioAbertura:
+                type: integer
+              dataHoraAbertura:
+                type: string
+              idServicoPai:
+                type: integer
+              agendada:
+                type: string
+        materiaisUtilizados:
+          type: array
+          items:
+            type: object
+            properties:
+              idServico:
+                type: integer
+              idmaterial:
+                type: integer
+              material:
+                type: string
+              comprimento:
+                type: number
+              largura:
+                type: number
+              profundidade:
+                type: number
+              qtd:
+                type: number
+              valorunitario:
+                type: number
+              valortotal:
+                type: number
+              valoriss:
+                type: number
+              nrDimensoes:
+                type: integer
+        atributos:
+          type: array
+          items:
+            type: object
+            properties:
+              idServico:
+                type: integer
+              idAtributo:
+                type: integer
+              atributo:
+                type: string
+              dataHoraMedicaoInicial:
+                type: string
+              idMedicaoInicial:
+                type: integer
+              idMedicaoFinal:
+                type: integer
+              valorMedicaoInicial:
+                type: string
+              dataHoraMedicaoFinal:
+                type: string
+              valorMedicaoFinal:
+                type: string
+              siglam1:
+                type: string
+              siglam2:
+                type: string
+              solicitarData:
+                type: string
+              nrmedicoes:
+                type: integer
+              normalizado:
+                type: string
+              obrigatorio:
+                type: string
+              tipoDados:
+                type: string
+              servico:
+                type: string
+              normalizadoCompleto:
+                type: string
+              sqlObterAtributos:
+                type: string
+              sqlAtualizarVlrAtributo:
+                type: string
+              sqlObterVlrAtributoAtual:
+                type: string
+        idLeituristaReligacao:
+          type: integer
+        leituristaReliacao:
+          type: string
+        dataReligacao:
+          type: string
+        horaReligacao:
+          type: string
+        lacreReligacao:
+          type: string
+        leituraReligacao:
+          type: string
+        isCortado:
+          type: string
+        dataCorte:
+          type: string
+        leituraCorte:
+          type: string
+        lacreCorte:
+          type: string
+        idAgenteCorte:
+          type: integer
+        idEmpresaCorte:
+          type: integer
+        idTipoCorte:
+          type: integer
+        idMotivoCorte:
+          type: integer
+        idPeriodoAnteriorTrocaHidr:
+          type: integer
+        leituraRetiradaTrocaHidr:
+          type: string
+        dataInstalacaoTrocaHidr:
+          type: string
+        idMedidorTrocaHidr:
+          type: integer
+        numeroMedidorTrocaHidr:
+          type: string
+        idMotivoTrocaTrocaHidr:
+          type: integer
+        idProgramaTrocaTrocaHidr:
+          type: integer
+        leituraTrocaHidr:
+          type: string
+        lacreTrocaHidr:
+          type: string
+        idExecutorTrocaHidr:
+          type: integer
+        habilitarAvisos:
+          type: boolean
+        instHdDataInstalacao:
+          type: string
+        instHdIdEquipe:
+          type: integer
+        instHdIdMotivo:
+          type: integer
+        instHdIdPrograma:
+          type: integer
+        tipoGrupoServ:
+          type: string
+        idAcaoGrupoServ:
+          type: integer
+        idCausaGrupoServ:
+          type: integer
+        idTipoGrupoServico:
+          type: integer
+        idCateoriaGrupoServ:
+          type: integer
+        idSistemaGrupoServ:
+          type: integer
+        idAreaGrupoServ:
+          type: integer
+        idMotivoCorteOS:
+          type: integer
+      x-examples:
+        Example 1:
+          servicoBaixa:
+            idServicoSan: ''
+            CodServico: ''
+            NomeServico: ''
+            Regras:
+              Confirmacao:
+                id: 1
+              hasMaterial: ''
+              hasGis: ''
+              hasDimensao: ''
+              hasAvisos: ''
+              hasAssinatura: ''
+              Atributos:
+                - IsObrigatorio: ''
+                  HasData: ''
+                  NumMedicao: ''
+                  TipoValor: ''
+                  Atributo:
+                    Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+                  ValoresIniciais:
+                    - Filtro: ''
+                      Codigo: ''
+                      Valor: ''
+                  ValoresFinais:
+                    - Filtro: ''
+                      Codigo: ''
+                      Valor: ''
+              Corte:
+                Agentes:
+                  - Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+                Empresas:
+                  - Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+                TiposCorte:
+                  - Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+                Motivos:
+                  - Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+              Religacao:
+                Agentes:
+                  - Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+              TrocaHidrometro:
+                Motivos:
+                  - Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+                Executores:
+                  - Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+                ProgramasTroca:
+                  - Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+              InstalacaoHidrometro:
+                Motivos:
+                  - Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+                Executores:
+                  - Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+                Programas:
+                  - Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+              Dimensao:
+                HasComprimento: ''
+                HasLargura: ''
+                HasProfundidade: ''
+              ServicosVinculados:
+                - ServicoVinculado:
+                    Filtro: ''
+                    Codigo: ''
+                    Valor: ''
+                  IsObrigatorio: ''
+              Avisos:
+                - Filtro: ''
+                  Codigo: ''
+                  Valor: ''
+          equipeExecutora:
+            Filtro: ''
+            Codigo: ''
+            Valor: ''
+          colaborador:
+            idlocal: 1
+            idServico: 1
+            idServicoBaixa: 1
+            idDistritoAtual: 1
+            idDistritoDestino: 1
+            idDeptoAtual: 1
+            idDeptoDestino: 1
+            idOSDetalhe: 1
+            idSeqTram: 1
+            dhinitram: ''
+            dhiniexectram: ''
+            dhfinexecprevista: ''
+            dhfinexec: ''
+            idequipeexec: 1
+            idequipeexecbaixa: 1
+            dhdeslocamento: ''
+            dhfintramite: ''
+            encerrada: ''
+            obs: ''
+            stimprime: ''
+            baixadireta: ''
+            transfentredistrito: ''
+            idSetorServicoAtual: 1
+            idSetorServicoDestino: 1
+            distritoDestino: ''
+            deptoDestino: ''
+            equipe: ''
+            fone: ''
+            tipoBaixa: ''
+            encarregado: ''
+            colaboradores: ''
+            motivoPendencia: ''
+            fatoGerador: ''
+            instalacaoMedidorVO:
+              alterado: false
+              novo: true
+              lacre: ''
+              idLigacao: 1
+              idMedidor: 1
+              medidor: ''
+              idMedidorAtual: 1
+              idProgramaTroca: 1
+              programaTroca: ''
+              leituraRetirada: 1
+              leituraInstalação: 1
+              volumeResidual: 1
+              idEquipe: 1
+              equipe: ''
+              dtRetirada: ''
+              observacao: ''
+              idPeriodo: 1
+              idGrupo: 1
+              idPeriodoInstalacao: 1
+              periodoInstalacao: ''
+              idPeriodoAnt: 1
+              periodoAnt: ''
+              idPeriodoUtilResiduo: 1
+              periodoUtilResiduo: ''
+              seqIdPeriodoUtilResiduo: 1
+              idMedidorMotivoTroca: 1
+              medidorMotivoTroca: ''
+              idOrdemServicoDetalhe: 1
+              dtInstalacao: ''
+              projetaConsumo: ''
+            cadastroOSAltCadastral:
+              idSituacaoLigacao: 1
+              idTipoFaturamento: 1
+              categorias:
+                - idCategoria: 1
+                  idSubCategoria: 1
+                  qtdEconomia: 1
+                  categoria: ''
+                  subCategoria: ''
+                  percentualFat: 1
+                  identTabela: 1
+                  idUnidadeMensuracao: 1
+                  unidadeMensuracao: ''
+                  valorUnidade: 1.1
+                  volumeEstimado: 1
+                  pesoFaturado: 1
+                  baseCalc: 1.1
+                  corLinha: ''
+                  categoriaPrincipal: false
+            colTramiteIntegranteEquipesVO:
+              - idTramite: 1
+                idEquipe: 1
+                idColaborador: 1
+                dataHoraInicio: ''
+                dataHoraFim: ''
+                colaborador: ''
+          idTipoEncerramento: 1
+          dtHrIniDeslocamento: ''
+          dtHrIniExecucao: ''
+          dtHrFimExecucao: ''
+          observacao: ''
+          avisos:
+            - idTramite: 1
+              idAviso: 1
+              idLigacao: 1
+              aviso: ''
+          dimensaoProfundidade: ''
+          dimensaoComprimento: ''
+          dimensaoLargura: ''
+          servicosVinculados:
+            - idServico: 1
+              idOrdemServicoDetalhe: 1
+              descricao: ''
+              nrDimensoes: 1
+              comprimento: 1.1
+              largura: 1.1
+              profundidade: 1.1
+              area: 1.1
+              obrigatorio: false
+              utilizarPropriaOS: false
+              gerarOS: ''
+              observacao: ''
+              observacaoAtendimento: ''
+              dataHoraAberturaPrevista: false
+              dataHoraAberturaPrevistaValor: ''
+              servico: ''
+              servicoVinculadoAdicionado: ''
+              codigoReferencia: ''
+              utilizarLingsVinculadas: ''
+              utilizarLigacaoOriginal: ''
+              idUsuarioAbertura: 1
+              dataHoraAbertura: ''
+              idServicoPai: 1
+              agendada: ''
+          materiaisUtilizados:
+            - idServico: 1
+              idmaterial: 1
+              material: ''
+              comprimento: 1.1
+              largura: 1.1
+              profundidade: 1.1
+              qtd: 1.1
+              valorunitario: 1.1
+              valortotal: 1.1
+              valoriss: 1.1
+              nrDimensoes: 1
+          atributos:
+            - idServico: 1
+              idAtributo: 1
+              atributo: ''
+              dataHoraMedicaoInicial: ''
+              idMedicaoInicial: 1
+              idMedicaoFinal: 1
+              valorMedicaoInicial: ''
+              dataHoraMedicaoFinal: ''
+              valorMedicaoFinal: ''
+              siglam1: ''
+              siglam2: ''
+              solicitarData: ''
+              nrmedicoes: 1
+              normalizado: ''
+              obrigatorio: ''
+              tipoDados: ''
+              servico: ''
+              normalizadoCompleto: ''
+              sqlObterAtributos: ''
+              sqlAtualizarVlrAtributo: ''
+              sqlObterVlrAtributoAtual: ''
+          idLeituristaReligacao: 1
+          leituristaReliacao: ''
+          dataReligacao: ''
+          horaReligacao: ''
+          lacreReligacao: ''
+          leituraReligacao: ''
+          isCortado: ''
+          dataCorte: ''
+          leituraCorte: ''
+          lacreCorte: ''
+          idAgenteCorte: 1
+          idEmpresaCorte: 1
+          idTipoCorte: 1
+          idMotivoCorte: 1
+          idPeriodoAnteriorTrocaHidr: 1
+          leituraRetiradaTrocaHidr: ''
+          dataInstalacaoTrocaHidr: ''
+          idMedidorTrocaHidr: 1
+          numeroMedidorTrocaHidr: ''
+          idMotivoTrocaTrocaHidr: 1
+          idProgramaTrocaTrocaHidr: 1
+          leituraTrocaHidr: ''
+          lacreTrocaHidr: ''
+          idExecutorTrocaHidr: 1
+          habilitarAvisos: false
+          instHdDataInstalacao: ''
+          instHdIdEquipe: 1
+          instHdIdMotivo: 1
+          instHdIdPrograma: 1
+          tipoGrupoServ: ''
+          idAcaoGrupoServ: 1
+          idCausaGrupoServ: 1
+          idTipoGrupoServico: 1
+          idCateoriaGrupoServ: 1
+          idSistemaGrupoServ: 1
+          idAreaGrupoServ: 1
+          idMotivoCorteOS: 1
+    RelatorioEmissaoFaturaDto:
+      type: object
+      properties:
+        nrFaturasTotal:
+          type: integer
+        nrFaturasIsentas:
+          type: integer
+        nrFaturas:
+          type: integer
+        nrFaturasDebAuto:
+          type: integer
+        vencimentoOriginal:
+          type: integer
+        nrFaturasOutrosGruposPeriodoAtual:
+          type: integer
+        nrFaturasOutrosGruposPeriodoPosterior:
+          type: integer
+        nrFaturasDeOutrosGrupos:
+          type: integer
+        nrFaturasDoGrupoAtual:
+          type: integer
+        nrFaturasEnviarEmail:
+          type: integer
+        nrFaturasEnviadaSucesso:
+          type: integer
+        nrFaturasEnviadaErro:
+          type: integer
+        nrFaturasEnviarSMS:
+          type: integer
+        colTipoEntrega:
+          type: array
+          items:
+            type: object
+            properties:
+              tipoEntrega:
+                type: string
+              qtd:
+                type: integer
+      x-examples:
+        Example 1:
+          nrFaturasTotal: 0
+          nrFaturasIsentas: 0
+          nrFaturas: 0
+          nrFaturasDebAuto: 0
+          vencimentoOriginal: 1
+          nrFaturasOutrosGruposPeriodoAtual: 0
+          nrFaturasOutrosGruposPeriodoPosterior: 0
+          nrFaturasDeOutrosGrupos: 0
+          nrFaturasDoGrupoAtual: 0
+          nrFaturasEnviarEmail: 0
+          nrFaturasEnviadaSucesso: 0
+          nrFaturasEnviadaErro: 0
+          nrFaturasEnviarSMS: 0
+          colTipoEntrega:
+            - tipoEntrega: ''
+              qtd: 1
   securitySchemes: {}
 x-extension-1: null
