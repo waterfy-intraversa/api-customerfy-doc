@@ -9079,6 +9079,95 @@ paths:
             type: integer
           in: query
           name: idGrupo
+  /medicao/retorna-coletor:
+    post:
+      summary: Medição - Retorna coletor
+      operationId: post-medicao-retorna-coletor
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: flo7rgbg2xmvo
+                i_idGrupo:
+                  type: integer
+                  x-stoplight:
+                    id: er1hkviazj281
+                i_c:
+                  $ref: '#/components/schemas/ColetorDtoModel'
+                  x-stoplight:
+                    id: rm19jbkpwhlwq
+  /medicao/retorna-coletor/list-coletor:
+    post:
+      summary: Medição - Retorna coletor (List<ColetorDto>)
+      operationId: post-medicao-retorna-coletor-list-coletor
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: 7qup86t4y9sl2
+                i_idGrupo:
+                  type: integer
+                  x-stoplight:
+                    id: 9ukm55v8gy60m
+                i_c:
+                  type: array
+                  x-stoplight:
+                    id: zuf772ccbuun7
+                  items:
+                    $ref: '#/components/schemas/ColetorDtoModel'
+                    x-stoplight:
+                      id: uyv0ls21fzx2m
+        description: ''
+  /medicao/obter/leitura-detalhe:
+    get:
+      summary: Medição - Obter leitura detalhe
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ColetorDtoModel'
+                  x-stoplight:
+                    id: vl9qt3gyf1xdx
+      operationId: get-medicao-obter-leitura-detalhe
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idCidade
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
 components:
   schemas:
     CriarLigacaoModel:
