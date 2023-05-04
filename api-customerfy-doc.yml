@@ -8846,8 +8846,239 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
       tags:
         - Enviar-Fatura-Email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                p:
+                  $ref: '#/components/schemas/ParametrosBaseDtoModel'
+                  x-stoplight:
+                    id: 1m3i3crv5gd55
+  /faturamento/layout-fat-normal:
+    get:
+      summary: Faturamento - Layout fat normal
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-faturamento-layout-fat-normal
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: nomeLayout
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /faturamento/emitir-fatura:
+    post:
+      summary: Faturamento - Emitir fatura
+      operationId: post-faturamento-emitir-fatura
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturaLayoutDtoModel'
+                  x-stoplight:
+                    id: kxfu4j6iowqpq
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idFatura:
+                  x-stoplight:
+                    id: p928f3kp2q0dz
+                  type: array
+                  items:
+                    x-stoplight:
+                      id: t7347e2wlhtrk
+                    type: integer
+  /sms/enviar-sms/fatura-debito:
+    post:
+      summary: SMS - Enviar SMS fatura débito
+      operationId: post-sms-enviar-sms-fatura-debito
+      responses: {}
+      tags:
+        - SMS
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+  /sms/enviar-sms:
+    post:
+      summary: SMS - Enviar SMS
+      operationId: post-sms-enviar-sms
+      responses: {}
+      tags:
+        - SMS
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: string
+          in: query
+          name: mensagem
+        - schema:
+            type: string
+          in: query
+          name: foneMovel
+  /faturamento/obter/consolidacoes-pendentes-imp:
+    get:
+      summary: Faturamento - Obter consolidações pendentes de impressão
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-faturamento-obter-consolidacoes-pendentes-imp
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: icCidade
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+  /faturamento/consultar/codigo-leitura/servico-auto:
+    get:
+      summary: OS - Consultar código leitura serviço auto
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CodigoLeituraServicoAutoDtoModel'
+                  x-stoplight:
+                    id: 7qhh46yg80dzr
+      operationId: get-faturamento-consultar-codigo-leitura-servico-auto
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+  /os/salvar-os-automatico:
+    post:
+      summary: OS - Salvar ordem servico automatico
+      operationId: post-os-salvar-os-automatico
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CodigoLeituraServicoAutoDtoModel'
+                  x-stoplight:
+                    id: g64r42ow89o8a
+      tags:
+        - OS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: ma2x27ysn378p
+                idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: qtzty0dqiltba
+                idGrupo:
+                  type: integer
+                  x-stoplight:
+                    id: qsged1ck57k77
+                param:
+                  $ref: '#/components/schemas/BagCodigoLeituraServicoAutoDtoModel'
+                  x-stoplight:
+                    id: e2276prrb0met
+                idTela:
+                  type: integer
+                  x-stoplight:
+                    id: ii038cd5hpue5
+        description: ''
+  /enviar-fatura-email/consulta/log-envio:
+    get:
+      summary: Enviar Fatura Email - Consultar log envio fatura email
+      tags:
+        - Enviar-Fatura-Email
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EnvioFaturaEmailDetalheDtoModel'
+                  x-stoplight:
+                    id: jrcjzol0o8zv7
+      operationId: get-enviar-fatura-email-consulta-log-envio
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
 components:
   schemas:
     CriarLigacaoModel:
@@ -51772,5 +52003,3182 @@ components:
           colTipoEntrega:
             - tipoEntrega: ''
               qtd: 1
+    ParametrosBaseDtoModel:
+      type: object
+      properties:
+        idCidade:
+          type: integer
+        cidade:
+          type: string
+        idPeriodo:
+          type: integer
+        periodo:
+          type: string
+        idGrupo:
+          type: integer
+        grupo:
+          type: string
+        seqSepRota:
+          type: integer
+        usuarioPrincipal:
+          type: object
+          properties:
+            id:
+              type: integer
+            processoAInicializar:
+              type: integer
+            usuario:
+              type: string
+            cpf:
+              type: string
+            id_grupo_usuario:
+              type: integer
+            id_unidade_operacional_selecionada:
+              type: integer
+            id_unidade_negocio_selecionada:
+              type: integer
+            serv_aplicacoes_selecionado:
+              type: string
+            id_departamento:
+              type: integer
+            id_distrito:
+              type: integer
+            unidade_operacional:
+              type: string
+            departamento:
+              type: string
+            nome_resumido:
+              type: string
+            nome_usuario:
+              type: string
+            ativo:
+              type: string
+            validar_ip:
+              type: string
+            validar_depto:
+              type: string
+            usuario_interno:
+              type: string
+            bloqueado:
+              type: string
+            permitir_login_simultaneo:
+              type: string
+            num_tentativas_erradas:
+              type: integer
+            dt_alteracao_senha:
+              type: string
+            senha:
+              type: string
+            senha1:
+              type: string
+            senha2:
+              type: string
+            email:
+              type: string
+            grupo_usuario_vo:
+              type: array
+              items:
+                type: object
+                properties:
+                  grupo_usuario:
+                    type: string
+                  id_unidade_negocio_selecionada:
+                    type: integer
+                  telas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        tela:
+                          type: string
+                        nome_gui:
+                          type: string
+                        id_grupo_tela:
+                          type: integer
+                        ordem:
+                          type: integer
+                        sistema:
+                          type: integer
+                        ativo:
+                          type: boolean
+                  telas_funcoes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        tela_funcao:
+                          type: string
+                  formularios_padrao:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        descricao:
+                          type: string
+                        titulo:
+                          type: string
+                        tabela:
+                          type: string
+                        incluir:
+                          type: string
+                        consultar:
+                          type: string
+                        imprimir:
+                          type: string
+                        ajuda:
+                          type: string
+                  macros:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        id_macro_categoria:
+                          type: integer
+                        macro:
+                          type: string
+                        id_macro:
+                          type: integer
+                        tipo_macro:
+                          type: integer
+                        unidade_negocio:
+                          type: string
+                        macro_sql:
+                          type: string
+                        link:
+                          type: string
+                        macro_sql_refatorado:
+                          type: string
+                        macro_layout:
+                          type: string
+                        macro_sub_layout:
+                          type: string
+                        titulo:
+                          type: string
+                        type:
+                          type: string
+                        arquivo_relatorio:
+                          type: string
+                        arquivo_sub_relatorio:
+                          type: string
+                        parametro:
+                          type: string
+                        delimitador_campo_text:
+                          type: string
+                        separador_campo:
+                          type: string
+                        new_row:
+                          type: string
+                        nome_arquivo:
+                          type: string
+                        extensao_arquivo:
+                          type: string
+                        enconding_arquivo:
+                          type: string
+                        resumo:
+                          type: string
+                        informacoes:
+                          type: string
+                        sem_cabecalho:
+                          type: boolean
+                        id_usuario:
+                          type: integer
+                        id_unidade_operacional:
+                          type: integer
+                        usuario:
+                          type: string
+                        id_unidade_negocio:
+                          type: integer
+                        horario_execucao_macro_vos:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              id_macro:
+                                type: integer
+                              id_dia_semana:
+                                type: integer
+                              hora_inicio:
+                                type: string
+                              hora_termino:
+                                type: string
+                              dia_semana:
+                                type: string
+                        macro_categoria:
+                          type: string
+                        logar_execucao:
+                          type: boolean
+                        id_cidade:
+                          type: integer
+                        map_id:
+                          type: string
+                        result:
+                          type: string
+                        tags:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              tipo_tag:
+                                type: string
+                              titulo_macro:
+                                type: string
+                              arquivo_relatorio:
+                                type: string
+                              arquivo_sub_relatorio:
+                                type: string
+                              legenda:
+                                type: string
+                              campo:
+                                type: string
+                              tamanho_maximo:
+                                type: integer
+                              tool_tip_text:
+                                type: string
+                              tabela:
+                                type: string
+                              valor_padrao:
+                                type: string
+                              validacao:
+                                type: string
+                              texto_validacao:
+                                type: string
+                              campo_chave:
+                                type: string
+                              campo_exibicao:
+                                type: string
+                              selecionado:
+                                type: string
+                              chave_primaria:
+                                type: string
+                              cor_fremte:
+                                type: string
+                              cor_fundo:
+                                type: string
+                              resultado:
+                                type: string
+                              resultado_parametro:
+                                type: string
+                              id_operacao:
+                                type: string
+                              campo_ordenacao:
+                                type: string
+                              condicao:
+                                type: string
+                              campo_aninhado:
+                                type: string
+                              campo_fornecido:
+                                type: string
+                              item_combo:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    idStr:
+                                      type: string
+                                    descr:
+                                      type: string
+                                    flag:
+                                      type: string
+                                    tipoRet:
+                                      type: integer
+                                    combo_aninhado:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          id:
+                                            type: integer
+                                          idStr:
+                                            type: string
+                                          descr:
+                                            type: string
+                                          flag:
+                                            type: string
+                                          tipoRet:
+                                            type: integer
+                                          combo_aninhado:
+                                            type: array
+                                            items:
+                                              type: object
+                                              properties: {}
+                  permissao_grupo_usuario_servicos:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        id_grupo_usuario:
+                          type: integer
+                        id_servico:
+                          type: integer
+                        servico:
+                          type: string
+                        grupo_pode_cadastrar:
+                          type: string
+                        ativo:
+                          type: string
+                        grupo_pode_imprimir:
+                          type: string
+                        grupo_pode_baixar:
+                          type: string
+            permissao_usuario_depto_vo:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  id_usuario:
+                    type: integer
+                  id_depto:
+                    type: integer
+                  departamento:
+                    type: string
+            permissao_usuario_ip_vo:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  id_usuario:
+                    type: integer
+                  ip:
+                    type: string
+            id_unidade_operacional:
+              type: integer
+            perfil_tef_vo:
+              type: object
+              properties:
+                id:
+                  type: integer
+                caminho_arquivo_jar:
+                  type: string
+                descricao:
+                  type: string
+                codigo_transacao_pagamento:
+                  type: integer
+                codigo_transacao_cancelamento:
+                  type: integer
+                codigo_transacao_reimpressao:
+                  type: integer
+                codigo_transacao_contingencia:
+                  type: integer
+                ip_servidor:
+                  type: string
+                caminho_arquivo_identificador_terminal:
+                  type: string
+                codigo_loja:
+                  type: string
+                emitir_comprovante_caixa:
+                  type: string
+                homologacao:
+                  type: string
+                debug_mode:
+                  type: string
+                parametros_tef:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      id_cidade:
+                        type: integer
+                      id_unidade_operacional:
+                        type: integer
+                      id_perfil_tef:
+                        type: integer
+                      path_arquivo_conciliacao:
+                        type: string
+                      id_arrecadador_tef:
+                        type: integer
+                      valor_minimo:
+                        type: number
+                      tipo_comprovante:
+                        type: string
+            unidade_negocio_atual:
+              type: object
+              properties:
+                id:
+                  type: integer
+                unidade_negocio:
+                  type: string
+                data_source:
+                  type: string
+                data_source_call_center:
+                  type: string
+                unidade_operacional:
+                  type: string
+                ip_servidor_aplicacao:
+                  type: string
+                id_unidade_operacional:
+                  type: integer
+                endereco:
+                  type: string
+                website:
+                  type: string
+                email:
+                  type: string
+                horario_funcionamento:
+                  type: string
+                telefone:
+                  type: string
+                modo_operacao:
+                  type: string
+            ip_acesso:
+              type: string
+            sistema_logado:
+              type: integer
+            id_cidade_departamento:
+              type: integer
+            telas_sistema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  ordem:
+                    type: integer
+                  grupo_tela:
+                    type: string
+                  col_tela:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        tela:
+                          type: string
+                        nome_gui:
+                          type: string
+                        id_grupo_tela:
+                          type: integer
+                        ordem:
+                          type: integer
+                        sistema:
+                          type: integer
+                        ativo:
+                          type: boolean
+                  col_grupo_tela:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        ordem:
+                          type: integer
+                        grupo_tela:
+                          type: string
+                        col_tela:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              tela:
+                                type: string
+                              nome_gui:
+                                type: string
+                              id_grupo_tela:
+                                type: integer
+                              ordem:
+                                type: integer
+                              sistema:
+                                type: integer
+                              ativo:
+                                type: boolean
+                        col_grupo_tela:
+                          type: array
+                          items:
+                            type: object
+                            properties: {}
+                        sistema:
+                          type: integer
+                        id_grupo_tela_pai:
+                          type: integer
+                        icone:
+                          type: string
+                        icone_hover:
+                          type: string
+                        arq_ico:
+                          type: string
+                        arq_ico_hover:
+                          type: string
+                  sistema:
+                    type: integer
+                  id_grupo_tela_pai:
+                    type: integer
+                  icone:
+                    type: string
+                  icone_hover:
+                    type: string
+                  arq_ico:
+                    type: string
+                  arq_ico_hover:
+                    type: string
+            san_locked:
+              type: boolean
+            cidades:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  cidade:
+                    type: string
+            data_source:
+              type: string
+            db_dialect:
+              type: integer
+            id_leiturista:
+              type: integer
+            id_idioma:
+              type: integer
+            id_equipe:
+              type: integer
+            id_arrecadador:
+              type: integer
+            country_code:
+              type: string
+            language_code:
+              type: string
+            laguage_tag:
+              type: string
+        etapaCiclo:
+          type: object
+          properties:
+            evento:
+              type: object
+              properties:
+                id:
+                  type: integer
+                evento:
+                  type: string
+                faseCiclo:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                process:
+                  type: string
+                ejbLookup:
+                  type: string
+                ejbLookupImpl:
+                  type: string
+                ajuste:
+                  type: integer
+                params:
+                  type: array
+                  items:
+                    type: object
+                    properties: {}
+            ejbLookup:
+              type: string
+            process:
+              type: string
+            params:
+              type: array
+              items:
+                type: object
+                properties: {}
+        listIdFatura:
+          type: array
+          items:
+            type: integer
+        importacaoRajada:
+          type: boolean
+        importacaoAutomacao:
+          type: boolean
+        distribuicaoAutomatica:
+          type: boolean
+      x-examples:
+        Example 1:
+          idCidade: 1
+          cidade: ''
+          idPeriodo: 1
+          periodo: ''
+          idGrupo: 1
+          grupo: ''
+          seqSepRota: 1
+          usuarioPrincipal:
+            id: 1
+            processoAInicializar: 1
+            usuario: string
+            cpf: string
+            id_grupo_usuario: 1
+            id_unidade_operacional_selecionada: 1
+            id_unidade_negocio_selecionada: 1
+            serv_aplicacoes_selecionado: string
+            id_departamento: 1
+            id_distrito: 1
+            unidade_operacional: string
+            departamento: string
+            nome_resumido: string
+            nome_usuario: string
+            ativo: string
+            validar_ip: string
+            validar_depto: string
+            usuario_interno: string
+            bloqueado: string
+            permitir_login_simultaneo: string
+            num_tentativas_erradas: 1
+            dt_alteracao_senha: string
+            senha: string
+            senha1: string
+            senha2: string
+            email: string
+            grupo_usuario_vo:
+              - grupo_usuario: string
+                id_unidade_negocio_selecionada: 1
+                telas:
+                  - id: 1
+                    tela: string
+                    nome_gui: string
+                    id_grupo_tela: 1
+                    ordem: 1
+                    sistema: 1
+                    ativo: true
+                telas_funcoes:
+                  - id: 1
+                    tela_funcao: string
+                formularios_padrao:
+                  - id: 1
+                    descricao: string
+                    titulo: string
+                    tabela: string
+                    incluir: string
+                    consultar: string
+                    imprimir: string
+                    ajuda: string
+                macros:
+                  - id: 1
+                    id_macro_categoria: 1
+                    macro: string
+                    id_macro: 1
+                    tipo_macro: 1
+                    unidade_negocio: string
+                    macro_sql: string
+                    link: string
+                    macro_sql_refatorado: string
+                    macro_layout: string
+                    macro_sub_layout: string
+                    titulo: string
+                    type: string
+                    arquivo_relatorio: string
+                    arquivo_sub_relatorio: string
+                    parametro: string
+                    delimitador_campo_text: string
+                    separador_campo: string
+                    new_row: string
+                    nome_arquivo: string
+                    extensao_arquivo: string
+                    enconding_arquivo: string
+                    resumo: string
+                    informacoes: string
+                    sem_cabecalho: true
+                    id_usuario: 1
+                    id_unidade_operacional: 1
+                    usuario: string
+                    id_unidade_negocio: 1
+                    horario_execucao_macro_vos:
+                      - id: 1
+                        id_macro: 1
+                        id_dia_semana: 1
+                        hora_inicio: string
+                        hora_termino: string
+                        dia_semana: string
+                    macro_categoria: string
+                    logar_execucao: true
+                    id_cidade: 1
+                    map_id: string
+                    result: string
+                    tags:
+                      - tipo_tag: string
+                        titulo_macro: string
+                        arquivo_relatorio: string
+                        arquivo_sub_relatorio: string
+                        legenda: string
+                        campo: string
+                        tamanho_maximo: 1
+                        tool_tip_text: string
+                        tabela: string
+                        valor_padrao: string
+                        validacao: string
+                        texto_validacao: string
+                        campo_chave: string
+                        campo_exibicao: string
+                        selecionado: string
+                        chave_primaria: string
+                        cor_fremte: string
+                        cor_fundo: string
+                        resultado: string
+                        resultado_parametro: string
+                        id_operacao: string
+                        campo_ordenacao: string
+                        condicao: string
+                        campo_aninhado: string
+                        campo_fornecido: string
+                        item_combo:
+                          - id: 1
+                            idStr: string
+                            descr: string
+                            flag: string
+                            tipoRet: 1
+                            combo_aninhado:
+                              - id: 1
+                                idStr: string
+                                descr: string
+                                flag: string
+                                tipoRet: 1
+                                combo_aninhado:
+                                  - {}
+                permissao_grupo_usuario_servicos:
+                  - id: 1
+                    id_grupo_usuario: 1
+                    id_servico: 1
+                    servico: string
+                    grupo_pode_cadastrar: string
+                    ativo: string
+                    grupo_pode_imprimir: string
+                    grupo_pode_baixar: string
+            permissao_usuario_depto_vo:
+              - id: 1
+                id_usuario: 1
+                id_depto: 1
+                departamento: string
+            permissao_usuario_ip_vo:
+              - id: 1
+                id_usuario: 1
+                ip: string
+            id_unidade_operacional: 1
+            perfil_tef_vo:
+              id: 1
+              caminho_arquivo_jar: string
+              descricao: string
+              codigo_transacao_pagamento: 1
+              codigo_transacao_cancelamento: 1
+              codigo_transacao_reimpressao: 1
+              codigo_transacao_contingencia: 1
+              ip_servidor: string
+              caminho_arquivo_identificador_terminal: string
+              codigo_loja: string
+              emitir_comprovante_caixa: string
+              homologacao: string
+              debug_mode: string
+              parametros_tef:
+                - id: 1
+                  id_cidade: 1
+                  id_unidade_operacional: 1
+                  id_perfil_tef: 1
+                  path_arquivo_conciliacao: string
+                  id_arrecadador_tef: 1
+                  valor_minimo: 2.2
+                  tipo_comprovante: string
+            unidade_negocio_atual:
+              id: 1
+              unidade_negocio: string
+              data_source: string
+              data_source_call_center: string
+              unidade_operacional: string
+              ip_servidor_aplicacao: string
+              id_unidade_operacional: 1
+              endereco: string
+              website: string
+              email: string
+              horario_funcionamento: string
+              telefone: string
+              modo_operacao: string
+            ip_acesso: string
+            sistema_logado: 1
+            id_cidade_departamento: 1
+            telas_sistema:
+              - id: 1
+                ordem: 1
+                grupo_tela: tela
+                col_tela:
+                  - id: 1
+                    tela: tela
+                    nome_gui: nome
+                    id_grupo_tela: 1
+                    ordem: 1
+                    sistema: 1
+                    ativo: true
+                col_grupo_tela:
+                  - id: 1
+                    ordem: 1
+                    grupo_tela: tela
+                    col_tela:
+                      - id: 1
+                        tela: tela
+                        nome_gui: nome
+                        id_grupo_tela: 1
+                        ordem: 1
+                        sistema: 1
+                        ativo: true
+                    col_grupo_tela:
+                      - {}
+                    sistema: 1
+                    id_grupo_tela_pai: 1
+                    icone: icone
+                    icone_hover: icone
+                    arq_ico: icone
+                    arq_ico_hover: icone
+                sistema: 1
+                id_grupo_tela_pai: 1
+                icone: icone
+                icone_hover: icone
+                arq_ico: icone
+                arq_ico_hover: icone
+            san_locked: true
+            cidades:
+              - id: 1
+                cidade: string
+            data_source: string
+            db_dialect: 1
+            id_leiturista: 1
+            id_idioma: 1
+            id_equipe: 1
+            id_arrecadador: 1
+            country_code: string
+            language_code: string
+            laguage_tag: string
+          etapaCiclo:
+            evento:
+              id: 0
+              evento: ''
+              faseCiclo:
+                id: 1
+              process: ''
+              ejbLookup: ''
+              ejbLookupImpl: ''
+              ajuste: 0
+              params: []
+            ejbLookup: ''
+            process: ''
+            params: []
+          listIdFatura:
+            - 1
+          importacaoRajada: false
+          importacaoAutomacao: false
+          distribuicaoAutomatica: false
+    FaturaLayoutDtoModel:
+      type: object
+      properties:
+        idFaturaSituacao:
+          type: integer
+        idTipoCalculo:
+          type: integer
+        acrescimos:
+          type: string
+        agencia:
+          type: string
+        banco:
+          type: string
+        baseCalculo:
+          type: string
+        categoria:
+          type: string
+        codBar:
+          type: string
+        codBarTxt:
+          type: string
+        codBar2:
+          type: string
+        codBarTxt2:
+          type: string
+        codBar3:
+          type: string
+        codBarTxt3:
+          type: string
+        codigoLeitura:
+          type: string
+        codigoLeituraMsgFatura:
+          type: string
+        conta:
+          type: string
+        controleEntrega:
+          type: string
+        dataLeitura:
+          type: string
+        dataProxLeitura:
+          type: string
+        debitoAuto:
+          type: string
+        diasConsumo:
+          type: string
+        diasConsumoProporcional:
+          type: string
+        nrDiasConsumo:
+          type: integer
+        endEntrega:
+          type: string
+        endereco:
+          type: string
+        grupoEnt:
+          type: string
+        grupoLeit:
+          type: string
+        consolidadora:
+          type: string
+        idFatura:
+          type: integer
+        idFaturaRecalculada:
+          type: integer
+        idCidade:
+          type: integer
+        idPeriodo:
+          type: integer
+        idGrupo:
+          type: integer
+        idGrupoLeit:
+          type: integer
+        idLigacao:
+          type: integer
+        idLigacaoEntrega:
+          type: integer
+        idTipoEntrega:
+          type: integer
+        idLigConsolidadora:
+          type: integer
+        idCategoria:
+          type: integer
+        idTipoFaturamento:
+          type: string
+        idTipoLigacao:
+          type: string
+        idTipoTransacao:
+          type: string
+        leituraAnterior:
+          type: string
+        dataLeituraAnterior:
+          type: string
+        ocorrencia:
+          type: string
+        leituraAtual:
+          type: string
+        linha1:
+          type: string
+        linha2:
+          type: string
+        linha3:
+          type: string
+        linha4:
+          type: string
+        linha5:
+          type: string
+        linha6:
+          type: string
+        linha7:
+          type: string
+        linha8:
+          type: string
+        linha9:
+          type: string
+        linha10:
+          type: string
+        linha11:
+          type: string
+        linha12:
+          type: string
+        medidor:
+          type: string
+        msg1:
+          type: string
+        msg2:
+          type: string
+        msg3:
+          type: string
+        msg4:
+          type: string
+        msg5:
+          type: string
+        msgAtraso:
+          type: string
+        msgPrevencao:
+          type: string
+        nome:
+          type: string
+        nrInscricao:
+          type: string
+        periodo:
+          type: string
+        quadraEnt:
+          type: string
+        quadraLeit:
+          type: string
+        rotaEnt:
+          type: string
+        rotaLeit:
+          type: string
+        rubrica1:
+          type: string
+        rubrica2:
+          type: string
+        rubrica3:
+          type: string
+        rubrica4:
+          type: string
+        rubrica5:
+          type: string
+        rubrica6:
+          type: string
+        rubrica7:
+          type: string
+        rubrica8:
+          type: string
+        rubrica9:
+          type: string
+        rubrica10:
+          type: string
+        rubrica11:
+          type: string
+        rubrica12:
+          type: string
+        rubrica13:
+          type: string
+        rubrica14:
+          type: string
+        rubrica15:
+          type: string
+        rubrica16:
+          type: string
+        codRubrica1:
+          type: string
+        codRubrica2:
+          type: string
+        codRubrica3:
+          type: string
+        codRubrica4:
+          type: string
+        codRubrica5:
+          type: string
+        codRubrica6:
+          type: string
+        codRubrica7:
+          type: string
+        codRubrica8:
+          type: string
+        codRubrica9:
+          type: string
+        codRubrica10:
+          type: string
+        codRubrica11:
+          type: string
+        codRubrica12:
+          type: string
+        codRubrica13:
+          type: string
+        codRubrica14:
+          type: string
+        codRubrica15:
+          type: string
+        codRubrica16:
+          type: string
+        rubrica1RefParc:
+          type: string
+        rubrica2RefParc:
+          type: string
+        rubrica3RefParc:
+          type: string
+        rubrica4RefParc:
+          type: string
+        rubrica5RefParc:
+          type: string
+        rubrica6RefParc:
+          type: string
+        rubrica7RefParc:
+          type: string
+        rubrica8RefParc:
+          type: string
+        rubrica9RefParc:
+          type: string
+        rubrica10RefParc:
+          type: string
+        rubrica11RefParc:
+          type: string
+        rubrica12RefParc:
+          type: string
+        rubrica13RefParc:
+          type: string
+        rubrica14RefParc:
+          type: string
+        rubrica15RefParc:
+          type: string
+        rubrica16RefParc:
+          type: string
+        limitePgto:
+          type: string
+        seqEnt:
+          type: string
+        seqLeit:
+          type: string
+        sequencia:
+          type: string
+        subUnidEnt:
+          type: string
+        subUnidLeit:
+          type: string
+        total:
+          type: string
+        valISS1:
+          type: string
+        valISS2:
+          type: string
+        valISS3:
+          type: string
+        valISS4:
+          type: string
+        valISS5:
+          type: string
+        valISS6:
+          type: string
+        valISS7:
+          type: string
+        valISS8:
+          type: string
+        valISS9:
+          type: string
+        valISS10:
+          type: string
+        valISS11:
+          type: string
+        valISS12:
+          type: string
+        valISS13:
+          type: string
+        valISS14:
+          type: string
+        valISS15:
+          type: string
+        valISS16:
+          type: string
+        valorImposto:
+          type: string
+        valorTotalFatura:
+          type: string
+        valorTotalRubricaConsiderarFatura:
+          type: string
+        valRubrica1:
+          type: string
+        valRubrica2:
+          type: string
+        valRubrica3:
+          type: string
+        valRubrica4:
+          type: string
+        valRubrica5:
+          type: string
+        valRubrica6:
+          type: string
+        valRubrica7:
+          type: string
+        valRubrica8:
+          type: string
+        valRubrica9:
+          type: string
+        valRubrica10:
+          type: string
+        valRubrica11:
+          type: string
+        valRubrica12:
+          type: string
+        valRubrica13:
+          type: string
+        valRubrica14:
+          type: string
+        valRubrica15:
+          type: string
+        valRubrica16:
+          type: string
+        vencimento:
+          type: string
+        volMedido:
+          type: string
+        volFaturado:
+          type: string
+        creditoUtilizado:
+          type: string
+        idLigacaoDV:
+          type: integer
+        ligacaoDV2Casas:
+          type: string
+        ligacaoDVModulo11Especial:
+          type: string
+        segundaVia:
+          type: string
+        mensagensPrevencao:
+          type: string
+        idUsuario:
+          type: integer
+        idFatGuiaPag:
+          type: integer
+        valorTotalGuiaAtraso:
+          type: string
+        cpf:
+          type: string
+        cnpj:
+          type: string
+        mediaConsumo:
+          type: string
+        mediaFat:
+          type: string
+        categoriaSigla:
+          type: string
+        dataLeitMedi:
+          type: string
+        tipoLogradouroEntrega:
+          type: string
+        tituloLogradouroEntrega:
+          type: string
+        logradouroEntrega:
+          type: string
+        nrImovelEntrega:
+          type: string
+        cepEntrega:
+          type: string
+        complementoEntrega:
+          type: string
+        bairroEntrega:
+          type: string
+        cidadeEntrega:
+          type: string
+        tipoLogradouro:
+          type: string
+        tituloLogradouro:
+          type: string
+        logradouro:
+          type: string
+        nrImovel:
+          type: string
+        cep:
+          type: string
+        complemento:
+          type: string
+        bairro:
+          type: string
+        cidade:
+          type: string
+        uf:
+          type: string
+        idFonte:
+          type: integer
+        qtdDebitos:
+          type: integer
+        condicaoFaturamento:
+          type: string
+        volResUtilizado:
+          type: integer
+        volResUtilizadoCorte:
+          type: integer
+        tipoLigacao:
+          type: string
+        acaoJudicial:
+          type: string
+        tipoFaturamento:
+          type: string
+        historico_consumo:
+          type: array
+          items:
+            type: object
+            properties:
+              referencia:
+                type: string
+              consumo:
+                type: integer
+        colCategoria:
+          type: array
+          items:
+            type: object
+            properties:
+              idCategoria:
+                type: integer
+              idSubCategoria:
+                type: integer
+              categoria:
+                type: string
+              nrEconomias:
+                type: integer
+              peso:
+                type: integer
+              isento:
+                type: string
+              prioridade:
+                type: integer
+              descricao:
+                type: string
+              selecionado:
+                type: boolean
+              volConsMinimo:
+                type: number
+              sigla:
+                type: string
+              percentualFat:
+                type: integer
+              ordemImpressao:
+                type: integer
+              idCidade:
+                type: integer
+              cidade:
+                type: string
+              consumoMinimoRetencao:
+                type: number
+              imprimirMsgExcedenteCobrado:
+                type: string
+              aplicarAcrescimoParcUfir:
+                type: string
+              ordemCategoriaExibicao:
+                type: integer
+              idCategoriaDestino:
+                type: integer
+              volFatMaximo:
+                type: number
+              unificaEcoCatDestino:
+                type: string
+              valTaxaServico:
+                type: number
+              valAluguelHidrometro:
+                type: number
+              valConsZero:
+                type: number
+              servicosAmbientais:
+                type: number
+              faixaInicial:
+                type: number
+              faixaFinal:
+                type: number
+              nrEconomiaExcecao:
+                type: integer
+        colFaturaDetalhe:
+          type: array
+          items:
+            type: object
+            properties:
+              parcela:
+                type: integer
+              nr_parcelas:
+                type: integer
+              id_rubrica:
+                type: integer
+              id_tipo_excecao:
+                type: integer
+              id_classificacao_fiscal_rubrica:
+                type: integer
+              valor:
+                type: number
+              vol_fat_individual:
+                type: number
+              col_fatura_detalhe_imposto_vo:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id_rubrica:
+                      type: integer
+                    valor:
+                      type: number
+                    rubrica:
+                      type: string
+              id_produto:
+                type: integer
+              id_venda_detalhe_parcela:
+                type: integer
+              valor_imposto:
+                type: number
+              valor_total:
+                type: number
+              id_excecao:
+                type: integer
+              id_excecao_aplicacao:
+                type: integer
+              id_ligacao_excecao:
+                type: integer
+              parcelamento:
+                type: boolean
+              id_periodo_ref:
+                type: integer
+              periodo_ref:
+                type: string
+              mes:
+                type: integer
+              ano:
+                type: integer
+              exibir_fatura:
+                type: boolean
+              considerar_total_fatura:
+                type: boolean
+              id_grupo_exibe:
+                type: integer
+              rubrica:
+                type: string
+              rubrica_resumida:
+                type: string
+              id_grupo_rubrica:
+                type: integer
+              id_grupo_receita:
+                type: integer
+              produto:
+                type: string
+              poder_concedente:
+                type: string
+              referencia:
+                type: string
+              id_ligacao_seguro:
+                type: integer
+              cod_rubrica:
+                type: string
+              aliquota_iss:
+                type: number
+              aliquota_icms:
+                type: number
+              aliquota_pis:
+                type: number
+              aliquota_cofins:
+                type: number
+              aliquota_inss:
+                type: number
+              base_calculo_iss:
+                type: number
+              base_calculo_icms:
+                type: number
+              base_calculo_pis:
+                type: number
+              base_calculo_cofins:
+                type: number
+              base_calculo_inss:
+                type: number
+              valor_iss:
+                type: number
+              valor_icms:
+                type: number
+              valor_pis:
+                type: number
+              valor_cofins:
+                type: number
+              valor_inss:
+                type: number
+              valor_geral:
+                type: number
+        colEstruturaTarifaria:
+          type: array
+          items:
+            type: object
+            properties:
+              volIniFaixa:
+                type: number
+              volFinFaixa:
+                type: number
+              valProd1Cat1:
+                type: number
+              valProd2Cat1:
+                type: number
+              valProd3Cat1:
+                type: number
+              valProd1Cat2:
+                type: number
+              valProd2Cat2:
+                type: number
+              valProd3Cat2:
+                type: number
+              valProd1Cat3:
+                type: number
+              valProd2Cat3:
+                type: number
+              valProd3Cat3:
+                type: number
+              consumoFaixa:
+                type: number
+              produto1Cat1:
+                type: string
+              produto2Cat1:
+                type: string
+              produto3Cat1:
+                type: string
+              produto1Cat2:
+                type: string
+              produto2Cat2:
+                type: string
+              produto3Cat2:
+                type: string
+              produto1Cat3:
+                type: string
+              produto2Cat3:
+                type: string
+              produto3Cat3:
+                type: string
+        qtdEconomia1:
+          type: string
+        qtdEconomia2:
+          type: string
+        qtdEconomia3:
+          type: string
+        qtdEconomia4:
+          type: string
+        qtdEconomia5:
+          type: string
+        qtdEconomias:
+          type: integer
+        dataEmissao:
+          type: string
+        histConsumoPeriodo1:
+          type: string
+        histConsumoPeriodo2:
+          type: string
+        histConsumoPeriodo3:
+          type: string
+        histConsumoPeriodo4:
+          type: string
+        histConsumoPeriodo5:
+          type: string
+        histConsumoPeriodo6:
+          type: string
+        histConsumoValor1:
+          type: integer
+        histConsumoValor2:
+          type: integer
+        histConsumoValor3:
+          type: integer
+        histConsumoValor4:
+          type: integer
+        histConsumoValor5:
+          type: integer
+        histConsumoValor6:
+          type: integer
+        valorTotalSama:
+          type: string
+        valorTotalMaua:
+          type: string
+        setorLeit:
+          type: string
+        identificacao:
+          type: string
+        dataPagamento:
+          type: string
+        totalVolConsumo:
+          type: number
+        coeficienteReducao:
+          type: string
+        coeficienteCodigo1:
+          type: integer
+        coeficienteCodigo2:
+          type: integer
+        coeficienteCodigo3:
+          type: integer
+        coeficienteCodigo4:
+          type: integer
+        coeficienteCodigo5:
+          type: integer
+        coeficienteCodigo6:
+          type: integer
+        coeficienteCodigo7:
+          type: integer
+        coeficienteCodigo8:
+          type: integer
+        coeficienteCodigo9:
+          type: integer
+        coeficienteCodigo10:
+          type: integer
+        coeficienteDescricao1:
+          type: string
+        coeficienteDescricao2:
+          type: string
+        coeficienteDescricao3:
+          type: string
+        coeficienteDescricao4:
+          type: string
+        coeficienteDescricao5:
+          type: string
+        coeficienteDescricao6:
+          type: string
+        coeficienteDescricao7:
+          type: string
+        coeficienteDescricao8:
+          type: string
+        coeficienteDescricao9:
+          type: string
+        coeficienteDescricao10:
+          type: string
+        coeficienteValor1:
+          type: number
+        coeficienteValor2:
+          type: number
+        coeficienteValor3:
+          type: number
+        coeficienteValor4:
+          type: number
+        coeficienteValor5:
+          type: number
+        coeficienteValor6:
+          type: number
+        coeficienteValor7:
+          type: number
+        coeficienteValor8:
+          type: number
+        coeficienteValor9:
+          type: number
+        coeficienteValor10:
+          type: number
+        imid:
+          type: string
+        lcid:
+          type: string
+        datainstalacao:
+          type: integer
+        leiturainstalacao:
+          type: string
+        volresidual:
+          type: integer
+        residuocorte:
+          type: integer
+        leituracorte:
+          type: integer
+        debitoAutomatico:
+          type: string
+        parametro1:
+          type: string
+        nrAmostrasRealizadas1:
+          type: string
+        nrAmostrasForaPadrao1:
+          type: string
+        nrAmostrasConformidade1:
+          type: string
+        valMedio1:
+          type: string
+        valMinimo1:
+          type: string
+        valMaximo1:
+          type: string
+        valMaxpermitido1:
+          type: string
+        nrAmostras1:
+          type: string
+        unidadeMedida1:
+          type: string
+        parametro2:
+          type: string
+        nrAmostrasRealizadas2:
+          type: string
+        nrAmostrasForaPadrao2:
+          type: string
+        nrAmostrasConformidade2:
+          type: string
+        valMedio2:
+          type: string
+        valMinimo2:
+          type: string
+        valMaximo2:
+          type: string
+        valMaxpermitido2:
+          type: string
+        nrAmostras2:
+          type: string
+        unidadeMedida2:
+          type: string
+        parametro3:
+          type: string
+        nrAmostrasRealizadas3:
+          type: string
+        nrAmostrasForaPadrao3:
+          type: string
+        nrAmostrasConformidade3:
+          type: string
+        valMedio3:
+          type: string
+        valMinimo3:
+          type: string
+        valMaximo3:
+          type: string
+        valMaxpermitido3:
+          type: string
+        nrAmostras3:
+          type: string
+        unidadeMedida3:
+          type: string
+        parametro4:
+          type: string
+        nrAmostrasRealizadas4:
+          type: string
+        nrAmostrasForaPadrao4:
+          type: string
+        nrAmostrasConformidade4:
+          type: string
+        valMedio4:
+          type: string
+        valMinimo4:
+          type: string
+        valMaximo4:
+          type: string
+        valMaxpermitido4:
+          type: string
+        nrAmostras4:
+          type: string
+        unidadeMedida4:
+          type: string
+        parametro5:
+          type: string
+        nrAmostrasRealizadas5:
+          type: string
+        nrAmostrasForaPadrao5:
+          type: string
+        nrAmostrasConformidade5:
+          type: string
+        valMedio5:
+          type: string
+        valMinimo5:
+          type: string
+        valMaximo5:
+          type: string
+        valMaxpermitido5:
+          type: string
+        nrAmostras5:
+          type: string
+        unidadeMedida5:
+          type: string
+        parametro6:
+          type: string
+        nrAmostrasRealizadas6:
+          type: string
+        nrAmostrasForaPadrao6:
+          type: string
+        nrAmostrasConformidade6:
+          type: string
+        valMedio6:
+          type: string
+        valMinimo6:
+          type: string
+        valMaximo6:
+          type: string
+        valMaxpermitido6:
+          type: string
+        nrAmostras6:
+          type: string
+        unidadeMedida6:
+          type: string
+        parametro7:
+          type: string
+        nrAmostrasRealizadas7:
+          type: string
+        nrAmostrasForaPadrao7:
+          type: string
+        nrAmostrasConformidade7:
+          type: string
+        valMedio7:
+          type: string
+        valMinimo7:
+          type: string
+        valMaximo7:
+          type: string
+        valMaxpermitido7:
+          type: string
+        nrAmostras7:
+          type: string
+        unidadeMedida7:
+          type: string
+        parametro8:
+          type: string
+        nrAmostrasRealizadas8:
+          type: string
+        nrAmostrasForaPadrao8:
+          type: string
+        nrAmostrasConformidade8:
+          type: string
+        valMedio8:
+          type: string
+        valMinimo8:
+          type: string
+        valMaximo8:
+          type: string
+        valMaxpermitido8:
+          type: string
+        nrAmostras8:
+          type: string
+        unidadeMedida8:
+          type: string
+        parametro9:
+          type: string
+        nrAmostrasRealizadas9:
+          type: string
+        nrAmostrasForaPadrao9:
+          type: string
+        nrAmostrasConformidade9:
+          type: string
+        valMedio9:
+          type: string
+        valMinimo9:
+          type: string
+        valMaximo9:
+          type: string
+        valMaxpermitido9:
+          type: string
+        nrAmostras9:
+          type: string
+        unidadeMedida9:
+          type: string
+        parametro10:
+          type: string
+        nrAmostrasRealizadas10:
+          type: string
+        nrAmostrasForaPadrao10:
+          type: string
+        nrAmostrasConformidade10:
+          type: string
+        valMedio10:
+          type: string
+        valMinimo10:
+          type: string
+        valMaximo10:
+          type: string
+        valMaxpermitido10:
+          type: string
+        nrAmostras10:
+          type: string
+        unidadeMedida10:
+          type: string
+        parametro11:
+          type: string
+        nrAmostrasRealizadas11:
+          type: string
+        nrAmostrasForaPadrao11:
+          type: string
+        nrAmostrasConformidade11:
+          type: string
+        valMedio11:
+          type: string
+        valMinimo11:
+          type: string
+        valMaximo11:
+          type: string
+        valMaxpermitido11:
+          type: string
+        nrAmostras11:
+          type: string
+        unidadeMedida11:
+          type: string
+        parametro12:
+          type: string
+        nrAmostrasRealizadas12:
+          type: string
+        nrAmostrasForaPadrao12:
+          type: string
+        nrAmostrasConformidade12:
+          type: string
+        valMedio12:
+          type: string
+        valMinimo12:
+          type: string
+        valMaximo12:
+          type: string
+        valMaxpermitido12:
+          type: string
+        nrAmostras12:
+          type: string
+        unidadeMedida12:
+          type: string
+        reavisoDebito:
+          type: string
+        caminho:
+          type: string
+        nomeProprietario:
+          type: string
+        numeroLacreMedidor:
+          type: string
+        nomeInquilino:
+          type: string
+        produtosFaturadosVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idProduto:
+                type: integer
+              produto:
+                type: string
+              idRubrica:
+                type: integer
+              rubrica:
+                type: string
+              volFat:
+                type: number
+              volFatCons:
+                type: number
+              mediaFat:
+                type: number
+              idGrupoReceita:
+                type: integer
+              idLigacao:
+                type: integer
+        descricaoProduto1:
+          type: string
+        volFatProduto1:
+          type: string
+        descricaoProduto2:
+          type: string
+        volFatProduto2:
+          type: string
+        descricaoProduto3:
+          type: string
+        volFatProduto3:
+          type: string
+        codOrigem:
+          type: integer
+        origemDV:
+          type: string
+        imprimirMsgExcedenteCobrado:
+          type: string
+        regimeEspecial:
+          type: string
+        categoriaDom:
+          type: integer
+        categoriaCom:
+          type: integer
+        categoriaInd:
+          type: integer
+        categoriaPub:
+          type: integer
+        percentualDom:
+          type: integer
+        percentualCom:
+          type: integer
+        percentualInd:
+          type: integer
+        percentualPub:
+          type: integer
+        volumeApuradoDia:
+          type: number
+        volumeMedioDia:
+          type: number
+        descricaoSubCategoria:
+          type: string
+        fonteAbastecimento:
+          type: string
+        periodoRef:
+          type: string
+        observacoes:
+          type: string
+        faixaConsumo1:
+          type: string
+        faixaConsumo2:
+          type: string
+        faixaConsumo3:
+          type: string
+        faixaConsumo4:
+          type: string
+        faixaConsumo5:
+          type: string
+        faixaMinima1:
+          type: number
+        faixaMinima2:
+          type: number
+        faixaMinima3:
+          type: number
+        faixaMinima4:
+          type: number
+        faixaMinima5:
+          type: number
+        faixaMinima6:
+          type: number
+        faixaMinima7:
+          type: number
+        faixaMinima8:
+          type: number
+        faixaMinima9:
+          type: number
+        faixaMinima10:
+          type: number
+        faixaMinima11:
+          type: number
+        faixaMaxima1:
+          type: number
+        faixaMaxima2:
+          type: number
+        faixaMaxima3:
+          type: number
+        faixaMaxima4:
+          type: number
+        faixaMaxima5:
+          type: number
+        faixaMaxima6:
+          type: number
+        faixaMaxima7:
+          type: number
+        faixaMaxima8:
+          type: number
+        faixaMaxima9:
+          type: number
+        faixaMaxima10:
+          type: number
+        faixaMaxima11:
+          type: number
+        consumoFaturado1:
+          type: number
+        consumoFaturado2:
+          type: number
+        consumoFaturado3:
+          type: number
+        consumoFaturado4:
+          type: number
+        consumoFaturado5:
+          type: number
+        valor1:
+          type: number
+        valor2:
+          type: number
+        valor3:
+          type: number
+        valor4:
+          type: number
+        valor5:
+          type: number
+        valorTotalImpostoAproximado:
+          type: number
+        percentualTotalImpostoAproximado:
+          type: integer
+        possuiReavisoRubricaSeguro:
+          type: boolean
+        analitico:
+          type: boolean
+        rubricaResumida:
+          type: string
+        totalRubicaResumida:
+          type: string
+        idarrecadador:
+          type: integer
+        nomeArrecadador:
+          type: string
+        emailDestinatario:
+          type: string
+        assuntoEmail:
+          type: string
+        corpoEmail:
+          type: string
+        enviadoSucesso:
+          type: boolean
+        mensagemErro:
+          type: string
+        dataHoraEnvioEmail:
+          type: string
+        pesoCategoria:
+          type: integer
+        enderecoEmpresa:
+          type: string
+        logradouroEmpresa:
+          type: string
+        complementoEmpresa:
+          type: string
+        cepEmpresa:
+          type: string
+        cnpjEmpresa:
+          type: string
+        consumoEstimado:
+          type: integer
+        tipoConsumoFaturado:
+          type: string
+        enviarDadosEmpresa:
+          type: boolean
+        mensagemOcorrencia:
+          type: string
+        exibeReaviso:
+          type: string
+        mensagemReaviso:
+          type: string
+        mensagemReavisoLinha1:
+          type: string
+        mensagemReavisoLinha2:
+          type: string
+        mensagemReavisoLinha3:
+          type: string
+        mensagemReavisoLinha4:
+          type: string
+        referenciaDebito1:
+          type: string
+        referenciaDebito2:
+          type: string
+        referenciaDebito3:
+          type: string
+        referenciaDebito4:
+          type: string
+        referenciaDebito5:
+          type: string
+        referenciaDebito6:
+          type: string
+        referenciaDebito7:
+          type: string
+        referenciaDebito8:
+          type: string
+        referenciaDebito9:
+          type: string
+        referenciaDebito10:
+          type: string
+        dataVctoDebito1:
+          type: string
+        dataVctoDebito2:
+          type: string
+        dataVctoDebito3:
+          type: string
+        dataVctoDebito4:
+          type: string
+        dataVctoDebito5:
+          type: string
+        dataVctoDebito6:
+          type: string
+        dataVctoDebito7:
+          type: string
+        dataVctoDebito8:
+          type: string
+        dataVctoDebito9:
+          type: string
+        dataVctoDebito10:
+          type: string
+        valorDebito1:
+          type: integer
+        valorDebito2:
+          type: integer
+        valorDebito3:
+          type: integer
+        valorDebito4:
+          type: integer
+        valorDebito5:
+          type: integer
+        valorDebito6:
+          type: integer
+        valorDebito7:
+          type: integer
+        valorDebito8:
+          type: integer
+        valorDebito9:
+          type: integer
+        valorDebito10:
+          type: integer
+        idFaturaDebito1:
+          type: integer
+        idFaturaDebito2:
+          type: integer
+        idFaturaDebito3:
+          type: integer
+        idFaturaDebito4:
+          type: integer
+        idFaturaDebito5:
+          type: integer
+        idFaturaDebito6:
+          type: integer
+        idFaturaDebito7:
+          type: integer
+        idFaturaDebito8:
+          type: integer
+        idFaturaDebito9:
+          type: integer
+        idFaturaDebito10:
+          type: integer
+        valorImpostoDebito1:
+          type: integer
+        valorImpostoDebito2:
+          type: integer
+        valorImpostoDebito3:
+          type: integer
+        valorImpostoDebito4:
+          type: integer
+        valorImpostoDebito5:
+          type: integer
+        valorImpostoDebito6:
+          type: number
+        valorImpostoDebito7:
+          type: number
+        valorImpostoDebito8:
+          type: number
+        valorImpostoDebito9:
+          type: number
+        valorImpostoDebito10:
+          type: number
+        mensagemMaisDebitos1:
+          type: string
+        mensagemMaisDebitos2:
+          type: string
+        mensagemMaisDebitos3:
+          type: string
+        mensagemReavisoFatura:
+          type: string
+        percAmostraConfAposRec1:
+          type: string
+        percAmostraConfAposRec2:
+          type: string
+        percAmostraConfAposRec3:
+          type: string
+        percAmostraConfAposRec4:
+          type: string
+        percAmostraConfAposRec5:
+          type: string
+        percAmostraConfAposRec6:
+          type: string
+        percAmostraConfAposRec7:
+          type: string
+        percAmostraConfAposRec8:
+          type: string
+        percAmostraConfAposRec9:
+          type: string
+        percAmostraConfAposRec10:
+          type: string
+        percAmostraConfAposRec11:
+          type: string
+        percAmostraConfAposRec12:
+          type: string
+        msgCritica:
+          type: string
+        valor:
+          type: string
+        valorDebitoPendente:
+          type: integer
+        qtdDebitosInquilino:
+          type: integer
+        imprimeFaturaApp:
+          type: string
+        entregaAlternativa:
+          type: string
+        enviaFaturaEmail:
+          type: string
+        nomeCategoria1:
+          type: string
+        tarifa1C1:
+          type: integer
+        tarifa2C1:
+          type: integer
+        tarifa3C1:
+          type: integer
+        tarifa4C1:
+          type: integer
+        tarifa5C1:
+          type: integer
+        tarifa6C1:
+          type: integer
+        tarifa7C1:
+          type: integer
+        tarifa8C1:
+          type: integer
+        tarifa9C1:
+          type: integer
+        tarifa10C1:
+          type: integer
+        tarifa11C1:
+          type: integer
+        nomeCategoria2:
+          type: string
+        tarifa1C2:
+          type: integer
+        tarifa2C2:
+          type: integer
+        tarifa3C2:
+          type: integer
+        tarifa4C2:
+          type: integer
+        tarifa5C2:
+          type: integer
+        tarifa6C2:
+          type: integer
+        tarifa7C2:
+          type: integer
+        tarifa8C2:
+          type: integer
+        tarifa9C2:
+          type: integer
+        tarifa10C2:
+          type: integer
+        tarifa11C2:
+          type: integer
+        nomeCategoria3:
+          type: string
+        tarifa1C3:
+          type: number
+        tarifa2C3:
+          type: number
+        tarifa3C3:
+          type: number
+        tarifa4C3:
+          type: number
+        tarifa5C3:
+          type: number
+        tarifa6C3:
+          type: number
+        tarifa7C3:
+          type: number
+        tarifa8C3:
+          type: number
+        tarifa9C3:
+          type: number
+        tarifa10C3:
+          type: number
+        tarifa11C3:
+          type: number
+        nomeCategoria4:
+          type: string
+        tarifa1C4:
+          type: number
+        tarifa2C4:
+          type: number
+        tarifa3C4:
+          type: number
+        tarifa4C4:
+          type: number
+        tarifa5C4:
+          type: number
+        tarifa6C4:
+          type: number
+        tarifa7C4:
+          type: number
+        tarifa8C4:
+          type: number
+        tarifa9C4:
+          type: number
+        tarifa10C4:
+          type: number
+        tarifa11C4:
+          type: number
+      x-examples:
+        Example 1:
+          idFaturaSituacao: 0
+          idTipoCalculo: 0
+          acrescimos: ''
+          agencia: ''
+          banco: ''
+          baseCalculo: ''
+          categoria: ''
+          codBar: ''
+          codBarTxt: ''
+          codBar2: ''
+          codBarTxt2: ''
+          codBar3: ''
+          codBarTxt3: ''
+          codigoLeitura: ''
+          codigoLeituraMsgFatura: ''
+          conta: ''
+          controleEntrega: ''
+          dataLeitura: ''
+          dataProxLeitura: ''
+          debitoAuto: ''
+          diasConsumo: ''
+          diasConsumoProporcional: ''
+          nrDiasConsumo: 0
+          endEntrega: ''
+          endereco: ''
+          grupoEnt: ''
+          grupoLeit: ''
+          consolidadora: ''
+          idFatura: 0
+          idFaturaRecalculada: 0
+          idCidade: 0
+          idPeriodo: 0
+          idGrupo: 0
+          idGrupoLeit: 0
+          idLigacao: 0
+          idLigacaoEntrega: 0
+          idTipoEntrega: 0
+          idLigConsolidadora: 0
+          idCategoria: 0
+          idTipoFaturamento: ''
+          idTipoLigacao: ''
+          idTipoTransacao: ''
+          leituraAnterior: ''
+          dataLeituraAnterior: ''
+          ocorrencia: ''
+          leituraAtual: ''
+          linha1: ''
+          linha2: ''
+          linha3: ''
+          linha4: ''
+          linha5: ''
+          linha6: ''
+          linha7: ''
+          linha8: ''
+          linha9: ''
+          linha10: ''
+          linha11: ''
+          linha12: ''
+          medidor: ''
+          msg1: ''
+          msg2: ''
+          msg3: ''
+          msg4: ''
+          msg5: ''
+          msgAtraso: ''
+          msgPrevencao: ''
+          nome: ''
+          nrInscricao: ''
+          periodo: ''
+          quadraEnt: ''
+          quadraLeit: ''
+          rotaEnt: ''
+          rotaLeit: ''
+          rubrica1: ''
+          rubrica2: ''
+          rubrica3: ''
+          rubrica4: ''
+          rubrica5: ''
+          rubrica6: ''
+          rubrica7: ''
+          rubrica8: ''
+          rubrica9: ''
+          rubrica10: ''
+          rubrica11: ''
+          rubrica12: ''
+          rubrica13: ''
+          rubrica14: ''
+          rubrica15: ''
+          rubrica16: ''
+          codRubrica1: ''
+          codRubrica2: ''
+          codRubrica3: ''
+          codRubrica4: ''
+          codRubrica5: ''
+          codRubrica6: ''
+          codRubrica7: ''
+          codRubrica8: ''
+          codRubrica9: ''
+          codRubrica10: ''
+          codRubrica11: ''
+          codRubrica12: ''
+          codRubrica13: ''
+          codRubrica14: ''
+          codRubrica15: ''
+          codRubrica16: ''
+          rubrica1RefParc: ''
+          rubrica2RefParc: ''
+          rubrica3RefParc: ''
+          rubrica4RefParc: ''
+          rubrica5RefParc: ''
+          rubrica6RefParc: ''
+          rubrica7RefParc: ''
+          rubrica8RefParc: ''
+          rubrica9RefParc: ''
+          rubrica10RefParc: ''
+          rubrica11RefParc: ''
+          rubrica12RefParc: ''
+          rubrica13RefParc: ''
+          rubrica14RefParc: ''
+          rubrica15RefParc: ''
+          rubrica16RefParc: ''
+          limitePgto: ''
+          seqEnt: ''
+          seqLeit: ''
+          sequencia: ''
+          subUnidEnt: ''
+          subUnidLeit: ''
+          total: ''
+          valISS1: ''
+          valISS2: ''
+          valISS3: ''
+          valISS4: ''
+          valISS5: ''
+          valISS6: ''
+          valISS7: ''
+          valISS8: ''
+          valISS9: ''
+          valISS10: ''
+          valISS11: ''
+          valISS12: ''
+          valISS13: ''
+          valISS14: ''
+          valISS15: ''
+          valISS16: ''
+          valorImposto: ''
+          valorTotalFatura: ''
+          valorTotalRubricaConsiderarFatura: ''
+          valRubrica1: ''
+          valRubrica2: ''
+          valRubrica3: ''
+          valRubrica4: ''
+          valRubrica5: ''
+          valRubrica6: ''
+          valRubrica7: ''
+          valRubrica8: ''
+          valRubrica9: ''
+          valRubrica10: ''
+          valRubrica11: ''
+          valRubrica12: ''
+          valRubrica13: ''
+          valRubrica14: ''
+          valRubrica15: ''
+          valRubrica16: ''
+          vencimento: ''
+          volMedido: ''
+          volFaturado: ''
+          creditoUtilizado: ''
+          idLigacaoDV: 1
+          ligacaoDV2Casas: ''
+          ligacaoDVModulo11Especial: ''
+          segundaVia: ''
+          mensagensPrevencao: ''
+          idUsuario: 0
+          idFatGuiaPag: 0
+          valorTotalGuiaAtraso: ''
+          cpf: ''
+          cnpj: ''
+          mediaConsumo: ''
+          mediaFat: ''
+          categoriaSigla: ''
+          dataLeitMedi: ''
+          tipoLogradouroEntrega: ''
+          tituloLogradouroEntrega: ''
+          logradouroEntrega: ''
+          nrImovelEntrega: ''
+          cepEntrega: ''
+          complementoEntrega: ''
+          bairroEntrega: ''
+          cidadeEntrega: ''
+          tipoLogradouro: ''
+          tituloLogradouro: ''
+          logradouro: ''
+          nrImovel: ''
+          cep: ''
+          complemento: ''
+          bairro: ''
+          cidade: ''
+          uf: ''
+          idFonte: 0
+          qtdDebitos: 0
+          condicaoFaturamento: ''
+          volResUtilizado: 0
+          volResUtilizadoCorte: 0
+          tipoLigacao: ''
+          acaoJudicial: ''
+          tipoFaturamento: ''
+          historico_consumo:
+            - referencia: ''
+              consumo: 1
+          colCategoria:
+            - idCategoria: 0
+              idSubCategoria: 0
+              categoria: ''
+              nrEconomias: 0
+              peso: 0
+              isento: 'N'
+              prioridade: 0
+              descricao: ''
+              selecionado: false
+              volConsMinimo: 1.1
+              sigla: ''
+              percentualFat: 0
+              ordemImpressao: 0
+              idCidade: 0
+              cidade: ''
+              consumoMinimoRetencao: 1.1
+              imprimirMsgExcedenteCobrado: ''
+              aplicarAcrescimoParcUfir: ''
+              ordemCategoriaExibicao: 0
+              idCategoriaDestino: 0
+              volFatMaximo: 1.1
+              unificaEcoCatDestino: ''
+              valTaxaServico: 1.1
+              valAluguelHidrometro: 1.1
+              valConsZero: 1.1
+              servicosAmbientais: 1.1
+              faixaInicial: 1.1
+              faixaFinal: 1.1
+              nrEconomiaExcecao: 1
+          colFaturaDetalhe:
+            - parcela: 1
+              nr_parcelas: 1
+              id_rubrica: 1
+              id_tipo_excecao: 1
+              id_classificacao_fiscal_rubrica: 1
+              valor: 1.1
+              vol_fat_individual: 1.1
+              col_fatura_detalhe_imposto_vo:
+                - id_rubrica: 1
+                  valor: 1.1
+                  rubrica: string
+              id_produto: 1
+              id_venda_detalhe_parcela: 1
+              valor_imposto: 1.1
+              valor_total: 1.1
+              id_excecao: 1
+              id_excecao_aplicacao: 1
+              id_ligacao_excecao: 1
+              parcelamento: true
+              id_periodo_ref: 1
+              periodo_ref: string
+              mes: 1
+              ano: 1
+              exibir_fatura: true
+              considerar_total_fatura: true
+              id_grupo_exibe: 1
+              rubrica: string
+              rubrica_resumida: string
+              id_grupo_rubrica: 1
+              id_grupo_receita: 1
+              produto: string
+              poder_concedente: string
+              referencia: string
+              id_ligacao_seguro: 1
+              cod_rubrica: string
+              aliquota_iss: 1.1
+              aliquota_icms: 1.1
+              aliquota_pis: 1.1
+              aliquota_cofins: 1.1
+              aliquota_inss: 1.1
+              base_calculo_iss: 1.1
+              base_calculo_icms: 1.1
+              base_calculo_pis: 1.1
+              base_calculo_cofins: 1.1
+              base_calculo_inss: 1.1
+              valor_iss: 1.1
+              valor_icms: 1.1
+              valor_pis: 1.1
+              valor_cofins: 1.1
+              valor_inss: 1.1
+              valor_geral: 1.1
+          colEstruturaTarifaria:
+            - volIniFaixa: 1.1
+              volFinFaixa: 1.1
+              valProd1Cat1: 1.1
+              valProd2Cat1: 1.1
+              valProd3Cat1: 1.1
+              valProd1Cat2: 1.1
+              valProd2Cat2: 1.1
+              valProd3Cat2: 1.1
+              valProd1Cat3: 1.1
+              valProd2Cat3: 1.1
+              valProd3Cat3: 1.1
+              consumoFaixa: 1.1
+              produto1Cat1: ''
+              produto2Cat1: ''
+              produto3Cat1: ''
+              produto1Cat2: ''
+              produto2Cat2: ''
+              produto3Cat2: ''
+              produto1Cat3: ''
+              produto2Cat3: ''
+              produto3Cat3: ''
+          qtdEconomia1: ''
+          qtdEconomia2: ''
+          qtdEconomia3: ''
+          qtdEconomia4: ''
+          qtdEconomia5: ''
+          qtdEconomias: 0
+          dataEmissao: ''
+          histConsumoPeriodo1: ''
+          histConsumoPeriodo2: ''
+          histConsumoPeriodo3: ''
+          histConsumoPeriodo4: ''
+          histConsumoPeriodo5: ''
+          histConsumoPeriodo6: ''
+          histConsumoValor1: 0
+          histConsumoValor2: 0
+          histConsumoValor3: 0
+          histConsumoValor4: 0
+          histConsumoValor5: 0
+          histConsumoValor6: 0
+          valorTotalSama: ''
+          valorTotalMaua: ''
+          setorLeit: ''
+          identificacao: ''
+          dataPagamento: ''
+          totalVolConsumo: 1.1
+          coeficienteReducao: ''
+          coeficienteCodigo1: 0
+          coeficienteCodigo2: 0
+          coeficienteCodigo3: 0
+          coeficienteCodigo4: 0
+          coeficienteCodigo5: 0
+          coeficienteCodigo6: 0
+          coeficienteCodigo7: 0
+          coeficienteCodigo8: 0
+          coeficienteCodigo9: 0
+          coeficienteCodigo10: 0
+          coeficienteDescricao1: ''
+          coeficienteDescricao2: ''
+          coeficienteDescricao3: ''
+          coeficienteDescricao4: ''
+          coeficienteDescricao5: ''
+          coeficienteDescricao6: ''
+          coeficienteDescricao7: ''
+          coeficienteDescricao8: ''
+          coeficienteDescricao9: ''
+          coeficienteDescricao10: ''
+          coeficienteValor1: 1.1
+          coeficienteValor2: 1.1
+          coeficienteValor3: 1.1
+          coeficienteValor4: 1.1
+          coeficienteValor5: 1.1
+          coeficienteValor6: 1.1
+          coeficienteValor7: 1.1
+          coeficienteValor8: 1.1
+          coeficienteValor9: 1.1
+          coeficienteValor10: 1.1
+          imid: ''
+          lcid: ''
+          datainstalacao: 1
+          leiturainstalacao: ''
+          volresidual: 1
+          residuocorte: 1
+          leituracorte: 1
+          debitoAutomatico: ''
+          parametro1: ''
+          nrAmostrasRealizadas1: ''
+          nrAmostrasForaPadrao1: ''
+          nrAmostrasConformidade1: ''
+          valMedio1: ''
+          valMinimo1: ''
+          valMaximo1: ''
+          valMaxpermitido1: ''
+          nrAmostras1: ''
+          unidadeMedida1: ''
+          parametro2: ''
+          nrAmostrasRealizadas2: ''
+          nrAmostrasForaPadrao2: ''
+          nrAmostrasConformidade2: ''
+          valMedio2: '1.1'
+          valMinimo2: '1.1'
+          valMaximo2: '1.1'
+          valMaxpermitido2: '1.1'
+          nrAmostras2: ''
+          unidadeMedida2: ''
+          parametro3: ''
+          nrAmostrasRealizadas3: ''
+          nrAmostrasForaPadrao3: ''
+          nrAmostrasConformidade3: ''
+          valMedio3: '1.1'
+          valMinimo3: '1.1'
+          valMaximo3: '1.1'
+          valMaxpermitido3: '1.1'
+          nrAmostras3: ''
+          unidadeMedida3: ''
+          parametro4: ''
+          nrAmostrasRealizadas4: ''
+          nrAmostrasForaPadrao4: ''
+          nrAmostrasConformidade4: ''
+          valMedio4: '1.1'
+          valMinimo4: '1.1'
+          valMaximo4: '1.1'
+          valMaxpermitido4: '1.1'
+          nrAmostras4: ''
+          unidadeMedida4: ''
+          parametro5: ''
+          nrAmostrasRealizadas5: ''
+          nrAmostrasForaPadrao5: ''
+          nrAmostrasConformidade5: ''
+          valMedio5: '1.1'
+          valMinimo5: '1.1'
+          valMaximo5: '1.1'
+          valMaxpermitido5: '1.1'
+          nrAmostras5: ''
+          unidadeMedida5: ''
+          parametro6: ''
+          nrAmostrasRealizadas6: ''
+          nrAmostrasForaPadrao6: ''
+          nrAmostrasConformidade6: ''
+          valMedio6: '1.1'
+          valMinimo6: '1.1'
+          valMaximo6: '1.1'
+          valMaxpermitido6: '1.1'
+          nrAmostras6: ''
+          unidadeMedida6: ''
+          parametro7: ''
+          nrAmostrasRealizadas7: ''
+          nrAmostrasForaPadrao7: ''
+          nrAmostrasConformidade7: ''
+          valMedio7: '1.1'
+          valMinimo7: '1.1'
+          valMaximo7: '1.1'
+          valMaxpermitido7: '1.1'
+          nrAmostras7: ''
+          unidadeMedida7: ''
+          parametro8: ''
+          nrAmostrasRealizadas8: ''
+          nrAmostrasForaPadrao8: ''
+          nrAmostrasConformidade8: ''
+          valMedio8: '1.1'
+          valMinimo8: '1.1'
+          valMaximo8: '1.1'
+          valMaxpermitido8: '1.1'
+          nrAmostras8: ''
+          unidadeMedida8: ''
+          parametro9: ''
+          nrAmostrasRealizadas9: ''
+          nrAmostrasForaPadrao9: ''
+          nrAmostrasConformidade9: ''
+          valMedio9: '1.1'
+          valMinimo9: '1.1'
+          valMaximo9: '1.1'
+          valMaxpermitido9: ''
+          nrAmostras9: ''
+          unidadeMedida9: ''
+          parametro10: ''
+          nrAmostrasRealizadas10: ''
+          nrAmostrasForaPadrao10: ''
+          nrAmostrasConformidade10: ''
+          valMedio10: ''
+          valMinimo10: ''
+          valMaximo10: ''
+          valMaxpermitido10: ''
+          nrAmostras10: ''
+          unidadeMedida10: ''
+          parametro11: ''
+          nrAmostrasRealizadas11: ''
+          nrAmostrasForaPadrao11: ''
+          nrAmostrasConformidade11: ''
+          valMedio11: ''
+          valMinimo11: ''
+          valMaximo11: ''
+          valMaxpermitido11: ''
+          nrAmostras11: ''
+          unidadeMedida11: ''
+          parametro12: ''
+          nrAmostrasRealizadas12: ''
+          nrAmostrasForaPadrao12: ''
+          nrAmostrasConformidade12: ''
+          valMedio12: ''
+          valMinimo12: ''
+          valMaximo12: ''
+          valMaxpermitido12: ''
+          nrAmostras12: ''
+          unidadeMedida12: ''
+          reavisoDebito: ''
+          caminho: ''
+          nomeProprietario: ''
+          numeroLacreMedidor: ''
+          nomeInquilino: ''
+          produtosFaturadosVO:
+            - idProduto: 1
+              produto: ''
+              idRubrica: 1
+              rubrica: ''
+              volFat: 1.1
+              volFatCons: 1.1
+              mediaFat: 1.1
+              idGrupoReceita: 1
+              idLigacao: 1
+          descricaoProduto1: ''
+          volFatProduto1: ''
+          descricaoProduto2: ''
+          volFatProduto2: ''
+          descricaoProduto3: ''
+          volFatProduto3: ''
+          codOrigem: 0
+          origemDV: ''
+          imprimirMsgExcedenteCobrado: 'N'
+          regimeEspecial: ''
+          categoriaDom: 1
+          categoriaCom: 1
+          categoriaInd: 1
+          categoriaPub: 1
+          percentualDom: 1
+          percentualCom: 1
+          percentualInd: 1
+          percentualPub: 1
+          volumeApuradoDia: 1.1
+          volumeMedioDia: 1.1
+          descricaoSubCategoria: ''
+          fonteAbastecimento: ''
+          periodoRef: ''
+          observacoes: ''
+          faixaConsumo1: ''
+          faixaConsumo2: ''
+          faixaConsumo3: ''
+          faixaConsumo4: ''
+          faixaConsumo5: ''
+          faixaMinima1: 1.1
+          faixaMinima2: 1.1
+          faixaMinima3: 1.1
+          faixaMinima4: 1.1
+          faixaMinima5: 1.1
+          faixaMinima6: 1.1
+          faixaMinima7: 1.1
+          faixaMinima8: 1.1
+          faixaMinima9: 1.1
+          faixaMinima10: 1.1
+          faixaMinima11: 1.1
+          faixaMaxima1: 1.1
+          faixaMaxima2: 1.1
+          faixaMaxima3: 1.1
+          faixaMaxima4: 1.1
+          faixaMaxima5: 1.1
+          faixaMaxima6: 1.1
+          faixaMaxima7: 1.1
+          faixaMaxima8: 1.1
+          faixaMaxima9: 1.1
+          faixaMaxima10: 1.1
+          faixaMaxima11: 1.1
+          consumoFaturado1: 1.1
+          consumoFaturado2: 1.1
+          consumoFaturado3: 1.1
+          consumoFaturado4: 1.1
+          consumoFaturado5: 1.1
+          valor1: 1.1
+          valor2: 1.1
+          valor3: 1.1
+          valor4: 1.1
+          valor5: 1.1
+          valorTotalImpostoAproximado: 1.1
+          percentualTotalImpostoAproximado: 1
+          possuiReavisoRubricaSeguro: false
+          analitico: false
+          rubricaResumida: ''
+          totalRubicaResumida: ''
+          idarrecadador: 1
+          nomeArrecadador: ''
+          emailDestinatario: ''
+          assuntoEmail: ''
+          corpoEmail: ''
+          enviadoSucesso: false
+          mensagemErro: ''
+          dataHoraEnvioEmail: ''
+          pesoCategoria: 0
+          enderecoEmpresa: ''
+          logradouroEmpresa: ''
+          complementoEmpresa: ''
+          cepEmpresa: ''
+          cnpjEmpresa: ''
+          consumoEstimado: 1
+          tipoConsumoFaturado: ''
+          enviarDadosEmpresa: false
+          mensagemOcorrencia: ''
+          exibeReaviso: 'N'
+          mensagemReaviso: ''
+          mensagemReavisoLinha1: ''
+          mensagemReavisoLinha2: ''
+          mensagemReavisoLinha3: ''
+          mensagemReavisoLinha4: ''
+          referenciaDebito1: ''
+          referenciaDebito2: ''
+          referenciaDebito3: ''
+          referenciaDebito4: ''
+          referenciaDebito5: ''
+          referenciaDebito6: ''
+          referenciaDebito7: ''
+          referenciaDebito8: ''
+          referenciaDebito9: ''
+          referenciaDebito10: ''
+          dataVctoDebito1: ''
+          dataVctoDebito2: ''
+          dataVctoDebito3: ''
+          dataVctoDebito4: ''
+          dataVctoDebito5: ''
+          dataVctoDebito6: ''
+          dataVctoDebito7: ''
+          dataVctoDebito8: ''
+          dataVctoDebito9: ''
+          dataVctoDebito10: ''
+          valorDebito1: 0
+          valorDebito2: 0
+          valorDebito3: 0
+          valorDebito4: 0
+          valorDebito5: 0
+          valorDebito6: 0
+          valorDebito7: 0
+          valorDebito8: 0
+          valorDebito9: 0
+          valorDebito10: 0
+          idFaturaDebito1: 0
+          idFaturaDebito2: 0
+          idFaturaDebito3: 0
+          idFaturaDebito4: 0
+          idFaturaDebito5: 0
+          idFaturaDebito6: 0
+          idFaturaDebito7: 0
+          idFaturaDebito8: 0
+          idFaturaDebito9: 0
+          idFaturaDebito10: 0
+          valorImpostoDebito1: 0
+          valorImpostoDebito2: 0
+          valorImpostoDebito3: 0
+          valorImpostoDebito4: 0
+          valorImpostoDebito5: 0
+          valorImpostoDebito6: 1.1
+          valorImpostoDebito7: 1.1
+          valorImpostoDebito8: 1.1
+          valorImpostoDebito9: 1.1
+          valorImpostoDebito10: 1.1
+          mensagemMaisDebitos1: ''
+          mensagemMaisDebitos2: ''
+          mensagemMaisDebitos3: ''
+          mensagemReavisoFatura: ''
+          percAmostraConfAposRec1: ''
+          percAmostraConfAposRec2: ''
+          percAmostraConfAposRec3: ''
+          percAmostraConfAposRec4: ''
+          percAmostraConfAposRec5: ''
+          percAmostraConfAposRec6: ''
+          percAmostraConfAposRec7: ''
+          percAmostraConfAposRec8: ''
+          percAmostraConfAposRec9: ''
+          percAmostraConfAposRec10: ''
+          percAmostraConfAposRec11: ''
+          percAmostraConfAposRec12: ''
+          msgCritica: ''
+          valor: ''
+          valorDebitoPendente: 0
+          qtdDebitosInquilino: 1
+          imprimeFaturaApp: 'N'
+          entregaAlternativa: 'N'
+          enviaFaturaEmail: 'N'
+          nomeCategoria1: ''
+          tarifa1C1: 0
+          tarifa2C1: 0
+          tarifa3C1: 0
+          tarifa4C1: 0
+          tarifa5C1: 0
+          tarifa6C1: 0
+          tarifa7C1: 0
+          tarifa8C1: 0
+          tarifa9C1: 0
+          tarifa10C1: 0
+          tarifa11C1: 0
+          nomeCategoria2: ''
+          tarifa1C2: 0
+          tarifa2C2: 0
+          tarifa3C2: 0
+          tarifa4C2: 0
+          tarifa5C2: 0
+          tarifa6C2: 0
+          tarifa7C2: 0
+          tarifa8C2: 0
+          tarifa9C2: 0
+          tarifa10C2: 0
+          tarifa11C2: 0
+          nomeCategoria3: ''
+          tarifa1C3: 1.1
+          tarifa2C3: 1.1
+          tarifa3C3: 1.1
+          tarifa4C3: 1.1
+          tarifa5C3: 1.1
+          tarifa6C3: 1.1
+          tarifa7C3: 1.1
+          tarifa8C3: 1.1
+          tarifa9C3: 1.1
+          tarifa10C3: 1.1
+          tarifa11C3: 1.1
+          nomeCategoria4: ''
+          tarifa1C4: 1.1
+          tarifa2C4: 1.1
+          tarifa3C4: 1.1
+          tarifa4C4: 1.1
+          tarifa5C4: 1.1
+          tarifa6C4: 1.1
+          tarifa7C4: 1.1
+          tarifa8C4: 1.1
+          tarifa9C4: 1.1
+          tarifa10C4: 1.1
+          tarifa11C4: 1.1
+    CodigoLeituraServicoAutoDtoModel:
+      type: object
+      properties:
+        idLigacao:
+          type: integer
+        idCodigoLeitura:
+          type: integer
+        descricaoCodigoLeitura:
+          type: string
+        idCidade:
+          type: integer
+        descricaoCidade:
+          type: string
+        idServico:
+          type: integer
+        descricaoServico:
+          type: string
+        observacao:
+          type: string
+        erro:
+          type: boolean
+      x-examples:
+        Example 1:
+          idLigacao: 0
+          idCodigoLeitura: 0
+          descricaoCodigoLeitura: ''
+          idCidade: 0
+          descricaoCidade: ''
+          idServico: 0
+          descricaoServico: ''
+          observacao: ''
+          erro: false
+    BagCodigoLeituraServicoAutoDtoModel:
+      type: object
+      properties:
+        idCidade:
+          type: integer
+        cidade:
+          type: string
+        listCodigoLeituraServicoAuto:
+          type: array
+          items:
+            type: object
+            properties:
+              idLigacao:
+                type: integer
+              idCodigoLeitura:
+                type: integer
+              descricaoCodigoLeitura:
+                type: string
+              idCidade:
+                type: integer
+              descricaoCidade:
+                type: string
+              idServico:
+                type: integer
+              descricaoServico:
+                type: string
+              observacao:
+                type: string
+              erro:
+                type: boolean
+      x-examples:
+        Example 1:
+          idCidade: 1
+          cidade: ''
+          listCodigoLeituraServicoAuto:
+            - idLigacao: 0
+              idCodigoLeitura: 0
+              descricaoCodigoLeitura: ''
+              idCidade: 0
+              descricaoCidade: ''
+              idServico: 0
+              descricaoServico: ''
+              observacao: ''
+              erro: false
+    EnvioFaturaEmailDetalheDtoModel:
+      type: object
+      properties:
+        idUsuario:
+          type: integer
+        usuario:
+          type: string
+        idLigacao:
+          type: integer
+        idFatura:
+          type: integer
+        email:
+          type: string
+        dataHora:
+          type: string
+        status:
+          type: string
+        observacao:
+          type: string
+      x-examples:
+        Example 1:
+          idUsuario: 1
+          usuario: ''
+          idLigacao: 1
+          idFatura: 1
+          email: ''
+          dataHora: ''
+          status: ''
+          observacao: ''
   securitySchemes: {}
 x-extension-1: null
