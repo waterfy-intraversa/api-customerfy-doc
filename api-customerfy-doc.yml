@@ -948,7 +948,7 @@ paths:
       description: Chamada para trazer as unidades de negócio possiveis para serem selecionadas na tela do login.
   /login/usuario-logado:
     get:
-      summary: Login - getUsuarioLogadoSistema
+      summary: Segurança - Get usuario logado sistema
       operationId: get-login
       responses:
         '200':
@@ -964,7 +964,7 @@ paths:
           in: query
           name: sistema
       tags:
-        - Login
+        - Segurança
     parameters: []
   /cadastro/ligacao/documento:
     get:
@@ -1464,8 +1464,6 @@ paths:
   /comum/listar-parametro:
     get:
       summary: Comum - Listar Parâmetro String
-      tags:
-        - Geral
       responses:
         '200':
           description: OK
@@ -1483,6 +1481,8 @@ paths:
             type: string
           in: query
           name: sql
+      tags:
+        - Comum
   /cadastro/ligacao/facilitador-roteiro/identificacao:
     get:
       summary: Cadastro Ligação - Roteiro Leitura
@@ -1536,8 +1536,6 @@ paths:
   /comum/versao:
     get:
       summary: Comum - getVersionFromTextFile
-      tags:
-        - Geral
       responses:
         '200':
           description: OK
@@ -1547,6 +1545,8 @@ paths:
                 type: string
       operationId: get-comum-versao
       description: Chamada realizada após o login que retorna a versão da aplicação
+      tags:
+        - Comum
   /cobranca/parametros/load-parametro:
     get:
       summary: Cobrança - Load Parametro
@@ -2176,8 +2176,6 @@ paths:
   /comum/ligacao/cidade:
     get:
       summary: Comum - Obter cidade por ligação
-      tags:
-        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -2213,6 +2211,8 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+      tags:
+        - Comum
   /faturamento/habilitar-cx-timbre:
     get:
       summary: Faturamento - Habilitar Caixa Timbre
@@ -2256,7 +2256,7 @@ paths:
           in: query
           name: sql
       tags:
-        - Geral
+        - Comum
   /faturamento/historico/total:
     get:
       summary: Faturamento - Total histórico
@@ -2657,8 +2657,6 @@ paths:
   /comum/listar-parametro-bool:
     get:
       summary: Comum - Listar Parametro Booleano
-      tags:
-        - Geral
       responses:
         '200':
           description: OK
@@ -2672,6 +2670,8 @@ paths:
             type: string
           in: query
           name: sql
+      tags:
+        - Comum
   /faturamento/parcelamento/rubricas/descontos-parcelamento:
     get:
       summary: Faturamento - Load rubricas desconto parcelamento
@@ -3924,8 +3924,6 @@ paths:
   /comum/obter/grupos:
     get:
       summary: Comum - Obter grupos
-      tags:
-        - Geral
       responses:
         '200':
           description: OK
@@ -3941,6 +3939,8 @@ paths:
             type: integer
           in: query
           name: id_cidade
+      tags:
+        - Comum
   /faturamento/mensagem-automacao/save:
     post:
       summary: Faturamento - Salvar mensagem automacao
@@ -3995,8 +3995,6 @@ paths:
   /comum/obter/periodo:
     get:
       summary: Comum - Obter período
-      tags:
-        - Geral
       responses:
         '200':
           description: OK
@@ -4014,6 +4012,8 @@ paths:
             type: string
           in: query
           name: periodo
+      tags:
+        - Comum
   /cadastro/grupo/save:
     post:
       summary: Cadastro - Grupo - Salvar
@@ -5451,13 +5451,13 @@ paths:
                       flag: string
                       tipo_ret: 0
       operationId: get-comum-obter-list-periodos
-      tags:
-        - Geral
       parameters:
         - schema:
             type: integer
           in: query
           name: id_cidade
+      tags:
+        - Comum
   /cliente/altera/visualizacao/rfc-e-pensionista:
     get:
       summary: Cadastro - Cliente - Alterar visualização RFC e pensionista
@@ -6627,8 +6627,6 @@ paths:
   /comum/listar-parametro-int:
     get:
       summary: Comum - Listar Parâmetro Int
-      tags:
-        - Geral
       responses:
         '200':
           description: OK
@@ -6642,6 +6640,8 @@ paths:
             type: string
           in: query
           name: sql
+      tags:
+        - Comum
   /medicao/verifica/dados-coletor-estimadas:
     get:
       summary: Medição - Verificar dados coletor estimadas
@@ -7135,8 +7135,6 @@ paths:
         required: true
     get:
       summary: Comum - Get queries por tela
-      tags:
-        - Geral
       responses:
         '200':
           description: OK
@@ -7149,6 +7147,8 @@ paths:
                   x-stoplight:
                     id: 1b3f5ow6yrjgn
       operationId: get-comum-queries-tela-idTela
+      tags:
+        - Comum
   '/comum/queries/parametros/{idQuery}':
     parameters:
       - schema:
@@ -7158,8 +7158,6 @@ paths:
         required: true
     get:
       summary: Comum - Get parametros query
-      tags:
-        - Geral
       responses:
         '200':
           description: OK
@@ -7172,6 +7170,8 @@ paths:
                   x-stoplight:
                     id: pmaesd5sovshy
       operationId: get-comum-queries-parametros-idQuery
+      tags:
+        - Comum
   /medicao/leitura/carregar-retorno-manual:
     get:
       summary: Medição - Leitura - Carregar retorno manual
@@ -7826,8 +7826,6 @@ paths:
                   $ref: '#/components/schemas/ItemComboDtoModel'
                   x-stoplight:
                     id: crfyw3gz8em7q
-      tags:
-        - Geral
       requestBody:
         content:
           application/json:
@@ -7846,6 +7844,8 @@ paths:
                     $ref: '#/components/schemas/ItemComboDtoModel'
                     x-stoplight:
                       id: bzzy6s65fkxg0
+      tags:
+        - Comum
   /os/session/status/get-filtro:
     get:
       summary: OS - Get filtro OS status session
@@ -8977,7 +8977,7 @@ paths:
             type: integer
           in: query
           name: idGrupo
-  /faturamento/consultar/codigo-leitura/servico-auto:
+  /os/consultar/codigo-leitura/servico-auto:
     get:
       summary: OS - Consultar código leitura serviço auto
       responses:
@@ -9005,6 +9005,9 @@ paths:
             type: integer
           in: query
           name: idGrupo
+      tags:
+        - OS
+    parameters: []
   /os/salvar-os-automatico:
     post:
       summary: OS - Salvar ordem servico automatico
@@ -9168,6 +9171,559 @@ paths:
             type: integer
           in: query
           name: i_idGrupo
+  /seguranca/exige/cpf-cad-usuario:
+    get:
+      summary: Segurança - Exige CPF cad usuario
+      tags:
+        - Segurança
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-seguranca-exige-cpf-cad-usuario
+  /seguranca/exige/email-cad-usuario:
+    get:
+      summary: Segurança - Exige email cad usuario
+      tags:
+        - Segurança
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-seguranca-exige-email-cad-usuario
+  /seguranca/alterar-senha:
+    post:
+      summary: Segurança - Alterar senha
+      operationId: post-seguranca-alterar-senha
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuario:
+                  $ref: '#/components/schemas/UsuarioDtoModel'
+                  x-stoplight:
+                    id: 009st4wt8awco
+                novaSenha:
+                  type: string
+                  x-stoplight:
+                    id: v4xf5k796j0fn
+                novaSenhaConf:
+                  type: string
+                  x-stoplight:
+                    id: u1n1wwihqyp06
+  '/seguranca/alterar-senha/{usuario}':
+    parameters:
+      - schema:
+          type: string
+        name: usuario
+        in: path
+        required: true
+    post:
+      summary: Segurança - Alterar senha
+      operationId: post-seguranca-alterar-senha-usuario
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Segurança
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: senha
+        - schema:
+            type: string
+          in: query
+          name: novSenha
+  '/segurança/alterar-senha/{idUnidadeNegocio}':
+    parameters:
+      - schema:
+          type: string
+        name: idUnidadeNegocio
+        in: path
+        required: true
+    post:
+      summary: Segurança - Alterar senha
+      operationId: post-seguran-a-alterar-senha-idUnidadeNegocio
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Segurança
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuario:
+                  $ref: '#/components/schemas/UsuarioDtoModel'
+                  x-stoplight:
+                    id: x8jgdao7269jo
+                novaSenha:
+                  type: string
+                  x-stoplight:
+                    id: 6p3n3450cn9au
+                novaSenhaConf:
+                  type: string
+                  x-stoplight:
+                    id: e607w4doypmfs
+                dataSource:
+                  type: string
+                  x-stoplight:
+                    id: t46j6odgmi1tt
+  /seguranca-conf/verifica/usuario-repetido:
+    get:
+      summary: Segurança Conf - Verificar usuário repetido
+      tags:
+        - Segurança-Conf
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-seguranca-conf-verifica-usuario-repetido
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: usuario
+  /seguranca-conf/salvar/usuario:
+    post:
+      summary: Segurança Conf - Salvar usuario
+      operationId: post-seguranca-conf-salvar-usuario
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Segurança-Conf
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grupoUsuario:
+                  $ref: '#/components/schemas/UsuarioDtoModel'
+                  x-stoplight:
+                    id: drzarr7grbfxs
+        description: ''
+    parameters: []
+  /seguranca-conf/excluir/usuario:
+    post:
+      summary: Segurança Conf - Excluir usuário
+      operationId: post-seguranca-conf-excluir-usuario
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Segurança-Conf
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idUsuario
+        - schema:
+            type: integer
+          in: query
+          name: idUnidadeNegocioSelecionada
+      description: ''
+    parameters: []
+  /seguranca-conf/carregar-usuario:
+    get:
+      summary: Segurança Conf - Carregar usuário
+      tags:
+        - Segurança-Conf
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsuarioDtoModel'
+      operationId: get-seguranca-conf-carregar-usuario
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idUsuario
+  /comum/obter/cidades:
+    get:
+      summary: Comum - Obter cidades
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: 5c3uqdbfkonic
+      operationId: get-comum-obter-cidades
+      tags:
+        - Comum
+  /medicao/carrega/critica-condominio:
+    get:
+      summary: Medição - Carregar crítica condomínio
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HistoricoCondominioDtoModel'
+                  x-stoplight:
+                    id: hty61lwnap3ld
+      operationId: get-medicao-carrega-critica-condominio
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+  /medicao/consiste/critica-condominio:
+    get:
+      summary: Medição - Consiste crítica condomínio
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-medicao-consiste-critica-condominio
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+  /seguranca-conf/carrega/grupo-usuario:
+    get:
+      summary: Segurança Conf - Carrega grupo usuário
+      tags:
+        - Segurança-Conf
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrupoUsuarioDtoModel'
+      operationId: get-seguranca-conf-carrega-grupo-usuario
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: idUsuario
+  /seguranca-conf/alcada-recalculo:
+    get:
+      summary: Segurança Conf - Alçada recálculo
+      tags:
+        - Segurança-Conf
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlcadaRecalculoDtoModel'
+      operationId: get-seguranca-conf-alcada-recalculo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupoUsuario
+  /seguranca-conf/alcada-parcelamento:
+    get:
+      summary: Segurança Conf - Alçada parcelamento
+      tags:
+        - Segurança-Conf
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlcadaParcelamentoDtoModel'
+      operationId: get-seguranca-conf-alcada-parcelamento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupoUsuario
+  /seguranca-conf/salvar/grupo-usuario:
+    post:
+      summary: Segurança Conf - Salva grupo usuário
+      operationId: post-seguranca-conf-salvar-grupo-usuario
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Segurança-Conf
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grupoUsuario:
+                  $ref: '#/components/schemas/GrupoUsuarioDtoModel'
+                  x-stoplight:
+                    id: i392jhh8lzum1
+  /seguranca-conf/excluir/grupo-usuario:
+    post:
+      summary: Segurança Conf - Excluir grupo usuário
+      operationId: post-seguranca-conf-excluir-grupo-usuario
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Segurança-Conf
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupoUsuario
+        - schema:
+            type: integer
+          in: query
+          name: idUnidadeNegocioSelecionada
+  /seguranca-conf/listar-menus:
+    get:
+      summary: Segurança Conf - Listar menus
+      tags:
+        - Segurança-Conf
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: pck3mlfm17akz
+      operationId: get-seguranca-conf-listar-menus
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupoUsuario
+  '/seguranca-conf/listar-menus/{sistema}':
+    parameters:
+      - schema:
+          type: string
+        name: sistema
+        in: path
+        required: true
+    get:
+      summary: Segurança Conf - Listar menus (sistema)
+      tags:
+        - Segurança-Conf
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: kgqiq1j5utat0
+      operationId: get-seguranca-conf-listar-menus-sistema
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupoUsuario
+  /seguranca-conf/salvar/alcada-recalculo:
+    post:
+      summary: Segurança Conf - Salvar alçada recálculo
+      operationId: post-seguranca-conf-salvar-alcada-recalculo
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Segurança-Conf
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/AlcadaRecalculoDtoModel'
+                  x-stoplight:
+                    id: qdcsj3jilr0dp
+  /seguranca-conf/excluir/alcada-recalculo:
+    post:
+      summary: Segurança Conf - Remover alçada recálculo
+      operationId: post-seguranca-conf-excluir-alcada-recalculo
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Segurança-Conf
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupoUsuario
+  /seguranca-conf/salvar/alcada-parcelamento:
+    post:
+      summary: Segurança Conf - Salvar alçada parcelamento
+      operationId: post-seguranca-conf-salvar-alcada-parcelamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Segurança-Conf
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/AlcadaParcelamentoDtoModel'
+                  x-stoplight:
+                    id: z0e42qhzx27t3
+  /seguranca-conf/excluir/alcada-parcelamento:
+    post:
+      summary: Segurança Conf - Remover alçada parcelamento
+      operationId: post-seguranca-conf-excluir-alcada-parcelamento
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Segurança-Conf
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupoUsuario
+  /cadastro-setores/obter/usuario-cidades:
+    get:
+      summary: Cadastro Setores - Obter usuário cidades
+      tags:
+        - Cadastro-Setores
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: rvqzr27bvxy27
+      operationId: get-cadastro-setores-obter-usuario-cidades
+  /cadastro-setores/get-setor-servico-cadastro:
+    get:
+      summary: Cadastro Setores - Get setor serviço cadastro
+      tags:
+        - Cadastro-Setores
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SetorServicoDtoModel'
+                  x-stoplight:
+                    id: ecn7m3mc6gdh1
+      operationId: get-cadastro-setores-get-setor-servico-cadastro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idSetorServico
+  /cadastro-setores/salvar:
+    post:
+      summary: Cadastro Setores - Salvar
+      operationId: post-cadastro-setores-salvar
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro-Setores
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idSetorServico:
+                  type: integer
+                  x-stoplight:
+                    id: 8q03aqo256mi5
+                i_setoresServicoCadastro:
+                  type: array
+                  x-stoplight:
+                    id: kkva44ug1o9dr
+                  items:
+                    $ref: '#/components/schemas/SetorServicoDtoModel'
+                    x-stoplight:
+                      id: emx292tvtn6at
+        description: ''
 components:
   schemas:
     CriarLigacaoModel:
@@ -9209,6 +9765,10 @@ components:
           type: integer
         endereco_ligacao:
           type: string
+        numero_moradores:
+          type: integer
+        numero_moradores_inquilino:
+          type: integer
         cliente:
           type: object
           properties:
@@ -9840,6 +10400,8 @@ components:
           ligacao_entrega_alterada: true
           vol_estimado: 1
           endereco_ligacao: string
+          numero_moradores: 1
+          numero_moradores_inquilino: 1
           cliente:
             alterado: true
             novo: true
@@ -55269,5 +55831,643 @@ components:
           dataHora: ''
           status: ''
           observacao: ''
+    HistoricoCondominioDtoModel:
+      type: object
+      properties:
+        idPeriodo:
+          type: integer
+        idLigacaoMacroMedidor:
+          type: integer
+        volMedMacro:
+          type: integer
+        volFatMacro:
+          type: integer
+        saldoVolFatMacro:
+          type: integer
+        valorFatMacro:
+          type: number
+        idTipoMacroMedidor:
+          type: integer
+        critAprovada:
+          type: string
+        idUsrAprovada:
+          type: integer
+        dtAprovada:
+          type: string
+        rota:
+          type: integer
+        condominio:
+          type: string
+        endereco:
+          type: string
+        dataLeitura:
+          type: string
+        leituraAnterior:
+          type: integer
+        leituraAtual:
+          type: integer
+        codigoLeitura:
+          type: string
+        aprovado:
+          type: string
+        idTipoFaturamento:
+          type: integer
+        historicoCondominioDetalhe:
+          type: array
+          items:
+            type: object
+            properties:
+              idHistoricoCondominio:
+                type: integer
+              idLigacaoMicro:
+                type: integer
+              consumidor:
+                type: string
+              endereco:
+                type: string
+              historicoCondominioDetalheProduto:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idHistoricoCondominioDetalhe:
+                      type: integer
+                    idProduto:
+                      type: integer
+                    leituraAnterior:
+                      type: integer
+                    leituraAtual:
+                      type: integer
+                    volMedMicro:
+                      type: integer
+                    volMedido:
+                      type: integer
+                    volFatMicro:
+                      type: integer
+                    volFatEfetivoMicro:
+                      type: integer
+                    codigoLeitura:
+                      type: string
+                    valorFatMicro:
+                      type: number
+                    grupoIdent:
+                      type: string
+                    setorIdent:
+                      type: string
+                    rotaIdent:
+                      type: string
+                    quadraIdent:
+                      type: string
+                    loteIdent:
+                      type: string
+                    cavaleteIdent:
+                      type: string
+                    idLigacaoMicromedida:
+                      type: integer
+                    idLigacaoMicro:
+                      type: integer
+        historicoConodminioProdutos:
+          type: array
+          items:
+            type: object
+            properties:
+              produto:
+                type: string
+              valorproduto:
+                type: number
+        grupoIdent:
+          type: string
+        setorIdent:
+          type: string
+        rotaIdent:
+          type: string
+        quadraIdent:
+          type: string
+        loteIdent:
+          type: string
+        cavaleteIdent:
+          type: string
+        totalMedido:
+          type: integer
+        nrEconomias:
+          type: integer
+      x-examples:
+        Example 1:
+          idPeriodo: 1
+          idLigacaoMacroMedidor: 1
+          volMedMacro: 1
+          volFatMacro: 1
+          saldoVolFatMacro: 1
+          valorFatMacro: 1.1
+          idTipoMacroMedidor: 1
+          critAprovada: ''
+          idUsrAprovada: 1
+          dtAprovada: ''
+          rota: 1
+          condominio: ''
+          endereco: ''
+          dataLeitura: ''
+          leituraAnterior: 1
+          leituraAtual: 1
+          codigoLeitura: ''
+          aprovado: ''
+          idTipoFaturamento: 1
+          historicoCondominioDetalhe:
+            - idHistoricoCondominio: 1
+              idLigacaoMicro: 1
+              consumidor: ''
+              endereco: ''
+              historicoCondominioDetalheProduto:
+                - idHistoricoCondominioDetalhe: 1
+                  idProduto: 1
+                  leituraAnterior: 1
+                  leituraAtual: 1
+                  volMedMicro: 1
+                  volMedido: 1
+                  volFatMicro: 1
+                  volFatEfetivoMicro: 1
+                  codigoLeitura: ''
+                  valorFatMicro: 1.1
+                  grupoIdent: ''
+                  setorIdent: ''
+                  rotaIdent: ''
+                  quadraIdent: ''
+                  loteIdent: ''
+                  cavaleteIdent: ''
+                  idLigacaoMicromedida: 1
+                  idLigacaoMicro: 1
+          historicoConodminioProdutos:
+            - produto: ''
+              valorproduto: 1.1
+          grupoIdent: ''
+          setorIdent: ''
+          rotaIdent: ''
+          quadraIdent: ''
+          loteIdent: ''
+          cavaleteIdent: ''
+          totalMedido: 1
+          nrEconomias: 1
+    GrupoUsuarioDtoModel:
+      type: object
+      properties:
+        grupoUsuario:
+          type: string
+        idUnidadeNegocioSelecionada:
+          type: integer
+        telas:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              tela:
+                type: string
+              nomeGui:
+                type: string
+              idGrupoTela:
+                type: integer
+              ordem:
+                type: integer
+              sistema:
+                type: integer
+              ativo:
+                type: boolean
+        telasFuncoes:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              telaFuncao:
+                type: string
+        formulariosPadrao:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              descricao:
+                type: string
+              titulo:
+                type: string
+              tabela:
+                type: string
+              incluir:
+                type: string
+              consultar:
+                type: string
+              imprimir:
+                type: string
+              ajuda:
+                type: string
+        macros:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              idMacroCategoria:
+                type: integer
+              macro:
+                type: string
+              idMacro:
+                type: integer
+              tipoMacro:
+                type: integer
+              unidadeNegocio:
+                type: string
+              macroSql:
+                type: string
+              link:
+                type: string
+              macroSqlRefatorado:
+                type: string
+              macroLayout:
+                type: string
+              macroSubLayout:
+                type: string
+              titulo:
+                type: string
+              type:
+                type: string
+              arquivoRelatorio:
+                type: string
+              arquivoSubRelatorio:
+                type: string
+              parametro:
+                type: string
+              delimitadorCampoText:
+                type: string
+              separadorCampo:
+                type: string
+              newRow:
+                type: string
+              nomeArquivo:
+                type: string
+              extensaoArquivo:
+                type: string
+              encondingArquivo:
+                type: string
+              resumo:
+                type: string
+              informacoes:
+                type: string
+              semCabecalho:
+                type: boolean
+              idUsuario:
+                type: integer
+              idUnidadeOperacional:
+                type: integer
+              usuario:
+                type: string
+              idUnidadeNegocio:
+                type: integer
+              horarioExecucaoMacroVos:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    idMacro:
+                      type: integer
+                    idDiaSemana:
+                      type: integer
+                    horaInicio:
+                      type: string
+                    horaTermino:
+                      type: string
+                    diaSemana:
+                      type: string
+              macroCategoria:
+                type: string
+              logarExecucao:
+                type: boolean
+              idCidade:
+                type: integer
+              mapId:
+                type: string
+              result:
+                type: string
+              tags:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    tipoTag:
+                      type: string
+                    tituloMacro:
+                      type: string
+                    arquivoRelatorio:
+                      type: string
+                    arquivoSubRelatorio:
+                      type: string
+                    legenda:
+                      type: string
+                    campo:
+                      type: string
+                    tamanhoMaximo:
+                      type: integer
+                    toolTipText:
+                      type: string
+                    tabela:
+                      type: string
+                    valorPadrao:
+                      type: string
+                    validacao:
+                      type: string
+                    textoValidacao:
+                      type: string
+                    campoChave:
+                      type: string
+                    campoExibicao:
+                      type: string
+                    selecionado:
+                      type: string
+                    chavePrimaria:
+                      type: string
+                    corFremte:
+                      type: string
+                    corFundo:
+                      type: string
+                    resultado:
+                      type: string
+                    resultadoParametro:
+                      type: string
+                    idOperacao:
+                      type: string
+                    campoOrdenacao:
+                      type: string
+                    condicao:
+                      type: string
+                    campoAninhado:
+                      type: string
+                    campoFornecido:
+                      type: string
+                    itemCombo:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          idStr:
+                            type: string
+                          descr:
+                            type: string
+                          flag:
+                            type: string
+                          tipoRet:
+                            type: integer
+                          comboAninhado:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                idStr:
+                                  type: string
+                                descr:
+                                  type: string
+                                flag:
+                                  type: string
+                                tipoRet:
+                                  type: integer
+                                comboAninhado:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties: {}
+        permissaoGrupoUsuarioServicos:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              idGrupoUsuario:
+                type: integer
+              idServico:
+                type: integer
+              servico:
+                type: string
+              grupoPodeCadastrar:
+                type: string
+              ativo:
+                type: string
+              grupoPodeImprimir:
+                type: string
+              grupoPodeBaixar:
+                type: string
+      x-examples:
+        Example 1:
+          grupoUsuario: string
+          idUnidadeNegocioSelecionada: 1
+          telas:
+            - id: 1
+              tela: string
+              nomeGui: string
+              idGrupoTela: 1
+              ordem: 1
+              sistema: 1
+              ativo: true
+          telasFuncoes:
+            - id: 1
+              telaFuncao: string
+          formulariosPadrao:
+            - id: 1
+              descricao: string
+              titulo: string
+              tabela: string
+              incluir: string
+              consultar: string
+              imprimir: string
+              ajuda: string
+          macros:
+            - id: 1
+              idMacroCategoria: 1
+              macro: string
+              idMacro: 1
+              tipoMacro: 1
+              unidadeNegocio: string
+              macroSql: string
+              link: string
+              macroSqlRefatorado: string
+              macroLayout: string
+              macroSubLayout: string
+              titulo: string
+              type: string
+              arquivoRelatorio: string
+              arquivoSubRelatorio: string
+              parametro: string
+              delimitadorCampoText: string
+              separadorCampo: string
+              newRow: string
+              nomeArquivo: string
+              extensaoArquivo: string
+              encondingArquivo: string
+              resumo: string
+              informacoes: string
+              semCabecalho: true
+              idUsuario: 1
+              idUnidadeOperacional: 1
+              usuario: string
+              idUnidadeNegocio: 1
+              horarioExecucaoMacroVos:
+                - id: 1
+                  idMacro: 1
+                  idDiaSemana: 1
+                  horaInicio: string
+                  horaTermino: string
+                  diaSemana: string
+              macroCategoria: string
+              logarExecucao: true
+              idCidade: 1
+              mapId: string
+              result: string
+              tags:
+                - tipoTag: string
+                  tituloMacro: string
+                  arquivoRelatorio: string
+                  arquivoSubRelatorio: string
+                  legenda: string
+                  campo: string
+                  tamanhoMaximo: 1
+                  toolTipText: string
+                  tabela: string
+                  valorPadrao: string
+                  validacao: string
+                  textoValidacao: string
+                  campoChave: string
+                  campoExibicao: string
+                  selecionado: string
+                  chavePrimaria: string
+                  corFremte: string
+                  corFundo: string
+                  resultado: string
+                  resultadoParametro: string
+                  idOperacao: string
+                  campoOrdenacao: string
+                  condicao: string
+                  campoAninhado: string
+                  campoFornecido: string
+                  itemCombo:
+                    - id: 1
+                      idStr: string
+                      descr: string
+                      flag: string
+                      tipoRet: 1
+                      comboAninhado:
+                        - id: 1
+                          idStr: string
+                          descr: string
+                          flag: string
+                          tipoRet: 1
+                          comboAninhado:
+                            - {}
+          permissaoGrupoUsuarioServicos:
+            - id: 1
+              idGrupoUsuario: 1
+              idServico: 1
+              servico: string
+              grupoPodeCadastrar: string
+              ativo: string
+              grupoPodeImprimir: string
+              grupoPodeBaixar: string
+    AlcadaRecalculoDtoModel:
+      type: object
+      properties:
+        idGrupoUsuario:
+          type: integer
+        valorMaximoRecalculo:
+          type: number
+        descricao:
+          type: string
+      x-examples:
+        Example 1:
+          idGrupoUsuario: 1
+          valorMaximoRecalculo: 1.1
+          descricao: ''
+    AlcadaParcelamentoDtoModel:
+      type: object
+      properties:
+        idGrupoUsuario:
+          type: integer
+        valorMaximo:
+          type: number
+        descricao:
+          type: string
+        reparcelarDebito:
+          type: string
+        valorMinimo:
+          type: number
+        qtdMaxParcelas:
+          type: integer
+        percentual:
+          type: number
+        qtdDiasEntrada:
+          type: integer
+        encargos:
+          type: array
+          items:
+            type: integer
+        tipoParcelamento:
+          type: array
+          items:
+            type: integer
+      x-examples:
+        Example 1:
+          idGrupoUsuario: 1
+          valorMaximo: 1.1
+          descricao: ''
+          reparcelarDebito: ''
+          valorMinimo: 1.1
+          qtdMaxParcelas: 1
+          percentual: 1.1
+          qtdDiasEntrada: 1
+          encargos:
+            - 1
+          tipoParcelamento:
+            - 1
+    SetorServicoDtoModel:
+      type: object
+      properties:
+        idSS:
+          type: integer
+        idDistrito:
+          type: integer
+        idCidade:
+          type: integer
+        idBairro:
+          type: integer
+        idLogradouro:
+          type: integer
+        rotaLeit:
+          type: integer
+        cidade:
+          type: string
+        distrito:
+          type: string
+        bairro:
+          type: string
+        logradouro:
+          type: string
+      x-examples:
+        Example 1:
+          idSS: 0
+          idDistrito: 0
+          idCidade: 0
+          idBairro: 0
+          idLogradouro: 0
+          rotaLeit: 0
+          cidade: ''
+          distrito: ''
+          bairro: ''
+          logradouro: ''
   securitySchemes: {}
 x-extension-1: null
