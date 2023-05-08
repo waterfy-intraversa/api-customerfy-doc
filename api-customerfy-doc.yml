@@ -9724,6 +9724,61 @@ paths:
                     x-stoplight:
                       id: emx292tvtn6at
         description: ''
+  /faturamento/salvar/coeficiente-reducao:
+    post:
+      summary: Faturamento - Salvar coeficiente
+      operationId: post-faturamento-salvar-coeficiente-reducao
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_coeficiente:
+                  $ref: '#/components/schemas/CoeficienteReducaoDtoModel'
+                  x-stoplight:
+                    id: 7udq4rrlfoyzh
+  /faturamento/excluir/coeficiente-reducao:
+    post:
+      summary: Faturamento - Excluir coeficiente
+      operationId: post-faturamento-excluir-coeficiente-reducao
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Faturamento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCoef
+  /faturamento/carregar/coeficiente-reducao:
+    get:
+      summary: Faturamento - Carregar coeficiente
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoeficienteReducaoDtoModel'
+      operationId: get-faturamento-carregar-coeficiente-reducao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idCoeficiente
 components:
   schemas:
     CriarLigacaoModel:
@@ -56469,5 +56524,76 @@ components:
           distrito: ''
           bairro: ''
           logradouro: ''
+    CoeficienteReducaoDtoModel:
+      type: object
+      properties:
+        idCidade:
+          type: integer
+        coeficienteReducao:
+          type: string
+        descricaoFatura:
+          type: string
+        idUsuarioCadastro:
+          type: integer
+        nomeUsuario:
+          type: string
+        dataHoraCadastro:
+          type: string
+        idUsuarioCancelamento:
+          type: integer
+        dataHoraCancelamento:
+          type: string
+        ativo:
+          type: string
+        categorias:
+          type: array
+          items:
+            type: object
+            properties:
+              idCoeficienteReducao:
+                type: integer
+              idCategoria:
+                type: integer
+              produtos:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idCoeficienteReducaoCategoria:
+                      type: integer
+                    idProduto:
+                      type: integer
+                    faixaMinima:
+                      type: integer
+                    faixaMaxima:
+                      type: integer
+                    coeficiente:
+                      type: number
+                    exibirFatura:
+                      type: boolean
+                    descFatura:
+                      type: string
+      x-examples:
+        Example 1:
+          idCidade: 1
+          coeficienteReducao: ''
+          descricaoFatura: ''
+          idUsuarioCadastro: 1
+          nomeUsuario: ''
+          dataHoraCadastro: ''
+          idUsuarioCancelamento: 1
+          dataHoraCancelamento: ''
+          ativo: ''
+          categorias:
+            - idCoeficienteReducao: 1
+              idCategoria: 1
+              produtos:
+                - idCoeficienteReducaoCategoria: 1
+                  idProduto: 1
+                  faixaMinima: 1
+                  faixaMaxima: 1
+                  coeficiente: 1.1
+                  exibirFatura: false
+                  descFatura: ''
   securitySchemes: {}
 x-extension-1: null
