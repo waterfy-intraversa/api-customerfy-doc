@@ -1174,16 +1174,22 @@ paths:
     parameters: []
   /cadastro/ligacao/facilitador-roteiro:
     get:
-      summary: Cadastro Ligação - Facilitador Roteiro
-      tags:
-        - Cadastro-Ligação
+      summary: Cadastro Ligação - Carrega facilitador roteiro
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CadastroLigacaoFacilitadorRoteiroModel'
+                type: array
+                items:
+                  x-stoplight:
+                    id: 0144llygasik2
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/FacilitadorRoteiroDtoModel'
+                    x-stoplight:
+                      id: 4mdnh9f93crmj
       operationId: get-cadastro-ligacao-facilitador-roteiro
       description: Chamada para retorna as informações de roteiro. Chamada para ser feita ao clicar no botão de facilitador de roteiro na aba localização do cadastro de ligação.
       parameters:
@@ -1191,6 +1197,8 @@ paths:
             type: string
           in: query
           name: i_inscricao
+      tags:
+        - Ligação
   /comum/listar-parametro:
     get:
       summary: Comum - Listar Parâmetro String
@@ -14982,67 +14990,67 @@ components:
               - id_tabela_campo: 1
                 id_lingua: 1
                 descricao: string
-    CadastroLigacaoFacilitadorRoteiroModel:
-      type: array
-      items:
-        type: object
-        properties:
-          id_ligacao:
-            type: integer
-          inscricao:
-            type: string
-          grupo:
-            type: string
-          rota:
-            type: string
-          rota_ident:
-            type: string
-          quadra:
-            type: string
-          sequencia:
-            type: string
-          sub_sequencia:
-            type: string
-          endereco:
-            type: string
-          nr_imovel:
-            type: string
-          complemento:
-            type: string
-          setor_ident:
-            type: string
-          setor:
-            type: string
-          seq_leit_inicial:
-            type: string
-          seq_leit_final:
-            type: string
-          nr_imovel_inicial:
-            type: string
-          nr_imovel_final:
-            type: string
-          cor:
-            type: string
+    FacilitadorRoteiroDtoModel:
+      type: object
+      x-stoplight:
+        id: 2232fba454556
+      properties:
+        id_ligacao:
+          type: integer
+        inscricao:
+          type: string
+        grupo:
+          type: string
+        rota:
+          type: string
+        rota_ident:
+          type: string
+        quadra:
+          type: string
+        sequencia:
+          type: string
+        sub_sequencia:
+          type: string
+        endereco:
+          type: string
+        nr_imovel:
+          type: string
+        complemento:
+          type: string
+        setor_ident:
+          type: string
+        setor:
+          type: string
+        seq_leit_inicial:
+          type: string
+        seq_leit_final:
+          type: string
+        nr_imovel_inicial:
+          type: string
+        nr_imovel_final:
+          type: string
+        cor:
+          type: string
       x-examples:
         Example 1:
-          - - id_ligacao: 1
-              inscricao: string
-              grupo: string
-              rota: string
-              rota_ident: string
-              quadra: string
-              sequencia: string
-              sub_sequencia: string
-              endereco: string
-              nr_imovel: string
-              complemento: string
-              setor_ident: string
-              setor: string
-              seq_leit_inicial: string
-              seq_leit_final: string
-              nr_imovel_inicial: string
-              nr_imovel_final: string
-              cor: string
+          id_ligacao: 1
+          inscricao: string
+          grupo: string
+          rota: string
+          rota_ident: string
+          quadra: string
+          sequencia: string
+          sub_sequencia: string
+          endereco: string
+          nr_imovel: string
+          complemento: string
+          setor_ident: string
+          setor: string
+          seq_leit_inicial: string
+          seq_leit_final: string
+          nr_imovel_inicial: string
+          nr_imovel_final: string
+          cor: string
     CAOcorrenciasOperacionais:
       type: array
       items:
