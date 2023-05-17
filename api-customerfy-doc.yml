@@ -206,21 +206,6 @@ paths:
       description: Chamada responsável em criar ligação.
       tags:
         - Cadastro-Ligação
-  /utils:
-    get:
-      summary: Utils Get
-      tags:
-        - Geral
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UtilsModel'
-      operationId: get-utils
-      description: Chamada feita para carregar todos os dados que são utilizados em mais de uma tela. Chamada deverá ser feita após a efetivação do login
-    parameters: []
   /cadastro/ligacao/inquilino:
     get:
       summary: Cadastro Ligação - Dados Inquilino
@@ -626,7 +611,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CarregaMenus'
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarregaMenus'
+                  x-stoplight:
+                    id: 3yv1cnp1hweni
       operationId: get-carrega-menu
       description: Chamada para carregar todos os menus da aplicação. Chamada feita após o login.
       parameters:
@@ -1662,11 +1651,9 @@ paths:
             type: integer
           in: query
           name: id_ligacao
-  /cadastro/ligacao/documentos/contrato-ligacao:
+  /cadastro-documentos/carrega/contratos-ligacao:
     get:
-      summary: Cadastro Ligação - Contratos Ligação
-      tags:
-        - Cadastro-Ligação
+      summary: Cadastro Documento - Carregar contratos ligação
       responses:
         '200':
           description: OK
@@ -1680,6 +1667,8 @@ paths:
             type: integer
           in: query
           name: id_cidade
+      tags:
+        - Cadastro-Documento
     parameters: []
   /cadastro/ligacao/verifica/tipo-entrega-alternativa:
     get:
@@ -9517,6 +9506,322 @@ paths:
             type: integer
           in: query
           name: i_idCoeficiente
+  /cadastro-atributos/buscar:
+    get:
+      summary: Cadastro Atributos - Buscar
+      tags:
+        - Cadastro-Atributos
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtributoDtoModel'
+      operationId: get-cadastro-atributo-buscar
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idAtributo
+    parameters: []
+  /cadastro-atributos/salvar:
+    post:
+      summary: Cadastro Atributos - Salvar
+      operationId: post-cadastro-atributos-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtributoDtoModel'
+      tags:
+        - Cadastro-Atributos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                atributoDto:
+                  $ref: '#/components/schemas/AtributoDtoModel'
+                  x-stoplight:
+                    id: ayyeuzvjugqhi
+  /classificacao-fiscal/salvar:
+    post:
+      summary: Classificação Fiscal - Salvar
+      operationId: post-classificacao-fiscal-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      tags:
+        - Classificação-Fiscal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dado:
+                  $ref: '#/components/schemas/ClassificacaoFiscalDtoModel'
+                  x-stoplight:
+                    id: qx05giephgni7
+  /classificacao-fiscal/carregar-registro:
+    get:
+      summary: Classificação Fiscal - Carregar registro
+      tags:
+        - Classificação-Fiscal
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificacaoFiscalDtoModel'
+      operationId: get-classificacao-fiscal-carregar-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+  /classificacao-fiscal/excluir:
+    post:
+      summary: Classificação Fiscal - Excluir
+      operationId: post-classificacao-fiscal-excluir
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Classificação-Fiscal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dado:
+                  $ref: '#/components/schemas/ClassificacaoFiscalDtoModel'
+                  x-stoplight:
+                    id: hjzts4vquul3s
+  /icf/extrator-parametros/por-id/extrator-dados:
+    get:
+      summary: ICF - Extrator parâmetros por ID extrator dados
+      tags:
+        - ICF
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExtratorDadosDtoModel'
+                  x-stoplight:
+                    id: 8uacyxa8dwqjw
+      operationId: get-icf-extrator-parametros-por-id-extrator-dados
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idExtratorDados
+  /icf/executar-bases-icf:
+    post:
+      summary: ICF - Executar bases ICF
+      operationId: post-icf-executar-bases-icf
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - ICF
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  type: array
+                  x-stoplight:
+                    id: 16fqceoumbgz4
+                  items:
+                    $ref: '#/components/schemas/ExtratorDadosDtoModel'
+                    x-stoplight:
+                      id: 0wqg4snpyd7ki
+  /comum/is-accountfy-multicidade:
+    get:
+      summary: Comum - Is accountfy multicidade
+      tags:
+        - Comum
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-comum-is-accountfy-multicidade
+  /comum/obter/anos-por-cidade:
+    post:
+      summary: Comum - Obter anos por cidades
+      operationId: post-comum-obter-anos-por-cidade
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: ty28ea932pjdk
+      tags:
+        - 'Comum '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cidades:
+                  type: array
+                  x-stoplight:
+                    id: bobq1t525tgoc
+                  items:
+                    $ref: '#/components/schemas/ItemComboDtoModel'
+                    x-stoplight:
+                      id: tcv9vb33em7wc
+  /icf/rotina/encerra-competencia:
+    get:
+      summary: ICF - Rotina encerra competência
+      tags:
+        - ICF
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IntegracaoFinanceiraDtoModel'
+                  x-stoplight:
+                    id: 5jt1pyuvbvsy1
+      operationId: get-icf-rotina-encerra-competencia
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: data
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /icf/grupo-rubrica-faturamento:
+    get:
+      summary: ICF - Grupo rubrica faturamento
+      tags:
+        - ICF
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GrupoRubricaFaturamentoDtoModel'
+                  x-stoplight:
+                    id: safc598u332ux
+      operationId: get-icf-grupo-rubrica-faturamento
+  /icf/salvar/grupo-rubrica-faturamento:
+    post:
+      summary: ICF - Salvar grupo rubrica faturamento
+      operationId: post-icf-salvar-grupo-rubrica-faturamento
+      responses:
+        '200':
+          description: OK
+      tags:
+        - ICF
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grupoRubrica:
+                  $ref: '#/components/schemas/GrupoRubricaFaturamentoDtoModel'
+                  x-stoplight:
+                    id: y40y468l29rio
+      description: ''
+  /icf/update/grupo-rubrica:
+    post:
+      summary: ICF - Update grupo rubrica
+      operationId: post-icf-update-grupo-rubrica
+      responses:
+        '200':
+          description: OK
+      tags:
+        - ICF
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grupoRubrica:
+                  $ref: '#/components/schemas/GrupoRubricaFaturamentoDtoModel'
+                  x-stoplight:
+                    id: 7lj1cbmgosv46
+  /icf/delete/grupo-rubrica:
+    post:
+      summary: ICF - Delete grupo rubrica
+      operationId: post-icf-delete-grupo-rubrica
+      responses:
+        '200':
+          description: OK
+      tags:
+        - ICF
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grupoRubrica:
+                  $ref: '#/components/schemas/GrupoRubricaFaturamentoDtoModel'
+                  x-stoplight:
+                    id: y8z9jgu2r0svy
+      description: ''
+  /icf/rotina/alteracoes-grupo-rubrica:
+    post:
+      summary: ICF - Rotina alterações grupo rubrica
+      operationId: post-icf-rotina-alteracoes-grupo-rubrica
+      responses:
+        '200':
+          description: OK
+      tags:
+        - ICF
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grupo:
+                  $ref: '#/components/schemas/GrupoRubricaICFDtoModel'
+                  x-stoplight:
+                    id: 1bcoo5e6gxlib
 components:
   schemas:
     CriarLigacaoModel:
@@ -56387,5 +56692,176 @@ components:
                   coeficiente: 1.1
                   exibirFatura: false
                   descFatura: ''
+    AtributoDtoModel:
+      type: object
+      properties:
+        idAtributo:
+          type: integer
+        idAtributoTipo:
+          type: integer
+        atributo:
+          type: string
+        tipoDados:
+          type: string
+        nrMedicoes:
+          type: integer
+        siglaMedicao1:
+          type: string
+        siglaMedicao2:
+          type: string
+        sqlObterAtributos:
+          type: string
+        sqlAtualizarVlrAtributo:
+          type: string
+        sqlObterVlrAtributoAtual:
+          type: string
+        normalizadoCompleto:
+          type: boolean
+      x-examples:
+        Example 1:
+          idAtributo: 0
+          idAtributoTipo: 0
+          atributo: ''
+          tipoDados: ''
+          nrMedicoes: 0
+          siglaMedicao1: ''
+          siglaMedicao2: ''
+          sqlObterAtributos: ''
+          sqlAtualizarVlrAtributo: ''
+          sqlObterVlrAtributoAtual: ''
+          normalizadoCompleto: false
+    ClassificacaoFiscalDtoModel:
+      type: object
+      properties:
+        alterado:
+          type: boolean
+        novo:
+          type: boolean
+        idCidade:
+          type: integer
+        classificacaoFiscal:
+          type: string
+        classificacaoFiscalImpostoVO:
+          type: array
+          items:
+            type: object
+            properties:
+              controle:
+                type: integer
+              idImposto:
+                type: integer
+              percentual:
+                type: number
+      x-examples:
+        Example 1:
+          alterado: true
+          novo: true
+          idCidade: 1
+          classificacaoFiscal: ''
+          classificacaoFiscalImpostoVO:
+            - controle: 1
+              idImposto: 1
+              percentual: 1.1
+    ExtratorDadosDtoModel:
+      type: object
+      properties:
+        idExtratorParametro:
+          type: integer
+        idExtratorDados:
+          type: integer
+        tamanho:
+          type: integer
+        descricao:
+          type: string
+        tipo:
+          type: string
+        parametro:
+          type: string
+        sql:
+          type: string
+        nomeArquivo:
+          type: string
+      x-examples:
+        Example 1:
+          idExtratorParametro: 1
+          idExtratorDados: 1
+          tamanho: 1
+          descricao: ''
+          tipo: ''
+          parametro: ''
+          sql: ''
+          nomeArquivo: ''
+    IntegracaoFinanceiraDtoModel:
+      type: object
+      properties:
+        idIntegracao:
+          type: integer
+        msg:
+          type: string
+        activeBtn:
+          type: boolean
+      x-examples:
+        Example 1:
+          idIntegracao: 1
+          msg: ''
+          activeBtn: false
+    GrupoRubricaFaturamentoDtoModel:
+      type: object
+      properties:
+        idGrupoRubrica:
+          type: integer
+        idGrupo:
+          type: integer
+        idEventoRecebimento:
+          type: integer
+        descricao:
+          type: string
+        eventoRecebimento:
+          type: string
+      x-examples:
+        Example 1:
+          idGrupoRubrica: 1
+          idGrupo: 1
+          idEventoRecebimento: 1
+          descricao: ''
+          eventoRecebimento: ''
+    GrupoRubricaICFDtoModel:
+      type: object
+      properties:
+        idGrupoRubrica:
+          type: integer
+        rubricas:
+          type: array
+          items:
+            type: object
+            properties:
+              idRubrica:
+                type: integer
+              idRubricaFaturamentoDetalhe:
+                type: integer
+              rubrica:
+                type: string
+        rubricasAssociadas:
+          type: array
+          items:
+            type: object
+            properties:
+              idRubrica:
+                type: integer
+              idRubricaFaturamentoDetalhe:
+                type: integer
+              rubrica:
+                type: string
+      x-examples:
+        Example 1:
+          idGrupoRubrica: 1
+          rubricas:
+            - idRubrica: 1
+              idRubricaFaturamentoDetalhe: 1
+              rubrica: ''
+          rubricasAssociadas:
+            - idRubrica: 1
+              idRubricaFaturamentoDetalhe: 1
+              rubrica: ''
   securitySchemes: {}
 x-extension-1: null
