@@ -9822,6 +9822,64 @@ paths:
                   $ref: '#/components/schemas/GrupoRubricaICFDtoModel'
                   x-stoplight:
                     id: 1bcoo5e6gxlib
+  /icf/contabilizacao-faturamento:
+    get:
+      summary: ICF - Contabilização faturamento
+      tags:
+        - ICF
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContabilizacaoFturamentoDtoModel'
+                  x-stoplight:
+                    id: n08q1wl94vpxf
+      operationId: get-icf-contabilizacao-faturamento
+  /icf/atualizar/contabilizacao-faturamento:
+    post:
+      summary: ICF - Atulizar contabilização faturamento
+      operationId: post-icf-atualizar-contabilizacao-faturamento
+      responses:
+        '200':
+          description: OK
+      tags:
+        - ICF
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/ContabilizacaoFturamentoDtoModel'
+                  x-stoplight:
+                    id: d1lo4xa4hp7oz
+  /comum/obter-bairros:
+    get:
+      summary: Comum - Obter bairros
+      tags:
+        - Comum
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: nj7yfnz7md4jv
+      operationId: get-comum-obter-bairros
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
 components:
   schemas:
     CriarLigacaoModel:
@@ -56863,5 +56921,34 @@ components:
             - idRubrica: 1
               idRubricaFaturamentoDetalhe: 1
               rubrica: ''
+    ContabilizacaoFturamentoDtoModel:
+      type: object
+      properties:
+        idContabilizacaoFaturamento:
+          type: integer
+        idEventoFaturamento:
+          type: integer
+        idGrupoRubricaFaturamento:
+          type: integer
+        idDebito:
+          type: integer
+        idCredito:
+          type: integer
+        grupoRubrica:
+          type: string
+        contaDebito:
+          type: string
+        contaCredito:
+          type: string
+      x-examples:
+        Example 1:
+          idContabilizacaoFaturamento: 0
+          idEventoFaturamento: 0
+          idGrupoRubricaFaturamento: 0
+          idDebito: 0
+          idCredito: 0
+          grupoRubrica: ''
+          contaDebito: ''
+          contaCredito: ''
   securitySchemes: {}
 x-extension-1: null
