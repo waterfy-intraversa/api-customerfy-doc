@@ -602,9 +602,7 @@ paths:
     parameters: []
   /carrega-menu:
     get:
-      summary: Geral - Carrega Menus
-      tags:
-        - Geral
+      summary: Comum - Carrega Menus
       responses:
         '200':
           description: OK
@@ -623,6 +621,8 @@ paths:
             type: integer
           in: query
           name: sistema
+      tags:
+        - Comum
   /unidade-negocio:
     get:
       summary: Login - Unidade de negócio
@@ -992,7 +992,7 @@ paths:
             type: integer
           in: query
           name: id_ligacao
-  /user/unidade-operacional:
+  /comum/unidade-operacional:
     get:
       summary: Comum - Obter unidade operacional usuario logado
       responses:
@@ -1005,7 +1005,8 @@ paths:
       operationId: get-user-unidade-operacional
       description: Chamada para buscar a unidade operacional do usuario logado. Feita no momento em que a tela de cadastro de ligação é aberta
       tags:
-        - Geral
+        - Comum
+    parameters: []
   /cadastro/parametros/documento-angola:
     get:
       summary: Cliente - Is utiliza documento Angola
@@ -8949,6 +8950,8 @@ paths:
                   type: string
                   x-stoplight:
                     id: u1n1wwihqyp06
+      tags:
+        - Segurança
   '/seguranca/alterar-senha/{usuario}':
     parameters:
       - schema:
