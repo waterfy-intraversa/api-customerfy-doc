@@ -9880,6 +9880,158 @@ paths:
             type: integer
           in: query
           name: idCidade
+  /campanha-sms/ligacao/campanha-sms/detalhes:
+    post:
+      summary: Campanha SMS - Campanha SMS detalhes por ID ligação
+      operationId: post-sms-ligacao-campanha-sms-detalhes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CadastroCampanhaSMSDetalheDtoModel'
+                  x-stoplight:
+                    id: rog9km9ewdf1f
+      tags:
+        - Campanha-SMS
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                campanha:
+                  $ref: '#/components/schemas/CadastroCampanhaSMSDtoModel'
+                  x-stoplight:
+                    id: v56gngvms2gnt
+    parameters: []
+  /campanha-sms/rotina-envio-sms:
+    post:
+      summary: Campanha SMS - Rotina envio sms
+      operationId: post-campanha-sms-rotina-envio-sms
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      tags:
+        - Campanha-SMS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  type: array
+                  x-stoplight:
+                    id: bnmezr2cxp39m
+                  items:
+                    $ref: '#/components/schemas/CadastroCampanhaSMSDetalheDtoModel'
+                    x-stoplight:
+                      id: 7rmx6eyxhuc95
+                txt:
+                  type: string
+                  x-stoplight:
+                    id: v95bwyavr76ys
+  '/campanha-sms/por-id/{idCampanha}':
+    parameters:
+      - schema:
+          type: string
+        name: idCampanha
+        in: path
+        required: true
+    get:
+      summary: Campanha SMS - Campanha SMS por ID
+      tags:
+        - Campanha-SMS
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroCampanhaSMSDtoModel'
+      operationId: get-campanha-sms-por-id-idCampanha
+  /campanha-sms/salvar-cadastro:
+    post:
+      summary: Campanha SMS - Salvar cadastro
+      operationId: post-campanha-sms-salvar-cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Campanha-SMS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                campanha:
+                  $ref: '#/components/schemas/CadastroCampanhaSMSDtoModel'
+                  x-stoplight:
+                    id: zis8d7dzl7d1h
+  /campanha-sms/update-cadastro:
+    post:
+      summary: Campanha SMS - Update cadastro
+      operationId: post-campanha-sms-update-cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Campanha-SMS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                campanha:
+                  $ref: '#/components/schemas/CadastroCampanhaSMSDtoModel'
+                  x-stoplight:
+                    id: sofibp6kgur88
+  /campanha-sms/detalhes:
+    post:
+      summary: Campanha SMS - Campanha SMS detalhes
+      operationId: post-campanha-sms-detalhes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CadastroCampanhaSMSDetalheDtoModel'
+                  x-stoplight:
+                    id: 35xhx5eymqj9g
+      tags:
+        - Campanha-SMS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                campanha:
+                  $ref: '#/components/schemas/CadastroCampanhaSMSDtoModel'
+                  x-stoplight:
+                    id: gg91x4ngws9rg
 components:
   schemas:
     CriarLigacaoModel:
@@ -56950,5 +57102,171 @@ components:
           grupoRubrica: ''
           contaDebito: ''
           contaCredito: ''
+    CadastroCampanhaSMSDtoModel:
+      type: object
+      properties:
+        idCampanha:
+          type: integer
+        idLigacao:
+          type: integer
+        idCidade:
+          type: integer
+        telefonesValidos:
+          type: string
+        faturaDebito:
+          type: string
+        txtSms:
+          type: string
+        nomeCampanha:
+          type: string
+        valorMinimoFatura:
+          type: integer
+        tipoFiltroData:
+          type: integer
+        periodoVencimento:
+          type: boolean
+        dataVencimentoDE:
+          type: string
+        dataVencimentoATE:
+          type: string
+        diasVencidos:
+          type: boolean
+        diasVencidosDE:
+          type: integer
+        diasVencidosATE:
+          type: integer
+        diasVencer:
+          type: boolean
+        diasVencerDE:
+          type: integer
+        diasVencerATE:
+          type: integer
+        grupos:
+          type: array
+          items:
+            type: object
+            properties:
+              idStr:
+                type: string
+              descr:
+                type: string
+              flag:
+                type: string
+              tipoRet:
+                type: integer
+        situacaoLigacao:
+          type: array
+          items:
+            type: object
+            properties:
+              idStr:
+                type: string
+              descr:
+                type: string
+              flag:
+                type: string
+              tipoRet:
+                type: integer
+        situacaoCobranca:
+          type: array
+          items:
+            type: object
+            properties:
+              idStr:
+                type: string
+              descr:
+                type: string
+              flag:
+                type: string
+              tipoRet:
+                type: integer
+        bairros:
+          type: array
+          items:
+            type: object
+            properties:
+              idStr:
+                type: string
+              descr:
+                type: string
+              flag:
+                type: string
+              tipoRet:
+                type: integer
+      x-examples:
+        Example 1:
+          idCampanha: 0
+          idLigacao: 0
+          idCidade: 0
+          telefonesValidos: ''
+          faturaDebito: ''
+          txtSms: ''
+          nomeCampanha: ''
+          valorMinimoFatura: 0
+          tipoFiltroData: 0
+          periodoVencimento: false
+          dataVencimentoDE: ''
+          dataVencimentoATE: ''
+          diasVencidos: false
+          diasVencidosDE: 0
+          diasVencidosATE: 0
+          diasVencer: false
+          diasVencerDE: 0
+          diasVencerATE: 0
+          grupos:
+            - idStr: ''
+              descr: ''
+              flag: ''
+              tipoRet: 0
+          situacaoLigacao:
+            - idStr: ''
+              descr: ''
+              flag: ''
+              tipoRet: 0
+          situacaoCobranca:
+            - idStr: ''
+              descr: ''
+              flag: ''
+              tipoRet: 0
+          bairros:
+            - idStr: ''
+              descr: ''
+              flag: ''
+              tipoRet: 0
+    CadastroCampanhaSMSDetalheDtoModel:
+      type: object
+      properties:
+        idCampanha:
+          type: integer
+        idLigacao:
+          type: integer
+        rotaLeitura:
+          type: integer
+        seqLeitura:
+          type: integer
+        qualificado:
+          type: string
+        grupo:
+          type: string
+        inquilino:
+          type: string
+        foneMovel:
+          type: string
+        sms:
+          type: string
+        nomeCampanha:
+          type: string
+      x-examples:
+        Example 1:
+          idCampanha: 0
+          idLigacao: 0
+          rotaLeitura: 0
+          seqLeitura: 0
+          qualificado: ''
+          grupo: ''
+          inquilino: ''
+          foneMovel: ''
+          sms: ''
+          nomeCampanha: ''
   securitySchemes: {}
 x-extension-1: null
