@@ -2023,6 +2023,7 @@ paths:
             type: integer
           in: query
           name: id_cliente
+      description: ''
   /faturamento/historico/faturas:
     get:
       summary: Faturamento - Obter historico faturas
@@ -10035,6 +10036,121 @@ paths:
                   $ref: '#/components/schemas/CadastroCampanhaSMSDtoModel'
                   x-stoplight:
                     id: gg91x4ngws9rg
+  /cliente/utiliza/conceito-debito-credito/por-cliente:
+    get:
+      summary: Cliente - Get utiliza conceito débito crédito por cliente
+      tags:
+        - Cliente
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-cliente-utiliza-conceito-debito-credito-por-cliente
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idCidade
+  /cliente/obter/cliente/atendimento:
+    get:
+      summary: Cliente - Obter cliente atendimento
+      tags:
+        - Cliente
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClienteDtoModel'
+      operationId: get-cliente-obter-cliente-atendimenro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCliente
+    parameters: []
+  /vendas/carregar/venda/fat-incorp/cliente:
+    get:
+      summary: Vendas - Carregar venda fat incorp cliente
+      tags:
+        - Vendas
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VendaFatIncorpDtoModel'
+                  x-stoplight:
+                    id: 85mhv0yyrl4s5
+      operationId: get-vendas-carregar-venda-fat-incorp-cliente
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idClienteInquilino
+  /ligacao/validar/movimentacao-debito:
+    get:
+      summary: Ligação - Validar movimentação débito
+      tags:
+        - Ligação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovimentacaoDebitoEnum'
+      operationId: get-ligacao-validar-movimentacao-debito
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+        - schema:
+            type: integer
+          in: query
+          name: idClienteDebito
+        - schema:
+            type: integer
+          in: query
+          name: idCliente
+        - schema:
+            type: integer
+          in: query
+          name: idClienteInquilino
+        - schema:
+            type: string
+          in: query
+          name: clienteDestino
+  /vendas/carregar/venda/credito-manual:
+    get:
+      summary: Vendas - Carregar venda credito manual
+      tags:
+        - Vendas
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VendaFatIncorpDetDtoModel'
+                  x-stoplight:
+                    id: 7pxb5z03garg6
+      operationId: get-vendas-carregar-venda-credito-manual
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCliente
 components:
   schemas:
     CriarLigacaoModel:
@@ -57271,5 +57387,121 @@ components:
           foneMovel: ''
           sms: ''
           nomeCampanha: ''
+    MovimentacaoDebitoEnum:
+      type: object
+      properties:
+        erroLigacaoInvalida:
+          type: object
+          properties:
+            id:
+              type: integer
+        erroMesmoCliente:
+          type: object
+          properties:
+            id:
+              type: integer
+        erroNenhumaFaturaAptaTransferencia:
+          type: object
+          properties:
+            id:
+              type: integer
+        movimentacaoOk:
+          type: object
+          properties:
+            id:
+              type: integer
+      x-examples:
+        Example 1:
+          erroLigacaoInvalida:
+            id: 1
+          erroMesmoCliente:
+            id: 2
+          erroNenhumaFaturaAptaTransferencia:
+            id: 3
+          movimentacaoOk:
+            id: 4
+    VendaFatIncorpDetDtoModel:
+      type: object
+      properties:
+        idSituacaoParcela:
+          type: integer
+        idSituacaoFatura:
+          type: integer
+        idRubrica:
+          type: integer
+        situacaoFatura:
+          type: string
+        idPeriodoIncorp:
+          type: integer
+        liberadoManual:
+          type: boolean
+        periodoIncorp:
+          type: string
+        rubrica:
+          type: string
+        parcela:
+          type: integer
+        valor:
+          type: integer
+        valorUfir:
+          type: integer
+        valorImposto:
+          type: integer
+        idFatura:
+          type: integer
+        idTipoCobranca:
+          type: integer
+        enviado:
+          type: boolean
+        observacaoCancelamento:
+          type: string
+        idMotivoCancelamentoTCl:
+          type: integer
+        calculoConsumoSimultanea:
+          type: string
+        origem:
+          type: string
+        vendaFatIncorpDetImpostoVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idRubrica:
+                type: integer
+              valor:
+                type: number
+        idVenda:
+          type: integer
+        idVendaDetalhe:
+          type: integer
+        idLigacao:
+          type: integer
+      x-examples:
+        Example 1:
+          idSituacaoParcela: 0
+          idSituacaoFatura: 0
+          idRubrica: 0
+          situacaoFatura: ''
+          idPeriodoIncorp: 0
+          liberadoManual: false
+          periodoIncorp: ''
+          rubrica: ''
+          parcela: 0
+          valor: 0
+          valorUfir: 0
+          valorImposto: 0
+          idFatura: 0
+          idTipoCobranca: 0
+          enviado: false
+          observacaoCancelamento: ''
+          idMotivoCancelamentoTCl: 0
+          calculoConsumoSimultanea: ''
+          origem: ''
+          vendaFatIncorpDetImpostoVO:
+            - idRubrica: 1
+              valor: 1.1
+          idVenda: 0
+          idVendaDetalhe: 0
+          idLigacao: 0
   securitySchemes: {}
 x-extension-1: null
