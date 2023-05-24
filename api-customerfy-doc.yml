@@ -10151,6 +10151,699 @@ paths:
             type: integer
           in: query
           name: idCliente
+  /dicionario-dados/carrega/tabela-dados:
+    get:
+      summary: Dicionario Dados - Carrega tabela dados
+      tags:
+        - Dicionario-Dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TabelaDtoModel'
+                  x-stoplight:
+                    id: 00hnq0qneyfp9
+      operationId: get-dicionario-dados-carrega-tabela-dados
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: palavraChave
+  /dicionario-dados/carrega/tabela-completa:
+    get:
+      summary: Dicionário Dados - Carrega tabela completa
+      tags:
+        - Dicionario-Dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TabelaDtoModel'
+      operationId: get-dicionario-dados-carrega-tabela-completa
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idTabela
+  /dicionario-dados/carrega/cons-padrao:
+    get:
+      summary: Dicionario Dados - Carrega cons padrão
+      tags:
+        - Dicionario-Dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: fxw1q0ryfj2xq
+      operationId: get-dicionario-dados-carrega-cons-padrao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idTabela
+  /dicionario-dados/carrega/lingua:
+    get:
+      summary: Dicionario Dados - Carrega língua
+      tags:
+        - Dicionario-Dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: aefpb6ufmd5s9
+      operationId: get-dicionario-dados-carrega-lingua
+  /dicionario-dados/salva/campo:
+    post:
+      summary: Dicionario Dados - Salva campo
+      operationId: post-dicionario-dados-salva-campo
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Dicionario-Dados
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cvo:
+                  $ref: '#/components/schemas/CampoDtoModel'
+                  x-stoplight:
+                    id: c4xlrnvl999qe
+  /dicionario-dados/carrega/lista-ordem-campo:
+    get:
+      summary: Dicionario Dados - Carrega lista ordem campo
+      tags:
+        - Dicionario-Dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TabelaDtoModel'
+                  x-stoplight:
+                    id: 8easdqvrrpy9c
+      operationId: get-dicionario-dados-carrega-lista-ordem-campo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idTabela
+  /dicionario-dados/salva/ordem-campo:
+    post:
+      summary: Dicionario Dados - Salva ordem campo
+      operationId: post-dicionario-dados-salva-ordem-campo
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Dicionario-Dados
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ordem:
+                  type: array
+                  x-stoplight:
+                    id: qnoiyznncbonk
+                  items:
+                    x-stoplight:
+                      id: 2q7herxr7qzm7
+                    type: integer
+  /dicionario-dados/carrega/tabela-macro-exib:
+    get:
+      summary: Dicionario Dados - Carrega tabela macro exib
+      tags:
+        - Dicionario-Dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-dicionario-dados-carrega-tabela-macro-exib
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idTabela
+  /dicionario-dados/salva/tabela-macro-exib:
+    post:
+      summary: Dicionario Dados - Salva tabela macro exib
+      operationId: post-dicionario-dados-salva-tabela-macro-exib
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Dicionario-Dados
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idTabela
+        - schema:
+            type: string
+          in: query
+          name: i_macroexib
+  /dicionario-dados/preview-importa-tabelas:
+    get:
+      summary: Dicionario Dados - Preview importa tabelas
+      tags:
+        - Dicionario-Dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TabelaDtoModel'
+                  x-stoplight:
+                    id: lb6c14m9zrv68
+      operationId: get-dicionario-dados-preview-importa-tabelas
+  /dicionario-dados/importar-tabela:
+    parameters: []
+    post:
+      summary: Dicionario Dados - Importar tabela
+      operationId: post-dicionario-dados-importar-tabela
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Dicionario-Dados
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: i_nomeTabela
+  /conf-cons-padrao/carrega/cons-padrao-dados:
+    get:
+      summary: Configurador Cons Padrão - Carrega cons padrão dados
+      tags:
+        - Configurador-Cons-Padrao
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConfiguradorConsPadraoDtoModel'
+                  x-stoplight:
+                    id: ija9105x9ylh1
+      operationId: get-conf-cons-padrao-carrega-cons-padrao-dados
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: palavraChave
+  /conf-cons-padrao/carrega/tabela:
+    get:
+      summary: Configurador Cons Padrão - Carrega tabela
+      tags:
+        - Configurador-Cons-Padrao
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TabelaDtoModel'
+                  x-stoplight:
+                    id: vkljif9z27dgg
+      operationId: get-conf-cons-padrao-carrega-tabela
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idTabela
+  /conf-cons-padrao/carrega/campos-tabela-vo:
+    get:
+      summary: Configurador Cons Padrão - Carrega campos tabela VO
+      tags:
+        - Configurador-Cons-Padrao
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: sdg5sptknlgqv
+      operationId: get-conf-cons-padrao-carrega-campos-tabela-vo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idTabela
+  /conf-cons-padrao/salva/cons-padrao:
+    post:
+      summary: Configurador Cons Padrão - Salva cons padrão
+      operationId: post-conf-cons-padrao-salva-cons-padrao
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Configurador-Cons-Padrao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dado:
+                  $ref: '#/components/schemas/ConfiguradorConsPadraoDtoModel'
+                  x-stoplight:
+                    id: r3rcgvd88nzj2
+  /conf-cons-padrao/exclui/cons-padrao:
+    post:
+      summary: Configurador Cons Padrão - Exclui cons padrão
+      operationId: post-conf-cons-padrao-exclui-cons-padrao
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Configurador-Cons-Padrao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+  /conf-formulario-padrao/carrega/formulario-padrao:
+    get:
+      summary: Configurador formulário padrão - Carrega formulário padrão
+      tags:
+        - Configurador-Formulario-Padrão
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormularioPadraoDtoModel'
+      operationId: get-conf-formulario-padrao-carrega-formulario-padrao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idFormularioPadrao
+  /conf-formulario-padrao/salva/formulario-padrao:
+    post:
+      summary: Configurador Formulário Padrão - Salva formulário padrão
+      operationId: post-conf-formulario-padrao-salva-formulario-padrao
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Configurador-Formulário-Padrão
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dado:
+                  $ref: '#/components/schemas/FormularioPadraoDtoModel'
+                  x-stoplight:
+                    id: 9yrdb2tvs6942
+        description: ''
+  /conf-formulario-padrao/exclui/formulario-padrao:
+    post:
+      summary: Configurador Formulário Padrão - Exclui formulário padrão
+      operationId: post-conf-formulario-padrao-exclui-formulario-padrao
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Configurador-Formulário-Padrão
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+  /macro/ler/tag-form-padrao:
+    get:
+      summary: Macro - Ler tag form padrão
+      tags:
+        - Macro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TagDtoModel'
+                  x-stoplight:
+                    id: l728m11hju86a
+      operationId: get-macro-ler-tag-form-padrao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idFormPadrao
+  /macro/validar-campos:
+    post:
+      summary: Macro - Validar campos
+      operationId: post-macro-validar-campos
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  x-stoplight:
+                    id: mckywf9ifikq1
+                  items:
+                    $ref: '#/components/schemas/TagDtoModel'
+                    x-stoplight:
+                      id: vlxaotj0hpc2e
+        description: ''
+  /macro/form-padrao/salvar:
+    post:
+      summary: Macro - Formulário padrão salvar
+      operationId: post-macro-form-padrao-salvar
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fpDTO:
+                  $ref: '#/components/schemas/FormularioPadraoDtoModel'
+                  x-stoplight:
+                    id: enc7xibu6iec9
+                tagDTOs:
+                  type: array
+                  x-stoplight:
+                    id: 64f0h7ujkvdro
+                  items:
+                    $ref: '#/components/schemas/TagDtoModel'
+                    x-stoplight:
+                      id: rs06kda0urr4e
+                chave:
+                  type: integer
+                  x-stoplight:
+                    id: 9zoufn06xz31g
+  /macro/form-padrao/consultar:
+    post:
+      summary: Macro - Formulário padrão consultar
+      operationId: post-macro-form-padrao-consultar
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fpDTO:
+                  $ref: '#/components/schemas/FormularioPadraoDtoModel'
+                  x-stoplight:
+                    id: ad66v9ddd5jzr
+  /macro/ler/tag:
+    get:
+      summary: Macro - Ler tag
+      tags:
+        - Macro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TagDtoModel'
+                  x-stoplight:
+                    id: ku8ktziy9ldzf
+      operationId: get-macro-ler-tag
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idMacro
+  /macro/carregar:
+    post:
+      summary: Macro - Carregar
+      operationId: post-macro-carregar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridDtoModel'
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                macroDto:
+                  $ref: '#/components/schemas/MacroDtoModel'
+                  x-stoplight:
+                    id: yg5tmvqn2hxxh
+                tagDTOs:
+                  type: array
+                  x-stoplight:
+                    id: j9b6dgr2lz0ah
+                  items:
+                    $ref: '#/components/schemas/TagDtoModel'
+                    x-stoplight:
+                      id: vppqae4aojm20
+  /macro/form-padrao/carregar:
+    post:
+      summary: Macro - Formulário padrão carregar
+      operationId: post-macro-form-padrao-carregar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TagDtoModel'
+                  x-stoplight:
+                    id: 50tnb2n6g3sld
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fpDTO:
+                  $ref: '#/components/schemas/FormularioPadraoDtoModel'
+                  x-stoplight:
+                    id: dv0xmjjefe2x5
+                tagDTOs:
+                  type: array
+                  x-stoplight:
+                    id: adeizbdo65hzn
+                  items:
+                    $ref: '#/components/schemas/TagDtoModel'
+                    x-stoplight:
+                      id: 5gfpj2d5k4deo
+                chave:
+                  type: integer
+                  x-stoplight:
+                    id: sm8i64rcp22ci
+        description: ''
+  /macro/form-padrao/excluir:
+    post:
+      summary: Macro - Formulário padrão excluir
+      operationId: post-macro-form-padrao-excluir
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fpDTO:
+                  $ref: '#/components/schemas/FormularioPadraoDtoModel'
+                  x-stoplight:
+                    id: ztwlncm1gaqf2
+                tagDTOs:
+                  type: array
+                  x-stoplight:
+                    id: cskrzqs7jh8g5
+                  items:
+                    $ref: '#/components/schemas/TagDtoModel'
+                    x-stoplight:
+                      id: kg7qwzcpcdmwi
+                chave:
+                  type: integer
+                  x-stoplight:
+                    id: yv2hns4sf9eoh
+  /conf-macro/carrega/macro:
+    get:
+      summary: Configurador Macro - Carrega macro
+      tags:
+        - Configurador-Macro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MacroDtoModel'
+      operationId: get-conf-macro-carrega-macro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idMacro
+  /conf-macro/salvar/macro:
+    post:
+      summary: Configurador Macro - Salvar macro
+      operationId: post-conf-macro-salvar-macro
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Configurador-Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dado:
+                  $ref: '#/components/schemas/MacroDtoModel'
+                  x-stoplight:
+                    id: bhkgt45ujvo63
+  /conf-macro/carrega/macro/list:
+    get:
+      summary: Configurador Macro - Carrega macro (List)
+      tags:
+        - Configurador-Macro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MacroDtoModel'
+                  x-stoplight:
+                    id: ehzyxssb7ohck
+      operationId: get-conf-macro-carrega-macro-list
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idMacroTipo
+        - schema:
+            type: string
+          in: query
+          name: palavraChave
+  /macro/gera/xml:
+    get:
+      summary: Macro - Gera XML
+      tags:
+        - Macro
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-macro-gera-xml
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: sql
+        - schema:
+            type: string
+          in: query
+          name: titulo
+  /conf-macro/download-layout:
+    get:
+      summary: Configurador Macro - Download layout
+      tags:
+        - Configurador-Macro
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-conf-macro-download-layout
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: layout
 components:
   schemas:
     CriarLigacaoModel:
@@ -57503,5 +58196,600 @@ components:
           idVenda: 0
           idVendaDetalhe: 0
           idLigacao: 0
+    TabelaDtoModel:
+      type: object
+      properties:
+        tabela:
+          type: string
+        campoID:
+          type: string
+        campoVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idTabela:
+                type: integer
+              campo:
+                type: string
+              nome:
+                type: string
+              tipoDadoJava:
+                type: string
+              tabela:
+                type: string
+              tabelaConsPadrao:
+                type: string
+              campoConsPadrao:
+                type: string
+              idConsPadrao:
+                type: integer
+              tamCampo:
+                type: integer
+              tipoDadoBD:
+                type: string
+              valDefault:
+                type: string
+              campoConsRegistro:
+                type: string
+              campoExibConsRegistro:
+                type: string
+              ordemCampoExibConsRegistro:
+                type: integer
+              campoRotuloVO:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idTabelaCampo:
+                      type: integer
+                    idLingua:
+                      type: integer
+                    descr:
+                      type: string
+        descricao:
+          type: string
+        statusImportacao:
+          type: string
+        macroExib:
+          type: string
+      x-examples:
+        Example 1:
+          tabela: ''
+          campoID: ''
+          campoVO:
+            - idTabela: 0
+              campo: ''
+              nome: ''
+              tipoDadoJava: ''
+              tabela: ''
+              tabelaConsPadrao: ''
+              campoConsPadrao: ''
+              idConsPadrao: 0
+              tamCampo: 0
+              tipoDadoBD: ''
+              valDefault: ''
+              campoConsRegistro: ''
+              campoExibConsRegistro: ''
+              ordemCampoExibConsRegistro: 0
+              campoRotuloVO:
+                - idTabelaCampo: 0
+                  idLingua: 0
+                  descr: ''
+          descricao: ''
+          statusImportacao: ''
+          macroExib: ''
+    ConfiguradorConsPadraoDtoModel:
+      type: object
+      properties:
+        consPadrao:
+          type: string
+        idTabela:
+          type: integer
+        sqlCampoRetid:
+          type: string
+        sqlCampoRetDescr:
+          type: string
+        tipoRet:
+          type: integer
+        campoPesq:
+          type: array
+          items:
+            type: object
+            properties:
+              idConsPadrao:
+                type: integer
+              idCampoPesq:
+                type: integer
+              campo:
+                type: string
+              ordem:
+                type: integer
+        campoExib:
+          type: array
+          items:
+            type: object
+            properties:
+              idConsPadrao:
+                type: integer
+              idCampoPesq:
+                type: integer
+              campo:
+                type: string
+              ordem:
+                type: integer
+      x-examples:
+        Example 1:
+          consPadrao: ''
+          idTabela: 0
+          sqlCampoRetid: ''
+          sqlCampoRetDescr: ''
+          tipoRet: 0
+          campoPesq:
+            - idConsPadrao: 0
+              idCampoPesq: 0
+              campo: ''
+              ordem: 0
+          campoExib:
+            - idConsPadrao: 0
+              idCampoPesq: 0
+              campo: ''
+              ordem: 0
+    FormularioPadraoDtoModel:
+      type: object
+      properties:
+        descricao:
+          type: string
+        titulo:
+          type: string
+        tabela:
+          type: string
+        incluir:
+          type: string
+        consultar:
+          type: string
+        imprimir:
+          type: string
+        ajuda:
+          type: string
+      x-examples:
+        Example 1:
+          descricao: ''
+          titulo: ''
+          tabela: ''
+          incluir: ''
+          consultar: ''
+          imprimir: ''
+          ajuda: ''
+    TagDtoModel:
+      type: object
+      properties:
+        tipoTag:
+          type: string
+        tituloMacro:
+          type: string
+        arquivoRelatorio:
+          type: string
+        arquivoSubRelatorio:
+          type: string
+        legenda:
+          type: string
+        campo:
+          type: string
+        tamanhoMaximo:
+          type: integer
+        toolTipText:
+          type: string
+        tabela:
+          type: string
+        valorPadrao:
+          type: string
+        validacao:
+          type: string
+        textoValidacao:
+          type: string
+        campoChave:
+          type: string
+        campoExibicao:
+          type: string
+        selecionado:
+          type: string
+        chavePrimaria:
+          type: string
+        corFrente:
+          type: string
+        corFundo:
+          type: string
+        resultado:
+          type: string
+        resultadoParametro:
+          type: string
+        idOperacao:
+          type: string
+        campoOrdenacao:
+          type: string
+        condicao:
+          type: string
+        campoAninhado:
+          type: string
+        campoFornecido:
+          type: string
+        campoJoin:
+          type: string
+        dados:
+          type: array
+          items:
+            type: object
+            properties:
+              idStr:
+                type: string
+              descr:
+                type: string
+              flag:
+                type: string
+              tipoRet:
+                type: integer
+      x-examples:
+        Example 1:
+          tipoTag: ''
+          tituloMacro: ''
+          arquivoRelatorio: ''
+          arquivoSubRelatorio: ''
+          legenda: ''
+          campo: ''
+          tamanhoMaximo: 0
+          toolTipText: ''
+          tabela: ''
+          valorPadrao: ''
+          validacao: ''
+          textoValidacao: ''
+          campoChave: ''
+          campoExibicao: ''
+          selecionado: ''
+          chavePrimaria: ''
+          corFrente: ''
+          corFundo: ''
+          resultado: ''
+          resultadoParametro: ''
+          idOperacao: ''
+          campoOrdenacao: ''
+          condicao: ''
+          campoAninhado: ''
+          campoFornecido: ''
+          campoJoin: ''
+          dados:
+            - idStr: ''
+              descr: ''
+              flag: ''
+              tipoRet: 0
+    GridDtoModel:
+      type: object
+      properties:
+        columns:
+          type: string
+        dados:
+          type: array
+          items:
+            type: object
+            properties:
+              row:
+                type: string
+              representacao:
+                type: object
+                properties:
+                  idStr:
+                    type: string
+                  descr:
+                    type: string
+                  flag:
+                    type: string
+                  tipoRet:
+                    type: integer
+      x-examples:
+        Example 1:
+          columns: ''
+          dados:
+            - row: ''
+              representacao:
+                idStr: ''
+                descr: ''
+                flag: ''
+                tipoRet: 0
+    MacroDtoModel:
+      type: object
+      properties:
+        idMacroCategoria:
+          type: integer
+        idMacro:
+          type: integer
+        tipoMacro:
+          type: integer
+        macro:
+          type: string
+        link:
+          type: string
+        unidadeNegocio:
+          type: string
+        macroSql:
+          type: string
+        macroSqlRefatorado:
+          type: string
+        macroLayout:
+          type: string
+        macroSubLayout:
+          type: string
+        titulo:
+          type: string
+        type:
+          type: string
+        arquivoRelatorio:
+          type: string
+        arquivoSubRelatorio:
+          type: string
+        parametro:
+          type: string
+        delimitadorCampoText:
+          type: string
+        separadorCampo:
+          type: string
+        newRow:
+          type: string
+        nomeArquivo:
+          type: string
+        extensaoArquivo:
+          type: string
+        encondingArquivo:
+          type: string
+        resumo:
+          type: string
+        idCidadeOrig:
+          type: integer
+        informacoes:
+          type: string
+        semCabecalho:
+          type: boolean
+        idUsuario:
+          type: integer
+        idUnidadeOperacional:
+          type: integer
+        usuario:
+          type: string
+        idUnidadeNegocio:
+          type: integer
+        params:
+          type: object
+          properties: {}
+        macroCategoria:
+          type: string
+        horarioExecucaoMacroVOs:
+          type: array
+          items:
+            type: object
+            properties:
+              idmacro:
+                type: 'null'
+              idDiaSemana:
+                type: 'null'
+              horaInicio:
+                type: 'null'
+              horaTermino:
+                type: 'null'
+              diaSemana:
+                type: 'null'
+        logarExecucao:
+          type: boolean
+        idCidade:
+          type: integer
+        mapId:
+          type: string
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              tipoTag:
+                type: string
+              tituloMacro:
+                type: string
+              arquivoRelatorio:
+                type: string
+              arquivoSubRelatorio:
+                type: string
+              legenda:
+                type: string
+              campo:
+                type: string
+              tamanhoMaximo:
+                type: integer
+              toolTipText:
+                type: string
+              tabela:
+                type: string
+              valorPadrao:
+                type: string
+              validacao:
+                type: string
+              textoValidacao:
+                type: string
+              campoChave:
+                type: string
+              campoExibicao:
+                type: string
+              selecionado:
+                type: string
+              chavePrimaria:
+                type: string
+              corFrente:
+                type: string
+              corFundo:
+                type: string
+              resultado:
+                type: string
+              resultadoParametro:
+                type: string
+              idOperacao:
+                type: string
+              campoOrdenacao:
+                type: string
+              condicao:
+                type: string
+              campoAninhado:
+                type: string
+              campoFornecido:
+                type: string
+              campoJoin:
+                type: string
+              dados:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idStr:
+                      type: string
+                    descr:
+                      type: string
+                    flag:
+                      type: string
+                    tipoRet:
+                      type: integer
+        result:
+          type: string
+      x-examples:
+        Example 1:
+          idMacroCategoria: 0
+          idMacro: 0
+          tipoMacro: 0
+          macro: ''
+          link: ''
+          unidadeNegocio: ''
+          macroSql: ''
+          macroSqlRefatorado: ''
+          macroLayout: ''
+          macroSubLayout: ''
+          titulo: ''
+          type: ''
+          arquivoRelatorio: ''
+          arquivoSubRelatorio: ''
+          parametro: ''
+          delimitadorCampoText: ''
+          separadorCampo: ''
+          newRow: ''
+          nomeArquivo: ''
+          extensaoArquivo: ''
+          encondingArquivo: ''
+          resumo: ''
+          idCidadeOrig: 0
+          informacoes: ''
+          semCabecalho: false
+          idUsuario: 0
+          idUnidadeOperacional: 0
+          usuario: ''
+          idUnidadeNegocio: 0
+          params: {}
+          macroCategoria: ''
+          horarioExecucaoMacroVOs:
+            - idmacro: null
+              idDiaSemana: null
+              horaInicio: null
+              horaTermino: null
+              diaSemana: null
+          logarExecucao: false
+          idCidade: 0
+          mapId: ''
+          tags:
+            - tipoTag: ''
+              tituloMacro: ''
+              arquivoRelatorio: ''
+              arquivoSubRelatorio: ''
+              legenda: ''
+              campo: ''
+              tamanhoMaximo: 0
+              toolTipText: ''
+              tabela: ''
+              valorPadrao: ''
+              validacao: ''
+              textoValidacao: ''
+              campoChave: ''
+              campoExibicao: ''
+              selecionado: ''
+              chavePrimaria: ''
+              corFrente: ''
+              corFundo: ''
+              resultado: ''
+              resultadoParametro: ''
+              idOperacao: ''
+              campoOrdenacao: ''
+              condicao: ''
+              campoAninhado: ''
+              campoFornecido: ''
+              campoJoin: ''
+              dados:
+                - idStr: ''
+                  descr: ''
+                  flag: ''
+                  tipoRet: 0
+          result: ''
+    CampoDtoModel:
+      type: object
+      properties:
+        idTabela:
+          type: integer
+        campo:
+          type: string
+        nome:
+          type: string
+        tipoDadoJava:
+          type: string
+        tabela:
+          type: string
+        tabelaConsPadrao:
+          type: string
+        campoConsPadrao:
+          type: string
+        idConsPadrao:
+          type: integer
+        tamCampo:
+          type: integer
+        tipoDadoBD:
+          type: string
+        valDefault:
+          type: string
+        campoConsRegistro:
+          type: string
+        campoExibConsRegistro:
+          type: string
+        ordemCampoExibConsRegistro:
+          type: integer
+        campoRotuloVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idTabelaCampo:
+                type: integer
+              idLingua:
+                type: integer
+              descr:
+                type: string
+      x-examples:
+        Example 1:
+          idTabela: 0
+          campo: ''
+          nome: ''
+          tipoDadoJava: ''
+          tabela: ''
+          tabelaConsPadrao: ''
+          campoConsPadrao: ''
+          idConsPadrao: 0
+          tamCampo: 0
+          tipoDadoBD: ''
+          valDefault: ''
+          campoConsRegistro: ''
+          campoExibConsRegistro: ''
+          ordemCampoExibConsRegistro: 0
+          campoRotuloVO:
+            - idTabelaCampo: 0
+              idLingua: 0
+              descr: ''
   securitySchemes: {}
 x-extension-1: null
