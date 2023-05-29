@@ -11277,6 +11277,412 @@ paths:
             type: integer
           in: query
           name: limit
+  /cadastro-grupo-tela/carrega-tela:
+    get:
+      summary: Cadastro Grupo Tela - Carrega tela
+      tags:
+        - Cadastro-Grupo-Tela
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GrupoTelaDtoModel'
+                  x-stoplight:
+                    id: 3juiow4m5atxg
+      operationId: get-cadastro-grupo-tela-carrega-tela
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: palavraChave
+  /cadastro-grupo-tela/salvar-tela:
+    post:
+      summary: Cadastro Grupo Tela - Salvar tela
+      operationId: post-cadastro-grupo-tela-salvar-tela
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cadastro-Grupo-Tela
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grupoTelaDTO:
+                  $ref: '#/components/schemas/GrupoTelaDtoModel'
+                  x-stoplight:
+                    id: sm2tymj00mt1k
+  /cadastro-grupo-tela/obter/grupo-tela:
+    get:
+      summary: Cadastro Grupo Tela - Obter grupo tela
+      tags:
+        - Cadastro-Grupo-Tela
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrupoTelaDtoModel'
+      operationId: get-cadastro-grupo-tela-obter-grupo-tela
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupoTela
+  /ger-incons-calc-cons/carregar/inconsistencia:
+    post:
+      summary: Gerência Inconsistência Cálculo Consumo - Carregar inconsistência
+      operationId: post-ger-incons-calc-cons-carregar-inconsistencia
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InconsistenciaCalculoConsumoDtoModel'
+                  x-stoplight:
+                    id: o85q6ta24w4fy
+      tags:
+        - Ger-Incons-Calc-Cons
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parametrosBase:
+                  $ref: '#/components/schemas/ParametrosBaseDtoModel'
+                  x-stoplight:
+                    id: k0qkqv87hxjk6
+                apenaFinalizadas:
+                  type: boolean
+                  x-stoplight:
+                    id: fvm9u7tw2tk1d
+        description: ''
+  /ger-lote-remessa-ncob/geracao/lote-remessa-ncob:
+    post:
+      summary: Geração Lote Remessa NCOB - Geração lote remessa NCOB
+      operationId: post-ger-lote-remessa-ncob-geracao-lote-remessa-ncob
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Geração-Lote-Remessa-NCOB
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /sms/confirmacao-sms:
+    post:
+      summary: ''
+      operationId: post-sms-confirmacao-sms
+      responses:
+        '200':
+          description: OK
+  /atualizacao-dados/obter/arquivos/execucao-proc:
+    get:
+      summary: Atualização Dados - Obter arquivos para execução procedure
+      tags:
+        - Atualização-Dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: ytqctiw2dwo8z
+      operationId: get-atualizacao-dados-obter-arquivos-execucao-proc
+      parameters: []
+  /atualizacao-dados/obter/arquivos/erros:
+    get:
+      summary: Atualização Dados - Obter arquivos com erros
+      tags:
+        - Atualização-Dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: 4xz168zc72md0
+      operationId: get-atualizacao-dados-obter-arquivos-erros
+  /atualizacao-dados/obter/dados-arquivo:
+    get:
+      summary: Atualização Dados - Obter dados arquivo
+      tags:
+        - Atualização-Dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AtualizacaoDadosDtoModel'
+                  x-stoplight:
+                    id: gdbfmdftbupq6
+      operationId: get-atualizacao-dados-obter-dados-arquivo
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: nomeArquivo
+  /atualizacao-dados/executar/proc-atualizacao:
+    post:
+      summary: Atualização Dados - Executar procedure atualização
+      operationId: post-atualizacao-dados-executar-proc-atualizacao
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Atualização-Dados
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: nomeArquivo
+  /atualizacao-dados/exportar-erros:
+    post:
+      summary: Atualização Dados - Exportar erros
+      operationId: post-atualizacao-dados-exportar-erros
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Atualização-Dados
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: nomeArquivo
+  /arrecadacao/obter/arquivos-path:
+    get:
+      summary: Arrecadação - Obter arquivos path
+      tags:
+        - Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-arrecadacao-obter-arquivos-path
+      parameters: []
+  /arrecadacao/obter/dados-integracao:
+    get:
+      summary: Arrecadação - Obter dados integração
+      tags:
+        - Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IntegracaoDtoModel'
+                  x-stoplight:
+                    id: ntr442m41e69e
+      operationId: get-arrecadacao-obter-dados-integracao
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: dataImportação
+  /faturamento/salvar/msg-quitacao-anual:
+    post:
+      summary: Faturamento - Salvar mensagem quitação anual
+      operationId: post-faturamento-salvar-msg-quitacao-anual
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                m:
+                  $ref: '#/components/schemas/MensagemQuitacaoAnualDtoModel'
+                  x-stoplight:
+                    id: hbqm22ysc84j1
+  /congelamento/congelar/histograma:
+    get:
+      summary: Congelamento - Congelar histograma
+      tags:
+        - Congelamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: bpeczxqfeqy7i
+                  type: string
+      operationId: get-congelamento-congelar-histograma
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: competencia
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: totalMensagens
+  /congelamento/congelar/indicadores:
+    get:
+      summary: Congelamento - Congelar indicadores
+      tags:
+        - Congelamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: ztrajiu0fth6q
+                  type: string
+      operationId: get-congelamento-congelar-indicadores
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: competencia
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: totalMensagens
+  /icf/rotina/integracao-financeira:
+    get:
+      summary: ICF - Rotina integração financeira
+      tags:
+        - ICF
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IntegracaoFinanceiraDtoModel'
+                  x-stoplight:
+                    id: hzsg0adu5gzkf
+      operationId: get-icf-rotina-integracao-financeira
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: data
+  /icf/rotina/integracao-sap:
+    get:
+      summary: ICf - Rotina integração SAP
+      tags:
+        - ICF
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/IntegracaoFinanceiraDtoModel'
+                  x-stoplight:
+                    id: 7qqryy10vvyaf
+      operationId: get-icf-rotina-integracao-sap
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: data
+  /icf/contas-contabeis:
+    get:
+      summary: ICF - Contas Contábeis
+      tags:
+        - ICF
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContaContabilDtoModel'
+                  x-stoplight:
+                    id: e87euj6fda3ja
+      operationId: get-icf-contas-contabeis
+  /icf/atualizar/conta-contabil:
+    post:
+      summary: ICF - Atualizar conta contabil
+      operationId: post-icf-atualizar-conta-contabil
+      responses:
+        '200':
+          description: OK
+      tags:
+        - ICF
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/ContaContabilDtoModel'
+                  x-stoplight:
+                    id: 38ql10ggh78wv
+  /icf/excluir/conta-contabil:
+    post:
+      summary: ICF - Excluir conta contábil
+      operationId: post-icf-excluir-conta-contabil
+      responses:
+        '200':
+          description: OK
+      tags:
+        - ICF
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idContaContabil
 components:
   schemas:
     CriarLigacaoModel:
@@ -60571,5 +60977,469 @@ components:
             cidadesSemPermissao:
               - cidade: ''
           objSize: 1
+    GrupoTelaDtoModel:
+      type: object
+      properties:
+        ordem:
+          type: integer
+        grupoTela:
+          type: string
+        colTela:
+          type: array
+          items:
+            type: object
+            properties:
+              tela:
+                type: string
+              nomeGUI:
+                type: string
+              idGrupoTela:
+                type: integer
+              ordem:
+                type: integer
+              sistema:
+                type: integer
+              ativo:
+                type: boolean
+        colGrupoTela:
+          type: array
+          items:
+            type: object
+            properties:
+              ordem:
+                type: integer
+              grupoTela:
+                type: string
+              colTela:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    tela:
+                      type: string
+                    nomeGUI:
+                      type: string
+                    idGrupoTela:
+                      type: integer
+                    ordem:
+                      type: integer
+                    sistema:
+                      type: integer
+                    ativo:
+                      type: boolean
+              colGrupoTela:
+                type: array
+                items:
+                  type: object
+                  properties: {}
+              sistema:
+                type: integer
+              idGrupoTelaPai:
+                type: integer
+              icone:
+                type: string
+              arqIco:
+                type: string
+              iconeHover:
+                type: string
+              arqIcoHover:
+                type: string
+        sistema:
+          type: integer
+        idGrupoTelaPai:
+          type: integer
+        icone:
+          type: string
+        arqIco:
+          type: string
+        iconeHover:
+          type: string
+        arqIcoHover:
+          type: string
+      x-examples:
+        Example 1:
+          ordem: 0
+          grupoTela: ''
+          colTela:
+            - tela: ''
+              nomeGUI: ''
+              idGrupoTela: 0
+              ordem: 0
+              sistema: 1
+              ativo: false
+          colGrupoTela:
+            - ordem: 0
+              grupoTela: ''
+              colTela:
+                - tela: ''
+                  nomeGUI: ''
+                  idGrupoTela: 0
+                  ordem: 0
+                  sistema: 1
+                  ativo: false
+              colGrupoTela:
+                - {}
+              sistema: 1
+              idGrupoTelaPai: 0
+              icone: ''
+              arqIco: ''
+              iconeHover: ''
+              arqIcoHover: ''
+          sistema: 1
+          idGrupoTelaPai: 0
+          icone: ''
+          arqIco: ''
+          iconeHover: ''
+          arqIcoHover: ''
+    InconsistenciaCalculoConsumoDtoModel:
+      type: object
+      properties:
+        idLigacao:
+          type: integer
+        idPeriodo:
+          type: integer
+        idMedicaoDetalhe:
+          type: integer
+        idMedicaoDetalheInconsistencia:
+          type: integer
+        idTipoMedicaoInconsistencia:
+          type: integer
+        idCriticaMedicaoInconsistencia:
+          type: integer
+        criticaMedicaoInconsistencia:
+          type: object
+          properties:
+            criticaMedicaoInconsistencia:
+              type: string
+            idTipoMedicaoInconsistencia:
+              type: integer
+            percentualEnquadramentoMin:
+              type: number
+            percentualEnquadramentoMax:
+              type: number
+            prioridade:
+              type: number
+        idLeituraDetalhe:
+          type: integer
+        ligacaoNova:
+          type: string
+        ligacaoNovaColetor:
+          type: string
+        credito:
+          type: integer
+        creditoColetor:
+          type: integer
+        leituraAnterior:
+          type: integer
+        leituraAnteriorColetor:
+          type: integer
+        leituraAtual:
+          type: integer
+        leituraAtualColetor:
+          type: integer
+        criterioFaturamento:
+          type: string
+        criterioFaturamentoColetor:
+          type: string
+        cortada:
+          type: string
+        cortadaColetor:
+          type: string
+        tipoFaturamento:
+          type: string
+        tipoFaturamentoColetor:
+          type: string
+        categoriaEconomia:
+          type: string
+        categoriaEconomiaColetor:
+          type: string
+        volumeMedido:
+          type: integer
+        volumeMedidoColetor:
+          type: integer
+        volumeFaturado:
+          type: integer
+        volumeFaturadoColetor:
+          type: integer
+        valorTotalImpostoAproximado:
+          type: integer
+        baseCalculoTotalImpostoAproximado:
+          type: integer
+        valorTotalImpostoAproximadoColetor:
+          type: integer
+        baseCalculoTotalImpostoAproximadoColetor:
+          type: integer
+        percTotalImpostoAproximado:
+          type: integer
+        percTotalImpostoAproximadoColetor:
+          type: integer
+        impostoAproximado:
+          type: boolean
+        memoriaCalculoSan:
+          type: string
+        memoriaCalculoColetor:
+          type: string
+        investigacao:
+          type: string
+        solucao:
+          type: string
+        inconsistenciaTratada:
+          type: boolean
+        percentualEnquadramento:
+          type: 'null'
+        volumeRemanescente:
+          type: integer
+        volumeRemanescenteColetor:
+          type: integer
+        idTipoCalculo:
+          type: integer
+        idTipoCalculoFaturado:
+          type: integer
+      x-examples:
+        Example 1:
+          idLigacao: 0
+          idPeriodo: 0
+          idMedicaoDetalhe: 0
+          idMedicaoDetalheInconsistencia: 0
+          idTipoMedicaoInconsistencia: 0
+          idCriticaMedicaoInconsistencia: 0
+          criticaMedicaoInconsistencia:
+            criticaMedicaoInconsistencia: ''
+            idTipoMedicaoInconsistencia: 1
+            percentualEnquadramentoMin: 1.1
+            percentualEnquadramentoMax: 1.1
+            prioridade: 1.1
+          idLeituraDetalhe: 0
+          ligacaoNova: 'N'
+          ligacaoNovaColetor: 'N'
+          credito: 0
+          creditoColetor: 0
+          leituraAnterior: 0
+          leituraAnteriorColetor: 0
+          leituraAtual: 0
+          leituraAtualColetor: 0
+          criterioFaturamento: ''
+          criterioFaturamentoColetor: ''
+          cortada: 'N'
+          cortadaColetor: 'N'
+          tipoFaturamento: 'N'
+          tipoFaturamentoColetor: 'N'
+          categoriaEconomia: 'N'
+          categoriaEconomiaColetor: 'N'
+          volumeMedido: 0
+          volumeMedidoColetor: 0
+          volumeFaturado: 0
+          volumeFaturadoColetor: 0
+          valorTotalImpostoAproximado: 0
+          baseCalculoTotalImpostoAproximado: 0
+          valorTotalImpostoAproximadoColetor: 0
+          baseCalculoTotalImpostoAproximadoColetor: 0
+          percTotalImpostoAproximado: 0
+          percTotalImpostoAproximadoColetor: 0
+          impostoAproximado: false
+          memoriaCalculoSan: ''
+          memoriaCalculoColetor: ''
+          investigacao: ''
+          solucao: ''
+          inconsistenciaTratada: false
+          percentualEnquadramento: null
+          volumeRemanescente: 0
+          volumeRemanescenteColetor: 0
+          idTipoCalculo: 0
+          idTipoCalculoFaturado: 0
+    AtualizacaoDadosDtoModel:
+      type: object
+      properties:
+        idLigacao:
+          type: integer
+        tipoPessoa:
+          type: string
+        unidade:
+          type: string
+        cidade:
+          type: string
+        tipoVinculo:
+          type: string
+        cpf:
+          type: string
+        cnpj:
+          type: string
+        nome:
+          type: string
+        dataNascimento:
+          type: integer
+        fixoTratado:
+          type: integer
+        movelTratado:
+          type: integer
+        telefoneFixo:
+          type: integer
+        telefoneMovel:
+          type: integer
+        email:
+          type: string
+        cep:
+          type: integer
+        dataAlteracao:
+          type: integer
+        cpfInvalido:
+          type: string
+        cnpjInvalido:
+          type: string
+        alterado:
+          type: string
+        idCliente:
+          type: integer
+        duplicado:
+          type: string
+        nomeArquivo:
+          type: string
+      x-examples:
+        Example 1:
+          idLigacao: 0
+          tipoPessoa: ''
+          unidade: ''
+          cidade: ''
+          tipoVinculo: ''
+          cpf: ''
+          cnpj: ''
+          nome: ''
+          dataNascimento: 0
+          fixoTratado: 0
+          movelTratado: 0
+          telefoneFixo: 0
+          telefoneMovel: 0
+          email: ''
+          cep: 0
+          dataAlteracao: 0
+          cpfInvalido: ''
+          cnpjInvalido: ''
+          alterado: ''
+          idCliente: 0
+          duplicado: ''
+          nomeArquivo: ''
+    IndicadorOperacionalDtoModel:
+      type: object
+      properties:
+        idIndicador:
+          type: integer
+        idIndicadorDetalhe:
+          type: integer
+        idPeriodo:
+          type: integer
+        idCidade:
+          type: integer
+        indicador:
+          type: string
+        unidade:
+          type: string
+        valor:
+          type: string
+        observacao:
+          type: string
+      x-examples:
+        Example 1:
+          idIndicador: 1
+          idIndicadorDetalhe: 1
+          idPeriodo: 1
+          idCidade: 1
+          indicador: ''
+          unidade: ''
+          valor: ''
+          observacao: ''
+    IntegracaoDtoModel:
+      type: object
+      properties:
+        seq:
+          type: integer
+        ReceitaVO:
+          type: array
+          items:
+            type: object
+            properties:
+              ue:
+                type: integer
+              dataCredito:
+                type: string
+              debCred:
+                type: string
+              historico:
+                type: string
+              ccFin:
+                type: string
+              ccCtb:
+                type: string
+              histPadrao:
+                type: string
+              ctaFin:
+                type: string
+              ctaCtb:
+                type: string
+              qtdRegistro:
+                type: integer
+              valor:
+                type: integer
+              codctabcomwdreceita:
+                type: integer
+              operacao:
+                type: integer
+              seq:
+                type: integer
+              fixo1:
+                type: integer
+              fixo2:
+                type: integer
+              idTipoRegIntegracaoFin:
+                type: integer
+              tipoRegistro:
+                type: string
+      x-examples:
+        Example 1:
+          seq: 1
+          ReceitaVO:
+            - ue: 0
+              dataCredito: ''
+              debCred: ''
+              historico: ''
+              ccFin: ''
+              ccCtb: ''
+              histPadrao: ''
+              ctaFin: ''
+              ctaCtb: ''
+              qtdRegistro: 0
+              valor: 0
+              codctabcomwdreceita: 0
+              operacao: 0
+              seq: 0
+              fixo1: 0
+              fixo2: 0
+              idTipoRegIntegracaoFin: 0
+              tipoRegistro: ''
+    ContaContabilDtoModel:
+      type: object
+      properties:
+        idContaContabil:
+          type: integer
+        idGrupoContabil:
+          type: integer
+        grupoContabil:
+          type: string
+        contaContabil:
+          type: string
+        descricao:
+          type: string
+        centroCusto:
+          type: string
+        centroLucro:
+          type: string
+      x-examples:
+        Example 1:
+          idContaContabil: 0
+          idGrupoContabil: 0
+          grupoContabil: ''
+          contaContabil: ''
+          descricao: ''
+          centroCusto: ''
+          centroLucro: ''
   securitySchemes: {}
 x-extension-1: null
