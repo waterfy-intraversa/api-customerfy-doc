@@ -11683,6 +11683,447 @@ paths:
             type: integer
           in: query
           name: idContaContabil
+  /icf/banco-movimento:
+    get:
+      summary: ICF - Banco movimento
+      tags:
+        - ICF
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BancoMovimentoDtoModel'
+                  x-stoplight:
+                    id: mfhpuqtmwtu8v
+      operationId: get-icf-banco-movimento
+  /icf/atualizar/banco-movimento:
+    post:
+      summary: ICF - Atualizar banco movimento
+      operationId: post-icf-atualizar-banco-movimento
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/BancoMovimentoDtoModel'
+                  x-stoplight:
+                    id: cvnhdwgycntkk
+      tags:
+        - ICF
+  /icf/salvar/banco-movimento:
+    post:
+      summary: ICF - Salvar banco movimento
+      operationId: post-icf-salvar-banco-movimento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      tags:
+        - ICF
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/BancoMovimentoDtoModel'
+                  x-stoplight:
+                    id: ebpsfdupt9fdd
+  /icf/excluir/banco-movimento:
+    post:
+      summary: ICF - Excluir banco movimento
+      operationId: post-icf-excluir-banco-movimento
+      responses:
+        '200':
+          description: OK
+      tags:
+        - ICF
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idMovimento
+  /icf/evento-recebimento:
+    get:
+      summary: ICF - Evento recebimento
+      tags:
+        - ICF
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventoRecebimentoDtoModel'
+                  x-stoplight:
+                    id: gyagrt61rtnrn
+      operationId: get-icf-evento-recebimento
+  /icf/atualizar/evento-recebimento:
+    post:
+      summary: ICF - Atualizar evento recebimento
+      operationId: post-icf-atualizar-evento-recebimento
+      responses:
+        '200':
+          description: OK
+      tags:
+        - ICF
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/EventoRecebimentoDtoModel'
+                  x-stoplight:
+                    id: 4xs9p2j3ji98h
+  /icf/salvar/evento-recebimento:
+    post:
+      summary: ICF - Salvar evento recebimento
+      operationId: post-icf-salvar-evento-recebimento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      tags:
+        - ICF
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/EventoRecebimentoDtoModel'
+                  x-stoplight:
+                    id: 7lc1jv5s9f8p5
+  /icf/excluir/evento-recebimento:
+    post:
+      summary: ICF - Excluir evento recebimento
+      operationId: post-icf-excluir-evento-recebimento
+      responses:
+        '200':
+          description: OK
+      tags:
+        - ICF
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+  /buffer-impressao/load/arquivo-impressao:
+    post:
+      summary: Buffer Impressão - Load arquivo impressão
+      operationId: post-buffer-impressao-load-arquivo-impressao
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArquivoImpressaoDtoModel'
+                  x-stoplight:
+                    id: o5q2pnbkys343
+      tags:
+        - Buffer-Impressão
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filtro:
+                  $ref: '#/components/schemas/ArquivoImpressaoFilterDtoModel'
+                  x-stoplight:
+                    id: dc9tmte4wlno5
+  /cobranca/carregar/debito-venc-alternativo:
+    get:
+      summary: Cobrança - Carregar débito vencimento alternativo
+      tags:
+        - Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: kgn1kk1g07sjp
+      operationId: get-cobranca-carregar-debito-venc-alternativo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+  /cobranca/carregar/list/lig-debito-venc-alt:
+    post:
+      summary: Cobrança - Carregar list ligação débito vencimento alternativo
+      operationId: post-cobranca-carregar-list-lig-debito-venc-alt
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GridCobrancaDtoModel'
+                  x-stoplight:
+                    id: b6ob3mht42ml9
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filtro:
+                  $ref: '#/components/schemas/FiltroCobrancaDtoModel'
+                  x-stoplight:
+                    id: ish9e6rjs6edc
+  /centre-cd-face/carregar-registro:
+    get:
+      summary: Centre Code FACe - Carregar registro
+      tags:
+        - Centre-Code-FACe
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CentreCodeFaceDtoModel'
+      operationId: get-centre-cd-face-carregar-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+  /centre-cd-face/salvar:
+    post:
+      summary: Centre Code FACe - Salvar
+      operationId: post-centre-cd-face-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Centre-Code-FACe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dado:
+                  $ref: '#/components/schemas/CentreCodeFaceDtoModel'
+                  x-stoplight:
+                    id: zxw6tottarmpz
+  /centre-cd-face/excluir:
+    post:
+      summary: Centre Code FACe - Excluir
+      operationId: post-centre-cd-face-excluir
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Centre-Code-FACe
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dado:
+                  $ref: '#/components/schemas/CentreCodeFaceDtoModel'
+                  x-stoplight:
+                    id: 3ddf6i6629ybj
+  /permissao-user-cidade/get-user-cidade:
+    get:
+      summary: Permissão Usuário Cidade - Get usuário cidade
+      tags:
+        - Permissão-Usuário-Cidade
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UsuarioDtoModel'
+      operationId: get-permissao-user-cidade-get-user-cidade
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idUsuario
+  /permissao-user-cidade/salvar:
+    post:
+      summary: Permissão Usuário Cidade - Salvar
+      operationId: post-permissao-user-cidade-salvar
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Permissão-Usuário-Cidade
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usario:
+                  $ref: '#/components/schemas/UsuarioDtoModel'
+                  x-stoplight:
+                    id: qfbr4g5ekh5u2
+  /cancelamento-proc-cobranca/obter/dados/filtro/processo-cobranca:
+    get:
+      summary: Cancelamento Processo Cobrança - Obter dados filtro processo cobrança
+      tags:
+        - Cancelamento-Processo-Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+      operationId: get-cancelamento-proc-cobranca-obter-dados-filtro-processo-cobranca
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: codigo
+  /cancelamento-proc-cobranca/obter/dados/filtro/ligacao-individual:
+    get:
+      summary: Cancelamento Processo Cobrança - Obter dados filtro ligação individual
+      tags:
+        - Cancelamento-Processo-Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+      operationId: get-cancelamento-proc-cobranca-obter-dados-filtro-ligacao-individual
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  '/cancelamento-proc-cobranca/obter/detalhes/processo/{idProcesso}':
+    parameters:
+      - schema:
+          type: string
+        name: idProcesso
+        in: path
+        required: true
+    get:
+      summary: Cancelamento Processo Cobrança - Obter detalhes processo por processo
+      tags:
+        - Cancelamento-Processo-Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                  x-stoplight:
+                    id: 9drp5voluoyoy
+      operationId: get-cancelamento-proc-cobranca-obter-detalhes-processo-idProcesso
+  '/cancelamento-proc-cobranca/obter/detalhes/processo/ligacao/{idLigacao}':
+    parameters:
+      - schema:
+          type: string
+        name: idLigacao
+        in: path
+        required: true
+    get:
+      summary: Cancelamento Processo Cobrança - Obter detalhes processo pro ligação
+      tags:
+        - Cancelamento-Processo-Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                  x-stoplight:
+                    id: 3nc644o7amo9e
+      operationId: get-cancelamento-proc-cobranca-obter-detalhes-processo-ligacao-idLigacao
+  /cancelamento-proc-cobranca/cancelar:
+    post:
+      summary: Cancelamento Processo Cobrança - Cancelar ligação processo corte
+      operationId: post-cancelamento-proc-cobranca-cancelar
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Cancelamento-Processo-Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ligacoesCancelarProcessoCorte:
+                  type: array
+                  x-stoplight:
+                    id: mayxpx7suf8lq
+                  items:
+                    $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                    x-stoplight:
+                      id: aqabjz8ibh7cw
+                ligacoesBlackList:
+                  type: array
+                  x-stoplight:
+                    id: do5k1pqtopjuy
+                  items:
+                    $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                    x-stoplight:
+                      id: frt2bmz8kp4r8
+        description: ''
 components:
   schemas:
     CriarLigacaoModel:
@@ -61441,5 +61882,697 @@ components:
           descricao: ''
           centroCusto: ''
           centroLucro: ''
+    BancoMovimentoDtoModel:
+      type: object
+      properties:
+        idBancoMovimento:
+          type: integer
+        idArrecadador:
+          type: integer
+        numeroBanco:
+          type: integer
+        nomeBanco:
+          type: string
+        contaMovimento:
+          type: string
+        descricao:
+          type: string
+        arrecadador:
+          type: string
+        contaContabil:
+          type: string
+      x-examples:
+        Example 1:
+          idBancoMovimento: 0
+          idArrecadador: 0
+          numeroBanco: 0
+          nomeBanco: ''
+          contaMovimento: ''
+          descricao: ''
+          arrecadador: ''
+          contaContabil: ''
+    EventoRecebimentoDtoModel:
+      type: object
+      properties:
+        idEvento:
+          type: integer
+        idEventoRecebimento:
+          type: integer
+        descricao:
+          type: string
+        contaDebito:
+          type: string
+        contaCredito:
+          type: string
+      x-examples:
+        Example 1:
+          idEvento: 0
+          idEventoRecebimento: 0
+          descricao: ''
+          contaDebito: ''
+          contaCredito: ''
+    ArquivoImpressaoDtoModel:
+      type: object
+      properties:
+        nomeArquivo:
+          type: string
+        dataCriacao:
+          type: string
+        downloadPath:
+          type: string
+      x-examples:
+        Example 1:
+          nomeArquivo: ''
+          dataCriacao: ''
+          downloadPath: ''
+    ArquivoImpressaoFilterDtoModel:
+      type: object
+      properties:
+        idCidade:
+          type: integer
+        cidade:
+          type: string
+        idPeriodo:
+          type: integer
+        periodo:
+          type: string
+        idGrupo:
+          type: integer
+        grupo:
+          type: string
+        relativePath:
+          type: string
+      x-examples:
+        Example 1:
+          idCidade: 1
+          cidade: ''
+          idPeriodo: 1
+          periodo: ''
+          idGrupo: 1
+          grupo: ''
+          relativePath: ''
+    GridCobrancaDtoModel:
+      type: object
+      properties:
+        idFatura:
+          type: integer
+        nrImovel:
+          type: integer
+        cidade:
+          type: string
+        ufEntrega:
+          type: string
+        tipoEntrega:
+          type: string
+        logradouroEntrega:
+          type: string
+        bairroEntrega:
+          type: string
+        cepEntrega:
+          type: string
+        nrImovelEntrega:
+          type: integer
+        cidadeEntrega:
+          type: string
+        idLigacao:
+          type: integer
+        nomeConsumidor:
+          type: string
+        categoria:
+          type: string
+        hidrometro:
+          type: string
+        debitos:
+          type: integer
+        valor:
+          type: integer
+        debitosNotificados:
+          type: integer
+        valorNotificados:
+          type: integer
+        idConsumidor:
+          type: integer
+        idCategoria:
+          type: integer
+        idHidrometro:
+          type: integer
+        faturas:
+          type: array
+          items:
+            type: object
+            properties:
+              idFatura:
+                type: integer
+              idLigacao:
+                type: integer
+              idProcesoCorte:
+                type: integer
+              valor:
+                type: integer
+              vencimento:
+                type: string
+              periodo:
+                type: string
+              situacao:
+                type: string
+              tipo:
+                type: string
+              datapagto:
+                type: string
+              notificada:
+                type: string
+              negativada:
+                type: string
+              motivoCancelamentoSerasa:
+                type: string
+              cancelamentoEnvioNegativacao:
+                type: string
+              idProcessoCorteOrigem:
+                type: integer
+              dataCortePrevista:
+                type: string
+              tipoLayoutAvisoDebito:
+                type: string
+        idsFaturas:
+          type: string
+        periodos:
+          type: string
+        periodosNotificados:
+          type: string
+        dv:
+          type: integer
+        logradouro:
+          type: string
+        bairro:
+          type: string
+        selecionado:
+          type: string
+        idGrupo:
+          type: integer
+        cpf:
+          type: string
+        cnpj:
+          type: string
+        cep:
+          type: string
+        aviso:
+          type: boolean
+        corte:
+          type: boolean
+        idCidade:
+          type: integer
+        idPeriodo:
+          type: integer
+        periodo:
+          type: string
+        dataVencimento:
+          type: string
+        idsituacaoacordo:
+          type: integer
+        corteLightExecutado:
+          type: string
+        tipoLayoutAvisoDebito:
+          type: string
+        cancelarProcessoAnterior:
+          type: string
+      x-examples:
+        Example 1:
+          idFatura: 0
+          nrImovel: 0
+          cidade: ''
+          ufEntrega: ''
+          tipoEntrega: ''
+          logradouroEntrega: ''
+          bairroEntrega: ''
+          cepEntrega: ''
+          nrImovelEntrega: 0
+          cidadeEntrega: ''
+          idLigacao: 0
+          nomeConsumidor: ''
+          categoria: ''
+          hidrometro: ''
+          debitos: 0
+          valor: 0
+          debitosNotificados: 0
+          valorNotificados: 0
+          idConsumidor: 0
+          idCategoria: 0
+          idHidrometro: 0
+          faturas:
+            - idFatura: 0
+              idLigacao: 0
+              idProcesoCorte: 0
+              valor: 0
+              vencimento: ''
+              periodo: ''
+              situacao: ''
+              tipo: ''
+              datapagto: ''
+              notificada: ''
+              negativada: ''
+              motivoCancelamentoSerasa: ''
+              cancelamentoEnvioNegativacao: ''
+              idProcessoCorteOrigem: 0
+              dataCortePrevista: ''
+              tipoLayoutAvisoDebito: ''
+          idsFaturas: ''
+          periodos: ''
+          periodosNotificados: ''
+          dv: 0
+          logradouro: ''
+          bairro: ''
+          selecionado: ''
+          idGrupo: 0
+          cpf: ''
+          cnpj: ''
+          cep: ''
+          aviso: false
+          corte: false
+          idCidade: 0
+          idPeriodo: 0
+          periodo: ''
+          dataVencimento: ''
+          idsituacaoacordo: 0
+          corteLightExecutado: ''
+          tipoLayoutAvisoDebito: ''
+          cancelarProcessoAnterior: ''
+    FiltroCobrancaDtoModel:
+      type: object
+      properties:
+        idFatura:
+          type: integer
+        nrImovel:
+          type: integer
+        cidade:
+          type: string
+        ufEntrega:
+          type: string
+        tipoEntrega:
+          type: string
+        logradouroEntrega:
+          type: string
+        bairroEntrega:
+          type: string
+        cepEntrega:
+          type: string
+        nrImovelEntrega:
+          type: integer
+        cidadeEntrega:
+          type: string
+        idLigacao:
+          type: integer
+        nomeConsumidor:
+          type: string
+        categoria:
+          type: string
+        hidrometro:
+          type: string
+        debitos:
+          type: integer
+        valor:
+          type: integer
+        debitosNotificados:
+          type: integer
+        valorNotificados:
+          type: integer
+        idConsumidor:
+          type: integer
+        idCategoria:
+          type: integer
+        idHidrometro:
+          type: integer
+        faturas:
+          type: array
+          items:
+            type: object
+            properties:
+              idFatura:
+                type: integer
+              idLigacao:
+                type: integer
+              idProcesoCorte:
+                type: integer
+              valor:
+                type: integer
+              vencimento:
+                type: string
+              periodo:
+                type: string
+              situacao:
+                type: string
+              tipo:
+                type: string
+              datapagto:
+                type: string
+              notificada:
+                type: string
+              negativada:
+                type: string
+              motivoCancelamentoSerasa:
+                type: string
+              cancelamentoEnvioNegativacao:
+                type: string
+              idProcessoCorteOrigem:
+                type: integer
+              dataCortePrevista:
+                type: string
+              tipoLayoutAvisoDebito:
+                type: string
+        idsFaturas:
+          type: string
+        periodos:
+          type: string
+        periodosNotificados:
+          type: string
+        dv:
+          type: integer
+        logradouro:
+          type: string
+        bairro:
+          type: string
+        selecionado:
+          type: string
+        idGrupo:
+          type: integer
+        cpf:
+          type: string
+        cnpj:
+          type: string
+        cep:
+          type: string
+        aviso:
+          type: boolean
+        corte:
+          type: boolean
+        idCidade:
+          type: integer
+        idPeriodo:
+          type: integer
+        periodo:
+          type: string
+        dataVencimento:
+          type: string
+        idsituacaoacordo:
+          type: integer
+        corteLightExecutado:
+          type: string
+        tipoLayoutAvisoDebito:
+          type: string
+        cancelarProcessoAnterior:
+          type: string
+      x-examples:
+        Example 1:
+          idFatura: 0
+          nrImovel: 0
+          cidade: ''
+          ufEntrega: ''
+          tipoEntrega: ''
+          logradouroEntrega: ''
+          bairroEntrega: ''
+          cepEntrega: ''
+          nrImovelEntrega: 0
+          cidadeEntrega: ''
+          idLigacao: 0
+          nomeConsumidor: ''
+          categoria: ''
+          hidrometro: ''
+          debitos: 0
+          valor: 0
+          debitosNotificados: 0
+          valorNotificados: 0
+          idConsumidor: 0
+          idCategoria: 0
+          idHidrometro: 0
+          faturas:
+            - idFatura: 0
+              idLigacao: 0
+              idProcesoCorte: 0
+              valor: 0
+              vencimento: ''
+              periodo: ''
+              situacao: ''
+              tipo: ''
+              datapagto: ''
+              notificada: ''
+              negativada: ''
+              motivoCancelamentoSerasa: ''
+              cancelamentoEnvioNegativacao: ''
+              idProcessoCorteOrigem: 0
+              dataCortePrevista: ''
+              tipoLayoutAvisoDebito: ''
+          idsFaturas: ''
+          periodos: ''
+          periodosNotificados: ''
+          dv: 0
+          logradouro: ''
+          bairro: ''
+          selecionado: ''
+          idGrupo: 0
+          cpf: ''
+          cnpj: ''
+          cep: ''
+          aviso: false
+          corte: false
+          idCidade: 0
+          idPeriodo: 0
+          periodo: ''
+          dataVencimento: ''
+          idsituacaoacordo: 0
+          corteLightExecutado: ''
+          tipoLayoutAvisoDebito: ''
+          cancelarProcessoAnterior: ''
+    CentreCodeFaceDtoModel:
+      type: object
+      properties:
+        idCliente:
+          type: integer
+        oficinaContable:
+          type: string
+        unidadTramitacion:
+          type: string
+        organoGestor:
+          type: string
+        alterado:
+          type: boolean
+        novo:
+          type: boolean
+      x-examples:
+        Example 1:
+          idCliente: 0
+          oficinaContable: ''
+          unidadTramitacion: ''
+          organoGestor: ''
+          alterado: false
+          novo: false
+    LigacaoProcessoCobrancaDtoModel:
+      type: object
+      properties:
+        idProcessoCobranca:
+          type: integer
+        nomeProcesso:
+          type: string
+        idLigacao:
+          type: integer
+        dv:
+          type: integer
+        consumidor:
+          type: string
+        endereco:
+          type: string
+        nrImovel:
+          type: integer
+        bairro:
+          type: string
+        idSituacaoLigacaoProcesso:
+          type: integer
+        situacaoLigacaoProcesso:
+          type: string
+        faseAtual:
+          type: string
+        backlist:
+          type: boolean
+        idMotivoCancelamentoProcessoCorte:
+          type: integer
+        motivoCancelamentoProcessoCorte:
+          type: string
+        dataGerecao:
+          type: string
+        selecionado:
+          type: boolean
+        idPeriodo:
+          type: integer
+        observacao:
+          type: string
+        idMotivoInclusao:
+          type: integer
+        idMotivoReemissao:
+          type: integer
+        identificacao:
+          type: string
+        complemento:
+          type: string
+        hidrometro:
+          type: string
+        faturaDebitos:
+          type: object
+          properties:
+            idFatura:
+              type: integer
+            idFaturaEmAtraso:
+              type: integer
+            periodo:
+              type: string
+            vencimento:
+              type: string
+            valorTotal:
+              type: integer
+            valor:
+              type: integer
+            valorImposto:
+              type: integer
+        nomeArquivo:
+          type: string
+        sqlNotificacao:
+          type: string
+        idOcorrencia:
+          type: integer
+        ocorrencia:
+          type: string
+        dataRealEntrega:
+          type: string
+        tipoConfirmacaoEntrega:
+          type: string
+        qtdDebitos:
+          type: integer
+        idCidade:
+          type: integer
+        cepEntrega:
+          type: string
+        bairroEntrega:
+          type: string
+        cidade:
+          type: string
+        cidadeEntrega:
+          type: string
+        cliente:
+          type: string
+        complementoEntrega:
+          type: string
+        dataCorte:
+          type: string
+        enderecoEntrega:
+          type: string
+        entrega:
+          type: string
+        proximidade:
+          type: string
+        valorDebitos:
+          type: integer
+        idCobrancaFase:
+          type: integer
+        idCliente:
+          type: integer
+        idGrupo:
+          type: integer
+        observacaoComercial:
+          type: string
+        enviarProximaEtapaCorte:
+          type: boolean
+        idMensagemNotificacaoDebito:
+          type: integer
+        mensagemNotificacaoDebito:
+          type: string
+        mensagemNotificacaoCorte:
+          type: string
+        forcarNaoAlteracao:
+          type: 'null'
+        idEtapaCorte:
+          type: integer
+        etapaCorte:
+          type: string
+        idClienteInquilino:
+          type: integer
+        aviso:
+          type: string
+        tipoLayoutAvisoDebito:
+          type: string
+        reimpressao:
+          type: string
+        ativo:
+          type: boolean
+        cep:
+          type: string
+        idVendaCobrancaAvisoDebito:
+          type: integer
+      x-examples:
+        Example 1:
+          idProcessoCobranca: 0
+          nomeProcesso: ''
+          idLigacao: 0
+          dv: 0
+          consumidor: ''
+          endereco: ''
+          nrImovel: 0
+          bairro: ''
+          idSituacaoLigacaoProcesso: 0
+          situacaoLigacaoProcesso: ''
+          faseAtual: ''
+          backlist: false
+          idMotivoCancelamentoProcessoCorte: 0
+          motivoCancelamentoProcessoCorte: ''
+          dataGerecao: ''
+          selecionado: false
+          idPeriodo: 0
+          observacao: ''
+          idMotivoInclusao: 0
+          idMotivoReemissao: 0
+          identificacao: ''
+          complemento: ''
+          hidrometro: ''
+          faturaDebitos:
+            idFatura: 0
+            idFaturaEmAtraso: 0
+            periodo: ''
+            vencimento: ''
+            valorTotal: 0
+            valor: 0
+            valorImposto: 0
+          nomeArquivo: ''
+          sqlNotificacao: ''
+          idOcorrencia: 0
+          ocorrencia: ''
+          dataRealEntrega: ''
+          tipoConfirmacaoEntrega: ''
+          qtdDebitos: 0
+          idCidade: 0
+          cepEntrega: ''
+          bairroEntrega: ''
+          cidade: ''
+          cidadeEntrega: ''
+          cliente: ''
+          complementoEntrega: ''
+          dataCorte: ''
+          enderecoEntrega: ''
+          entrega: ''
+          proximidade: ''
+          valorDebitos: 0
+          idCobrancaFase: 0
+          idCliente: 0
+          idGrupo: 0
+          observacaoComercial: ''
+          enviarProximaEtapaCorte: false
+          idMensagemNotificacaoDebito: 0
+          mensagemNotificacaoDebito: ''
+          mensagemNotificacaoCorte: ''
+          forcarNaoAlteracao: null
+          idEtapaCorte: 0
+          etapaCorte: ''
+          idClienteInquilino: 0
+          aviso: ''
+          tipoLayoutAvisoDebito: ''
+          reimpressao: ''
+          ativo: false
+          cep: ''
+          idVendaCobrancaAvisoDebito: 0
   securitySchemes: {}
 x-extension-1: null
