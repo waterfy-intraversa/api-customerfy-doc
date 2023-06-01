@@ -829,7 +829,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CALigacaoExcecaoModel'
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoExcecaoDtoModel'
+                  x-stoplight:
+                    id: q55mr9rkf9zp5
       operationId: get-central-atendimento-ligacao-id_ligacao-excecao
   /cadastro/parametros-cadastro:
     get:
@@ -11384,11 +11388,13 @@ paths:
           name: idCidade
   /sms/confirmacao-sms:
     post:
-      summary: ''
+      summary: Confirmação SMS - Confimação SMS
       operationId: post-sms-confirmacao-sms
       responses:
         '200':
           description: OK
+      tags:
+        - Confirmação-SMS
   /atualizacao-dados/obter/arquivos/execucao-proc:
     get:
       summary: Atualização Dados - Obter arquivos para execução procedure
@@ -12124,6 +12130,275 @@ paths:
                     x-stoplight:
                       id: frt2bmz8kp4r8
         description: ''
+  /ligacao/listar/combo-excecao:
+    get:
+      summary: Ligação - Listar combo exceção
+      tags:
+        - Ligação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExcecaoTipoDtoModel'
+                  x-stoplight:
+                    id: 9z7e7j051dopu
+      operationId: get-ligacao-listar-combo-excecao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /arquivo-arrecadacao/arquivos/tipo-g:
+    get:
+      summary: Arquivo Arrecadação - Arquivos tipo G
+      tags:
+        - Arquivo-Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArquivoTipoGDtoModel'
+                  x-stoplight:
+                    id: 9z4hzre5sr60k
+      operationId: get-arquivo-arrecadacao-arquivos-tipo-g
+  '/arquivo-arrecadacao/arquivos/tipo-g/{idCidade}':
+    parameters:
+      - schema:
+          type: string
+        name: idCidade
+        in: path
+        required: true
+    get:
+      summary: Arquivo Arrecadação - Arquivos tipo G (por cidade)
+      tags:
+        - Arquivo-Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArquivoTipoGDtoModel'
+                  x-stoplight:
+                    id: pf0mkenim9z6v
+      operationId: get-arquivo-arrecadacao-arquivos-tipo-g-idCidade
+  /arrecadao/full-path/enviar/arquivo/tipo-g:
+    get:
+      summary: Arrecadação - Full path enviar arquivo tipo G
+      tags:
+        - Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-arrecadao-full-path-enviar-arquivo-tipo-g
+  /arrecadacao/mover/arquivo/tipo-g/pasta-bkp:
+    post:
+      summary: Arrecadação - Mover arquivo tipo G pasta backup
+      operationId: post-arrecadacao-mover-arquivo-tipo-g-pasta-bkp
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Arrecadação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                arquivo:
+                  $ref: '#/components/schemas/ArquivoTipoGDtoModel'
+                  x-stoplight:
+                    id: ahwo1u03fh9me
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: ulyfqiyfpaflq
+  /arrecadacao/salvar/arquivo/tipo-g:
+    post:
+      summary: Arrecadação - Salvar arquivo tipo G
+      operationId: post-arrecadacao-salvar-arquivo-tipo-g
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      tags:
+        - Arrecadação
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: arq
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /arquivo-arrecadacao/arquivos/tipo-e:
+    get:
+      summary: Arquivo Arrecadação - Arquivo tipo E
+      tags:
+        - Arquivo-Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArquivoDebitoAutomaticoDtoModel'
+                  x-stoplight:
+                    id: adn95knlcr43h
+      operationId: get-arquivo-arrecadacao-arquivos-tipo-e
+  '/arquivo-arrecadacao/arquivos/tipo-e/{idCidade}':
+    parameters:
+      - schema:
+          type: string
+        name: idCidade
+        in: path
+        required: true
+    get:
+      summary: Arquivo Arrecadação - Arquivo tipo E (por cidade)
+      tags:
+        - Arquivo-Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArquivoDebitoAutomaticoDtoModel'
+                  x-stoplight:
+                    id: y9lmohtc5rfkz
+      operationId: get-arquivo-arrecadacao-arquivos-tipo-e-idCidade
+      parameters: []
+  /arrecadacao/full-path/enviar-da:
+    get:
+      summary: Arrecadação - Full path enviar DA
+      tags:
+        - Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-arrecadacao-full-path-enviar-da
+  /arrecadacao/salvar/arquivos/envio-da:
+    post:
+      summary: Arrecadação - Salvar arquivos envio DA
+      operationId: post-arrecadacao-salvar-arquivos-envio-da
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      tags:
+        - Arrecadação
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: arq
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /ligacao/excecao/salvar:
+    post:
+      summary: Ligação - Salvar exceções
+      operationId: post-ligacao-excecao-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      tags:
+        - Ligação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: 6grxm1ydpqx9y
+                ligacao:
+                  type: array
+                  x-stoplight:
+                    id: s6dz2xzfgvk7q
+                  items:
+                    $ref: '#/components/schemas/LigacaoExcecaoDtoModel'
+                    x-stoplight:
+                      id: tfik6ygrjpmso
+        description: ''
+  /ligacao/verifica/excecao/tipo:
+    get:
+      summary: Ligação - Verifica exceção tipo
+      tags:
+        - Ligação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-ligacao-verifica-excecao-tipo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i
+  /ligacao/inativar-excecao:
+    post:
+      summary: Ligação - Inativar exceção
+      operationId: post-ligacao-inativar-excecao
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Ligação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: 63j6lnct16xt1
+                levo:
+                  $ref: '#/components/schemas/LigacaoExcecaoDtoModel'
+                  x-stoplight:
+                    id: bozkpghoho8ur
 components:
   schemas:
     CriarLigacaoModel:
@@ -16270,20 +16545,22 @@ components:
       x-stoplight:
         id: fb15ef522be2b
       title: ''
-    CALigacaoExcecaoModel:
+    LigacaoExcecaoDtoModel:
       type: object
+      x-stoplight:
+        id: 4f0ef3bd27039
       properties:
         ativa:
           type: boolean
-        data_inativacao:
+        dataInativacao:
           type: string
-        data_cadastro:
+        dataCadastro:
           type: string
-        id_excecao:
+        idExcecao:
           type: integer
-        id_tipo_faturamento:
+        idTipoFaturamento:
           type: integer
-        tipo_faturamento:
+        tipoFaturamento:
           type: string
         dia:
           type: integer
@@ -16293,35 +16570,35 @@ components:
           type: number
         carga:
           type: number
-        id_periodo_inicial:
+        idPeriodoInicial:
           type: integer
-        seq_periodo_inicial:
+        seqPeriodoInicial:
           type: integer
-        periodo_inicial:
+        periodoInicial:
           type: string
-        id_periodo_final:
+        idPeriodoFinal:
           type: integer
-        seq_periodo_final:
+        seqPeriodoFinal:
           type: integer
-        periodo_final:
+        periodoFinal:
           type: string
-        id_excecao_motivo:
+        idExcecaoMotivo:
           type: integer
-        excecao_motivo:
+        excecaoMotivo:
           type: string
         observacao:
           type: string
-        id_classificacao_fiscal:
+        idClassificacaoFiscal:
           type: integer
-        classificacao_fiscal:
+        classificacaoFiscal:
           type: string
-        tipo_fat_admitido:
+        tipoFatAdmitido:
           type: string
         id:
           type: integer
-        id_ligacao:
+        idLigacao:
           type: integer
-        id_cidade:
+        idCidade:
           type: integer
         excecao:
           type: string
@@ -16329,63 +16606,63 @@ components:
           type: string
         alterado:
           type: boolean
-        id_categoria:
+        idCategoria:
           type: integer
         categoria:
           type: string
-        id_sub_categoria:
+        idSubCategoria:
           type: integer
-        sub_categoria:
+        subCategoria:
           type: string
-        id_motivo_bad_list:
+        idMotivoBadList:
           type: integer
-        motivo_inclusao_bad_list:
+        motivoInclusaoBadList:
           type: string
-        id_tipo_aplicacao:
+        idTipoAplicacao:
           type: integer
-        tipo_aplicacao:
+        tipoAplicacao:
           type: string
-        salvar_log:
+        salvarLog:
           type: boolean
       x-examples:
         Example 1:
           ativa: true
-          data_inativacao: string
-          data_cadastro: string
-          id_excecao: 1
-          id_tipo_faturamento: 1
-          tipo_faturamento: string
+          dataInativacao: string
+          dataCadastro: string
+          idExcecao: 1
+          idTipoFaturamento: 1
+          tipoFaturamento: string
           dia: 1
           percentual: 1.1
           valor: 1.1
           carga: 1.1
-          id_periodo_inicial: 1
-          seq_periodo_inicial: 1
-          periodo_inicial: string
-          id_periodo_final: 1
-          seq_periodo_final: 1
-          periodo_final: string
-          id_excecao_motivo: 1
-          excecao_motivo: string
+          idPeriodoInicial: 1
+          seqPeriodoInicial: 1
+          periodoInicial: string
+          idPeriodoFinal: 1
+          seqPeriodoFinal: 1
+          periodoFinal: string
+          idExcecaoMotivo: 1
+          excecaoMotivo: string
           observacao: string
-          id_classificacao_fiscal: 1
-          classificacao_fiscal: string
-          tipo_fat_admitido: string
+          idClassificacaoFiscal: 1
+          classificacaoFiscal: string
+          tipoFatAdmitido: string
           id: 1
-          id_ligacao: 1
-          id_cidade: 1
+          idLigacao: 1
+          idCidade: 1
           excecao: string
           cliente: string
           alterado: true
-          id_categoria: 1
+          idCategoria: 1
           categoria: string
-          id_sub_categoria: 1
-          sub_categoria: string
-          id_motivo_bad_list: 1
-          motivo_inclusao_bad_list: string
-          id_tipo_aplicacao: 1
-          tipo_aplicacao: string
-          salvar_log: true
+          idSubCategoria: 1
+          subCategoria: string
+          idMotivoBadList: 1
+          motivoInclusaoBadList: string
+          idTipoAplicacao: 1
+          tipoAplicacao: string
+          salvarLog: true
     CAParametrosCadastroModel:
       type: object
       properties:
@@ -62574,5 +62851,101 @@ components:
           ativo: false
           cep: ''
           idVendaCobrancaAvisoDebito: 0
+    ExcecaoTipoDtoModel:
+      type: object
+      properties:
+        idExcecao:
+          type: integer
+        idTipoExcecao:
+          type: integer
+        exigePercentual:
+          type: string
+        exigeValor:
+          type: string
+        exigeCarga:
+          type: string
+        exigeClassificacaoFiscal:
+          type: string
+        exigeTipoFaturamento:
+          type: string
+        exigeData:
+          type: string
+        exigeAjusteValorPorVolume:
+          type: string
+        exigeCategoria:
+          type: string
+        exigeSubCategoria:
+          type: string
+        idMotivoPadrao:
+          type: integer
+        idPeriodoIncorporacao:
+          type: integer
+      x-examples:
+        Example 1:
+          idExcecao: 0
+          idTipoExcecao: 0
+          exigePercentual: ''
+          exigeValor: ''
+          exigeCarga: ''
+          exigeClassificacaoFiscal: ''
+          exigeTipoFaturamento: ''
+          exigeData: ''
+          exigeAjusteValorPorVolume: ''
+          exigeCategoria: ''
+          exigeSubCategoria: ''
+          idMotivoPadrao: 0
+          idPeriodoIncorporacao: 0
+    ArquivoTipoGDtoModel:
+      type: object
+      properties:
+        idArrecadador:
+          type: integer
+        slip:
+          type: integer
+        quantidade:
+          type: integer
+        arrecadador:
+          type: string
+        arquivo:
+          type: string
+        dataDiretorio:
+          type: string
+        path:
+          type: string
+      x-examples:
+        Example 1:
+          idArrecadador: 0
+          slip: 0
+          quantidade: 0
+          arrecadador: ''
+          arquivo: ''
+          dataDiretorio: ''
+          path: ''
+    ArquivoDebitoAutomaticoDtoModel:
+      type: object
+      properties:
+        idArrecadador:
+          type: integer
+        slip:
+          type: integer
+        quantidade:
+          type: integer
+        arrecadador:
+          type: string
+        arquivo:
+          type: string
+        dataDiretorio:
+          type: string
+        path:
+          type: string
+      x-examples:
+        Example 1:
+          idArrecadador: 0
+          slip: 0
+          quantidade: 0
+          arrecadador: ''
+          arquivo: ''
+          dataDiretorio: ''
+          path: ''
   securitySchemes: {}
 x-extension-1: null
