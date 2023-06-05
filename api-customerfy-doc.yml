@@ -5270,27 +5270,36 @@ paths:
           in: query
           name: id_cliente
   /cadastro/ligacao/validar/nr-inscricao:
-    get:
-      summary: Cadastro - Ligação - Validar nr inscrição
-      tags:
-        - Cadastro
+    post:
+      summary: Ligação Provisória - Validar nr inscrição
+      operationId: post-cadastro-ligacao-validar-nr-inscricao
       responses:
         '200':
           description: OK
           content:
-            text/plain:
+            application/json:
               schema:
-                type: boolean
-      operationId: get-cadastro-ligacao-validar-nr-inscricao
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: nr_inscricao
-        - schema:
-            type: string
-          in: query
-          name: id_ligacao
+                type: array
+                items:
+                  $ref: '#/components/schemas/CriarLigacaoModel'
+                  x-stoplight:
+                    id: hhgl77oovvn46
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ligacoes:
+                  x-stoplight:
+                    id: jj7z8bb7tqegp
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CriarLigacaoModel'
+                    x-stoplight:
+                      id: ezd8xyedq1y9w
+      tags:
+        - Ligação-Provisória
   /cadastro/ligacao-provisoria/save:
     post:
       summary: Cadastro - Ligação Provisória - Salvar provisória
@@ -12399,6 +12408,187 @@ paths:
                   $ref: '#/components/schemas/LigacaoExcecaoDtoModel'
                   x-stoplight:
                     id: bozkpghoho8ur
+  /faturamento/carregar/prorata:
+    get:
+      summary: Faturamento - Carregar ProRata
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProRataDtoModel'
+      operationId: get-faturamento-carregar-prorata
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+  /medicao/valida/grupo-entrega-ligacao:
+    post:
+      summary: Medição - Validar grupo entrega ligação
+      operationId: post-medicao-valida-grupo-entrega-ligacao
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Medição
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+        - schema:
+            type: boolean
+          in: query
+          name: utilizarCadastroAtual
+  /faturamento/calcular/fatura:
+    post:
+      summary: Faturamento - Calcular fatura
+      operationId: post-faturamento-calcular-fatura
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaturamentoDadoDtoModel'
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dadosFaturasa:
+                  $ref: '#/components/schemas/FaturamentoDadoDtoModel'
+                  x-stoplight:
+                    id: z4uuy35zl6mou
+                recalculo:
+                  type: boolean
+                  x-stoplight:
+                    id: v9rwy5icicvy8
+  /debito-automatico/obter/caminho/arq-envio-deb-auto:
+    get:
+      summary: Débito Automático - Obter caminho arq envio deb auto
+      tags:
+        - Débito-Automático
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-debito-automatico-obter-caminho-arq-envio-deb-auto
+  /debito-auto/obter/envio/deb-auto-dto:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-debito-auto-obter-envio-deb-auto-dto
+    post:
+      summary: Débito Automático - Obter envio débito automático
+      operationId: post-debito-auto-obter-envio-deb-auto-dto
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EnvioDebitoAutomaticoDtoModel'
+                  x-stoplight:
+                    id: dk6q3a1qg9zcw
+      tags:
+        - Débito-Automático
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_filtro:
+                  $ref: '#/components/schemas/FiltroEnvioDebAutoDtoModel'
+                  x-stoplight:
+                    id: djeb19dg4xgam
+  /macro/exportar-dados:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-macro-exportar-dados
+    post:
+      summary: Macro - Exportar dados
+      operationId: post-macro-exportar-dados
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                l:
+                  type: array
+                  x-stoplight:
+                    id: f44ebbndme76m
+                  items:
+                    $ref: '#/components/schemas/EnvioDebitoAutomaticoDtoModel'
+                    x-stoplight:
+                      id: 7li34kai0eub0
+        description: ''
+  /macro/exportar-dados/tipo-c:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-macro-exportar-dados-tipo-c
+    post:
+      summary: Macro - Exportar dados tipo C
+      operationId: post-macro-exportar-dados-tipo-c
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reg:
+                  type: array
+                  x-stoplight:
+                    id: ih8mjcz965kou
+                  items:
+                    $ref: '#/components/schemas/RegistroTipoCDtoModel'
+                    x-stoplight:
+                      id: o9jhzeh4isieu
 components:
   schemas:
     CriarLigacaoModel:
@@ -62947,5 +63137,535 @@ components:
           arquivo: ''
           dataDiretorio: ''
           path: ''
+    ProRataDtoModel:
+      type: object
+      properties:
+        colDecretoVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idCidade:
+                type: integer
+              decreto:
+                type: string
+              dataVigenciaDiarioOficial:
+                type: string
+              idPeriodoVigencia:
+                type: integer
+              idCategoria:
+                type: integer
+              decretoCategoriaList:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idDecreto:
+                      type: integer
+                    idCategoria:
+                      type: integer
+                    decretoCategoriaProdutoList:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          idDecreto:
+                            type: integer
+                          idDecretoCategoria:
+                            type: integer
+                          idProduto:
+                            type: integer
+                          produto:
+                            type: string
+                          faixaMinima:
+                            type: integer
+                          faixaMaxima:
+                            type: integer
+                          valor:
+                            type: integer
+                          valorDeducao:
+                            type: integer
+                          acao:
+                            type: string
+                          valorDeducaoDescMin:
+                            type: integer
+                          decreto:
+                            type: string
+                          categoria:
+                            type: string
+                          validado:
+                            type: string
+                          cidade:
+                            type: string
+                          dataVigencia:
+                            type: string
+                          periodo:
+                            type: string
+                          valorComDesconto:
+                            type: integer
+                          volumeLimite:
+                            type: integer
+                          valorTarifaFixa:
+                            type: integer
+                    produtoValorFixoList:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          idProduto:
+                            type: integer
+                          idDecretoCategoria:
+                            type: integer
+                          valor:
+                            type: integer
+                    acao:
+                      type: string
+                    custoFixo:
+                      type: integer
+              coeficienteReducao:
+                type: object
+                properties:
+                  idCidade:
+                    type: integer
+                  coeficienteReducao:
+                    type: string
+                  descricaoFatura:
+                    type: string
+                  idUsuarioCadastro:
+                    type: integer
+                  nomeusuario:
+                    type: string
+                  dataHoraCadastro:
+                    type: string
+                  idUsuarioCancelamento:
+                    type: integer
+                  dataHoraCancelamento:
+                    type: string
+                  ativo:
+                    type: string
+                  categorias:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        idCoeficienteReducao:
+                          type: integer
+                        idCategoria:
+                          type: integer
+                        produtos:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              idCoeficienteReducaoCategoria:
+                                type: integer
+                              idProduto:
+                                type: integer
+                              faixaMinima:
+                                type: integer
+                              faixaMaxima:
+                                type: integer
+                              coeficiente:
+                                type: integer
+                              exibirFatura:
+                                type: boolean
+                              descFatura:
+                                type: string
+              colDecretoCustoMinimoFixo:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idDecreto:
+                      type: integer
+                    idTipoFaturamento:
+                      type: integer
+                    idRubrica:
+                      type: integer
+                    percentual:
+                      type: integer
+              acao:
+                type: string
+              nrDiasProRata:
+                type: integer
+              percentualProRata:
+                type: integer
+              alterado:
+                type: string
+              aplCoeficiente:
+                type: string
+              validado:
+                type: string
+              idUsuario:
+                type: integer
+        dataIniVenda:
+          type: string
+        dataFimVenda:
+          type: string
+      x-examples:
+        Example 1:
+          colDecretoVO:
+            - idCidade: 0
+              decreto: ''
+              dataVigenciaDiarioOficial: ''
+              idPeriodoVigencia: 0
+              idCategoria: 0
+              decretoCategoriaList:
+                - idDecreto: 0
+                  idCategoria: 0
+                  decretoCategoriaProdutoList:
+                    - idDecreto: 0
+                      idDecretoCategoria: 0
+                      idProduto: 0
+                      produto: ''
+                      faixaMinima: 0
+                      faixaMaxima: 0
+                      valor: 0
+                      valorDeducao: 0
+                      acao: ''
+                      valorDeducaoDescMin: 0
+                      decreto: ''
+                      categoria: ''
+                      validado: ''
+                      cidade: ''
+                      dataVigencia: ''
+                      periodo: ''
+                      valorComDesconto: 0
+                      volumeLimite: 0
+                      valorTarifaFixa: 0
+                  produtoValorFixoList:
+                    - idProduto: 0
+                      idDecretoCategoria: 0
+                      valor: 0
+                  acao: ''
+                  custoFixo: 0
+              coeficienteReducao:
+                idCidade: 0
+                coeficienteReducao: ''
+                descricaoFatura: ''
+                idUsuarioCadastro: 0
+                nomeusuario: ''
+                dataHoraCadastro: ''
+                idUsuarioCancelamento: 0
+                dataHoraCancelamento: ''
+                ativo: ''
+                categorias:
+                  - idCoeficienteReducao: 0
+                    idCategoria: 0
+                    produtos:
+                      - idCoeficienteReducaoCategoria: 0
+                        idProduto: 0
+                        faixaMinima: 0
+                        faixaMaxima: 0
+                        coeficiente: 0
+                        exibirFatura: false
+                        descFatura: ''
+              colDecretoCustoMinimoFixo:
+                - idDecreto: 0
+                  idTipoFaturamento: 0
+                  idRubrica: 0
+                  percentual: 0
+              acao: ''
+              nrDiasProRata: 0
+              percentualProRata: 0
+              alterado: 'N'
+              aplCoeficiente: 'N'
+              validado: 'N'
+              idUsuario: 0
+          dataIniVenda: ''
+          dataFimVenda: ''
+    FaturamentoDadoDtoModel:
+      title: FaturamentoDadoDtoModel
+      x-stoplight:
+        id: s1hapw00gbvpx
+      type: object
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: mjg707yjfavzo
+    EnvioDebitoAutomaticoDtoModel:
+      type: object
+      properties:
+        idArrecadador:
+          type: integer
+        arrecadador:
+          type: string
+        nrEnvios:
+          type: integer
+        nrCancelamentos:
+          type: integer
+        nrAtrasos:
+          type: integer
+        nomeArquivo:
+          type: string
+        seqDebAuto:
+          type: integer
+        colEnvioDebAutoDetVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idLigacao:
+                type: integer
+              idPeriodo:
+                type: integer
+              periodo:
+                type: string
+              nomeCliente:
+                type: string
+              agencia:
+                type: string
+              conta:
+                type: string
+              valorFatura:
+                type: integer
+              vencimento:
+                type: string
+              diasAtraso:
+                type: integer
+              arrecadador:
+                type: string
+              nsa:
+                type: integer
+              idArrecadador:
+                type: string
+              dtaLimiteEnvio:
+                type: string
+              grupoImpressao:
+                type: string
+              idFatura:
+                type: integer
+              cancelamento:
+                type: boolean
+              seqDebAuto:
+                type: string
+              tamanhocodigocliente:
+                type: integer
+              dvcodigocliente:
+                type: string
+              tamanhoDVCliente:
+                type: integer
+              prefixoCodigoCliente:
+                type: string
+              valorRepassado:
+                type: integer
+              metodoGerarRegistroE:
+                type: integer
+              codOrigem:
+                type: integer
+              origemDV:
+                type: string
+              idEnvioDebAuto:
+                type: integer
+              prorrogarVencimento:
+                type: boolean
+              cpfCnpjCliente:
+                type: string
+              tpCliente:
+                type: string
+              codClienteBanco:
+                type: string
+        codConvenioDebAuto:
+          type: string
+        nomeEmpresaDebAuto:
+          type: string
+        camaracompensacao:
+          type: integer
+        situacao:
+          type: integer
+        dataHoraInicioExecucao:
+          type: string
+        dataHoraFimExecucao:
+          type: string
+        tipo:
+          type: string
+        dataVencimentoInicial:
+          type: string
+        dataVencimentoFinal:
+          type: string
+        msgErro:
+          type: string
+        idCidade:
+          type: integer
+        cidade:
+          type: string
+        diasAntecedencia:
+          type: integer
+        numeroBanco:
+          type: integer
+      x-examples:
+        Example 1:
+          idArrecadador: 0
+          arrecadador: ''
+          nrEnvios: 0
+          nrCancelamentos: 0
+          nrAtrasos: 0
+          nomeArquivo: ''
+          seqDebAuto: 0
+          colEnvioDebAutoDetVO:
+            - idLigacao: 0
+              idPeriodo: 0
+              periodo: ''
+              nomeCliente: ''
+              agencia: ''
+              conta: ''
+              valorFatura: 0
+              vencimento: ''
+              diasAtraso: 0
+              arrecadador: ''
+              nsa: 0
+              idArrecadador: ''
+              dtaLimiteEnvio: ''
+              grupoImpressao: ''
+              idFatura: 0
+              cancelamento: false
+              seqDebAuto: ''
+              tamanhocodigocliente: 0
+              dvcodigocliente: ''
+              tamanhoDVCliente: 0
+              prefixoCodigoCliente: ''
+              valorRepassado: 0
+              metodoGerarRegistroE: 0
+              codOrigem: 0
+              origemDV: ''
+              idEnvioDebAuto: 0
+              prorrogarVencimento: false
+              cpfCnpjCliente: ''
+              tpCliente: ''
+              codClienteBanco: ''
+          codConvenioDebAuto: ''
+          nomeEmpresaDebAuto: ''
+          camaracompensacao: 0
+          situacao: 0
+          dataHoraInicioExecucao: ''
+          dataHoraFimExecucao: ''
+          tipo: ''
+          dataVencimentoInicial: ''
+          dataVencimentoFinal: ''
+          msgErro: ''
+          idCidade: 0
+          cidade: ''
+          diasAntecedencia: 0
+          numeroBanco: 0
+    FiltroEnvioDebAutoDtoModel:
+      type: object
+      properties:
+        dataVencimentoInicial:
+          type: 'null'
+        dataVencimentoFinal:
+          type: 'null'
+        idArrecadador:
+          type: integer
+        idGrupoInicial:
+          type: integer
+        idGrupoFinal:
+          type: integer
+        idLigacao:
+          type: integer
+        idCidade:
+          type: integer
+        anoPeriodo:
+          type: integer
+        mesPeriodo:
+          type: integer
+        dataBDVencimentoInicial:
+          type: 'null'
+        dataBDVencimentoFinal:
+          type: 'null'
+        dataHoraInicioExecucao:
+          type: 'null'
+        dataHoraFimExecucao:
+          type: 'null'
+        tipo:
+          type: string
+      x-examples:
+        Example 1:
+          dataVencimentoInicial: null
+          dataVencimentoFinal: null
+          idArrecadador: 0
+          idGrupoInicial: 0
+          idGrupoFinal: 0
+          idLigacao: 0
+          idCidade: 0
+          anoPeriodo: 0
+          mesPeriodo: 0
+          dataBDVencimentoInicial: null
+          dataBDVencimentoFinal: null
+          dataHoraInicioExecucao: null
+          dataHoraFimExecucao: null
+          tipo: ''
+    RegistroTipoCDtoModel:
+      type: object
+      properties:
+        codClienteRegistroB:
+          type: string
+        agencia:
+          type: string
+        conta:
+          type: string
+        situacao:
+          type: string
+        obs:
+          type: string
+        idTipoMovimentoDA:
+          type: integer
+        codConvenioDebAuto:
+          type: string
+        camaraCompensacao:
+          type: string
+        nomeEmpresaDebAuto:
+          type: string
+        colDetTipoC:
+          type: array
+          items:
+            type: object
+            properties: {}
+        arrecadador:
+          type: string
+        idArrecadador:
+          type: integer
+        seqEnvioDebAuto:
+          type: string
+        identServico:
+          type: string
+        idLigacao:
+          type: integer
+        qtdRegistros:
+          type: integer
+        valorTotal:
+          type: integer
+        pathDebAuto:
+          type: string
+        nomeArquivo:
+          type: string
+        data:
+          type: string
+        numeroBanco:
+          type: integer
+      x-examples:
+        Example 1:
+          codClienteRegistroB: ''
+          agencia: ''
+          conta: ''
+          situacao: ''
+          obs: ''
+          idTipoMovimentoDA: 0
+          codConvenioDebAuto: ''
+          camaraCompensacao: ''
+          nomeEmpresaDebAuto: ''
+          colDetTipoC:
+            - {}
+          arrecadador: ''
+          idArrecadador: 0
+          seqEnvioDebAuto: ''
+          identServico: ''
+          idLigacao: 0
+          qtdRegistros: 0
+          valorTotal: 0
+          pathDebAuto: ''
+          nomeArquivo: ''
+          data: ''
+          numeroBanco: 0
   securitySchemes: {}
 x-extension-1: null
