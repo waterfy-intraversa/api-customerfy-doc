@@ -12493,11 +12493,6 @@ paths:
                 type: string
       operationId: get-debito-automatico-obter-caminho-arq-envio-deb-auto
   /debito-auto/obter/envio/deb-auto-dto:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-debito-auto-obter-envio-deb-auto-dto
     post:
       summary: Débito Automático - Obter envio débito automático
       operationId: post-debito-auto-obter-envio-deb-auto-dto
@@ -12525,11 +12520,6 @@ paths:
                   x-stoplight:
                     id: djeb19dg4xgam
   /macro/exportar-dados:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-macro-exportar-dados
     post:
       summary: Macro - Exportar dados
       operationId: post-macro-exportar-dados
@@ -12558,11 +12548,6 @@ paths:
                       id: 7li34kai0eub0
         description: ''
   /macro/exportar-dados/tipo-c:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-macro-exportar-dados-tipo-c
     post:
       summary: Macro - Exportar dados tipo C
       operationId: post-macro-exportar-dados-tipo-c
