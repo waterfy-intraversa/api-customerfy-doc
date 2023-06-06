@@ -12574,6 +12574,510 @@ paths:
                     $ref: '#/components/schemas/RegistroTipoCDtoModel'
                     x-stoplight:
                       id: o9jhzeh4isieu
+  /taxa-financ/listar/tipo-financ:
+    get:
+      summary: Taxa Financiamento - Listar tipo taxa financiamento
+      tags:
+        - Taxa-Financiamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: r0ki61edlpmup
+      operationId: get-taxa-financ-listar-tipo-financ
+  /taxa-financ/salvar:
+    post:
+      summary: Taxa Financiamento - Salvar
+      operationId: post-taxa-financ-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Taxa-Financiamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dado:
+                  $ref: '#/components/schemas/TaxaFinanciamentoDtoModel'
+                  x-stoplight:
+                    id: q4p9ewpix1pmn
+  /taxa-financ/carregar-registro:
+    get:
+      summary: Taxa Financiamento - Carregar registro
+      tags:
+        - Taxa-Financiamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxaFinanciamentoDtoModel'
+      operationId: get-taxa-financ-carregar-registro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+  /taxa-financ/excluir:
+    post:
+      summary: Taxa Financiamento - Excluir
+      operationId: post-taxa-financ-excluir
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Taxa-Financiamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dado:
+                  $ref: '#/components/schemas/TaxaFinanciamentoDtoModel'
+                  x-stoplight:
+                    id: xbgujxxjpki1r
+  /medicao/carregar/envio-coletor:
+    get:
+      summary: Medição - Carrega envio coletor
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ColetorDtoModel'
+                  x-stoplight:
+                    id: h3c3if5a6h3ln
+      operationId: get-medicao-carregar-envio-coletor
+      description: ''
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+        - schema:
+            type: string
+          in: query
+          name: idPeriodo
+  /gestao-pendencia/obter/usuario-cidades:
+    get:
+      summary: Gestão Pendência - Obter usuário cidades
+      tags:
+        - Gestão-Pendência
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: h4ied52zekv1x
+      operationId: get-gestao-pendencia-obter-usuario-cidades
+  /cadastro-setores/listar/departamento/multi-cidade:
+    post:
+      summary: Cadastro Setores - Listar departamento multi cidades
+      operationId: post-cadastro-setores-listar-departamento-multi-cidade
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DepartamentoDtoModel'
+                  x-stoplight:
+                    id: 7j0idf0w63xy7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                setores:
+                  type: array
+                  x-stoplight:
+                    id: j1z9nsaoga2a4
+                  items:
+                    $ref: '#/components/schemas/ItemComboDtoModel'
+                    x-stoplight:
+                      id: 15hujzrkne05i
+                cidades:
+                  type: array
+                  x-stoplight:
+                    id: poably4bipiro
+                  items:
+                    $ref: '#/components/schemas/ItemComboDtoModel'
+                    x-stoplight:
+                      id: bm9xko5vq6y6l
+        description: ''
+      tags:
+        - Cadastro-Setores
+  /cadastro-setores/listar/departamento:
+    get:
+      summary: Cadastro Setores - Listar departamento
+      tags:
+        - Cadastro-Setores
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: qhibsd5ietqdb
+      operationId: get-cadastro-setores-listar-departamento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idSetor
+  /gestao-pendencia/carregar/servico-pendente/multi-cidade:
+    post:
+      summary: Gestão Pendência - Carregar serviço pendente multi cidade
+      operationId: post-gestao-pendencia-carregar-servico-pendente-multi-cidade
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CadastroOSDtoModel'
+                  x-stoplight:
+                    id: 0l96f2im9pfrd
+      tags:
+        - Gestão-Pendência
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idDepartamento:
+                  type: array
+                  x-stoplight:
+                    id: oj55n4gphw598
+                  items:
+                    $ref: '#/components/schemas/DepartamentoDtoModel'
+                    x-stoplight:
+                      id: 5jwgbuk0rf0w3
+        description: ''
+  /gestao-pendencia/estornar-pendencia:
+    post:
+      summary: Gestão Pendência - Estornar pendência
+      operationId: post-gestao-pendencia-estornar-pendencia
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Gestão-Pendência
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idOSDetalhe:
+                  type: array
+                  x-stoplight:
+                    id: alwk91kkvf5sj
+                  items:
+                    x-stoplight:
+                      id: z8ylr85cd8n5x
+                    type: integer
+                fatorGerador:
+                  type: string
+                  x-stoplight:
+                    id: qh8bteamemw2f
+  /gestao-pendencia/exibir/historico-pendencia:
+    get:
+      summary: Gestão Pendência - Exibir histórico pendência
+      tags:
+        - Gestão-Pendência
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MotivoPendenciaDtoModel'
+                  x-stoplight:
+                    id: 137jzxm02cmi7
+      operationId: get-gestao-pendencia-exibir-historico-pendencia
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idOSDetalhe
+  /gestao-pendencia/confirmar/alteracao/motivo-pendencia:
+    post:
+      summary: Gestão Pendência - Confirmar alteração motivo pendência
+      operationId: post-gestao-pendencia-confirmar-motivo-pendencia
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Gestão-Pendência
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idOSDetalhe
+        - schema:
+            type: string
+          in: query
+          name: motivo
+    parameters: []
+  /cadastro-servico/obter/usuario-cidades:
+    get:
+      summary: Cadastro Serviço - Obter usuario cidades
+      tags:
+        - Cadastro-Serviço
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: rlcglfgx10o08
+      operationId: get-cadastro-servico-obter-usuario-cidades
+  /cadastro-servico/get/servico-cs:
+    get:
+      summary: Cadastro Serviço - Get serviço CS
+      tags:
+        - Cadastro-Serviço
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServicoVinculadoDtoModel'
+                  x-stoplight:
+                    id: h9h2h5qlb8w03
+      operationId: get-cadastro-servico-get-servico-cs
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /cadastro-servico/carregar-servico:
+    get:
+      summary: Cadastro Serviço - Carregar serviço
+      tags:
+        - Cadastro-Serviço
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicoDtoModel'
+      operationId: get-cadastro-servico-carregar-servico
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id
+  /cadastro-servico/calcular/servicos-vinculados:
+    post:
+      summary: Cadastro Serviço - Calcular serviços vinculados
+      operationId: post-cadastro-servico-calcular-servicos-vinculados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicoDtoModel'
+      tags:
+        - Cadastro-Serviço
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                servico:
+                  $ref: '#/components/schemas/ServicoDtoModel'
+                  x-stoplight:
+                    id: gvbpjh8l32127
+        description: ''
+  /cadastro-servico/salvar-servico:
+    post:
+      summary: Cadastro Serviço - Salvar serviço
+      operationId: post-cadastro-servico-salvar-servico
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Cadastro-Serviço
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                servicoDTO:
+                  $ref: '#/components/schemas/ServicoDtoModel'
+                  x-stoplight:
+                    id: yl56agyzpqo8t
+  /cadastro-servico/get/valor-material:
+    get:
+      summary: Cadastro Serviço - Get valor material
+      tags:
+        - Cadastro-Serviço
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: number
+      operationId: get-cadastro-servico-get-valor-material
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+  /cadastro-servico/is-normalizado-comp:
+    get:
+      summary: Cadastro Serviço - Is normalizado completo
+      tags:
+        - Cadastro-Serviço
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-cadastro-servico-is-normalizado-comp
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idAtributo
+  /automacao/arrecadacao:
+    post:
+      summary: Automação - Arrecadação
+      operationId: post-automacao-arrecadacao
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Automação
+  /automacao/arrecadacao-rajada:
+    post:
+      summary: Automação - Arrecadação rajada
+      operationId: post-automacao-arrecadacao-rajada
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Automação
+  /automacao/fatura-final:
+    post:
+      summary: Automação - Fatura Final
+      operationId: post-automacao-fatura-final
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Automação
+  /automacao/alcada-recalculo:
+    post:
+      summary: Automação - Alçada recálculo
+      operationId: post-automacao-alcada-recalculo
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Automação
+  /importador/ler-arquivo:
+    get:
+      summary: Importador - Ler arquivo
+      tags:
+        - Importador
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-importador-ler-arquivo
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: nomeArquivo
+  /importador/importar-arquivo:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-importador-importar-arquivo
+    post:
+      summary: Importador - Importar arquivo
+      operationId: post-importador-importar-arquivo
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Importador
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: nomeArquivo
+        - schema:
+            type: string
+          in: query
+          name: obs
 components:
   schemas:
     CriarLigacaoModel:
@@ -63652,5 +64156,242 @@ components:
           nomeArquivo: ''
           data: ''
           numeroBanco: 0
+    TaxaFinanciamentoDtoModel:
+      type: object
+      properties:
+        alterado:
+          type: boolean
+        novo:
+          type: boolean
+        apenasLeitura:
+          type: boolean
+        idCidade:
+          type: integer
+        taxaFinanciamento:
+          type: string
+        tipoFinanciamento:
+          type: integer
+        percentual:
+          type: integer
+        ativa:
+          type: boolean
+        tabelaPriceVO:
+          type: array
+          items:
+            type: object
+            properties:
+              nrParcela:
+                type: integer
+              coeficiente:
+                type: number
+        rubricas:
+          type: array
+          items:
+            type: object
+            properties:
+              alterado:
+                type: boolean
+              novo:
+                type: boolean
+              idCidade:
+                type: integer
+              codigo:
+                type: integer
+              revisao:
+                type: integer
+              vigencia:
+                type: string
+              situacao:
+                type: string
+              idGrupoRubrica:
+                type: integer
+              contratual:
+                type: boolean
+              rubrica:
+                type: string
+              rubricaResumida:
+                type: string
+              valor:
+                type: number
+              fatorReducao:
+                type: number
+              idClassificacaoFiscal:
+                type: integer
+              idClassificacaoFiscalIndireta:
+                type: integer
+              idDecreto:
+                type: integer
+              debitoCredito:
+                type: string
+              exibirFatura:
+                type: boolean
+              considerarTotalFatura:
+                type: boolean
+              idGrupoExibe:
+                type: integer
+              colTipoTaxaAtraso:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    tipoTaxa:
+                      type: integer
+              idTipoRegIntegracaoFin:
+                type: integer
+              idGrupoReceita:
+                type: integer
+              codigoAuxiliar:
+                type: integer
+              idGrupoProcessoArrecadacao:
+                type: integer
+              stFaturar:
+                type: string
+              idRubricaParc:
+                type: integer
+              rubricaParc:
+                type: string
+              idRubrica:
+                type: integer
+              grupoReceita:
+                type: string
+              valorImposto:
+                type: number
+              idIncidencia:
+                type: integer
+              incidencia:
+                type: string
+              aliquotaIss:
+                type: number
+              aliquotaIcms:
+                type: number
+              aliquotaPis:
+                type: number
+              aliquotaCofins:
+                type: number
+              aliquotaInss:
+                type: number
+              idTipoRubrica:
+                type: integer
+              rubricaDescontoParc:
+                type: string
+              consumoAtual:
+                type: string
+      x-examples:
+        Example 1:
+          alterado: false
+          novo: true
+          apenasLeitura: false
+          idCidade: 0
+          taxaFinanciamento: ''
+          tipoFinanciamento: 0
+          percentual: 0
+          ativa: false
+          tabelaPriceVO:
+            - nrParcela: 1
+              coeficiente: 1.1
+          rubricas:
+            - alterado: true
+              novo: true
+              idCidade: 17
+              codigo: 1
+              revisao: 1
+              vigencia: '02032023'
+              situacao: A
+              idGrupoRubrica: 1
+              contratual: true
+              rubrica: DESCONTO - PARCELAMENTO
+              rubricaResumida: DESCONTO - PARCELAMENTO
+              valor: 1.1
+              fatorReducao: 1.1
+              idClassificacaoFiscal: 1
+              idClassificacaoFiscalIndireta: 1
+              idDecreto: 1
+              debitoCredito: D
+              exibirFatura: true
+              considerarTotalFatura: true
+              idGrupoExibe: 1
+              colTipoTaxaAtraso:
+                - tipoTaxa: 1
+              idTipoRegIntegracaoFin: 1
+              idGrupoReceita: 1
+              codigoAuxiliar: 1
+              idGrupoProcessoArrecadacao: 1
+              stFaturar: 'N'
+              idRubricaParc: 1
+              rubricaParc: 'N'
+              idRubrica: 1
+              grupoReceita: ''
+              valorImposto: 1.1
+              idIncidencia: 1
+              incidencia: ''
+              aliquotaIss: 1.1
+              aliquotaIcms: 1.1
+              aliquotaPis: 1.1
+              aliquotaCofins: 1.1
+              aliquotaInss: 1.1
+              idTipoRubrica: 1
+              rubricaDescontoParc: 'N'
+              consumoAtual: ''
+    MotivoPendenciaDtoModel:
+      type: object
+      properties:
+        data:
+          type: string
+        motivo:
+          type: string
+        depto:
+          type: string
+        usuario:
+          type: string
+      x-examples:
+        Example 1:
+          data: ''
+          motivo: ''
+          depto: ''
+          usuario: ''
+    ServicoVinculadoDtoModel:
+      type: object
+      properties:
+        idServicoVinculado:
+          type: integer
+        obrigatorio:
+          type: boolean
+        utilizarPropriaOS:
+          type: boolean
+        dataHoraAberturaPrevista:
+          type: boolean
+        utilizarLigsVinculados:
+          type: boolean
+        utilizaLigacaoOriginal:
+          type: boolean
+        confirmaAbertura:
+          type: boolean
+        prazoVinculado:
+          type: integer
+        prazoClienteVinculado:
+          type: integer
+        prazoAlertaVinculado:
+          type: integer
+        codigoReferencia:
+          type: string
+        descricao:
+          type: string
+        idAssociado:
+          type: string
+      x-examples:
+        Example 1:
+          idServicoVinculado: 0
+          obrigatorio: false
+          utilizarPropriaOS: false
+          dataHoraAberturaPrevista: false
+          utilizarLigsVinculados: false
+          utilizaLigacaoOriginal: false
+          confirmaAbertura: false
+          prazoVinculado: 0
+          prazoClienteVinculado: 0
+          prazoAlertaVinculado: 0
+          codigoReferencia: ''
+          descricao: ''
+          idAssociado: ''
   securitySchemes: {}
 x-extension-1: null
