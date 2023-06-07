@@ -13056,11 +13056,6 @@ paths:
           in: query
           name: nomeArquivo
   /importador/importar-arquivo:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-importador-importar-arquivo
     post:
       summary: Importador - Importar arquivo
       operationId: post-importador-importar-arquivo
@@ -13078,6 +13073,239 @@ paths:
             type: string
           in: query
           name: obs
+  /cobranca/utiliza/grupo-uo:
+    get:
+      summary: Cobrança - Utiliza grupo unidade operacional
+      tags:
+        - Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-cobranca-utiliza-grupo-uo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /cobranca/verifica/param-cat-princ:
+    get:
+      summary: Cobrança - Verifica param categoria princ
+      tags:
+        - Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-cobranca-verifica-param-cat-princ
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /cobranca/valida/grupo/geracao-proc-cobranca:
+    get:
+      summary: Cobrança - Validar grupo geração processo cobrança
+      tags:
+        - Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-cobranca-valida-grupo-geracao-proc-cobranca
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /cobranca/get/tipo/processo-cobranca:
+    get:
+      summary: Cobrança - Get tipo processo cobrança
+      tags:
+        - Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-cobranca-get-tipo-processo-cobranca
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /cobranca/verifica/notificacao-debito/grupo:
+    get:
+      summary: Cobrança - Verifica notificação débito por grupo
+      tags:
+        - Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-cobranca-verifica-notificacao-debito-grupo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+  /cobranca/carrega/periodo-imp-notif:
+    get:
+      summary: Cobrança - Carrega período imp notificação
+      tags:
+        - Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: emlsq3r3grp5m
+      operationId: get-cobranca-carrega-periodo-imp-notif
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idCidade
+  /cobranca/pesquisar:
+    post:
+      summary: Cobrança - Pesquisar
+      operationId: post-cobranca-pesquisar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PesquisaCobrancaDtoModel'
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filtro:
+                  $ref: '#/components/schemas/FiltroCobrancaDtoModel'
+                  x-stoplight:
+                    id: cha6lwmw5iozr
+  /cobranca/salvar-processo/corte:
+    post:
+      summary: Cobrança - Salvar processo (faturasARemover)
+      operationId: post-cobranca-salvar-processo-corte
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessoCorteDtoModel'
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filtro:
+                  $ref: '#/components/schemas/FiltroCobrancaDtoModel'
+                  x-stoplight:
+                    id: 27824ygiwcs4f
+                gridCobranca:
+                  type: array
+                  x-stoplight:
+                    id: 4z8f2oabgr8cg
+                  items:
+                    $ref: '#/components/schemas/GridCobrancaDtoModel'
+                    x-stoplight:
+                      id: 45scp0zu43js5
+                faturasARemover:
+                  type: array
+                  x-stoplight:
+                    id: ml89hsj9hq01e
+                  items:
+                    $ref: '#/components/schemas/ProcessoCorteFaturasDtoModel'
+                    x-stoplight:
+                      id: ypdgtyg31is7s
+        description: ''
+  /cobranca/salvar-processo:
+    post:
+      summary: Cobrança - Salvar processo
+      operationId: post-cobranca-salvar-processo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessoCorteDtoModel'
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filtro:
+                  $ref: '#/components/schemas/FiltroCobrancaDtoModel'
+                  x-stoplight:
+                    id: o2po7rl101waz
+                gridCobranca:
+                  type: array
+                  x-stoplight:
+                    id: ohxmte8x3mhuy
+                  items:
+                    $ref: '#/components/schemas/GridCobrancaDtoModel'
+                    x-stoplight:
+                      id: 7u5g92lxbfawc
+        description: ''
+  /cobranca/importar/ligacoes:
+    get:
+      summary: Cobrança - Importar ligações
+      tags:
+        - Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: mmnbgvzlevb4f
+                  type: string
+      operationId: get-cobranca-importar-ligacoes
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: filePath
 components:
   schemas:
     CriarLigacaoModel:
@@ -64393,5 +64621,1531 @@ components:
           codigoReferencia: ''
           descricao: ''
           idAssociado: ''
+    PesquisaCobrancaDtoModel:
+      type: object
+      properties:
+        gridSemAcordo:
+          type: array
+          items:
+            type: object
+            properties:
+              idFatura:
+                type: integer
+              nrImovel:
+                type: integer
+              cidade:
+                type: string
+              ufEntrega:
+                type: string
+              tipoEntrega:
+                type: string
+              logradouroEntrega:
+                type: string
+              bairroEntrega:
+                type: string
+              cepEntrega:
+                type: string
+              nrImovelEntrega:
+                type: integer
+              cidadeEntrega:
+                type: string
+              idLigacao:
+                type: integer
+              nomeConsumidor:
+                type: string
+              categoria:
+                type: string
+              hidrometro:
+                type: string
+              debitos:
+                type: integer
+              valor:
+                type: integer
+              debitosNotificados:
+                type: integer
+              valorNotificados:
+                type: integer
+              idConsumidor:
+                type: integer
+              idCategoria:
+                type: integer
+              idHidrometro:
+                type: integer
+              faturas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idFatura:
+                      type: integer
+                    idLigacao:
+                      type: integer
+                    idProcesoCorte:
+                      type: integer
+                    valor:
+                      type: integer
+                    vencimento:
+                      type: string
+                    periodo:
+                      type: string
+                    situacao:
+                      type: string
+                    tipo:
+                      type: string
+                    datapagto:
+                      type: string
+                    notificada:
+                      type: string
+                    negativada:
+                      type: string
+                    motivoCancelamentoSerasa:
+                      type: string
+                    cancelamentoEnvioNegativacao:
+                      type: string
+                    idProcessoCorteOrigem:
+                      type: integer
+                    dataCortePrevista:
+                      type: string
+                    tipoLayoutAvisoDebito:
+                      type: string
+              idsFaturas:
+                type: string
+              periodos:
+                type: string
+              periodosNotificados:
+                type: string
+              dv:
+                type: integer
+              logradouro:
+                type: string
+              bairro:
+                type: string
+              selecionado:
+                type: string
+              idGrupo:
+                type: integer
+              cpf:
+                type: string
+              cnpj:
+                type: string
+              cep:
+                type: string
+              aviso:
+                type: boolean
+              corte:
+                type: boolean
+              idCidade:
+                type: integer
+              idPeriodo:
+                type: integer
+              periodo:
+                type: string
+              dataVencimento:
+                type: string
+              idsituacaoacordo:
+                type: integer
+              corteLightExecutado:
+                type: string
+              tipoLayoutAvisoDebito:
+                type: string
+              cancelarProcessoAnterior:
+                type: string
+        gridComAcordo:
+          type: array
+          items:
+            type: object
+            properties:
+              idFatura:
+                type: integer
+              nrImovel:
+                type: integer
+              cidade:
+                type: string
+              ufEntrega:
+                type: string
+              tipoEntrega:
+                type: string
+              logradouroEntrega:
+                type: string
+              bairroEntrega:
+                type: string
+              cepEntrega:
+                type: string
+              nrImovelEntrega:
+                type: integer
+              cidadeEntrega:
+                type: string
+              idLigacao:
+                type: integer
+              nomeConsumidor:
+                type: string
+              categoria:
+                type: string
+              hidrometro:
+                type: string
+              debitos:
+                type: integer
+              valor:
+                type: integer
+              debitosNotificados:
+                type: integer
+              valorNotificados:
+                type: integer
+              idConsumidor:
+                type: integer
+              idCategoria:
+                type: integer
+              idHidrometro:
+                type: integer
+              faturas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idFatura:
+                      type: integer
+                    idLigacao:
+                      type: integer
+                    idProcesoCorte:
+                      type: integer
+                    valor:
+                      type: integer
+                    vencimento:
+                      type: string
+                    periodo:
+                      type: string
+                    situacao:
+                      type: string
+                    tipo:
+                      type: string
+                    datapagto:
+                      type: string
+                    notificada:
+                      type: string
+                    negativada:
+                      type: string
+                    motivoCancelamentoSerasa:
+                      type: string
+                    cancelamentoEnvioNegativacao:
+                      type: string
+                    idProcessoCorteOrigem:
+                      type: integer
+                    dataCortePrevista:
+                      type: string
+                    tipoLayoutAvisoDebito:
+                      type: string
+              idsFaturas:
+                type: string
+              periodos:
+                type: string
+              periodosNotificados:
+                type: string
+              dv:
+                type: integer
+              logradouro:
+                type: string
+              bairro:
+                type: string
+              selecionado:
+                type: string
+              idGrupo:
+                type: integer
+              cpf:
+                type: string
+              cnpj:
+                type: string
+              cep:
+                type: string
+              aviso:
+                type: boolean
+              corte:
+                type: boolean
+              idCidade:
+                type: integer
+              idPeriodo:
+                type: integer
+              periodo:
+                type: string
+              dataVencimento:
+                type: string
+              idsituacaoacordo:
+                type: integer
+              corteLightExecutado:
+                type: string
+              tipoLayoutAvisoDebito:
+                type: string
+              cancelarProcessoAnterior:
+                type: string
+        gridLimiteAvisoDebito:
+          type: array
+          items:
+            type: object
+            properties:
+              idFatura:
+                type: integer
+              nrImovel:
+                type: integer
+              cidade:
+                type: string
+              ufEntrega:
+                type: string
+              tipoEntrega:
+                type: string
+              logradouroEntrega:
+                type: string
+              bairroEntrega:
+                type: string
+              cepEntrega:
+                type: string
+              nrImovelEntrega:
+                type: integer
+              cidadeEntrega:
+                type: string
+              idLigacao:
+                type: integer
+              nomeConsumidor:
+                type: string
+              categoria:
+                type: string
+              hidrometro:
+                type: string
+              debitos:
+                type: integer
+              valor:
+                type: integer
+              debitosNotificados:
+                type: integer
+              valorNotificados:
+                type: integer
+              idConsumidor:
+                type: integer
+              idCategoria:
+                type: integer
+              idHidrometro:
+                type: integer
+              faturas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idFatura:
+                      type: integer
+                    idLigacao:
+                      type: integer
+                    idProcesoCorte:
+                      type: integer
+                    valor:
+                      type: integer
+                    vencimento:
+                      type: string
+                    periodo:
+                      type: string
+                    situacao:
+                      type: string
+                    tipo:
+                      type: string
+                    datapagto:
+                      type: string
+                    notificada:
+                      type: string
+                    negativada:
+                      type: string
+                    motivoCancelamentoSerasa:
+                      type: string
+                    cancelamentoEnvioNegativacao:
+                      type: string
+                    idProcessoCorteOrigem:
+                      type: integer
+                    dataCortePrevista:
+                      type: string
+                    tipoLayoutAvisoDebito:
+                      type: string
+              idsFaturas:
+                type: string
+              periodos:
+                type: string
+              periodosNotificados:
+                type: string
+              dv:
+                type: integer
+              logradouro:
+                type: string
+              bairro:
+                type: string
+              selecionado:
+                type: string
+              idGrupo:
+                type: integer
+              cpf:
+                type: string
+              cnpj:
+                type: string
+              cep:
+                type: string
+              aviso:
+                type: boolean
+              corte:
+                type: boolean
+              idCidade:
+                type: integer
+              idPeriodo:
+                type: integer
+              periodo:
+                type: string
+              dataVencimento:
+                type: string
+              idsituacaoacordo:
+                type: integer
+              corteLightExecutado:
+                type: string
+              tipoLayoutAvisoDebito:
+                type: string
+              cancelarProcessoAnterior:
+                type: string
+      x-examples:
+        Example 1:
+          gridSemAcordo:
+            - idFatura: 0
+              nrImovel: 0
+              cidade: ''
+              ufEntrega: ''
+              tipoEntrega: ''
+              logradouroEntrega: ''
+              bairroEntrega: ''
+              cepEntrega: ''
+              nrImovelEntrega: 0
+              cidadeEntrega: ''
+              idLigacao: 0
+              nomeConsumidor: ''
+              categoria: ''
+              hidrometro: ''
+              debitos: 0
+              valor: 0
+              debitosNotificados: 0
+              valorNotificados: 0
+              idConsumidor: 0
+              idCategoria: 0
+              idHidrometro: 0
+              faturas:
+                - idFatura: 0
+                  idLigacao: 0
+                  idProcesoCorte: 0
+                  valor: 0
+                  vencimento: ''
+                  periodo: ''
+                  situacao: ''
+                  tipo: ''
+                  datapagto: ''
+                  notificada: ''
+                  negativada: ''
+                  motivoCancelamentoSerasa: ''
+                  cancelamentoEnvioNegativacao: ''
+                  idProcessoCorteOrigem: 0
+                  dataCortePrevista: ''
+                  tipoLayoutAvisoDebito: ''
+              idsFaturas: ''
+              periodos: ''
+              periodosNotificados: ''
+              dv: 0
+              logradouro: ''
+              bairro: ''
+              selecionado: ''
+              idGrupo: 0
+              cpf: ''
+              cnpj: ''
+              cep: ''
+              aviso: false
+              corte: false
+              idCidade: 0
+              idPeriodo: 0
+              periodo: ''
+              dataVencimento: ''
+              idsituacaoacordo: 0
+              corteLightExecutado: ''
+              tipoLayoutAvisoDebito: ''
+              cancelarProcessoAnterior: ''
+          gridComAcordo:
+            - idFatura: 0
+              nrImovel: 0
+              cidade: ''
+              ufEntrega: ''
+              tipoEntrega: ''
+              logradouroEntrega: ''
+              bairroEntrega: ''
+              cepEntrega: ''
+              nrImovelEntrega: 0
+              cidadeEntrega: ''
+              idLigacao: 0
+              nomeConsumidor: ''
+              categoria: ''
+              hidrometro: ''
+              debitos: 0
+              valor: 0
+              debitosNotificados: 0
+              valorNotificados: 0
+              idConsumidor: 0
+              idCategoria: 0
+              idHidrometro: 0
+              faturas:
+                - idFatura: 0
+                  idLigacao: 0
+                  idProcesoCorte: 0
+                  valor: 0
+                  vencimento: ''
+                  periodo: ''
+                  situacao: ''
+                  tipo: ''
+                  datapagto: ''
+                  notificada: ''
+                  negativada: ''
+                  motivoCancelamentoSerasa: ''
+                  cancelamentoEnvioNegativacao: ''
+                  idProcessoCorteOrigem: 0
+                  dataCortePrevista: ''
+                  tipoLayoutAvisoDebito: ''
+              idsFaturas: ''
+              periodos: ''
+              periodosNotificados: ''
+              dv: 0
+              logradouro: ''
+              bairro: ''
+              selecionado: ''
+              idGrupo: 0
+              cpf: ''
+              cnpj: ''
+              cep: ''
+              aviso: false
+              corte: false
+              idCidade: 0
+              idPeriodo: 0
+              periodo: ''
+              dataVencimento: ''
+              idsituacaoacordo: 0
+              corteLightExecutado: ''
+              tipoLayoutAvisoDebito: ''
+              cancelarProcessoAnterior: ''
+          gridLimiteAvisoDebito:
+            - idFatura: 0
+              nrImovel: 0
+              cidade: ''
+              ufEntrega: ''
+              tipoEntrega: ''
+              logradouroEntrega: ''
+              bairroEntrega: ''
+              cepEntrega: ''
+              nrImovelEntrega: 0
+              cidadeEntrega: ''
+              idLigacao: 0
+              nomeConsumidor: ''
+              categoria: ''
+              hidrometro: ''
+              debitos: 0
+              valor: 0
+              debitosNotificados: 0
+              valorNotificados: 0
+              idConsumidor: 0
+              idCategoria: 0
+              idHidrometro: 0
+              faturas:
+                - idFatura: 0
+                  idLigacao: 0
+                  idProcesoCorte: 0
+                  valor: 0
+                  vencimento: ''
+                  periodo: ''
+                  situacao: ''
+                  tipo: ''
+                  datapagto: ''
+                  notificada: ''
+                  negativada: ''
+                  motivoCancelamentoSerasa: ''
+                  cancelamentoEnvioNegativacao: ''
+                  idProcessoCorteOrigem: 0
+                  dataCortePrevista: ''
+                  tipoLayoutAvisoDebito: ''
+              idsFaturas: ''
+              periodos: ''
+              periodosNotificados: ''
+              dv: 0
+              logradouro: ''
+              bairro: ''
+              selecionado: ''
+              idGrupo: 0
+              cpf: ''
+              cnpj: ''
+              cep: ''
+              aviso: false
+              corte: false
+              idCidade: 0
+              idPeriodo: 0
+              periodo: ''
+              dataVencimento: ''
+              idsituacaoacordo: 0
+              corteLightExecutado: ''
+              tipoLayoutAvisoDebito: ''
+              cancelarProcessoAnterior: ''
+    ProcessoCorteFaturasDtoModel:
+      type: object
+      properties:
+        idFatura:
+          type: integer
+        idLigacao:
+          type: integer
+        idProcesoCorte:
+          type: integer
+        valor:
+          type: integer
+        vencimento:
+          type: string
+        periodo:
+          type: string
+        situacao:
+          type: string
+        tipo:
+          type: string
+        datapagto:
+          type: string
+        notificada:
+          type: string
+        negativada:
+          type: string
+        motivoCancelamentoSerasa:
+          type: string
+        cancelamentoEnvioNegativacao:
+          type: string
+        idProcessoCorteOrigem:
+          type: integer
+        dataCortePrevista:
+          type: string
+        tipoLayoutAvisoDebito:
+          type: string
+      x-examples:
+        Example 1:
+          idFatura: 0
+          idLigacao: 0
+          idProcesoCorte: 0
+          valor: 0
+          vencimento: ''
+          periodo: ''
+          situacao: ''
+          tipo: ''
+          datapagto: ''
+          notificada: ''
+          negativada: ''
+          motivoCancelamentoSerasa: ''
+          cancelamentoEnvioNegativacao: ''
+          idProcessoCorteOrigem: 0
+          dataCortePrevista: ''
+          tipoLayoutAvisoDebito: ''
+    ProcessoCorteDtoModel:
+      type: object
+      properties:
+        nome:
+          type: string
+        dataGeracao:
+          type: string
+        totalLigacoes:
+          type: integer
+        totalLigacoesAvisos:
+          type: integer
+        totalLigacoesAtivas:
+          type: integer
+        totalLigacoesCanceladas:
+          type: integer
+        totalLigacoesLayoutavisodebito:
+          type: integer
+        ativo:
+          type: string
+        idGrupo:
+          type: integer
+        idCidade:
+          type: integer
+        idPeriodo:
+          type: integer
+        dataEntregaPrevista:
+          type: string
+        dataCortePrevista:
+          type: string
+        nomeProcesso:
+          type: string
+        idUsuarioCadastro:
+          type: integer
+        dataCadastro:
+          type: string
+        horaCadastro:
+          type: string
+        idUsuarioCancelamento:
+          type: integer
+        dataCancelamento:
+          type: string
+        horaCancelamento:
+          type: string
+        dataConfAviso:
+          type: string
+        negativada:
+          type: string
+        processoCorteCriterio:
+          type: object
+          properties:
+            idCidade:
+              type: integer
+            idProcessoCorte:
+              type: integer
+            nroDiasAtraso:
+              type: integer
+            valorTotalInadimplenciaIni:
+              type: integer
+            valorTotalInadimplenciaFim:
+              type: integer
+            qtdeTotalDebitosIni:
+              type: integer
+            qtdeTotalDebitosFim:
+              type: integer
+            idTipoFaturamento:
+              type: integer
+            idCobrancaFase:
+              type: integer
+            periodoIni:
+              type: integer
+            periodoFin:
+              type: integer
+            vencimentoAte:
+              type: string
+            consideraPIM:
+              type: string
+            gruposSelecao:
+              type: string
+            bairrosSelecao:
+              type: string
+            categoriasSelecao:
+              type: string
+            subcategoriasSelecao:
+              type: string
+            tiposLigacaoSelecao:
+              type: string
+            tiposFaturamentoSelecao:
+              type: string
+            tiposEsgotamentoSelecao:
+              type: string
+            caracteristicasSelecao:
+              type: string
+        idsLigacoesFiltradas:
+          type: integer
+        processoCorteLigacoes:
+          type: array
+          items:
+            type: object
+            properties:
+              idProcesso:
+                type: integer
+              dataEntregaPrevista:
+                type: string
+              fraude:
+                type: string
+              dataConfAviso:
+                type: string
+              dataCortePrevista:
+                type: string
+              countFaturas:
+                type: integer
+              somaValores:
+                type: integer
+              situacao:
+                type: string
+              vtFaturas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idFatura:
+                      type: integer
+                    idLigacao:
+                      type: integer
+                    idProcesoCorte:
+                      type: integer
+                    valor:
+                      type: integer
+                    vencimento:
+                      type: string
+                    periodo:
+                      type: string
+                    situacao:
+                      type: string
+                    tipo:
+                      type: string
+                    datapagto:
+                      type: string
+                    notificada:
+                      type: string
+                    negativada:
+                      type: string
+                    motivoCancelamentoSerasa:
+                      type: string
+                    cancelamentoEnvioNegativacao:
+                      type: string
+                    idProcessoCorteOrigem:
+                      type: integer
+                    dataCortePrevista:
+                      type: string
+                    tipoLayoutAvisoDebito:
+                      type: string
+              idLigacao:
+                type: integer
+              idMotivoCorte:
+                type: integer
+              idUsuarioBaixa:
+                type: integer
+              dataHoraBaixa:
+                type: string
+              statusCorte:
+                type: string
+              statusProcesso:
+                type: string
+              idVendaCobrancaAvisoDebito:
+                type: integer
+              negativacao:
+                type: string
+              objetivoProcesso:
+                type: string
+              aviso:
+                type: string
+              idObjetivoProcessoCorte:
+                type: integer
+              statusLigacaoProcesso:
+                type: string
+              tipoProcesso:
+                type: string
+              corteLight:
+                type: string
+              dataRealEntregaNotificacao:
+                type: string
+        processoCorteLigacoesAviso:
+          type: array
+          items:
+            type: object
+            properties:
+              idProcesso:
+                type: integer
+              dataEntregaPrevista:
+                type: string
+              fraude:
+                type: string
+              dataConfAviso:
+                type: string
+              dataCortePrevista:
+                type: string
+              countFaturas:
+                type: integer
+              somaValores:
+                type: integer
+              situacao:
+                type: string
+              vtFaturas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idFatura:
+                      type: integer
+                    idLigacao:
+                      type: integer
+                    idProcesoCorte:
+                      type: integer
+                    valor:
+                      type: integer
+                    vencimento:
+                      type: string
+                    periodo:
+                      type: string
+                    situacao:
+                      type: string
+                    tipo:
+                      type: string
+                    datapagto:
+                      type: string
+                    notificada:
+                      type: string
+                    negativada:
+                      type: string
+                    motivoCancelamentoSerasa:
+                      type: string
+                    cancelamentoEnvioNegativacao:
+                      type: string
+                    idProcessoCorteOrigem:
+                      type: integer
+                    dataCortePrevista:
+                      type: string
+                    tipoLayoutAvisoDebito:
+                      type: string
+              idLigacao:
+                type: integer
+              idMotivoCorte:
+                type: integer
+              idUsuarioBaixa:
+                type: integer
+              dataHoraBaixa:
+                type: string
+              statusCorte:
+                type: string
+              statusProcesso:
+                type: string
+              idVendaCobrancaAvisoDebito:
+                type: integer
+              negativacao:
+                type: string
+              objetivoProcesso:
+                type: string
+              aviso:
+                type: string
+              idObjetivoProcessoCorte:
+                type: integer
+              statusLigacaoProcesso:
+                type: string
+              tipoProcesso:
+                type: string
+              corteLight:
+                type: string
+              dataRealEntregaNotificacao:
+                type: string
+        processoCorteFatutas:
+          type: array
+          items:
+            type: object
+            properties:
+              idFatura:
+                type: integer
+              idLigacao:
+                type: integer
+              idProcesoCorte:
+                type: integer
+              valor:
+                type: integer
+              vencimento:
+                type: string
+              periodo:
+                type: string
+              situacao:
+                type: string
+              tipo:
+                type: string
+              datapagto:
+                type: string
+              notificada:
+                type: string
+              negativada:
+                type: string
+              motivoCancelamentoSerasa:
+                type: string
+              cancelamentoEnvioNegativacao:
+                type: string
+              idProcessoCorteOrigem:
+                type: integer
+              dataCortePrevista:
+                type: string
+              tipoLayoutAvisoDebito:
+                type: string
+        processoCorteFaturasOriginais:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              idLigacao:
+                type: integer
+              anoReferencia:
+                type: string
+              mesReferencia:
+                type: string
+              idCidade:
+                type: integer
+              idGrupo:
+                type: integer
+              idTipoTransacao:
+                type: integer
+              valor:
+                type: integer
+              dataVencimento:
+                type: string
+              dataPagamento:
+                type: string
+              idSituacaoFatura:
+                type: integer
+              idFaturaRecalculada:
+                type: integer
+              idFaturaSituacao:
+                type: integer
+              dataLeitura:
+                type: string
+              volumeMedido:
+                type: integer
+              dataHoraCriacao:
+                type: string
+              idUsuarioCriacao:
+                type: integer
+              idUsuarioAtualizacao:
+                type: integer
+              dataHoraAtualizacao:
+                type: string
+              idCobrancaFase:
+                type: integer
+        erroValidacao:
+          type: array
+          items:
+            type: object
+            properties:
+              idFatura:
+                type: integer
+              nrImovel:
+                type: integer
+              cidade:
+                type: string
+              ufEntrega:
+                type: string
+              tipoEntrega:
+                type: string
+              logradouroEntrega:
+                type: string
+              bairroEntrega:
+                type: string
+              cepEntrega:
+                type: string
+              nrImovelEntrega:
+                type: integer
+              cidadeEntrega:
+                type: string
+              idLigacao:
+                type: integer
+              nomeConsumidor:
+                type: string
+              categoria:
+                type: string
+              hidrometro:
+                type: string
+              debitos:
+                type: integer
+              valor:
+                type: integer
+              debitosNotificados:
+                type: integer
+              valorNotificados:
+                type: integer
+              idConsumidor:
+                type: integer
+              idCategoria:
+                type: integer
+              idHidrometro:
+                type: integer
+              faturas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idFatura:
+                      type: integer
+                    idLigacao:
+                      type: integer
+                    idProcesoCorte:
+                      type: integer
+                    valor:
+                      type: integer
+                    vencimento:
+                      type: string
+                    periodo:
+                      type: string
+                    situacao:
+                      type: string
+                    tipo:
+                      type: string
+                    datapagto:
+                      type: string
+                    notificada:
+                      type: string
+                    negativada:
+                      type: string
+                    motivoCancelamentoSerasa:
+                      type: string
+                    cancelamentoEnvioNegativacao:
+                      type: string
+                    idProcessoCorteOrigem:
+                      type: integer
+                    dataCortePrevista:
+                      type: string
+                    tipoLayoutAvisoDebito:
+                      type: string
+              idsFaturas:
+                type: string
+              periodos:
+                type: string
+              periodosNotificados:
+                type: string
+              dv:
+                type: integer
+              logradouro:
+                type: string
+              bairro:
+                type: string
+              selecionado:
+                type: string
+              idGrupo:
+                type: integer
+              cpf:
+                type: string
+              cnpj:
+                type: string
+              cep:
+                type: string
+              aviso:
+                type: boolean
+              corte:
+                type: boolean
+              idCidade:
+                type: integer
+              idPeriodo:
+                type: integer
+              periodo:
+                type: string
+              dataVencimento:
+                type: string
+              idsituacaoacordo:
+                type: integer
+              corteLightExecutado:
+                type: string
+              tipoLayoutAvisoDebito:
+                type: string
+              cancelarProcessoAnterior:
+                type: string
+        listLigacaoProcessoCobranca:
+          type: array
+          items:
+            type: object
+            properties:
+              idProcessoCobranca:
+                type: integer
+              nomeProcesso:
+                type: string
+              idLigacao:
+                type: integer
+              dv:
+                type: integer
+              consumidor:
+                type: string
+              endereco:
+                type: string
+              nrImovel:
+                type: integer
+              bairro:
+                type: string
+              idSituacaoLigacaoProcesso:
+                type: integer
+              situacaoLigacaoProcesso:
+                type: string
+              faseAtual:
+                type: string
+              backlist:
+                type: boolean
+              idMotivoCancelamentoProcessoCorte:
+                type: integer
+              motivoCancelamentoProcessoCorte:
+                type: string
+              dataGerecao:
+                type: string
+              selecionado:
+                type: boolean
+              idPeriodo:
+                type: integer
+              observacao:
+                type: string
+              idMotivoInclusao:
+                type: integer
+              idMotivoReemissao:
+                type: integer
+              identificacao:
+                type: string
+              complemento:
+                type: string
+              hidrometro:
+                type: string
+              faturaDebitos:
+                type: object
+                properties:
+                  idFatura:
+                    type: integer
+                  idFaturaEmAtraso:
+                    type: integer
+                  periodo:
+                    type: string
+                  vencimento:
+                    type: string
+                  valorTotal:
+                    type: integer
+                  valor:
+                    type: integer
+                  valorImposto:
+                    type: integer
+              nomeArquivo:
+                type: string
+              sqlNotificacao:
+                type: string
+              idOcorrencia:
+                type: integer
+              ocorrencia:
+                type: string
+              dataRealEntrega:
+                type: string
+              tipoConfirmacaoEntrega:
+                type: string
+              qtdDebitos:
+                type: integer
+              idCidade:
+                type: integer
+              cepEntrega:
+                type: string
+              bairroEntrega:
+                type: string
+              cidade:
+                type: string
+              cidadeEntrega:
+                type: string
+              cliente:
+                type: string
+              complementoEntrega:
+                type: string
+              dataCorte:
+                type: string
+              enderecoEntrega:
+                type: string
+              entrega:
+                type: string
+              proximidade:
+                type: string
+              valorDebitos:
+                type: integer
+              idCobrancaFase:
+                type: integer
+              idCliente:
+                type: integer
+              idGrupo:
+                type: integer
+              observacaoComercial:
+                type: string
+              enviarProximaEtapaCorte:
+                type: boolean
+              idMensagemNotificacaoDebito:
+                type: integer
+              mensagemNotificacaoDebito:
+                type: string
+              mensagemNotificacaoCorte:
+                type: string
+              forcarNaoAlteracao:
+                type: 'null'
+              idEtapaCorte:
+                type: integer
+              etapaCorte:
+                type: string
+              idClienteInquilino:
+                type: integer
+              aviso:
+                type: string
+              tipoLayoutAvisoDebito:
+                type: string
+              reimpressao:
+                type: string
+        cidade:
+          type: string
+      x-examples:
+        Example 1:
+          nome: ''
+          dataGeracao: ''
+          totalLigacoes: 0
+          totalLigacoesAvisos: 0
+          totalLigacoesAtivas: 0
+          totalLigacoesCanceladas: 0
+          totalLigacoesLayoutavisodebito: 0
+          ativo: ''
+          idGrupo: 0
+          idCidade: 0
+          idPeriodo: 0
+          dataEntregaPrevista: ''
+          dataCortePrevista: ''
+          nomeProcesso: ''
+          idUsuarioCadastro: 0
+          dataCadastro: ''
+          horaCadastro: ''
+          idUsuarioCancelamento: 0
+          dataCancelamento: ''
+          horaCancelamento: ''
+          dataConfAviso: ''
+          negativada: ''
+          processoCorteCriterio:
+            idCidade: 0
+            idProcessoCorte: 0
+            nroDiasAtraso: 0
+            valorTotalInadimplenciaIni: 0
+            valorTotalInadimplenciaFim: 0
+            qtdeTotalDebitosIni: 0
+            qtdeTotalDebitosFim: 0
+            idTipoFaturamento: 0
+            idCobrancaFase: 0
+            periodoIni: 0
+            periodoFin: 0
+            vencimentoAte: ''
+            consideraPIM: ''
+            gruposSelecao: ''
+            bairrosSelecao: ''
+            categoriasSelecao: ''
+            subcategoriasSelecao: ''
+            tiposLigacaoSelecao: ''
+            tiposFaturamentoSelecao: ''
+            tiposEsgotamentoSelecao: ''
+            caracteristicasSelecao: ''
+          idsLigacoesFiltradas: 1
+          processoCorteLigacoes:
+            - idProcesso: 0
+              dataEntregaPrevista: ''
+              fraude: ''
+              dataConfAviso: ''
+              dataCortePrevista: ''
+              countFaturas: 0
+              somaValores: 0
+              situacao: ''
+              vtFaturas:
+                - idFatura: 0
+                  idLigacao: 0
+                  idProcesoCorte: 0
+                  valor: 0
+                  vencimento: ''
+                  periodo: ''
+                  situacao: ''
+                  tipo: ''
+                  datapagto: ''
+                  notificada: ''
+                  negativada: ''
+                  motivoCancelamentoSerasa: ''
+                  cancelamentoEnvioNegativacao: ''
+                  idProcessoCorteOrigem: 0
+                  dataCortePrevista: ''
+                  tipoLayoutAvisoDebito: ''
+              idLigacao: 0
+              idMotivoCorte: 0
+              idUsuarioBaixa: 0
+              dataHoraBaixa: ''
+              statusCorte: ''
+              statusProcesso: ''
+              idVendaCobrancaAvisoDebito: 0
+              negativacao: ''
+              objetivoProcesso: ''
+              aviso: ''
+              idObjetivoProcessoCorte: 0
+              statusLigacaoProcesso: ''
+              tipoProcesso: ''
+              corteLight: ''
+              dataRealEntregaNotificacao: ''
+          processoCorteLigacoesAviso:
+            - idProcesso: 0
+              dataEntregaPrevista: ''
+              fraude: ''
+              dataConfAviso: ''
+              dataCortePrevista: ''
+              countFaturas: 0
+              somaValores: 0
+              situacao: ''
+              vtFaturas:
+                - idFatura: 0
+                  idLigacao: 0
+                  idProcesoCorte: 0
+                  valor: 0
+                  vencimento: ''
+                  periodo: ''
+                  situacao: ''
+                  tipo: ''
+                  datapagto: ''
+                  notificada: ''
+                  negativada: ''
+                  motivoCancelamentoSerasa: ''
+                  cancelamentoEnvioNegativacao: ''
+                  idProcessoCorteOrigem: 0
+                  dataCortePrevista: ''
+                  tipoLayoutAvisoDebito: ''
+              idLigacao: 0
+              idMotivoCorte: 0
+              idUsuarioBaixa: 0
+              dataHoraBaixa: ''
+              statusCorte: ''
+              statusProcesso: ''
+              idVendaCobrancaAvisoDebito: 0
+              negativacao: ''
+              objetivoProcesso: ''
+              aviso: ''
+              idObjetivoProcessoCorte: 0
+              statusLigacaoProcesso: ''
+              tipoProcesso: ''
+              corteLight: ''
+              dataRealEntregaNotificacao: ''
+          processoCorteFatutas:
+            - idFatura: 0
+              idLigacao: 0
+              idProcesoCorte: 0
+              valor: 0
+              vencimento: ''
+              periodo: ''
+              situacao: ''
+              tipo: ''
+              datapagto: ''
+              notificada: ''
+              negativada: ''
+              motivoCancelamentoSerasa: ''
+              cancelamentoEnvioNegativacao: ''
+              idProcessoCorteOrigem: 0
+              dataCortePrevista: ''
+              tipoLayoutAvisoDebito: ''
+          processoCorteFaturasOriginais:
+            - id: 1
+              idLigacao: 0
+              anoReferencia: ''
+              mesReferencia: ''
+              idCidade: 0
+              idGrupo: 0
+              idTipoTransacao: 0
+              valor: 0
+              dataVencimento: ''
+              dataPagamento: ''
+              idSituacaoFatura: 0
+              idFaturaRecalculada: 0
+              idFaturaSituacao: 0
+              dataLeitura: ''
+              volumeMedido: 0
+              dataHoraCriacao: ''
+              idUsuarioCriacao: 0
+              idUsuarioAtualizacao: 0
+              dataHoraAtualizacao: ''
+              idCobrancaFase: 0
+          erroValidacao:
+            - idFatura: 0
+              nrImovel: 0
+              cidade: ''
+              ufEntrega: ''
+              tipoEntrega: ''
+              logradouroEntrega: ''
+              bairroEntrega: ''
+              cepEntrega: ''
+              nrImovelEntrega: 0
+              cidadeEntrega: ''
+              idLigacao: 0
+              nomeConsumidor: ''
+              categoria: ''
+              hidrometro: ''
+              debitos: 0
+              valor: 0
+              debitosNotificados: 0
+              valorNotificados: 0
+              idConsumidor: 0
+              idCategoria: 0
+              idHidrometro: 0
+              faturas:
+                - idFatura: 0
+                  idLigacao: 0
+                  idProcesoCorte: 0
+                  valor: 0
+                  vencimento: ''
+                  periodo: ''
+                  situacao: ''
+                  tipo: ''
+                  datapagto: ''
+                  notificada: ''
+                  negativada: ''
+                  motivoCancelamentoSerasa: ''
+                  cancelamentoEnvioNegativacao: ''
+                  idProcessoCorteOrigem: 0
+                  dataCortePrevista: ''
+                  tipoLayoutAvisoDebito: ''
+              idsFaturas: ''
+              periodos: ''
+              periodosNotificados: ''
+              dv: 0
+              logradouro: ''
+              bairro: ''
+              selecionado: ''
+              idGrupo: 0
+              cpf: ''
+              cnpj: ''
+              cep: ''
+              aviso: false
+              corte: false
+              idCidade: 0
+              idPeriodo: 0
+              periodo: ''
+              dataVencimento: ''
+              idsituacaoacordo: 0
+              corteLightExecutado: ''
+              tipoLayoutAvisoDebito: ''
+              cancelarProcessoAnterior: ''
+          listLigacaoProcessoCobranca:
+            - idProcessoCobranca: 0
+              nomeProcesso: ''
+              idLigacao: 0
+              dv: 0
+              consumidor: ''
+              endereco: ''
+              nrImovel: 0
+              bairro: ''
+              idSituacaoLigacaoProcesso: 0
+              situacaoLigacaoProcesso: ''
+              faseAtual: ''
+              backlist: false
+              idMotivoCancelamentoProcessoCorte: 0
+              motivoCancelamentoProcessoCorte: ''
+              dataGerecao: ''
+              selecionado: false
+              idPeriodo: 0
+              observacao: ''
+              idMotivoInclusao: 0
+              idMotivoReemissao: 0
+              identificacao: ''
+              complemento: ''
+              hidrometro: ''
+              faturaDebitos:
+                idFatura: 0
+                idFaturaEmAtraso: 0
+                periodo: ''
+                vencimento: ''
+                valorTotal: 0
+                valor: 0
+                valorImposto: 0
+              nomeArquivo: ''
+              sqlNotificacao: ''
+              idOcorrencia: 0
+              ocorrencia: ''
+              dataRealEntrega: ''
+              tipoConfirmacaoEntrega: ''
+              qtdDebitos: 0
+              idCidade: 0
+              cepEntrega: ''
+              bairroEntrega: ''
+              cidade: ''
+              cidadeEntrega: ''
+              cliente: ''
+              complementoEntrega: ''
+              dataCorte: ''
+              enderecoEntrega: ''
+              entrega: ''
+              proximidade: ''
+              valorDebitos: 0
+              idCobrancaFase: 0
+              idCliente: 0
+              idGrupo: 0
+              observacaoComercial: ''
+              enviarProximaEtapaCorte: false
+              idMensagemNotificacaoDebito: 0
+              mensagemNotificacaoDebito: ''
+              mensagemNotificacaoCorte: ''
+              forcarNaoAlteracao: null
+              idEtapaCorte: 0
+              etapaCorte: ''
+              idClienteInquilino: 0
+              aviso: ''
+              tipoLayoutAvisoDebito: ''
+              reimpressao: ''
+          cidade: ''
   securitySchemes: {}
 x-extension-1: null
