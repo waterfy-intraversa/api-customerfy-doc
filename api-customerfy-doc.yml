@@ -1890,7 +1890,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListHistoricoConsumoDtoModel'
+                $ref: '#/components/schemas/HistoricoConsumoDtoModel'
       operationId: get-medicao-historico-consumo
       parameters:
         - schema:
@@ -13306,6 +13306,217 @@ paths:
             type: string
           in: query
           name: filePath
+  /medicao/carregar/criterio-enquadramento:
+    get:
+      summary: Medição - Carregar critério enquadramento
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CriterioEnquadramentoDtoModel'
+      operationId: get-medicao-carregar-criterio-enquadramento
+  /medicao/get/dados-excessoes:
+    get:
+      summary: Medição - Get dados excessões
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturaExcecaoDtoModel'
+                  x-stoplight:
+                    id: xntrhqxxcu11o
+      operationId: get-medicao-get-dados-excessoes
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /medica/carregar/critica/consumo-simultaneo/rota-leit:
+    get:
+      summary: Medição - Carregar critíca consumo simultanea rota leit
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CriticaConsumoSimultaneaDtoModel'
+                  x-stoplight:
+                    id: nay2oovtemze8
+      operationId: get-medica-carregar-critica-consumo-simultaneo-rota-leit
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: i_iRotaIdMedicao
+        - schema:
+            type: integer
+          in: query
+          name: idRotaLeit
+        - schema:
+            type: boolean
+          in: query
+          name: i_isUtilizaRetornoRepasseSimultane
+  /comum/query-for-list:
+    get:
+      summary: Comum - Query for list
+      tags:
+        - 'Comum '
+      responses:
+        '200':
+          description: OK
+          content: {}
+      operationId: get-comum-query-for-list
+  /medicao/carregar/historico-consumo:
+    get:
+      summary: Medição - Carregar histórico consumo
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HistoricoConsumoDtoModel'
+                  x-stoplight:
+                    id: 9wll43rdbt0o3
+      operationId: get-medicao-carregar-historico-consumo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /faturamento/exibe/dados-fatura-simultanea:
+    get:
+      summary: Faturamento - Exibe dados fatura simultânea
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DadosFaturaSimultaneDtoModel'
+                  x-stoplight:
+                    id: mwd0899rw2u90
+      operationId: get-faturamento-exibe-dados-fatura-simultanea
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idCidade
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idLigacao
+  /faturamento/obter/dados-excecao:
+    get:
+      summary: Faturamento - Obter dados exceção
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturaExcecaoDtoModel'
+                  x-stoplight:
+                    id: u0ewpkp09k3fu
+      operationId: get-faturamento-obter-dados-excecao
+      tags:
+        - Faturamento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idLigacao
+        - schema:
+            type: integer
+          in: query
+          name: idLigacaoFilho
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: idFatura
+        - schema:
+            type: boolean
+          in: query
+          name: consideraCriticaMEdicao
+  /consulta/gerar/os-protocolo:
+    post:
+      summary: Consulta - Gerar ordem serviço protocolo
+      operationId: post-consulta-gerar-os-protocolo
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Consulta
+      parameters:
+        - schema:
+            type: boolean
+          in: query
+          name: gerarProtocolo
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+        - schema:
+            type: integer
+          in: query
+          name: idServico
+        - schema:
+            type: string
+          in: query
+          name: obs
+        - schema:
+            type: integer
+          in: query
+          name: idTela
 components:
   schemas:
     CriarLigacaoModel:
@@ -20917,129 +21128,10 @@ components:
           qtd_ligacoes: 1
           nr_economias: 1
           coleta_coordenada_gps: string
-    ListHistoricoConsumoDtoModel:
-      type: array
-      items:
-        type: object
-        properties:
-          id_ligacao:
-            type: integer
-          id_ligacao_pai:
-            type: integer
-          id_periodo:
-            type: integer
-          periodo:
-            type: string
-          leitura:
-            type: integer
-          vol_medido:
-            type: integer
-          vol_fat_prod_media_fat:
-            type: number
-          residuo:
-            type: integer
-          residuo_utilizado:
-            type: integer
-          cred_ate_vol_min:
-            type: number
-          cred_acima_vol_min:
-            type: number
-          repasse:
-            type: boolean
-          consolidada:
-            type: integer
-          id_critica_medicao:
-            type: integer
-          critica_medicao:
-            type: string
-          id_codigo_leitura:
-            type: integer
-          codigo_leitura:
-            type: string
-          id_criterio_fat:
-            type: integer
-          criterio_fat:
-            type: string
-          id_ocorrencia_1:
-            type: integer
-          ocorrencia_1:
-            type: string
-          id_ocorrencia_2:
-            type: integer
-          ocorrencia_2:
-            type: string
-          id_ocorrencia_3:
-            type: integer
-          ocorrencia_3:
-            type: string
-          existe_foto_ocorrencias:
-            type: boolean
-          media_consumo:
-            type: integer
-          media_consumo_faturado:
-            type: integer
-          volumes_faturados_vo:
-            type: array
-            items:
-              type: object
-              properties:
-                id_produto:
-                  type: integer
-                produto:
-                  type: string
-                vol_fat_ori:
-                  type: integer
-                vol_fat:
-                  type: number
-                vol_fat_cons:
-                  type: integer
-                tcf:
-                  type: string
-                id_tcf:
-                  type: integer
-          excecoes_vo:
-            type: array
-            items:
-              type: object
-              properties:
-                id_excecao:
-                  type: integer
-                excecao:
-                  type: string
-                id_tipo_excecao:
-                  type: integer
-                tipo_excecao:
-                  type: string
-                id_tipo_faturamento:
-                  type: integer
-                tipo_faturamento:
-                  type: string
-                percentual:
-                  type: number
-                valor:
-                  type: number
-                automatica:
-                  type: boolean
-                observacao:
-                  type: string
-          entrega_fatura:
-            type: string
-          tipo_leitura:
-            type: string
-          leitura_hm:
-            type: integer
-          volume_reduzido:
-            type: integer
-          msg_livre:
-            type: string
-          msg_retencao_forcada:
-            type: string
-          leiturista:
-            type: string
-          data_hora_leitura:
-            type: string
-          considerado_para_media:
-            type: boolean
+    HistoricoConsumoDtoModel:
+      type: object
+      x-stoplight:
+        id: 48c810cb089ce
       x-examples:
         Example 1:
           - id_ligacao: 1
@@ -21100,6 +21192,129 @@ components:
             considerado_para_media: true
       x-tags:
         - Medição
+      properties:
+        '':
+          type: object
+          properties:
+            id_ligacao:
+              type: integer
+            id_ligacao_pai:
+              type: integer
+            id_periodo:
+              type: integer
+            periodo:
+              type: string
+            leitura:
+              type: integer
+            vol_medido:
+              type: integer
+            vol_fat_prod_media_fat:
+              type: number
+            residuo:
+              type: integer
+            residuo_utilizado:
+              type: integer
+            cred_ate_vol_min:
+              type: number
+            cred_acima_vol_min:
+              type: number
+            repasse:
+              type: boolean
+            consolidada:
+              type: integer
+            id_critica_medicao:
+              type: integer
+            critica_medicao:
+              type: string
+            id_codigo_leitura:
+              type: integer
+            codigo_leitura:
+              type: string
+            id_criterio_fat:
+              type: integer
+            criterio_fat:
+              type: string
+            id_ocorrencia_1:
+              type: integer
+            ocorrencia_1:
+              type: string
+            id_ocorrencia_2:
+              type: integer
+            ocorrencia_2:
+              type: string
+            id_ocorrencia_3:
+              type: integer
+            ocorrencia_3:
+              type: string
+            existe_foto_ocorrencias:
+              type: boolean
+            media_consumo:
+              type: integer
+            media_consumo_faturado:
+              type: integer
+            volumes_faturados_vo:
+              type: array
+              items:
+                type: object
+                properties:
+                  id_produto:
+                    type: integer
+                  produto:
+                    type: string
+                  vol_fat_ori:
+                    type: integer
+                  vol_fat:
+                    type: number
+                  vol_fat_cons:
+                    type: integer
+                  tcf:
+                    type: string
+                  id_tcf:
+                    type: integer
+            excecoes_vo:
+              type: array
+              items:
+                type: object
+                properties:
+                  id_excecao:
+                    type: integer
+                  excecao:
+                    type: string
+                  id_tipo_excecao:
+                    type: integer
+                  tipo_excecao:
+                    type: string
+                  id_tipo_faturamento:
+                    type: integer
+                  tipo_faturamento:
+                    type: string
+                  percentual:
+                    type: number
+                  valor:
+                    type: number
+                  automatica:
+                    type: boolean
+                  observacao:
+                    type: string
+            entrega_fatura:
+              type: string
+            tipo_leitura:
+              type: string
+            leitura_hm:
+              type: integer
+            volume_reduzido:
+              type: integer
+            msg_livre:
+              type: string
+            msg_retencao_forcada:
+              type: string
+            leiturista:
+              type: string
+            data_hora_leitura:
+              type: string
+            considerado_para_media:
+              type: boolean
+      title: ''
     ListFaturaDtoModel:
       type: array
       items:
@@ -66147,5 +66362,364 @@ components:
               tipoLayoutAvisoDebito: ''
               reimpressao: ''
           cidade: ''
+    CriterioEnquadramentoDtoModel:
+      type: object
+      properties:
+        idUsuario:
+          type: integer
+        volumeMedido:
+          type: number
+        volumeFaturado:
+          type: number
+        valorTotalFaturado:
+          type: number
+        varVolumeMedido:
+          type: number
+      x-examples:
+        Example 1:
+          idUsuario: 1
+          volumeMedido: 1.1
+          volumeFaturado: 1.1
+          valorTotalFaturado: 1.1
+          varVolumeMedido: 1.1
+    FaturaExcecaoDtoModel:
+      type: object
+      properties:
+        excecao:
+          type: string
+        idLigacao:
+          type: integer
+        idLigacaoExcecao:
+          type: integer
+        idExcecao:
+          type: integer
+        idExcecaoTipo:
+          type: integer
+        idExcecaoAplicacao:
+          type: integer
+        idTipoFaturamento:
+          type: integer
+        tipoFaturamento:
+          type: string
+        percentual:
+          type: integer
+        valor:
+          type: integer
+        carga:
+          type: integer
+        dia:
+          type: string
+        idClassificacaoFiscal:
+          type: integer
+        idExcecaoMotivo:
+          type: integer
+        observacao:
+          type: string
+        automatica:
+          type: boolean
+        momentoCalculo:
+          type: string
+        ordemAplicacao:
+          type: integer
+        ordemTipo:
+          type: integer
+        excecaoAplicada:
+          type: string
+        retroativo:
+          type: boolean
+        consideraCriticaConsumoSimultanea:
+          type: string
+        retencaoForcada:
+          type: string
+        excecaoAtiva:
+          type: boolean
+      x-examples:
+        Example 1:
+          excecao: ''
+          idLigacao: 0
+          idLigacaoExcecao: 0
+          idExcecao: 0
+          idExcecaoTipo: 0
+          idExcecaoAplicacao: 0
+          idTipoFaturamento: 0
+          tipoFaturamento: ''
+          percentual: 0
+          valor: 0
+          carga: 0
+          dia: '0'
+          idClassificacaoFiscal: 0
+          idExcecaoMotivo: 0
+          observacao: ''
+          automatica: false
+          momentoCalculo: ''
+          ordemAplicacao: 0
+          ordemTipo: 0
+          excecaoAplicada: ''
+          retroativo: false
+          consideraCriticaConsumoSimultanea: ''
+          retencaoForcada: ''
+          excecaoAtiva: true
+    CriticaConsumoSimultaneaDtoModel:
+      type: object
+      properties:
+        idTipoCalculo:
+          type: integer
+        retornouVistoria:
+          type: boolean
+        colCriterio:
+          type: array
+          items:
+            type: object
+            properties:
+              idCriterio:
+                type: integer
+              criterioFat:
+                type: string
+              aceitaLeitura:
+                type: string
+        idligacao:
+          type: integer
+        idMedicaoDetalhe:
+          type: integer
+        status:
+          type: string
+        nomeCliente:
+          type: string
+        endereco:
+          type: string
+        categoria:
+          type: string
+        tipoFaturamento:
+          type: string
+        qtdRetida:
+          type: integer
+        qtdAnalisada:
+          type: integer
+        salvo:
+          type: string
+        idCriterioFat:
+          type: integer
+        leitura:
+          type: integer
+        idCodLeitura:
+          type: integer
+        idPeriodo:
+          type: integer
+        idLigacaoConsolidadora:
+          type: integer
+        idTipoFaturamentoCons:
+          type: integer
+        idTipoMacromedidor:
+          type: integer
+        idGrupoIdent:
+          type: integer
+        setorIdent:
+          type: integer
+        rotaIdent:
+          type: integer
+        quadra:
+          type: string
+        lote:
+          type: string
+        cavaleteIdent:
+          type: integer
+        sitCobranca:
+          type: string
+        medidor:
+          type: string
+        corColuna:
+          type: string
+        msgLivre:
+          type: string
+        volumeMedido:
+          type: integer
+        volumeFaturado:
+          type: integer
+        valorTotalFaturado:
+          type: integer
+        varVolumeMedido:
+          type: integer
+        prioridade:
+          type: integer
+        corColunaPreEnquadramento:
+          type: string
+        leiturista:
+          type: string
+        dataLeitura:
+          type: string
+        idLeituristaPreRepasse:
+          type: integer
+        leituraPreRepasse:
+          type: integer
+        leituraRepasse:
+          type: integer
+        idCodLeituraPreRepasse:
+          type: integer
+        idOcorLeitura1PreRepasse:
+          type: integer
+        idOcorLeitura2PreRepasse:
+          type: integer
+        idOcorLeitura3PreRepasse:
+          type: integer
+        bloqueiaDesconsiderarMedia:
+          type: string
+        idLeiturista:
+          type: integer
+        efetuarVistoria:
+          type: string
+        idLeituristaRepasse:
+          type: integer
+        dataRepasse:
+          type: string
+        idCodLeituraRepasse:
+          type: integer
+        idOcorLeitura1Repasse:
+          type: integer
+        idOcorLeitura2Repasse:
+          type: integer
+        idOcorLeitura3Repasse:
+          type: integer
+        idOcorLeitura1:
+          type: integer
+        idOcorLeitura2:
+          type: integer
+        idOcorLeitura3:
+          type: integer
+        msgRetencaoForcada:
+          type: string
+        dataInstalacaoMedidor:
+          type: string
+        subCategoriaPrincipal:
+          type: string
+        consumoMedido:
+          type: integer
+      x-examples:
+        Example 1:
+          idTipoCalculo: 0
+          retornouVistoria: false
+          colCriterio:
+            - idCriterio: 0
+              criterioFat: ''
+              aceitaLeitura: ''
+          idligacao: 0
+          idMedicaoDetalhe: 0
+          status: ''
+          nomeCliente: ''
+          endereco: ''
+          categoria: ''
+          tipoFaturamento: ''
+          qtdRetida: 0
+          qtdAnalisada: 0
+          salvo: ''
+          idCriterioFat: 0
+          leitura: 0
+          idCodLeitura: 0
+          idPeriodo: 0
+          idLigacaoConsolidadora: 0
+          idTipoFaturamentoCons: 0
+          idTipoMacromedidor: 0
+          idGrupoIdent: 0
+          setorIdent: 0
+          rotaIdent: 0
+          quadra: ''
+          lote: ''
+          cavaleteIdent: 0
+          sitCobranca: ''
+          medidor: ''
+          corColuna: ''
+          msgLivre: ''
+          volumeMedido: 0
+          volumeFaturado: 0
+          valorTotalFaturado: 0
+          varVolumeMedido: 0
+          prioridade: 0
+          corColunaPreEnquadramento: ''
+          leiturista: ''
+          dataLeitura: ''
+          idLeituristaPreRepasse: 0
+          leituraPreRepasse: 0
+          leituraRepasse: 0
+          idCodLeituraPreRepasse: 0
+          idOcorLeitura1PreRepasse: 0
+          idOcorLeitura2PreRepasse: 0
+          idOcorLeitura3PreRepasse: 0
+          bloqueiaDesconsiderarMedia: ''
+          idLeiturista: 0
+          efetuarVistoria: ''
+          idLeituristaRepasse: 0
+          dataRepasse: ''
+          idCodLeituraRepasse: 0
+          idOcorLeitura1Repasse: 0
+          idOcorLeitura2Repasse: 0
+          idOcorLeitura3Repasse: 0
+          idOcorLeitura1: 0
+          idOcorLeitura2: 0
+          idOcorLeitura3: 0
+          msgRetencaoForcada: ''
+          dataInstalacaoMedidor: ''
+          subCategoriaPrincipal: ''
+          consumoMedido: 0
+    DadosFaturaSimultaneDtoModel:
+      type: object
+      properties:
+        key:
+          type: integer
+        idFatura:
+          type: integer
+        idRubrica:
+          type: integer
+        rubrica:
+          type: string
+        valorPocket:
+          type: integer
+        valorRecalculo:
+          type: integer
+        vencto:
+          type: string
+        idTipoTransacao:
+          type: integer
+        tipoTransacao:
+          type: string
+        valor:
+          type: integer
+        valorImposto:
+          type: integer
+        valorTotal:
+          type: integer
+        idPeriodo:
+          type: integer
+        descPeriodo:
+          type: string
+        idCidade:
+          type: integer
+        idGrupo:
+          type: integer
+        idLigacao:
+          type: integer
+        observacao:
+          type: string
+        corrigido:
+          type: boolean
+      x-examples:
+        Example 1:
+          key: 0
+          idFatura: 0
+          idRubrica: 0
+          rubrica: ''
+          valorPocket: 0
+          valorRecalculo: 0
+          vencto: ''
+          idTipoTransacao: 0
+          tipoTransacao: ''
+          valor: 0
+          valorImposto: 0
+          valorTotal: 0
+          idPeriodo: 0
+          descPeriodo: ''
+          idCidade: 0
+          idGrupo: 0
+          idLigacao: 0
+          observacao: ''
+          corrigido: false
   securitySchemes: {}
 x-extension-1: null
