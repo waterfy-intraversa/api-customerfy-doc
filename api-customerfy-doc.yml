@@ -1355,7 +1355,7 @@ paths:
         - Cadastro-Ligação
   /cadastro/ligacao/consulta/carregar-registro:
     get:
-      summary: Cadastro Ligação - Carregar Registro
+      summary: Ligação - Carregar Registro
       tags:
         - Cadastro-Ligação
       responses:
@@ -13517,6 +13517,253 @@ paths:
             type: integer
           in: query
           name: idTela
+  /os/pesquisar/ordem-serviço:
+    post:
+      summary: OS - Pesquisar ordem serviço
+      operationId: post-os-pesquisar-ordem-servi-o
+      responses:
+        '200':
+          description: OK
+      tags:
+        - OS
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: array
+                  x-stoplight:
+                    id: jtkon21fjrhzp
+                  items:
+                    x-stoplight:
+                      id: ymbgem6ly4arl
+                    type: integer
+                criterios:
+                  $ref: '#/components/schemas/CadastroOSDtoModel'
+                  x-stoplight:
+                    id: 6l2k7o7vzbkjm
+                apresentaMensagemCriterio:
+                  type: string
+                  x-stoplight:
+                    id: h6q4r0imp51o5
+  /os/obter/usuario-cidades:
+    get:
+      summary: OS - Obter usuario cidades
+      tags:
+        - OS
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: 9117steznjf4d
+      operationId: get-os-obter-usuario-cidades
+  /os/get/filtro/os-session:
+    get:
+      summary: OS - Get filtro session
+      tags:
+        - OS
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadastroOSDtoModel'
+      operationId: get-os-get-filtro-os-session
+  /os/get/filtro/os-status-session:
+    get:
+      summary: OS - Get filtro OS status session
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: qv3uy30ywhg3f
+                  type: integer
+      operationId: get-os-get-filtro-os-status-session
+      tags:
+        - OS
+  /medicao/salvar/historico-informativo:
+    post:
+      summary: Medição - Salvar histórico informativo
+      operationId: post-medicao-salvar-historico-informativo
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hIVO:
+                  $ref: '#/components/schemas/HistoricoInformativoDtoModel'
+                  x-stoplight:
+                    id: 5kc8sp3yc4htl
+  /medicao/imprimir/vistoria:
+    post:
+      summary: Medição - Imprimir vistoria
+      operationId: post-medicao-imprimir-vistoria
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                periodo:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: mwq0n3g9b24n9
+                grupo:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: 3t9hu7zdc9i95
+                rota:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: iphunvvtovhxk
+                orderByGrupo:
+                  type: boolean
+                  x-stoplight:
+                    id: eds45eaw0dbo2
+  /medicao/salvar/criterio-enquadramento:
+    post:
+      summary: Medição - Salvar critério enquadramento
+      operationId: post-medicao-salvar-criterio-enquadramento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Medição
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dadosDto:
+                  $ref: '#/components/schemas/CriterioEnquadramentoDtoModel'
+                  x-stoplight:
+                    id: r04gy0k4gobl1
+  /faturamento/obter/recalc-simultanea:
+    post:
+      summary: Faturamento - Obter recálculo simultânea
+      operationId: post-faturamento-obte-recalc-simultanea
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecalculoFaturaDtoModel'
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                medicaoDto:
+                  $ref: '#/components/schemas/CriticaConsumoSimultaneaDtoModel'
+                  x-stoplight:
+                    id: gv9e3wu6lnqn5
+                faturaSimultaneDto:
+                  $ref: '#/components/schemas/DadosFaturaSimultaneDtoModel'
+                  x-stoplight:
+                    id: 2msjqrfnr9efe
+    parameters: []
+  /ligacao/valida/excecoes-racalc:
+    post:
+      summary: Ligação - Valida exceções recálculo
+      operationId: post-ligacao-valida-excecoes-racalc
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Ligação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                excecoes:
+                  type: array
+                  x-stoplight:
+                    id: dli8di10xg9ht
+                  items:
+                    $ref: '#/components/schemas/LigacaoExcecaoDtoModel'
+                    x-stoplight:
+                      id: q07hedcaryw8u
+                i_idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: 880n01l5xmbqk
+  /faturamento/recalcular-fatura:
+    post:
+      summary: Faturamento - Recalcular fatura
+      operationId: post-faturamento-recalcular-fatura
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaturamentoDadoDtoModel'
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: ly0no9oyerkem
+                i_recalculoFaturaVO:
+                  $ref: '#/components/schemas/RecalculoFaturaDtoModel'
+                  x-stoplight:
+                    id: 6yl6kx64pl7qu
+                i_cadAtual:
+                  type: boolean
+                  x-stoplight:
+                    id: 7ziy435euffmo
+                excluirEncargos:
+                  type: boolean
+                  x-stoplight:
+                    id: xbjcxgavword6
 components:
   schemas:
     CriarLigacaoModel:
@@ -66721,5 +66968,163 @@ components:
           idLigacao: 0
           observacao: ''
           corrigido: false
+    RecalculoFaturaDtoModel:
+      type: object
+      properties:
+        recalculoFaturaDetVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idRubrica:
+                type: integer
+              rubrica:
+                type: string
+              valor:
+                type: number
+              valorImposto:
+                type: number
+              observacao:
+                type: string
+              idLigacaoSeguro:
+                type: integer
+        faturaExcecaoVO:
+          type: array
+          items:
+            type: object
+            properties:
+              excecao:
+                type: string
+              idLigacao:
+                type: integer
+              idLigacaoExcecao:
+                type: integer
+              idExcecao:
+                type: integer
+              idExcecaoTipo:
+                type: integer
+              idExcecaoAplicacao:
+                type: integer
+              idTipoFaturamento:
+                type: integer
+              tipoFaturamento:
+                type: string
+              percentual:
+                type: integer
+              valor:
+                type: integer
+              carga:
+                type: integer
+              dia:
+                type: string
+              idClassificacaoFiscal:
+                type: integer
+              idExcecaoMotivo:
+                type: integer
+              observacao:
+                type: string
+              automatica:
+                type: boolean
+              momentoCalculo:
+                type: string
+              ordemAplicacao:
+                type: integer
+              ordemTipo:
+                type: integer
+              excecaoAplicada:
+                type: string
+              retroativo:
+                type: boolean
+              consideraCriticaConsumoSimultanea:
+                type: string
+              retencaoForcada:
+                type: string
+        idLigacaoConsolidadora:
+          type: integer
+        idPeriodo:
+          type: integer
+        periodo:
+          type: string
+        vencto:
+          type: string
+        idFatura:
+          type: integer
+        idTipoTransacao:
+          type: integer
+        tipoTransacao:
+          type: string
+        leitura:
+          type: integer
+        valorTotal:
+          type: integer
+        idCodLeitura:
+          type: integer
+        permiteEmitir:
+          type: boolean
+        idTipoFaturamentoCons:
+          type: integer
+        idTipoMacromedidor:
+          type: integer
+        recalculoSimultanea:
+          type: boolean
+        idClienteInquilino:
+          type: integer
+        idOrgaoPublico:
+          type: integer
+        emVistoria:
+          type: boolean
+        criticaMedicao:
+          type: boolean
+      x-examples:
+        Example 1:
+          recalculoFaturaDetVO:
+            - idRubrica: 1
+              rubrica: ''
+              valor: 1.1
+              valorImposto: 1.1
+              observacao: ''
+              idLigacaoSeguro: 1
+          faturaExcecaoVO:
+            - excecao: ''
+              idLigacao: 0
+              idLigacaoExcecao: 0
+              idExcecao: 0
+              idExcecaoTipo: 0
+              idExcecaoAplicacao: 0
+              idTipoFaturamento: 0
+              tipoFaturamento: ''
+              percentual: 0
+              valor: 0
+              carga: 0
+              dia: '0'
+              idClassificacaoFiscal: 0
+              idExcecaoMotivo: 0
+              observacao: ''
+              automatica: false
+              momentoCalculo: F
+              ordemAplicacao: 0
+              ordemTipo: 0
+              excecaoAplicada: S
+              retroativo: false
+              consideraCriticaConsumoSimultanea: ''
+              retencaoForcada: ''
+          idLigacaoConsolidadora: 0
+          idPeriodo: 0
+          periodo: ''
+          vencto: ''
+          idFatura: 0
+          idTipoTransacao: 0
+          tipoTransacao: ''
+          leitura: 0
+          valorTotal: 0
+          idCodLeitura: 0
+          permiteEmitir: false
+          idTipoFaturamentoCons: 0
+          idTipoMacromedidor: 0
+          recalculoSimultanea: false
+          idClienteInquilino: 0
+          idOrgaoPublico: 0
+          emVistoria: false
+          criticaMedicao: false
   securitySchemes: {}
 x-extension-1: null
