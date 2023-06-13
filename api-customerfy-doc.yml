@@ -1494,9 +1494,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Central Atendimento - Ligação - Dados
-      tags:
-        - Central-Atendimento
+      summary: Ligação - Obter atendimento ligação dados
       responses:
         '200':
           description: OK
@@ -1511,6 +1509,8 @@ paths:
             type: boolean
           in: query
           name: ordem_servico
+      tags:
+        - Ligação
   '/central-atendimento/ligacao/{id_ligacao}/ocorrencias':
     parameters:
       - schema:
@@ -1751,9 +1751,7 @@ paths:
           name: id_cidade
   /central-atendimento/ligacao/cliente/atendimento:
     get:
-      summary: Central Atendimento - Cliente - Obter ligação atendimento
-      tags:
-        - Central-Atendimento
+      summary: Cliente - Obter ligação atendimento
       responses:
         '200':
           description: OK
@@ -1768,6 +1766,8 @@ paths:
             type: number
           in: query
           name: id_cliente
+      tags:
+        - Cliente
     parameters: []
   /central-atedimento/ligacao/atendimento:
     get:
@@ -14542,6 +14542,176 @@ paths:
                   type: string
                   x-stoplight:
                     id: dclac9jl49v57
+  /caixa-movimento/obter/caixa:
+    get:
+      summary: Caixa Movimento - Obter caixa
+      tags:
+        - Caixa-Movimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaixaDtoModel'
+      operationId: get-caixa-movimento-obter-caixa
+  /faturamento/cancelar/timbre:
+    get:
+      summary: Faturamento - Cancelar timbre
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaturaCFDiDtoModel'
+      operationId: get-faturamento-cancelar-timbre
+      parameters:
+        - schema:
+            type: boolean
+          in: query
+          name: cancelar
+        - schema:
+            type: integer
+          in: query
+          name: fatura
+        - schema:
+            type: integer
+          in: query
+          name: idFaturaSituacao
+  /faturamento/timbrar-fatura:
+    get:
+      summary: Faturamento - Timbrar fatura
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaturaCFDiDtoModel'
+      operationId: get-faturamento-timbrar-fatura
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: ligacao
+        - schema:
+            type: integer
+          in: query
+          name: fatura
+        - schema:
+            type: string
+          in: query
+          name: metodo
+        - schema:
+            type: string
+          in: query
+          name: tipo
+        - schema:
+            type: boolean
+          in: query
+          name: cancelar
+  /baixa-fatura-caixa/obter/dados/reimpressao-ticket:
+    get:
+      summary: Baixa Fatura Caixa - Obter dados reimpressão ticket
+      tags:
+        - Baixa-Fatura-Caixa
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CaixaMovimentoDetalheDtoModel'
+                  x-stoplight:
+                    id: 31ut5nql6g0a2
+      operationId: get-baixa-fatura-caixa-obter-dados-reimpressao-ticket
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idFatura
+  /arrecadacao/carregar/historico/retorno-da:
+    get:
+      summary: Arrecadação - Obter histórico retorno DA
+      tags:
+        - Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaturaHistoricoDtoModel'
+      operationId: get-faturamento-carregar-historico-retorno-da
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idFatura
+    parameters: []
+  /faturamento/obter/rubrica/guia-pagto:
+    get:
+      summary: Faturamento - Obter rubrica guia pagto
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RubricaDtoModel'
+      operationId: get-faturamento-obter-rubrica-guia-pagot
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+    parameters: []
+  /faturamento/calcular/guia-acrescimos:
+    post:
+      summary: Faturamento - Calcular guia acréscimos
+      operationId: post-faturamento-calcular-guia-acrescimos
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AcrescimoDtoModel'
+                  x-stoplight:
+                    id: vumj41u94nzr5
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_faturas:
+                  type: array
+                  x-stoplight:
+                    id: bog9g2w28f0fk
+                  items:
+                    $ref: '#/components/schemas/FaturaDtoModel'
+                    x-stoplight:
+                      id: etqfuoil73y58
+                i_dataVencto:
+                  type: string
+                  x-stoplight:
+                    id: 2r1xzdyii8u0p
+                  format: date
+        description: ''
 components:
   schemas:
     CriarLigacaoModel:
@@ -71849,5 +72019,54 @@ components:
               nsa: ''
               pathDownload: ''
           valor: 0
+    CaixaDtoModel:
+      type: object
+      properties:
+        descricao:
+          type: string
+        idArrecadador:
+          type: integer
+        codigo:
+          type: string
+      x-examples:
+        Example 1:
+          descricao: ''
+          idArrecadador: 1
+          codigo: ''
+    AcrescimoDtoModel:
+      type: object
+      properties:
+        idRubrica:
+          type: integer
+        idFatura:
+          type: integer
+        idClienteInquilino:
+          type: integer
+        rubrica:
+          type: string
+        valor:
+          type: integer
+        valorUfir:
+          type: integer
+        valorAcum:
+          type: integer
+        periodo:
+          type: string
+        idRubricaOrigem:
+          type: integer
+        calculoCorrecaoPendente:
+          type: string
+      x-examples:
+        Example 1:
+          idRubrica: -1
+          idFatura: -1
+          idClienteInquilino: 0
+          rubrica: ''
+          valor: 0
+          valorUfir: 0
+          valorAcum: 0
+          periodo: ''
+          idRubricaOrigem: 0
+          calculoCorrecaoPendente: ''
   securitySchemes: {}
 x-extension-1: null
