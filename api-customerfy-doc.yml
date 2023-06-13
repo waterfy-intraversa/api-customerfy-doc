@@ -14366,6 +14366,182 @@ paths:
             type: integer
           in: query
           name: idLigacao
+  /medicao/carregar/retorno-coletor:
+    get:
+      summary: Medição - Carregar retorno coletor
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ColetorDtoModel'
+                  x-stoplight:
+                    id: 99w6c1jdb74yt
+      operationId: get-medicao-carregar-retorno-coletor
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+  /medicao/imprimir/faturas-cf:
+    post:
+      summary: Medição - Imprimir faturas CF
+      operationId: post-medicao-imprimir-faturas-cf
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MacroDtoModel'
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                seq:
+                  type: array
+                  x-stoplight:
+                    id: l5gmg74087i27
+                  items:
+                    x-stoplight:
+                      id: 6ktht2ypbaz0x
+                    type: integer
+                periodo:
+                  type: integer
+                  x-stoplight:
+                    id: uolytgeizdny0
+                grupo:
+                  type: integer
+                  x-stoplight:
+                    id: ibnlswmesgavz
+  /leitura/retornar-coletor:
+    post:
+      summary: Leitura - Retornar coletor
+      operationId: post-leitura-retornar-coletor
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ColetorDtoModel'
+                  x-stoplight:
+                    id: zhv6tkyqg0on1
+      tags:
+        - Leitura
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_colColetor:
+                  type: array
+                  x-stoplight:
+                    id: 8t3kw7qvfg9vk
+                  items:
+                    $ref: '#/components/schemas/ColetorDtoModel'
+                    x-stoplight:
+                      id: orc44qf3w52i5
+                i_idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: y3xm8s7xc9dua
+                i_idGrupo:
+                  type: integer
+                  x-stoplight:
+                    id: rctl6zcfvbtd4
+                i_idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: 8h7ksjb1zye2l
+  /leitura/ler/coletor:
+    post:
+      summary: Leitura - Ler coletor
+      operationId: post-leitura-ler-coletor
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ColetorDtoModel'
+                  x-stoplight:
+                    id: 4ykms5apgxgzk
+      tags:
+        - Leitura
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                colColetor:
+                  type: array
+                  x-stoplight:
+                    id: oz8jj75ay8g23
+                  items:
+                    $ref: '#/components/schemas/ColetorDtoModel'
+                    x-stoplight:
+                      id: qbbns3d0mwjc1
+                i_idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: xh7bxxe5fttc4
+                idGrupo:
+                  type: integer
+                  x-stoplight:
+                    id: 2s3t1s0r5rckz
+                idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: 558u2585804up
+        description: ''
+  /buffer-impressao/download-arquivo:
+    post:
+      summary: Buffer Impressão - Download arquivo
+      operationId: post-buffer-impressao-download-arquivo
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Buffer-Impressão
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                downloadPath:
+                  type: string
+                  x-stoplight:
+                    id: 4h31me0vxesfd
+                nomeArquivo:
+                  type: string
+                  x-stoplight:
+                    id: dclac9jl49v57
 components:
   schemas:
     CriarLigacaoModel:
