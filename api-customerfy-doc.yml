@@ -14287,6 +14287,85 @@ paths:
                   type: string
                   x-stoplight:
                     id: 42g0sa0v2capo
+  /arrecadacao/carrega/historico/pagamentos:
+    get:
+      summary: Arrecadação - Carrega histórico pagamentos
+      tags:
+        - Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaturaHistoricoDtoModel'
+      operationId: get-arrecadacao-carrega-historico-pagamentos
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idFatura
+  /arrecadacao/show-txt-file:
+    post:
+      summary: Arrecadação - Show TXT file
+      operationId: post-arrecadacao-show-txt-file
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Arrecadação
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: path
+  /arrecadacao/estornar-pagamentos:
+    post:
+      summary: Arrecadação - Estornar pagamentos
+      operationId: post-arrecadacao-estornar-pagamentos
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Arrecadação
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idFaturaPagamento:
+                  type: integer
+                  x-stoplight:
+                    id: 56khrm61dik53
+                idFaturaMotivoEstornoPagto:
+                  type: integer
+                  x-stoplight:
+                    id: eaj5xxbp5e06r
+                fatura:
+                  $ref: '#/components/schemas/FaturaHistoricoDtoModel'
+                  x-stoplight:
+                    id: wn40uqy8a72ev
+  /medicao/imprimir/historico/faturamento:
+    get:
+      summary: Medição - Imprimir histórico faturamento
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MacroDtoModel'
+      operationId: get-medicao-imprimir-historico-faturamento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
 components:
   schemas:
     CriarLigacaoModel:
@@ -71496,5 +71575,103 @@ components:
           idArrecadacao: null
           isSegVia: false
           cancelado: 'N'
+    FaturaHistoricoDtoModel:
+      type: object
+      properties:
+        periodo:
+          type: string
+        idFatura:
+          type: integer
+        idLigacao:
+          type: integer
+        tipoTransacao:
+          type: string
+        dataVencto:
+          type: 'null'
+        faturaHistoricoDetVO:
+          type: array
+          items:
+            type: object
+            properties:
+              idFaturaPagamento:
+                type: integer
+              status:
+                type: string
+              arrecadador:
+                type: string
+              debitoAutomatico:
+                type: string
+              arquivo:
+                type: string
+              tipoBaixa:
+                type: string
+              usuarioImportacao:
+                type: string
+              motivoEstorno:
+                type: string
+              tipoRetorno:
+                type: string
+              usuarioAlteracao:
+                type: string
+              idUsuarioAlteracao:
+                type: integer
+              dataImportacao:
+                type: 'null'
+              horaImportacao:
+                type: 'null'
+              dataPagto:
+                type: 'null'
+              dataCredito:
+                type: 'null'
+              dataAlteracao:
+                type: 'null'
+              dataRetorno:
+                type: 'null'
+              numeroDocumento:
+                type: string
+              transacao:
+                type: string
+              dataInicioTransacao:
+                type: string
+              dataFinalTransacao:
+                type: string
+              nsa:
+                type: string
+              pathDownload:
+                type: string
+        valor:
+          type: integer
+      x-examples:
+        Example 1:
+          periodo: ''
+          idFatura: 0
+          idLigacao: 0
+          tipoTransacao: ''
+          dataVencto: null
+          faturaHistoricoDetVO:
+            - idFaturaPagamento: 0
+              status: ''
+              arrecadador: ''
+              debitoAutomatico: ''
+              arquivo: ''
+              tipoBaixa: ''
+              usuarioImportacao: ''
+              motivoEstorno: ''
+              tipoRetorno: ''
+              usuarioAlteracao: ''
+              idUsuarioAlteracao: 0
+              dataImportacao: null
+              horaImportacao: null
+              dataPagto: null
+              dataCredito: null
+              dataAlteracao: null
+              dataRetorno: null
+              numeroDocumento: ''
+              transacao: ''
+              dataInicioTransacao: ''
+              dataFinalTransacao: ''
+              nsa: ''
+              pathDownload: ''
+          valor: 0
   securitySchemes: {}
 x-extension-1: null
