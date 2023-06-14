@@ -14712,6 +14712,35 @@ paths:
                     id: 2r1xzdyii8u0p
                   format: date
         description: ''
+  /macro/imprimir/layout:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-macro-imprimir-layoutt
+    parameters: []
+    post:
+      summary: Macro - Imprimir layout
+      operationId: post-macro-imprimir-layout
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                m:
+                  $ref: '#/components/schemas/MacroDtoModel'
+                  x-stoplight:
+                    id: m0trouwytj5kp
 components:
   schemas:
     CriarLigacaoModel:
