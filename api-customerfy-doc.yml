@@ -14713,11 +14713,6 @@ paths:
                   format: date
         description: ''
   /macro/imprimir/layout:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-macro-imprimir-layoutt
     parameters: []
     post:
       summary: Macro - Imprimir layout
@@ -14741,6 +14736,46 @@ paths:
                   $ref: '#/components/schemas/MacroDtoModel'
                   x-stoplight:
                     id: m0trouwytj5kp
+  /os/salvar/os/lote:
+    post:
+      summary: OS - Salvar OS lote
+      operationId: post-os-salvar-os-lote
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeracaoOSLoteDtoModel'
+                  x-stoplight:
+                    id: buprwd2rq43i7
+      tags:
+        - OS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dadosArquivoOS:
+                  type: array
+                  x-stoplight:
+                    id: fwnl4daav1zwe
+                  items:
+                    $ref: '#/components/schemas/GeracaoOSLoteDtoModel'
+                    x-stoplight:
+                      id: dkwrr11dd7ea5
+                dadosOS:
+                  type: array
+                  x-stoplight:
+                    id: pqtc73edwtt74
+                  items:
+                    $ref: '#/components/schemas/CadastroOSDtoModel'
+                    x-stoplight:
+                      id: swnqx8lso5t9n
+        description: ''
 components:
   schemas:
     CriarLigacaoModel:
