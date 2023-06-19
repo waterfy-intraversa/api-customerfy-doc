@@ -1771,7 +1771,7 @@ paths:
     parameters: []
   /central-atedimento/ligacao/atendimento:
     get:
-      summary: Central Atendimento - Ligacao - Atendimento
+      summary: Ligação - Obter ligação atendimento
       tags:
         - Central-Atendimento
       responses:
@@ -1787,6 +1787,7 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+      description: ''
   /faturamento/parametros/cadastro:
     get:
       summary: Faturamento - Parâmetros - Obter parâmetro cadastro
@@ -14776,6 +14777,56 @@ paths:
                     x-stoplight:
                       id: swnqx8lso5t9n
         description: ''
+  /ligacao/validar/cancelamento-ent-alt:
+    get:
+      summary: Ligação - Validar cancelamento ent alt
+      tags:
+        - Ligação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-ligacao-validar-cancelamento-ent-alt
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /ligacao/cancelar/entrega-alt:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-ligacao-cancelar-entrega-alt
+    post:
+      summary: Ligação - Cancelar entrega alternativa
+      operationId: post-ligacao-cancelar-entrega-alt
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetornoLigacaoDtoModel'
+      tags:
+        - Ligação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ligacaoAtendimento:
+                  $ref: '#/components/schemas/CALigacaoAtendimentoModel'
+                  x-stoplight:
+                    id: c0h2bsmkx1zyc
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: wv7ga7rrq5kwo
 components:
   schemas:
     CriarLigacaoModel:
@@ -72132,5 +72183,19 @@ components:
           periodo: ''
           idRubricaOrigem: 0
           calculoCorrecaoPendente: ''
+    RetornoLigacaoDtoModel:
+      type: object
+      properties:
+        idLigacao:
+          type: integer
+        mensagem:
+          type: string
+        ligacaoEntregaAlterada:
+          type: boolean
+      x-examples:
+        Example 1:
+          idLigacao: 1
+          mensagem: ''
+          ligacaoEntregaAlterada: true
   securitySchemes: {}
 x-extension-1: null
