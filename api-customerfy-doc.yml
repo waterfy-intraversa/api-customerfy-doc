@@ -14796,11 +14796,6 @@ paths:
           in: query
           name: idLigacao
   /ligacao/cancelar/entrega-alt:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-ligacao-cancelar-entrega-alt
     post:
       summary: Ligação - Cancelar entrega alternativa
       operationId: post-ligacao-cancelar-entrega-alt
@@ -14827,6 +14822,228 @@ paths:
                   type: integer
                   x-stoplight:
                     id: wv7ga7rrq5kwo
+  /cobranca/utiliza/grupo-unidade-operacional:
+    get:
+      summary: Cobrança - Utiliza grupo unidade operacional
+      tags:
+        - Cobrança
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-cobranca-utiliza-grupo-unidade-operacional
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /faturamento/get/ordenacao-cpf:
+    get:
+      summary: Faturamento - Get ordenação CPF
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      operationId: get-faturamento-get-ordenacao-cpf
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /buffer-impressao/verifica/utilizacao-buffer:
+    get:
+      summary: Buffer Impressão - Verifica utilização buffer impressão
+      tags:
+        - Buffer-Impressão
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-buffer-impressao-verifica-utilizacao-buffer
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /faturamento/is/fatura-convencional/nao-emitida:
+    get:
+      summary: Faturamento - Is fatura convencional não emitida
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+      operationId: get-faturamento-is-fatura-convencional-nao-emitida
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+  /medicao/exibe/fatura-retida:
+    get:
+      summary: Medição - Exibe fatura retida
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImpressaoFatRetidaSimultaneaDto'
+                  x-stoplight:
+                    id: 5h2jqlo5s9at2
+      operationId: get-medicao-exibe-fatura-retida
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idCidade
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idRota
+        - schema:
+            type: boolean
+          in: query
+          name: i_ordenacaoEntrega
+        - schema:
+            type: boolean
+          in: query
+          name: i_impPosQualidade
+  /faturamento/imprimir/faturas-retidas/biro:
+    get:
+      summary: Faturamento - Imprimir faturas retidas biro
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-faturamento-imprimir-faturas-retidas-biro
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: idGrupo
+        - schema:
+            type: string
+          in: query
+          name: periodo
+  /faturamento/imprimir/faturas-retidas:
+    post:
+      summary: Faturamento - Imprimir faturas retidas
+      operationId: post-faturamento-imprimir-faturas-retidas
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                vIdFaturas:
+                  type: array
+                  x-stoplight:
+                    id: h1okv5xanyesl
+                  items:
+                    $ref: '#/components/schemas/ImpressaoFatRetidaSimultaneaDto'
+                    x-stoplight:
+                      id: ertnw9nuhu04s
+                tipoOrdenacao:
+                  type: integer
+                  x-stoplight:
+                    id: tt7pizy8wk3kg
+                criticaMedicao:
+                  type: boolean
+                  x-stoplight:
+                    id: thh0q8kzdndnm
+                entregaEspecial:
+                  type: boolean
+                  x-stoplight:
+                    id: w99k3ymahcn27
+                envioEmail:
+                  type: boolean
+                  x-stoplight:
+                    id: h9rm4n5f6ubte
+                entregaFace:
+                  type: boolean
+                  x-stoplight:
+                    id: ndsxqmvnmyzdn
+                isSalvarImpressaoBuffer:
+                  type: boolean
+                  x-stoplight:
+                    id: qisx8visoie1t
+  /enviar-fatura-email/obter/id-processo/envio-fatura-retida/email:
+    post:
+      summary: Enviar Fatura Email - Obter id processo envio fatura retida email
+      operationId: post-enviar-fatura-email-obter-id-processo-envio-fatura-retida-email
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Enviar-Fatura-Email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                p:
+                  $ref: '#/components/schemas/ParametrosBaseDtoModel'
+                  x-stoplight:
+                    id: dv6lehsj3dm1h
 components:
   schemas:
     CriarLigacaoModel:
@@ -72197,5 +72414,64 @@ components:
           idLigacao: 1
           mensagem: ''
           ligacaoEntregaAlterada: true
+    ImpressaoFatRetidaSimultaneaDto:
+      type: object
+      properties:
+        idLigacao:
+          type: integer
+        slip:
+          type: integer
+        idFatura:
+          type: integer
+        idTipoEntrega:
+          type: integer
+        nomeCliente:
+          type: string
+        criticaMedicao:
+          type: boolean
+        criticaLeitura:
+          type: boolean
+        entregaEspecial:
+          type: boolean
+        enviarFaturaEmail:
+          type: boolean
+        faturaEmitida:
+          type: string
+        faturaImpressaColetor:
+          type: string
+        enviarEmail:
+          type: boolean
+        enviarEmailSucesso:
+          type: boolean
+        enviarEmailErro:
+          type: boolean
+        impressaSemQualidade:
+          type: boolean
+        declaracaoQuitacaoAnual:
+          type: string
+        idProcessoCorte:
+          type: integer
+        entregaFace:
+          type: boolean
+      x-examples:
+        Example 1:
+          idLigacao: 0
+          slip: 0
+          idFatura: 0
+          idTipoEntrega: 0
+          nomeCliente: ''
+          criticaMedicao: false
+          criticaLeitura: false
+          entregaEspecial: false
+          enviarFaturaEmail: false
+          faturaEmitida: ''
+          faturaImpressaColetor: 'N'
+          enviarEmail: false
+          enviarEmailSucesso: false
+          enviarEmailErro: false
+          impressaSemQualidade: false
+          declaracaoQuitacaoAnual: ''
+          idProcessoCorte: 0
+          entregaFace: false
   securitySchemes: {}
 x-extension-1: null
