@@ -2207,7 +2207,6 @@ paths:
       summary: Faturamento - Parametros - Exibe Rubrica Imposto
       tags:
         - Faturamento
-        - Central-Atendimento
       responses:
         '200':
           description: OK
@@ -15062,6 +15061,394 @@ paths:
             type: integer
           in: query
           name: idLigacao
+  /caixa-movimento/is/caixa-aberto:
+    get:
+      summary: Caixa Movimento - Is caixa aberto
+      tags:
+        - Caixa-Movimento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-caixa-movimento-is-caixa-aberto
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCaixa
+  /caixa-movimento/get/caixa-movimento:
+    get:
+      summary: Caixa Movimento - Get caixa movimento
+      tags:
+        - Caixa-Movimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaixaMovimentoDtoModel'
+      operationId: get-caixa-movimento-get-caixa-movimento
+  /baixa-fatura-caixa/obter/dados-tela:
+    get:
+      summary: Baixa Fatura Caixa - Obter dados tela
+      tags:
+        - Baixa-Fatura-Caixa
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaixaManualDtoModel'
+      operationId: get-baixa-fatura-caixa-obter-dados-tela
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idFatura
+  /baixa-fatura-caixa/obter/dados-tela/guia:
+    get:
+      summary: Baixa Fatura Caixa - Obter dados tela (Is Guia)
+      tags:
+        - Baixa-Fatura-Caixa
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaixaManualDtoModel'
+      operationId: get-baixa-fatura-caixa-obter-dados-tela-guia
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idFatura
+        - schema:
+            type: boolean
+          in: query
+          name: isGuia
+  /baixa-fatura-caixa/obter/dados-tela/caixa:
+    get:
+      summary: Baixa Fatura Caixa - Obter dados tela (Is Caixa)
+      tags:
+        - Baixa-Fatura-Caixa
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaixaManualDtoModel'
+      operationId: get-baixa-fatura-caixa-obter-dados-tela-caixa
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idFatura
+        - schema:
+            type: integer
+          in: query
+          name: isCaixa
+  /arrecadacao/obter/dados/fatura/ligacao:
+    get:
+      summary: Arrecadação - Obter dados fatura ligação
+      tags:
+        - Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BaixaManualDetalheDtoModel'
+                  x-stoplight:
+                    id: mhpbdwi9t493f
+      operationId: get-arrecadacao-obter-dados-fatura-ligacao
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: dataPagamento
+        - schema:
+            type: string
+          in: query
+          name: dataCredito
+        - schema:
+            type: string
+          in: query
+          name: dataVencIni
+        - schema:
+            type: string
+          in: query
+          name: dataVencFin
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /cliente/obter/ligacao/atendimento:
+    get:
+      summary: Cliente - Obter ligação atendimento
+      tags:
+        - Cliente
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClienteDtoModel'
+      operationId: get-cliente-obter-ligacao-atendimento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /caixa-movimento/validar/sangria:
+    post:
+      summary: Caixa Movimento - Validar sangria
+      operationId: post-caixa-movimento-validar-sangria
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Caixa-Movimento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCaixaMovimento
+        - schema:
+            type: number
+          in: query
+          name: valorSangria
+  /caixa-movimento/inserir/caixa-movimento/detalhe:
+    post:
+      summary: Caixa Movimento - Inserir caixa movimento detalhe
+      operationId: post-caixa-movimento-inserir-caixa-movimento-detalhe
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaixaMovimentoDetalheDtoModel'
+      tags:
+        - Caixa-Movimento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                caixaMovimentoDetalheDto:
+                  $ref: '#/components/schemas/CaixaMovimentoDetalheDtoModel'
+                  x-stoplight:
+                    id: do19789au77y0
+  /baixa-fatura-caixa/efetivar/dados/caixa:
+    post:
+      summary: Baixa Fatura Caixa - Efetivar dados caixa
+      operationId: post-baixa-fatura-caixa-efetivar-dados-caixa
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BaixaManualDtoModel'
+                  x-stoplight:
+                    id: yhh08b51rkw1s
+      tags:
+        - Baixa-Fatura-Caixa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: 6zbw80tb5fq0n
+                listIdsLigacao:
+                  type: array
+                  x-stoplight:
+                    id: ueohsidx2cv4r
+                  items:
+                    x-stoplight:
+                      id: rkglyjcthgp52
+                    type: integer
+                baixaManualDto:
+                  $ref: '#/components/schemas/BaixaManualDtoModel'
+                  x-stoplight:
+                    id: p1664ych4twze
+                isIncorporaTroco:
+                  type: boolean
+                  x-stoplight:
+                    id: af4ndxus7k85i
+                vlrIncorporar:
+                  type: number
+                  x-stoplight:
+                    id: yhnlnp5p4fp66
+        description: ''
+  '/faturamento/obter/historico/faturas/{idFatura}':
+    parameters:
+      - schema:
+          type: string
+        name: idFatura
+        in: path
+        required: true
+    get:
+      summary: Faturamento - Obter total histórico faturas
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturaDtoModel'
+                  x-stoplight:
+                    id: len95tt6hmbah
+      operationId: get-faturamento-obter-historico-faturas-idFatura
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: idLigacao
+  '/faturamento/obter/historico/faturas/{offset}/{limit}':
+    parameters:
+      - schema:
+          type: string
+        name: offset
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: limit
+        in: path
+        required: true
+    get:
+      summary: Faturamento - Obter histórico faturas (offset/limit)
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturaDtoModel'
+                  x-stoplight:
+                    id: usxz9l7a2b4ke
+      operationId: get-faturamento-obter-historico-faturas-offset-limit
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /caixa-movimento/inserir/nr-cupom-cartao:
+    post:
+      summary: Caixa Movimento - Inserir nr cupom cartão
+      operationId: post-caixa-movimento-inserir-nr-cupom-cartao
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Caixa-Movimento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nrCupomCartao:
+                  type: string
+                  x-stoplight:
+                    id: khrq15axf05t3
+                baixaManualDtoList:
+                  type: array
+                  x-stoplight:
+                    id: yu7a86rfr1eiy
+                  items:
+                    $ref: '#/components/schemas/BaixaManualDtoModel'
+                    x-stoplight:
+                      id: v6k0bnnd5yre9
+  /caixa-movimento/imprimir/caixa/recibo:
+    post:
+      summary: Caixa Movimento - Imprimir caixa recibo
+      operationId: post-caixa-movimento-imprimir-caixa-recibo
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Caixa-Movimento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                listaCaixaRecibo:
+                  type: array
+                  x-stoplight:
+                    id: 3ovyu2qmwy1wt
+                  items: {}
+                layout:
+                  type: string
+                  x-stoplight:
+                    id: 9mflgjgayujft
+                isGuia:
+                  type: boolean
+                  x-stoplight:
+                    id: x30vfq53izap7
+                segVia:
+                  type: boolean
+                  x-stoplight:
+                    id: mhuind5mh14si
+                email:
+                  type: boolean
+                  x-stoplight:
+                    id: ajk17p6ufo3kv
+                nomeLayout:
+                  type: string
+                  x-stoplight:
+                    id: noraq5fuydugd
+  /caixa-movimento/layout/caixa:
+    get:
+      summary: Caixa Movimento - Layout caixa
+      tags:
+        - Caixa-Movimento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-caixa-movimento-layout-caixa
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: string
+          in: query
+          name: layout
 components:
   schemas:
     CriarLigacaoModel:
@@ -72491,5 +72878,97 @@ components:
           declaracaoQuitacaoAnual: ''
           idProcessoCorte: 0
           entregaFace: false
+    CaixaMovimentoDtoModel:
+      type: object
+      properties:
+        idCaixa:
+          type: integer
+        dataAbertura:
+          type: string
+        valorAbertura:
+          type: integer
+        dataFechamento:
+          type: string
+        valorFechamento:
+          type: integer
+        idUsuario:
+          type: integer
+        ativo:
+          type: string
+        caixaMovimentoDetalhe:
+          type: array
+          items:
+            type: object
+            properties:
+              idCaixaMovimento:
+                type: integer
+              idTipoMovimentoCaixa:
+                type: integer
+              dataMovimento:
+                type: string
+              idDocumento:
+                type: integer
+              valor:
+                type: integer
+              idUsuario:
+                type: integer
+              idcaixaoperacao:
+                type: integer
+              valorDinheiro:
+                type: integer
+              valorCheque:
+                type: integer
+              valorCartao:
+                type: integer
+              valorTransferencia:
+                type: integer
+              valorTroco:
+                type: integer
+              valorDivida:
+                type: integer
+              valorAbono:
+                type: integer
+              valorIncorporar:
+                type: integer
+              idFaturaAbonada:
+                type: integer
+              vlrFaturaAbonada:
+                type: integer
+              idArrecadacao:
+                type: 'null'
+              isSegVia:
+                type: boolean
+        isSegVia:
+          type: boolean
+      x-examples:
+        Example 1:
+          idCaixa: 0
+          dataAbertura: ''
+          valorAbertura: 0
+          dataFechamento: ''
+          valorFechamento: 0
+          idUsuario: 0
+          ativo: ''
+          caixaMovimentoDetalhe:
+            - idCaixaMovimento: 0
+              idTipoMovimentoCaixa: 0
+              dataMovimento: ''
+              idDocumento: 0
+              valor: 0
+              idUsuario: 0
+              idcaixaoperacao: 0
+              valorDinheiro: 0
+              valorCheque: 0
+              valorCartao: 0
+              valorTransferencia: 0
+              valorTroco: 0
+              valorDivida: 0
+              valorAbono: 0
+              valorIncorporar: 0
+              idFaturaAbonada: 1
+              vlrFaturaAbonada: 0
+              idArrecadacao: null
+              isSegVia: false
+          isSegVia: false
   securitySchemes: {}
 x-extension-1: null
