@@ -15044,6 +15044,24 @@ paths:
                   $ref: '#/components/schemas/ParametrosBaseDtoModel'
                   x-stoplight:
                     id: dv6lehsj3dm1h
+  /medicao/imprimir/historico/consumo:
+    get:
+      summary: Medição - Obter histórico consumo
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MacroDtoModel'
+      operationId: get-medicao-imprimir-historico-consumo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
 components:
   schemas:
     CriarLigacaoModel:
