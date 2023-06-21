@@ -15387,6 +15387,7 @@ paths:
                     $ref: '#/components/schemas/BaixaManualDtoModel'
                     x-stoplight:
                       id: v6k0bnnd5yre9
+      description: ''
   /caixa-movimento/imprimir/caixa/recibo:
     post:
       summary: Caixa Movimento - Imprimir caixa recibo
@@ -15449,6 +15450,51 @@ paths:
             type: string
           in: query
           name: layout
+  /caixa-movimento/inserir/nr-cupom-transferencia:
+    post:
+      summary: Caixa Movimento - Inserir nr cupom transferência
+      operationId: post-caixa-movimento-inserir-nr-cupom-transferencia
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nrCupomTransferencia:
+                  type: string
+                  x-stoplight:
+                    id: csy4524i37l3b
+                baixaManualDTOList:
+                  type: array
+                  x-stoplight:
+                    id: 4ih9bhu1x8yzx
+                  items:
+                    $ref: '#/components/schemas/BaixaManualDtoModel'
+                    x-stoplight:
+                      id: hx5c2vpipwyfq
+      tags:
+        - Caixa-Movimento
+  /caixa-movimento/obter/relatorio:
+    get:
+      summary: Caixa Movimento - Obter relatório
+      tags:
+        - Caixa-Movimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaixaRelatorioDtoModel'
+      operationId: get-caixa-movimento-obter-relatorio
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCaixaMovimento
 components:
   schemas:
     CriarLigacaoModel:
@@ -72970,5 +73016,22 @@ components:
               idArrecadacao: null
               isSegVia: false
           isSegVia: false
+    CaixaRelatorioDtoModel:
+      type: object
+      properties:
+        valorAbertura:
+          type: number
+        valorSangria:
+          type: number
+        valorRecebido:
+          type: number
+        valorTotal:
+          type: number
+      x-examples:
+        Example 1:
+          valorAbertura: 1.1
+          valorSangria: 1.1
+          valorRecebido: 1.1
+          valorTotal: 1.1
   securitySchemes: {}
 x-extension-1: null
