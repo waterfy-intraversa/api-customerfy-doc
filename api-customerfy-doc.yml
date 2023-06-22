@@ -15539,6 +15539,53 @@ paths:
             type: integer
           in: query
           name: i_idPeriodo
+  /faturamento/emitir/fatura/seg-via:
+    post:
+      summary: Faturamento - Emitir fatura seg via
+      operationId: post-faturamento-emitir-fatura-seg-via
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: object
+              properties:
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: lbi2zjb5oz61f
+                idFaturas:
+                  type: array
+                  x-stoplight:
+                    id: 70nqkebpt8xvj
+                  items:
+                    x-stoplight:
+                      id: tddpz7ke656vt
+                    type: integer
+                cobraEmissao:
+                  type: boolean
+                  x-stoplight:
+                    id: ltqn2qv0o0wy9
+                rubrica:
+                  $ref: '#/components/schemas/RubricaDtoModel'
+                  x-stoplight:
+                    id: 391v18ixhsq98
+                solicitante:
+                  type: string
+                  x-stoplight:
+                    id: rwzte9x9jznd5
+                layout:
+                  type: string
+                  x-stoplight:
+                    id: w7ulutg2ronvc
 components:
   schemas:
     CriarLigacaoModel:
