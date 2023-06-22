@@ -15495,6 +15495,50 @@ paths:
             type: integer
           in: query
           name: idCaixaMovimento
+  /caixa-movimento/obter/documento/operacao:
+    get:
+      summary: Caixa Movimento - Obter documento caixa por operação
+      tags:
+        - Caixa-Movimento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: btappe08pzgsn
+                  type: integer
+      operationId: get-caixa-movimento-obter-documento-operacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idOperacao
+  /faturamento/is/cota/fixa/fatura/emitida:
+    get:
+      summary: Faturamento - Is cota fixa fatura emitida
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-faturamento-is-cota-fixa-fatura-emitida
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
 components:
   schemas:
     CriarLigacaoModel:
