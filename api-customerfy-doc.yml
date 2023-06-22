@@ -15586,6 +15586,148 @@ paths:
                   type: string
                   x-stoplight:
                     id: w7ulutg2ronvc
+  /faturamento/enviar/timbre:
+    post:
+      summary: Faturamento - Enviar timbre
+      operationId: post-faturamento-enviar-timbre
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                timbreLayoutDTO:
+                  $ref: '#/components/schemas/TimbreLayoutDtoModel'
+                  x-stoplight:
+                    id: gyrj04w070ggz
+                xml:
+                  type: string
+                  x-stoplight:
+                    id: ksx1ye03z2ztc
+                destinatario:
+                  type: string
+                  x-stoplight:
+                    id: hz90sxfnsffq9
+  /faturamento/imprimir/timbre:
+    post:
+      summary: Faturamento - Imprimir timbre
+      operationId: post-faturamento-imprimir-timbre
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                timbreLayout:
+                  $ref: '#/components/schemas/TimbreLayoutDtoModel'
+                  x-stoplight:
+                    id: ykayss4uc3tsb
+                xml:
+                  type: string
+                  x-stoplight:
+                    id: 72yl3k176mtec
+  /faturamento/cancelar/cfdi:
+    get:
+      summary: Faturamento - Cancelar CFDI
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+      operationId: get-faturamento-cancelar-cfdi
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: uuid
+        - schema:
+            type: string
+          in: query
+          name: idmtvc
+  /faturamento/cancelar/timbre/especifico:
+    get:
+      summary: Faturamento - Cancelar timbre especifico
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaturaCFDiDtoModel'
+      operationId: get-faturamento-cancelar-timbre-especifico
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idmotivo
+        - schema:
+            type: string
+          in: query
+          name: uuid
+  /rotina-arrecadacao/carregar/historico/pagamento-parcial:
+    get:
+      summary: Rotina Arrecadação - Carregar histórico pagamento parcial
+      tags:
+        - Rotina-Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturaPagamentoParcialDtoModel'
+                  x-stoplight:
+                    id: ov0wtcc7ppfv7
+      operationId: get-rotina-arrecadacao-carregar-historico-pagamento-parcial
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idFatura
+  /faturamento/substituir/cfdi:
+    get:
+      summary: Faturamento - Substituir CFDI
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-faturamento-substituir-cfdi
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: uuid
 components:
   schemas:
     CriarLigacaoModel:
@@ -73124,5 +73266,228 @@ components:
           valorSangria: 1.1
           valorRecebido: 1.1
           valorTotal: 1.1
+    TimbreLayoutDtoModel:
+      type: object
+      properties:
+        serieFolio:
+          type: string
+        fechaTimbrado:
+          type: string
+        usoCFDI:
+          type: string
+        folioFiscal:
+          type: string
+        serieCSD:
+          type: string
+        comprobante:
+          type: string
+        cuenta:
+          type: integer
+        lugarExpedicion:
+          type: string
+        rfc:
+          type: string
+        servicio:
+          type: string
+        usuario:
+          type: string
+        domicilio:
+          type: string
+        rubricas:
+          type: array
+          items:
+            type: object
+            properties:
+              concepto:
+                type: string
+              description:
+                type: string
+              unidad:
+                type: string
+              valorUnitario:
+                type: integer
+              cantidad:
+                type: integer
+              importe:
+                type: integer
+              descuento:
+                type: integer
+              impuesto:
+                type: string
+              tipo:
+                type: string
+              base:
+                type: integer
+              factor:
+                type: string
+              tasa:
+                type: string
+              importe2:
+                type: integer
+        qrCode:
+          type: string
+        formaPago:
+          type: string
+        metodoPago:
+          type: string
+        serieCertificadoSat:
+          type: string
+        importeConLetra:
+          type: string
+        cadernaOriginal:
+          type: string
+        selloDigital:
+          type: string
+        selloSat:
+          type: string
+        subTotal:
+          type: integer
+        descuento:
+          type: integer
+        iva:
+          type: integer
+        serviciosAmbientales:
+          type: integer
+        total:
+          type: integer
+        idDocumento:
+          type: string
+        saldoAnterio:
+          type: integer
+        saldoInsoluto:
+          type: integer
+        importePagado:
+          type: integer
+        totalDelPago:
+          type: integer
+        moneda:
+          type: string
+        fechaPago:
+          type: string
+        formaDePagoP:
+          type: string
+        objetoImpDR:
+          type: string
+        montoTotalPagos:
+          type: integer
+        totalTrasladosBaseIVA:
+          type: integer
+        totalTrasladosBaseIVA16:
+          type: integer
+        totalTrasladosImpuestoIVA0:
+          type: integer
+        totalTrasladosImpuestoIVA16:
+          type: integer
+        descComprobante:
+          type: string
+        domicilioFiscal:
+          type: string
+        totalPorExtenso:
+          type: string
+      x-examples:
+        Example 1:
+          serieFolio: ''
+          fechaTimbrado: ''
+          usoCFDI: ''
+          folioFiscal: ''
+          serieCSD: ''
+          comprobante: ''
+          cuenta: 0
+          lugarExpedicion: ''
+          rfc: ''
+          servicio: ''
+          usuario: ''
+          domicilio: ''
+          rubricas:
+            - concepto: ''
+              description: ''
+              unidad: ''
+              valorUnitario: 0
+              cantidad: 0
+              importe: 0
+              descuento: 0
+              impuesto: ''
+              tipo: ''
+              base: 0
+              factor: ''
+              tasa: ''
+              importe2: 0
+          qrCode: ''
+          formaPago: ''
+          metodoPago: ''
+          serieCertificadoSat: ''
+          importeConLetra: ''
+          cadernaOriginal: ''
+          selloDigital: ''
+          selloSat: ''
+          subTotal: 0
+          descuento: 0
+          iva: 0
+          serviciosAmbientales: 0
+          total: 0
+          idDocumento: ''
+          saldoAnterio: 0
+          saldoInsoluto: 0
+          importePagado: 0
+          totalDelPago: 0
+          moneda: ''
+          fechaPago: ''
+          formaDePagoP: ''
+          objetoImpDR: ''
+          montoTotalPagos: 0
+          totalTrasladosBaseIVA: 0
+          totalTrasladosBaseIVA16: 0
+          totalTrasladosImpuestoIVA0: 0
+          totalTrasladosImpuestoIVA16: 0
+          descComprobante: ''
+          domicilioFiscal: ''
+          totalPorExtenso: ''
+    FaturaPagamentoParcialDtoModel:
+      type: object
+      properties:
+        idFaturaPagamentoParcial:
+          type: integer
+        idFatura:
+          type: integer
+        idUsuarioAlteracao:
+          type: integer
+        idVendaRemanescente:
+          type: integer
+        idFaturaPagamento:
+          type: integer
+        situacao:
+          type: string
+        status:
+          type: string
+        dataPagamento:
+          type: string
+        dataPagamentoFormatada:
+          type: string
+        datacredito:
+          type: string
+        dataAlteracao:
+          type: string
+        valorPagoDouble:
+          type: integer
+        valorPago:
+          type: integer
+        valorTaxa:
+          type: integer
+      x-examples:
+        Example 1:
+          idFaturaPagamentoParcial: 0
+          idFatura: 0
+          idUsuarioAlteracao: 0
+          idVendaRemanescente: 0
+          idFaturaPagamento: 0
+          situacao: ''
+          status: ''
+          dataPagamento: ''
+          dataPagamentoFormatada: ''
+          datacredito: ''
+          dataAlteracao: ''
+          valorPagoDouble: 0
+          valorPago: 0
+          valorTaxa: 0
   securitySchemes: {}
 x-extension-1: null
