@@ -7306,10 +7306,6 @@ paths:
             type: string
           in: query
           name: dataVencFin
-        - schema:
-            type: boolean
-          in: query
-          name: isCaixa
   /arrecdacao/obter-parametros-faturamento:
     get:
       summary: Arrecadação - Obter parâmetros faturamento
@@ -15732,23 +15728,6 @@ paths:
             type: string
           in: query
           name: uuid
-  /programacao-servico/obter/usuario/cidades:
-    get:
-      summary: Programação Serviços - Obter usuario cidades
-      tags:
-        - Programação-Serviço
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ItemComboDtoModel'
-                  x-stoplight:
-                    id: come8c9t0mdvc
-      operationId: get-programacao-servico-obter-usuario-cidades
 components:
   schemas:
     CriarLigacaoModel:
