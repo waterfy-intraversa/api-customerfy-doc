@@ -15728,6 +15728,7 @@ paths:
             type: string
           in: query
           name: uuid
+  /programacao-servico/obter/usuario/cidades:
     get:
       summary: Programação Serviços - Obter usuario cidades
       tags:
@@ -15970,6 +15971,28 @@ paths:
                     x-stoplight:
                       id: x0i1auj3ox5un
                     type: integer
+  /medicao/gerar/dados/coletor/estimadas:
+    post:
+      summary: Medição - Gerar dados coletor estimadas
+      operationId: post-medicao-gerar-dados-coletor-estimadas
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Medição
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idCidade
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
 components:
   schemas:
     CriarLigacaoModel:
