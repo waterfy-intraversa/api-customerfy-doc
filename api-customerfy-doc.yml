@@ -15728,6 +15728,248 @@ paths:
             type: string
           in: query
           name: uuid
+    get:
+      summary: Programação Serviços - Obter usuario cidades
+      tags:
+        - Programação-Serviço
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: come8c9t0mdvc
+      operationId: get-programacao-servico-obter-usuario-cidades
+  /cadastro-setores/listar/depto/multi-cidade:
+    post:
+      summary: Cadastro Setores - Listar departamento multi cidade
+      operationId: post-cadastro-setores-listar-depto-multi-cidade
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DepartamentoDtoModel'
+                  x-stoplight:
+                    id: siu4biy3pvq3l
+      tags:
+        - Cadastro-Setores
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                setores:
+                  type: array
+                  x-stoplight:
+                    id: hu2kcwu4lyqj5
+                  items:
+                    $ref: '#/components/schemas/ItemComboDtoModel'
+                    x-stoplight:
+                      id: z4q8sdr80tfbp
+                cidades:
+                  type: array
+                  x-stoplight:
+                    id: kma9vwn1fi4wj
+                  items:
+                    $ref: '#/components/schemas/ItemComboDtoModel'
+                    x-stoplight:
+                      id: ucxxshp1l8jin
+  /programacao-servico/obter/os/detalhe/multi-cidade:
+    post:
+      summary: Programação Serviço - Obter ordem serviço detalhe multi cidade
+      operationId: post-programacao-servico-obter-os-detalhe-multi-cidade
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetornoProgramacaoDtoModel'
+      tags:
+        - Programação-Serviço
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_status:
+                  type: array
+                  x-stoplight:
+                    id: jeaqi20ebjmto
+                  items:
+                    x-stoplight:
+                      id: 2wwhxkf8bx0g9
+                    type: integer
+                i_consulta:
+                  $ref: '#/components/schemas/CadastroOSDtoModel'
+                  x-stoplight:
+                    id: cdmeivsax7piw
+                departamentos:
+                  type: array
+                  x-stoplight:
+                    id: a1jkgokho0qea
+                  items:
+                    $ref: '#/components/schemas/DepartamentoDtoModel'
+                    x-stoplight:
+                      id: pu0bi2bmkv73l
+                i_exibeImpresas:
+                  type: string
+                  x-stoplight:
+                    id: ydotb2h8hk52i
+                i_agendadas:
+                  type: string
+                  x-stoplight:
+                    id: 0dk46msy2qgkc
+                id_servico:
+                  type: array
+                  x-stoplight:
+                    id: c4ou3ss5v8031
+                  items:
+                    $ref: '#/components/schemas/ItemComboDtoModel'
+                    x-stoplight:
+                      id: lxdg1p5ttfnhq
+        description: ''
+  /macro/imprimir/rastrear/ordem-servico:
+    post:
+      summary: Macro - Imprimir rastrear ordem serviço
+      operationId: post-macro-imprimir-rastrear-ordem-servico
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                r:
+                  $ref: '#/components/schemas/RastrearOSDtoModel'
+                  x-stoplight:
+                    id: rm6i30biz6cpl
+  /programacao-servico/programar-servicos:
+    post:
+      summary: Programação Serviços - Programar serviços
+      operationId: post-programacao-servico-programar-servicos
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Programação-Serviços
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idOSDetalhe:
+                  type: array
+                  x-stoplight:
+                    id: udjg4ufzwlmg7
+                  items:
+                    x-stoplight:
+                      id: wcrm3d3psyhg9
+                    type: integer
+                i_idEquipe:
+                  type: integer
+                  x-stoplight:
+                    id: hk3wid6hjznmj
+                i_dataPrevInicio:
+                  type: string
+                  x-stoplight:
+                    id: pwm3thi3heimj
+                i_dataPrevFim:
+                  type: string
+                  x-stoplight:
+                    id: q5uu09z0kl5tt
+  /macro/imprimir/ordem-servico:
+    post:
+      summary: Macro - Imprimir ordem serviço
+      operationId: post-macro-imprimir-ordem-servico
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idOSDetalhe:
+                  type: array
+                  x-stoplight:
+                    id: 645kizfq6j3ja
+                  items:
+                    x-stoplight:
+                      id: xvphsa4a4dt7e
+                    type: integer
+  /programacao-servico/marcar/todas/impressa:
+    post:
+      summary: Programação Serviço - Marcar todas impressa
+      operationId: post-programacao-servico-marcar-todas-impressa
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Programação-Serviço
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idOSDetalhe:
+                  type: array
+                  x-stoplight:
+                    id: pclkpu8l1sguv
+                  items:
+                    x-stoplight:
+                      id: mu0z54lfbt7xh
+                    type: integer
+  /programacao-servico/estronar/programacao/servico:
+    post:
+      summary: Programação Serviço - Estornar programação serviço
+      operationId: post-programacao-servico-estronar-programacao-servico
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Programação-Serviço
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idOSDetalhe:
+                  type: array
+                  x-stoplight:
+                    id: df4qn97g38ngr
+                  items:
+                    x-stoplight:
+                      id: x0i1auj3ox5un
+                    type: integer
 components:
   schemas:
     CriarLigacaoModel:
@@ -73489,5 +73731,15 @@ components:
           valorPagoDouble: 0
           valorPago: 0
           valorTaxa: 0
+    RetornoProgramacaoDtoModel:
+      title: RetornoProgramacaoDtoModel
+      x-stoplight:
+        id: jj258cu2g6wlg
+      type: object
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: yqa342ezaixou
   securitySchemes: {}
 x-extension-1: null
