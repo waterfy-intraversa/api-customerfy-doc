@@ -15993,6 +15993,43 @@ paths:
             type: integer
           in: query
           name: i_idPeriodo
+  /leitura/imprimir/roll-impressao:
+    post:
+      summary: Leitura - Imprimir roll impressão
+      operationId: post-leitura-imprimir-roll-impressao
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Leitura
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grupoDTO:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: jjoad21jao1vl
+                periodoDTO:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: ju93zj2d8yi10
+                coletorDTO:
+                  type: array
+                  x-stoplight:
+                    id: wwyysi0lros0e
+                  items:
+                    $ref: '#/components/schemas/ColetorDtoModel'
+                    x-stoplight:
+                      id: 8ntxdpk7jcsta
+        description: ''
+      description: ''
 components:
   schemas:
     CriarLigacaoModel:
