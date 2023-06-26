@@ -16030,6 +16030,64 @@ paths:
                       id: 8ntxdpk7jcsta
         description: ''
       description: ''
+  /faturamento/obter/recalculo/simultanea:
+    post:
+      summary: Faturamento - Obter recálculo simultânea
+      operationId: post-faturamento-obter-recalculo-simultanea
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecalculoFaturaDtoModel'
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                medicaDTO:
+                  $ref: '#/components/schemas/CriticaConsumoSimultaneaDtoModel'
+                  x-stoplight:
+                    id: z2p2r1gf392g7
+                faturaSimultaneaDTO:
+                  $ref: '#/components/schemas/DadosFaturaSimultaneDtoModel'
+                  x-stoplight:
+                    id: dsi117vy02jvd
+      description: ''
+  /ligacao/validar/excecoes/recalculo:
+    post:
+      summary: Ligação -  Validar exceções recálculo
+      operationId: post-faturamento-validar-excecoes-recalculo
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                excecoes:
+                  type: array
+                  x-stoplight:
+                    id: ek102wkmklfc0
+                  items:
+                    $ref: '#/components/schemas/LigacaoExcecaoDtoModel'
+                    x-stoplight:
+                      id: nq4hb6l64rgfl
+                i_idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: x0en0lazrh7ox
+        description: ''
+      description: ''
+      tags:
+        - Ligação
+    parameters: []
 components:
   schemas:
     CriarLigacaoModel:
