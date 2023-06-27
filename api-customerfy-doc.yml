@@ -16088,6 +16088,20 @@ paths:
       tags:
         - Ligação
     parameters: []
+  /rotina-arrecadacao/identificacao-bancaria:
+    get:
+      summary: Rotina Arrecadação - Identificação bancária
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: get-arrecadacao-identificacao-bancaria
+      tags:
+        - Rotina-Arrecadação
+    parameters: []
 components:
   schemas:
     CriarLigacaoModel:
