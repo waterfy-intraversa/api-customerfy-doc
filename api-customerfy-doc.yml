@@ -16102,6 +16102,57 @@ paths:
       tags:
         - Rotina-Arrecadação
     parameters: []
+  /faturamento/salvar/recalculo/fatura/simultanea:
+    post:
+      summary: Faturamento - Salvar recalculo fatura simultânea
+      operationId: post-faturamento-salvar-recalculo-fatura-simultanea
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: 0s00do7myz9zo
+                faturamentoDadosDTO:
+                  $ref: '#/components/schemas/FaturamentoDadoDtoModel'
+                  x-stoplight:
+                    id: 9mu82me2w3qij
+                idMotivoRecalculo:
+                  type: integer
+                  x-stoplight:
+                    id: mou28qd8tj6ff
+                desconsiderarMedia:
+                  type: boolean
+                  x-stoplight:
+                    id: r6899g1yx3erm
+                i_exOriginais:
+                  type: array
+                  x-stoplight:
+                    id: swwlj04h05ols
+                  items:
+                    $ref: '#/components/schemas/FaturaExcecaoDtoModel'
+                    x-stoplight:
+                      id: ajeg2ew2nlv9z
+                i_exAlteradas:
+                  type: array
+                  x-stoplight:
+                    id: jp6e79q0zyljl
+                  items:
+                    $ref: '#/components/schemas/FaturaExcecaoDtoModel'
+                    x-stoplight:
+                      id: yxv5d8cmlmjq5
 components:
   schemas:
     CriarLigacaoModel:
