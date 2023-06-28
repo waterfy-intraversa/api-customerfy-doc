@@ -16188,6 +16188,25 @@ paths:
                   type: boolean
                   x-stoplight:
                     id: nsi50syfm8ly9
+  /rotina-arrecadacao/salvar/baixa-manual:
+    post:
+      summary: Rotina Arrecadação - Salvar baixa manual
+      operationId: post-rotina-arrecadacao-salvar-baixa-manual
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Rotina-Arrecadação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                baixa:
+                  $ref: '#/components/schemas/BaixaManualDtoModel'
+                  x-stoplight:
+                    id: 58537mjqdik4h
 components:
   schemas:
     CriarLigacaoModel:
