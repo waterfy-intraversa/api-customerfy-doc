@@ -16153,6 +16153,41 @@ paths:
                     $ref: '#/components/schemas/FaturaExcecaoDtoModel'
                     x-stoplight:
                       id: yxv5d8cmlmjq5
+  /faturamento/timbrar-fatura/recalculada:
+    post:
+      summary: Faturamento - Timbar fatura recalculada
+      operationId: post-faturamento-timbrar-fatura-recalculada
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturaCFDiDtoModel'
+                  x-stoplight:
+                    id: z3sx8vhs75y7e
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                faturaOriginal:
+                  $ref: '#/components/schemas/FaturaDtoModel'
+                  x-stoplight:
+                    id: w2dgivlbmlx0q
+                faturaRecalculada:
+                  $ref: '#/components/schemas/FaturaDtoModel'
+                  x-stoplight:
+                    id: f84ks2uwh3gn6
+                cancelar:
+                  type: boolean
+                  x-stoplight:
+                    id: nsi50syfm8ly9
 components:
   schemas:
     CriarLigacaoModel:
