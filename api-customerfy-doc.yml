@@ -12492,7 +12492,7 @@ paths:
               schema:
                 type: string
       operationId: get-debito-automatico-obter-caminho-arq-envio-deb-auto
-  /debito-auto/obter/envio/deb-auto-dto:
+  /debito-automatico/obter/envio/deb-auto-dto:
     post:
       summary: Débito Automático - Obter envio débito automático
       operationId: post-debito-auto-obter-envio-deb-auto-dto
@@ -12519,6 +12519,7 @@ paths:
                   $ref: '#/components/schemas/FiltroEnvioDebAutoDtoModel'
                   x-stoplight:
                     id: djeb19dg4xgam
+    parameters: []
   /macro/exportar-dados:
     post:
       summary: Macro - Exportar dados
@@ -16207,6 +16208,249 @@ paths:
                   $ref: '#/components/schemas/BaixaManualDtoModel'
                   x-stoplight:
                     id: 58537mjqdik4h
+  /dicionario-dados/excluir/tabela-completa:
+    post:
+      summary: Dicionário Dados - Excluir tabela completa
+      operationId: post-dicionario-dados-excluir-tabela-completa
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Dicionário-Dados
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+      description: ''
+  /conf-cons-padrao/carrega/cons-padrao:
+    get:
+      summary: Configurador Cons Padrao - Carrega cons padrão
+      tags:
+        - Configurador-Cons-Padrao
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConfiguradorConsPadraoDtoModel'
+                  x-stoplight:
+                    id: 7jg6lkgvu2oft
+      operationId: get-conf-cons-padrao-carrega-cons-padrao
+      description: ''
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idConsPadrao
+  /arquivo-arrecadacao/visualizar/arquivo/tipo-e:
+    post:
+      summary: Arquivo Arrecadação - Visualizar arquivo E
+      operationId: post-arquivo-arrecadacao-visualizar-arquivo-e
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: k9v5d2c78pyg4
+                  type: string
+      tags:
+        - Arquivo-Arrecadação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dado:
+                  type: array
+                  x-stoplight:
+                    id: egwyawfntytbi
+                  items:
+                    $ref: '#/components/schemas/EnvioDebitoAutomaticoDtoModel'
+                    x-stoplight:
+                      id: grhvrmiewiryu
+      description: ''
+    parameters: []
+  /arquivo-arrecadacao/visualizar/arquivo/tipo-c:
+    post:
+      summary: Arquivo Arrecadação - Visualizar arquivo tipo C
+      operationId: post-arquivo-arrecadacao-visualizar-arquivo-tipo-c
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: 2x926w2xm5hcb
+                  type: string
+      tags:
+        - Arquivo-Arrecadação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                listaRegistros:
+                  type: array
+                  x-stoplight:
+                    id: rpuljjl7wieqn
+                  items:
+                    $ref: '#/components/schemas/RegistroTipoCDtoModel'
+                    x-stoplight:
+                      id: ioldszdfu91o4
+  /macro/imprimir/envio/deb-auto/detalhe:
+    post:
+      summary: Macro - Imprimir envio deb auto det
+      operationId: post-macro-imprimir-envio-deb-auto-detalhe
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                l:
+                  type: array
+                  x-stoplight:
+                    id: iligwf407bmxh
+                  items:
+                    $ref: '#/components/schemas/EnvioDebitoAutomaticoDtoModel'
+                    x-stoplight:
+                      id: y6d0ydi74r0pq
+        description: ''
+  /macro/imprimir/envio/deb-auto/detalhe/tipo-c:
+    post:
+      summary: Macro - Imprimir envio deb tipo C
+      operationId: post-macro-imprimir-envio-deb-auto-det-tipo-c
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Macro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reg:
+                  type: array
+                  x-stoplight:
+                    id: gigmg1hoinkai
+                  items:
+                    $ref: '#/components/schemas/RegistroTipoCDtoModel'
+                    x-stoplight:
+                      id: 10coqsmtknu04
+        description: ''
+    parameters: []
+  /arquivo-arrecadacao/gerar/arquivo/tipo-e:
+    post:
+      summary: Arquivo Arrecadação - Gerar arquivo E
+      operationId: post-arquivo-arrecadacao-gerar-arquivo-tipo-e
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Arquivo-Arrecadação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dado:
+                  type: array
+                  x-stoplight:
+                    id: nihgloey6m9ze
+                  items:
+                    $ref: '#/components/schemas/EnvioDebitoAutomaticoDtoModel'
+                    x-stoplight:
+                      id: ejcpqk11t28yd
+                i_path:
+                  type: string
+                  x-stoplight:
+                    id: 7uzjudqbs6vko
+        description: ''
+  /arquivo-arrecadacao/gerar/arquivo/tipo-c:
+    post:
+      summary: Arquivo Arrecadação - Gerar arquivo C
+      operationId: post-arquivo-arrecadacao-gerar-arquivo-tipo-c
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RegistroTipoCDtoModel'
+                  x-stoplight:
+                    id: nj0knyc2r8cwx
+      tags:
+        - Arquivo-Arrecadação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dado:
+                  type: array
+                  x-stoplight:
+                    id: e64nmlzxl2ew2
+                  items:
+                    $ref: '#/components/schemas/RegistroTipoCDtoModel'
+                    x-stoplight:
+                      id: 0by20gbml1e4f
+        description: ''
+  /debito-automatico/confirmar/envio/deb-auto:
+    post:
+      summary: Débito Automático - Confirmar envio débito automático
+      operationId: post-debito-automatico-confirmar-envio-deb-auto
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Débito-Automático
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_envioDebAutoVO:
+                  type: array
+                  x-stoplight:
+                    id: o8k1639bb2mc3
+                  items:
+                    $ref: '#/components/schemas/EnvioDebitoAutomaticoDtoModel'
+                    x-stoplight:
+                      id: vpvqqbevl3gig
+        description: ''
 components:
   schemas:
     CriarLigacaoModel:
