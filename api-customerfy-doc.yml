@@ -16690,6 +16690,207 @@ paths:
             type: integer
           in: query
           name: i_idFatura
+  /faturamento/obter/faturas/parcelamento/debito:
+    get:
+      summary: Faturamento - Obter faturas parcelamento débito
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: 606qwpoqq5m5c
+                  type: integer
+      operationId: get-faturamento-obter-faturas-parcelamento-debito
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: idParcelamento
+  /faturamento/imprimir/contrato:
+    get:
+      summary: Faturamento - Imprimir contrato
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-faturamento-imprimir-contrato
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idParcelamento
+        - schema:
+            type: integer
+          in: query
+          name: tipoContrato
+      description: ''
+  /faturamento/imprimir/fatura/parcelamento/detalhe:
+    post:
+      summary: Faturamento - Imprimir fatura parcelamento detalhe
+      operationId: post-faturamento-imprimir-fatura-parcelamento-detalhe
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                l:
+                  type: array
+                  x-stoplight:
+                    id: 55tfd4hdewzvr
+                  items:
+                    $ref: '#/components/schemas/FaturaLayoutDtoModel'
+                    x-stoplight:
+                      id: tg7e542sk1may
+                layout:
+                  type: string
+                  x-stoplight:
+                    id: cspc0bijy21sl
+        description: ''
+  /faturamento/valida/estorno/parcelamento:
+    get:
+      summary: Faturamento - Valida estorno parcelamento
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-faturamento-valida-estorno-parcelamento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idParcelamento
+  /faturamento/estornar/parcelamento:
+    post:
+      summary: Faturamento - Estornar parcelmento
+      operationId: post-faturamento-estornar-parcelamento
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Faturamento
+      requestBody:
+        content: {}
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idParcelamento
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /medicao/manter/dados-originais:
+    post:
+      summary: Medição - Manter dados originais
+      operationId: post-medicao-manter-dados-originais
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: uynl4kam5jnlw
+                i_idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: c05dvwh3zq4zp
+                efetuarVistoria:
+                  type: boolean
+                  x-stoplight:
+                    id: zzvnx312ayoo9
+                desconsiderarMedia:
+                  type: boolean
+                  x-stoplight:
+                    id: t7h1t0p1oq2g8
+                idGrupo:
+                  type: integer
+                  x-stoplight:
+                    id: t5iu8y7t7dr3c
+                exOriginais:
+                  type: array
+                  x-stoplight:
+                    id: 6nw3ih201in4o
+                  items:
+                    $ref: '#/components/schemas/FaturaExcecaoDtoModel'
+                    x-stoplight:
+                      id: sgmul4e4xktii
+                exAlteradas:
+                  type: array
+                  x-stoplight:
+                    id: 09t29kmllarwl
+                  items:
+                    $ref: '#/components/schemas/FaturaExcecaoDtoModel'
+                    x-stoplight:
+                      id: d91bvbjoxfq9o
+  /medicao/carregar/critica/consumo-simultaneo:
+    get:
+      summary: Medição - Carregar crítica consumo simultânea
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CriticaConsumoSimultaneaDtoModel'
+                  x-stoplight:
+                    id: 2o5u6yttj3gbq
+      operationId: get-medica-carregar-critica-consumo-simultaneo
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_idPeriodo
+        - schema:
+            type: integer
+          in: query
+          name: i_idRotaMedicao
+        - schema:
+            type: boolean
+          in: query
+          name: i_isUtilizaRetornoRepasseSimultanea
+    parameters: []
 components:
   schemas:
     CriarLigacaoModel:
