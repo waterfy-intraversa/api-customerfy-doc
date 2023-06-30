@@ -16451,6 +16451,245 @@ paths:
                     x-stoplight:
                       id: vpvqqbevl3gig
         description: ''
+  /calculo-faturamento/get-info/agua-esgoto:
+    get:
+      summary: Cálculo Faturamento - Get info água esgoto
+      tags:
+        - Calculo-Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: iv83ubhhtzzjq
+                  type: integer
+      operationId: get-calculo-faturamento-get-info-agua-esgoto
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idFatura
+  /calculo-faturamento/get/dados/impressao:
+    get:
+      summary: Cálculo Faturamento - Get dados impressão
+      tags:
+        - Cálculo-Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimulacaoRecalculoDadosDtoModel'
+      operationId: get-calculo-faturamento-get-dados-impressao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idFatura
+  /calculo-faturamento/imprime/simulacao/recalculo:
+    post:
+      summary: Cálculo Faturamento - Imprime simulação recálculo
+      operationId: post-calculo-faturamento-imprime-simulacao-recalculo
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Cálculo-Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                simulacao:
+                  type: array
+                  x-stoplight:
+                    id: kdou6prnoan1h
+                  items:
+                    $ref: '#/components/schemas/SimulacaoCalculoFaturaDtoModel'
+                    x-stoplight:
+                      id: gcg0l2qdx9feu
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: yaxciz9uv6adu
+  /faturamento/imprimir/fatura:
+    get:
+      summary: Faturamento - Imprimir fatura
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-faturamento-imprimir-fatura
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: layout
+        - schema:
+            type: integer
+          in: query
+          name: idFatura
+        - schema:
+            type: integer
+          in: query
+          name: idCodigo
+        - schema:
+            type: boolean
+          in: query
+          name: pesquisarCidade
+  /cobranca/verifica/situacao/processo-corte:
+    post:
+      summary: Cobrança - Verifica situação processo corte
+      operationId: post-cobranca-verifica-situacao-processo-corte
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  idFatura:
+                    type: integer
+                    x-stoplight:
+                      id: 8j2apjtr48t1y
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idFatura:
+                  type: array
+                  x-stoplight:
+                    id: ym53z1kz0kkl6
+                  items:
+                    x-stoplight:
+                      id: 1pcxx3i3sf60q
+                    type: integer
+  /faturamento/detalhes/fatura/recalculo:
+    get:
+      summary: Faturamento - Detalhes fatura recálculo
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AprovacaoRecalculoDtoModel'
+      operationId: get-faturamento-detalhes-fatura-recalculo
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: idFatura
+  /faturamento/salvar/recalculo/fatura:
+    post:
+      summary: Faturamento - Salvar recálculo fatura
+      operationId: post-faturamento-salvar-recalculo-fatura
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: z1tjrt5pr2n4u
+                faturamentoDadoDto:
+                  $ref: '#/components/schemas/FaturamentoDadoDtoModel'
+                  x-stoplight:
+                    id: zpw94jtekioo9
+                idMotivoRecalculo:
+                  type: integer
+                  x-stoplight:
+                    id: 9uztv4qk87r4v
+                cadastroAtual:
+                  type: boolean
+                  x-stoplight:
+                    id: ngsi3ksthi1pl
+                desconsiderarMedia:
+                  type: boolean
+                  x-stoplight:
+                    id: 6dwyif8obom8y
+                excluirEncargos:
+                  type: boolean
+                  x-stoplight:
+                    id: rkro1u9503vxb
+                observacaoRecalculo:
+                  type: string
+                  x-stoplight:
+                    id: c0dyc00hki8xq
+  /faturamento/verifica/alcada/recalculo/fatura:
+    post:
+      summary: Faturamento - Verifica alçada recálculo fatura
+      operationId: post-faturamento-verifica-alcada-recalculo-fatura
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                aprovacao:
+                  $ref: '#/components/schemas/AprovacaoRecalculoDtoModel'
+                  x-stoplight:
+                    id: mob77wv1rvwc6
+  /consolidacao-arrecadacao/consiste/fatura-consolidacao:
+    get:
+      summary: Consolidação Arrecadação - Consiste fatura consolidação
+      tags:
+        - Consolidação-Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-consolidacao-arrecadacao-consiste-fatura-consolidacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idFatura
 components:
   schemas:
     CriarLigacaoModel:
@@ -74222,5 +74461,261 @@ components:
           type: string
           x-stoplight:
             id: yqa342ezaixou
+    SimulacaoRecalculoDadosDtoModel:
+      type: object
+      properties:
+        morador:
+          type: string
+        referencia:
+          type: string
+        nrTomadas:
+          type: integer
+        possuiHidrometro:
+          type: string
+        categoriaTarifa:
+          type: string
+        tipoTarifa:
+          type: string
+      x-examples:
+        Example 1:
+          morador: ''
+          referencia: ''
+          nrTomadas: 1
+          possuiHidrometro: ''
+          categoriaTarifa: ''
+          tipoTarifa: ''
+    SimulacaoCalculoFaturaDtoModel:
+      type: object
+      properties:
+        matricula:
+          type: integer
+        morador:
+          type: string
+        referencia:
+          type: string
+        consumo:
+          type: integer
+        nrTomadas:
+          type: integer
+        possuiHidrometro:
+          type: string
+        cobrarAgua:
+          type: string
+        cobrarEsgoto:
+          type: string
+        categoriaTarifa:
+          type: string
+        tipoTarifa:
+          type: string
+        nrEconomias:
+          type: integer
+        valorTotal:
+          type: integer
+        rubrica1:
+          type: string
+        valRubrica1:
+          type: integer
+        rubrica2:
+          type: string
+        valRubrica2:
+          type: integer
+        rubrica3:
+          type: string
+        valRubrica3:
+          type: integer
+        rubrica4:
+          type: string
+        valRubrica4:
+          type: integer
+        rubrica5:
+          type: string
+        valRubrica5:
+          type: integer
+        rubrica6:
+          type: string
+        valRubrica6:
+          type: integer
+        rubrica7:
+          type: string
+        valRubrica7:
+          type: integer
+        rubrica8:
+          type: string
+        valRubrica8:
+          type: integer
+        rubrica9:
+          type: string
+        valRubrica9:
+          type: integer
+        rubrica10:
+          type: string
+        valRubrica10:
+          type: integer
+        rubrica11:
+          type: string
+        valRubrica11:
+          type: integer
+        rubrica12:
+          type: string
+        valRubrica12:
+          type: integer
+        rubrica13:
+          type: string
+        valRubrica13:
+          type: integer
+        rubrica14:
+          type: string
+        valRubrica14:
+          type: integer
+        rubrica15:
+          type: string
+        valRubrica15:
+          type: integer
+        rubrica16:
+          type: string
+        valRubrica16:
+          type: integer
+        rubrica17:
+          type: string
+        valRubrica17:
+          type: integer
+        rubrica18:
+          type: string
+        valRubrica18:
+          type: integer
+        rubrica19:
+          type: string
+        valRubrica19:
+          type: integer
+        rubrica20:
+          type: string
+        valRubrica20:
+          type: integer
+      x-examples:
+        Example 1:
+          matricula: 0
+          morador: ''
+          referencia: ''
+          consumo: 0
+          nrTomadas: 0
+          possuiHidrometro: ''
+          cobrarAgua: Não
+          cobrarEsgoto: Não
+          categoriaTarifa: ''
+          tipoTarifa: ''
+          nrEconomias: 0
+          valorTotal: 0
+          rubrica1: ''
+          valRubrica1: 0
+          rubrica2: ''
+          valRubrica2: 0
+          rubrica3: ''
+          valRubrica3: 0
+          rubrica4: ''
+          valRubrica4: 0
+          rubrica5: ''
+          valRubrica5: 0
+          rubrica6: ''
+          valRubrica6: 0
+          rubrica7: ''
+          valRubrica7: 0
+          rubrica8: ''
+          valRubrica8: 0
+          rubrica9: ''
+          valRubrica9: 0
+          rubrica10: ''
+          valRubrica10: 0
+          rubrica11: ''
+          valRubrica11: 0
+          rubrica12: ''
+          valRubrica12: 0
+          rubrica13: ''
+          valRubrica13: 0
+          rubrica14: ''
+          valRubrica14: 0
+          rubrica15: ''
+          valRubrica15: 0
+          rubrica16: ''
+          valRubrica16: 0
+          rubrica17: ''
+          valRubrica17: 0
+          rubrica18: ''
+          valRubrica18: 0
+          rubrica19: ''
+          valRubrica19: 0
+          rubrica20: ''
+          valRubrica20: 0
+      description: ''
+    AprovacaoRecalculoDtoModel:
+      type: object
+      properties:
+        idAprovacao:
+          type: integer
+        idFaturaAnterior:
+          type: integer
+        idFatura:
+          type: integer
+        idLigacao:
+          type: integer
+        idUsuarioRecalculo:
+          type: integer
+        idUsuarioAprovacao:
+          type: integer
+        valorFaturaAnterior:
+          type: integer
+        valorFatura:
+          type: integer
+        diferenca:
+          type: integer
+        alcadaUsuarioRecalculo:
+          type: integer
+        observacaoRecalculo:
+          type: string
+        motivoRecalculo:
+          type: string
+        usuarioRecalculo:
+          type: string
+        usuarioAprovacao:
+          type: string
+        status:
+          type: string
+        dataHoraRecalculo:
+          type: string
+        dataHoraAprovacao:
+          type: string
+        idMedicaoDetalhe:
+          type: integer
+        idCodigoLeitura:
+          type: integer
+        leituraAtual:
+          type: integer
+        volFat:
+          type: integer
+        volMed:
+          type: integer
+      x-examples:
+        Example 1:
+          idAprovacao: 0
+          idFaturaAnterior: 0
+          idFatura: 0
+          idLigacao: 0
+          idUsuarioRecalculo: 0
+          idUsuarioAprovacao: 0
+          valorFaturaAnterior: 0
+          valorFatura: 0
+          diferenca: 0
+          alcadaUsuarioRecalculo: 0
+          observacaoRecalculo: ''
+          motivoRecalculo: ''
+          usuarioRecalculo: ''
+          usuarioAprovacao: ''
+          status: ''
+          dataHoraRecalculo: ''
+          dataHoraAprovacao: ''
+          idMedicaoDetalhe: 0
+          idCodigoLeitura: 0
+          leituraAtual: 0
+          volFat: 0
+          volMed: 0
   securitySchemes: {}
 x-extension-1: null
