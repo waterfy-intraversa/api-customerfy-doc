@@ -7213,9 +7213,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/CronogramaDtoModel'
       operationId: get-cronograma-exibir-i_idCidade-i_idGrupo-i_idPeriodo
-  /arrecadacao/arquivo/baixa-manual/gerar:
+  /arquivo-arrecadacao/gerar/baixa-manual:
     post:
-      summary: Arrecadação - Gerar baixa manual
+      summary: Arquivo Arrecadação - Gerar baixa manual
       operationId: post-arrecadacao-arquivo-baixa-manual-gerar
       responses:
         '200':
@@ -7224,8 +7224,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BaixaManualDtoModel'
-      tags:
-        - Arrecadação
       requestBody:
         content:
           application/json:
@@ -7236,6 +7234,9 @@ paths:
                   $ref: '#/components/schemas/BaixaManualDtoModel'
                   x-stoplight:
                     id: h9hoytl2qnkg9
+      tags:
+        - Arquivo-Arrecadação
+    parameters: []
   /arrecadacao/baixa-manual/obter-dados-fatura:
     get:
       summary: Arrecadação - Obter dados fatura
@@ -16891,6 +16892,57 @@ paths:
           in: query
           name: i_isUtilizaRetornoRepasseSimultanea
     parameters: []
+  /arquivo-arrecadacao/gerar/arquivo/baixa-manual:
+    post:
+      summary: Arquivo Arrecadação - Gerar arquivo baixa manual
+      operationId: post-arquivo-arrecadacao-gerar-arquivo-baixa-manual
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Arquivo-Arrecadação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                baixa:
+                  $ref: '#/components/schemas/BaixaManualDtoModel'
+                  x-stoplight:
+                    id: krqw17ulhgl1j
+  /arrecadacao/gerar/baixa-manual:
+    post:
+      summary: Arrecadação - Gerar baixa manual
+      operationId: post-arrecadacao-gerar-baixa-manual
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArrecadacaoDtoModel'
+                  x-stoplight:
+                    id: rhrsca0f71gpj
+      tags:
+        - Arrecadação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: 8c5fpnqx5z0u5
+                baixaManualDto:
+                  $ref: '#/components/schemas/BaixaManualDtoModel'
+                  x-stoplight:
+                    id: kxcvhleej52ij
+        description: ''
 components:
   schemas:
     CriarLigacaoModel:
