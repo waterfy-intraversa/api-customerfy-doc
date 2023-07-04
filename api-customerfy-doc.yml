@@ -16911,7 +16911,7 @@ paths:
                   $ref: '#/components/schemas/BaixaManualDtoModel'
                   x-stoplight:
                     id: krqw17ulhgl1j
-  /arrecadacao/gerar/baixa-manual:
+  '/arrecadacao/gerar/baixa-manual/{idCidade}':
     post:
       summary: Arrecadação - Gerar baixa manual
       operationId: post-arrecadacao-gerar-baixa-manual
@@ -16934,15 +16934,53 @@ paths:
             schema:
               type: object
               properties:
-                idCidade:
-                  type: integer
-                  x-stoplight:
-                    id: 8c5fpnqx5z0u5
                 baixaManualDto:
                   $ref: '#/components/schemas/BaixaManualDtoModel'
                   x-stoplight:
                     id: kxcvhleej52ij
         description: ''
+      description: ''
+    parameters:
+      - schema:
+          type: string
+        name: idCidade
+        in: path
+        required: true
+  /faturamento/listar/combo/cod-leitura:
+    get:
+      summary: Faturamento - Listar combo cod leitura
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboLeituraDtoModel'
+                  x-stoplight:
+                    id: cur30cudtpxrv
+      operationId: get-faturamento-listar-combo-cod-leitura
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /arrecadacao/limpar:
+    get:
+      summary: Arrecadação - Limpar
+      tags:
+        - Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-arrecadacao-limpar
 components:
   schemas:
     CriarLigacaoModel:
@@ -74970,5 +75008,22 @@ components:
           leituraAtual: 0
           volFat: 0
           volMed: 0
+    ItemComboLeituraDtoModel:
+      type: object
+      properties:
+        aceita_leitura:
+          type: boolean
+        id_str:
+          type: string
+        descr:
+          type: string
+        tipo_ret:
+          type: integer
+      x-examples:
+        Example 1:
+          aceita_leitura: true
+          id_str: string
+          descr: string
+          tipo_ret: 1
   securitySchemes: {}
 x-extension-1: null
