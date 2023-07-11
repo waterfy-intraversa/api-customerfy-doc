@@ -16981,6 +16981,83 @@ paths:
               schema:
                 type: boolean
       operationId: get-arrecadacao-limpar
+      description: ''
+  /conf-formulario-padrao/carrega/formulario-padrao/dados:
+    get:
+      summary: Configurador Formulário Padrão - Carrega formulário padrão dados
+      tags:
+        - Configurador-Formulário-Padrão
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FormularioPadraoDtoModel'
+                  x-stoplight:
+                    id: sg7bars6hlt4t
+      operationId: get-conf-formulario-padrao-carrega-formulario-padrao-dados
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: palavraChave
+  /dicionario-dados/carrega/tabela:
+    get:
+      summary: Dicionário Dados - Carrega tabela
+      tags:
+        - Dicionário-Dados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: rl2z1i8e9i0pb
+      operationId: get-dicionario-dados-carrega-tabela
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: nomeTabela
+  /faturamento/emitir/fatura/recalculo:
+    post:
+      summary: Faturamento - Emitir fatura recalculo
+      operationId: post-faturamento-emitir-fatura-recalculo
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Faturamento
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idFaturas:
+                  type: array
+                  x-stoplight:
+                    id: ai11mgc0r9sia
+                  items:
+                    x-stoplight:
+                      id: tuyalt4cxgbrc
+                    type: integer
+                layout:
+                  type: string
+                  x-stoplight:
+                    id: 923oskdrdut2p
 components:
   schemas:
     CriarLigacaoModel:
