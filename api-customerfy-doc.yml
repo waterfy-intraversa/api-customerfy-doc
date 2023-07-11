@@ -17058,6 +17058,62 @@ paths:
                   type: string
                   x-stoplight:
                     id: 923oskdrdut2p
+  /macro/execucao/pesquisa:
+    get:
+      summary: Macro - Macro execução pesquisa
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MacroExecucaoDtoModel'
+                  x-stoplight:
+                    id: and4r5zm456jf
+      operationId: get-macro-execucao-pesquisa
+      tags:
+        - Macro
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: palavraChave
+        - schema:
+            type: integer
+          in: query
+          name: macroTipo
+        - schema:
+            type: integer
+          in: query
+          name: macroCategoria
+        - schema:
+            type: string
+          in: query
+          name: resumo
+        - schema:
+            type: boolean
+          in: query
+          name: especifica
+  /macro/carrega/informacao:
+    get:
+      summary: Macro - Carrega informação
+      tags:
+        - Macro
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-macro-carrega-informacao
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idMacro
 components:
   schemas:
     CriarLigacaoModel:
@@ -75102,5 +75158,34 @@ components:
           id_str: string
           descr: string
           tipo_ret: 1
+    MacroExecucaoDtoModel:
+      type: object
+      properties:
+        tipoMacro:
+          type: integer
+        codigo:
+          type: integer
+        descricao:
+          type: string
+        categoria:
+          type: string
+        tabela:
+          type: string
+        resumo:
+          type: string
+        informacoes:
+          type: string
+        idcidade:
+          type: integer
+      x-examples:
+        Example 1:
+          tipoMacro: 1
+          codigo: 1
+          descricao: ''
+          categoria: ''
+          tabela: ''
+          resumo: ''
+          informacoes: ''
+          idcidade: 1
   securitySchemes: {}
 x-extension-1: null
