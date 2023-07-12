@@ -17114,6 +17114,58 @@ paths:
             type: integer
           in: query
           name: idMacro
+  /cons-padrao/listar/campo-pesquisa:
+    get:
+      summary: Cons Padrão - Listar campo pesquisa
+      tags:
+        - Cons-Padrão
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CampoDtoModel'
+                  x-stoplight:
+                    id: kii0o5k2c5tmp
+      operationId: get-cons-padrao-listar-campo-pesquisa
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: tabela
+        - schema:
+            type: string
+          in: query
+          name: campo
+  /cons-padrao/listar/tupla:
+    get:
+      summary: Cons Padrão - Listar tupla
+      tags:
+        - Cons-Padrão
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GridDtoModel'
+      operationId: get-cons-padrao-listar-tupla
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: tabela
+        - schema:
+            type: string
+          in: query
+          name: campo
+        - schema:
+            type: string
+          in: query
+          name: filtro
 components:
   schemas:
     CriarLigacaoModel:
