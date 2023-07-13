@@ -17166,6 +17166,46 @@ paths:
             type: string
           in: query
           name: filtro
+  /parcelamento/load/rubricas/desconto/parcelamento:
+    get:
+      summary: Parcelamento - Load rubricas desconto parcelamento
+      tags:
+        - Parcelamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RubricaDtoModel'
+                  x-stoplight:
+                    id: y1bmd4nuok8v8
+      operationId: get-parcelamento-load-rubricas-desconto-parcelamento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /parcelamento/load/rubricas/desconto/encargos/parcelamento:
+    get:
+      summary: Parcelamento - Load rubricas desconto encargos parcelamento
+      tags:
+        - Parcelamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RubricaDtoModel'
+      operationId: get-parcelamento-load-rubricas-desconto-encargos-parcelamento
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idRubrica
 components:
   schemas:
     CriarLigacaoModel:
