@@ -17188,6 +17188,7 @@ paths:
             type: integer
           in: query
           name: idCidade
+      description: ''
   /parcelamento/load/rubricas/desconto/encargos/parcelamento:
     get:
       summary: Parcelamento - Load rubricas desconto encargos parcelamento
@@ -17206,6 +17207,118 @@ paths:
             type: integer
           in: query
           name: idRubrica
+  /norma-19/processar/arquivo:
+    post:
+      summary: Norma 19 - Processar arquivo norma 19
+      operationId: post-norma-19-processar-arquivo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ParametrosEnvioDADTOModel'
+                  x-stoplight:
+                    id: cql489nu3ng93
+      tags:
+        - Norma19
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parametros:
+                  $ref: '#/components/schemas/ParametrosEnvioDADTOModel'
+                  x-stoplight:
+                    id: 3b4t8poh8659f
+        description: ''
+  /norma-19/gerar/arquivo:
+    post:
+      summary: Norma 19 - Gerar arquivo norma 19
+      operationId: post-norma-19-gerar-arquivo
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Norma19
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parametros:
+                  type: array
+                  x-stoplight:
+                    id: vq1xfbfgn2lba
+                  items:
+                    $ref: '#/components/schemas/ParametrosEnvioDADTOModel'
+                    x-stoplight:
+                      id: fdr4wnq5fpyf0
+  /norma-19/limpar:
+    get:
+      summary: Norma 19 - Limpar
+      tags:
+        - Norma19
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-norma-19-limpar
+  /norma-19/importar/arquivos/retorno:
+    get:
+      summary: Norma 19 - Importar arquivos retorno norma 19
+      tags:
+        - Norma19
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImportArrecadacaoDtoModel'
+                  x-stoplight:
+                    id: 7vdi8vex0fmba
+      operationId: get-norma-19-importar-arquivos-retorno
+  /norma-19/salvar:
+    post:
+      summary: Norma 19 - Salvar
+      operationId: post-norma-19-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Norma19
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                list:
+                  type: array
+                  x-stoplight:
+                    id: 6c0cs5dzifsos
+                  items:
+                    $ref: '#/components/schemas/ImportArrecadacaoDtoModel'
+                    x-stoplight:
+                      id: 6ldeu1jqa07i5
 components:
   schemas:
     CriarLigacaoModel:
@@ -75279,5 +75392,428 @@ components:
           resumo: ''
           informacoes: ''
           idcidade: 1
+    ParametrosEnvioDADTOModel:
+      type: object
+      properties:
+        idPeriodo:
+          type: integer
+        idArrecadador:
+          type: integer
+        idCidade:
+          type: integer
+        quantidadeLigacoes:
+          type: integer
+        periodo:
+          type: string
+        dataVencimento:
+          type: string
+        dataBaixa:
+          type: string
+        arquivo:
+          type: string
+        taxaArrecadacao:
+          type: integer
+        totalTaxaArrecadacao:
+          type: integer
+        valorTotal:
+          type: integer
+        parametros:
+          type: object
+          properties:
+            idUnidadeOperacional:
+              type: integer
+            organizationName:
+              type: string
+            organizationId:
+              type: string
+            bankIdentification:
+              type: string
+            swiftCode:
+              type: string
+            countryCode:
+              type: string
+            schmeId:
+              type: string
+        faturas:
+          type: object
+          properties:
+            idPeriodo:
+              type: integer
+            idDA:
+              type: integer
+            idArrecadador:
+              type: integer
+            idArrecadacao:
+              type: integer
+            idLigacao:
+              type: integer
+            idFatura:
+              type: integer
+            cliente:
+              type: string
+            endereco:
+              type: string
+            dataVencimento:
+              type: string
+            dataBaixa:
+              type: string
+            dataAdesaoDA:
+              type: string
+            contaDA:
+              type: string
+            info:
+              type: string
+            taxaArrecadacao:
+              type: integer
+            valorTotal:
+              type: integer
+            saldo:
+              type: integer
+            pagada:
+              type: integer
+            saldos:
+              type: integer
+            valorPago:
+              type: integer
+        idParametro:
+          type: integer
+      x-examples:
+        Example 1:
+          idPeriodo: 0
+          idArrecadador: 0
+          idCidade: 0
+          quantidadeLigacoes: 0
+          periodo: ''
+          dataVencimento: ''
+          dataBaixa: ''
+          arquivo: ''
+          taxaArrecadacao: 0
+          totalTaxaArrecadacao: 0
+          valorTotal: 0
+          parametros:
+            idUnidadeOperacional: 0
+            organizationName: ''
+            organizationId: ''
+            bankIdentification: ''
+            swiftCode: ''
+            countryCode: ''
+            schmeId: ''
+          faturas:
+            idPeriodo: 0
+            idDA: 0
+            idArrecadador: 0
+            idArrecadacao: 0
+            idLigacao: 0
+            idFatura: 0
+            cliente: ''
+            endereco: ''
+            dataVencimento: ''
+            dataBaixa: ''
+            dataAdesaoDA: ''
+            contaDA: ''
+            info: ''
+            taxaArrecadacao: 0
+            valorTotal: 0
+            saldo: 0
+            pagada: 0
+            saldos: 0
+            valorPago: 0
+          idParametro: 0
+    ImportArrecadacaoDtoModel:
+      type: object
+      properties:
+        idArrecadador:
+          type: integer
+        idTipoRegistro:
+          type: integer
+        idInconsistencia:
+          type: integer
+        idArrecadacao:
+          type: integer
+        quantidade:
+          type: integer
+        quantidadeProcessado:
+          type: integer
+        arquivo:
+          type: string
+        arrecadador:
+          type: string
+        idArrecadadorStr:
+          type: string
+        inconsistencia:
+          type: string
+        dataImportacao:
+          type: string
+        identificacaoBancaria:
+          type: string
+        manual:
+          type: boolean
+        valor:
+          type: integer
+        valorProcessado:
+          type: integer
+        taxaArrecadacao:
+          type: integer
+        guias:
+          type: array
+          items:
+            type: object
+            properties:
+              idGuia:
+                type: integer
+              idLigacao:
+                type: integer
+              idArrecadacao:
+                type: integer
+              dataPagamento:
+                type: string
+              valorPago:
+                type: integer
+              faturas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idInconsistencia:
+                      type: integer
+                    idArrecadacao:
+                      type: integer
+                    idArrecadador:
+                      type: integer
+                    idCliente:
+                      type: integer
+                    idGrupo:
+                      type: integer
+                    nivelErro:
+                      type: integer
+                    idPeriodo:
+                      type: integer
+                    idFatura:
+                      type: integer
+                    idGuia:
+                      type: integer
+                    idLigacao:
+                      type: integer
+                    inconsistencia:
+                      type: string
+                    dataVencimento:
+                      type: string
+                    dataPagamento:
+                      type: string
+                    dataCredito:
+                      type: string
+                    dataImportacao:
+                      type: string
+                    periodo:
+                      type: string
+                    linha:
+                      type: string
+                    arquivoEnvio:
+                      type: string
+                    arquivoEstorno:
+                      type: string
+                    valor:
+                      type: integer
+                    valorGuia:
+                      type: integer
+                    taxaArrecadacao:
+                      type: integer
+                    valorPago:
+                      type: integer
+                    valorExtorno:
+                      type: integer
+                    faturasGuia:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          idInconsistencia:
+                            type: integer
+                          idFatura:
+                            type: integer
+                          idGuia:
+                            type: integer
+                          idPeriodo:
+                            type: integer
+                          dataVencimento:
+                            type: string
+                          dataImportacao:
+                            type: string
+                          valor:
+                            type: integer
+                          taxaArrecadacao:
+                            type: integer
+                          pagamentoDuplicado:
+                            type: boolean
+        faturas:
+          type: array
+          items:
+            type: object
+            properties:
+              idInconsistencia:
+                type: integer
+              idArrecadacao:
+                type: integer
+              idArrecadador:
+                type: integer
+              idCliente:
+                type: integer
+              idGrupo:
+                type: integer
+              nivelErro:
+                type: integer
+              idPeriodo:
+                type: integer
+              idFatura:
+                type: integer
+              idGuia:
+                type: integer
+              idLigacao:
+                type: integer
+              inconsistencia:
+                type: string
+              dataVencimento:
+                type: string
+              dataPagamento:
+                type: string
+              dataCredito:
+                type: string
+              dataImportacao:
+                type: string
+              periodo:
+                type: string
+              linha:
+                type: string
+              arquivoEnvio:
+                type: string
+              arquivoEstorno:
+                type: string
+              valor:
+                type: integer
+              valorGuia:
+                type: integer
+              taxaArrecadacao:
+                type: integer
+              valorPago:
+                type: integer
+              valorExtorno:
+                type: integer
+              faturasGuia:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    idInconsistencia:
+                      type: integer
+                    idFatura:
+                      type: integer
+                    idGuia:
+                      type: integer
+                    idPeriodo:
+                      type: integer
+                    dataVencimento:
+                      type: string
+                    dataImportacao:
+                      type: string
+                    valor:
+                      type: integer
+                    taxaArrecadacao:
+                      type: integer
+                    pagamentoDuplicado:
+                      type: boolean
+      x-examples:
+        Example 1:
+          idArrecadador: 0
+          idTipoRegistro: 0
+          idInconsistencia: 0
+          idArrecadacao: 0
+          quantidade: 0
+          quantidadeProcessado: 0
+          arquivo: ''
+          arrecadador: ''
+          idArrecadadorStr: ''
+          inconsistencia: ''
+          dataImportacao: ''
+          identificacaoBancaria: ''
+          manual: false
+          valor: 0
+          valorProcessado: 0
+          taxaArrecadacao: 0
+          guias:
+            - idGuia: 0
+              idLigacao: 0
+              idArrecadacao: 0
+              dataPagamento: ''
+              valorPago: 0
+              faturas:
+                - idInconsistencia: 0
+                  idArrecadacao: 0
+                  idArrecadador: 0
+                  idCliente: 0
+                  idGrupo: 0
+                  nivelErro: 0
+                  idPeriodo: 0
+                  idFatura: 0
+                  idGuia: 0
+                  idLigacao: 0
+                  inconsistencia: ''
+                  dataVencimento: ''
+                  dataPagamento: ''
+                  dataCredito: ''
+                  dataImportacao: ''
+                  periodo: ''
+                  linha: ''
+                  arquivoEnvio: ''
+                  arquivoEstorno: ''
+                  valor: 0
+                  valorGuia: 0
+                  taxaArrecadacao: 0
+                  valorPago: 0
+                  valorExtorno: 0
+                  faturasGuia:
+                    - idInconsistencia: 0
+                      idFatura: 0
+                      idGuia: 0
+                      idPeriodo: 0
+                      dataVencimento: ''
+                      dataImportacao: ''
+                      valor: 0
+                      taxaArrecadacao: 0
+                      pagamentoDuplicado: false
+          faturas:
+            - idInconsistencia: 0
+              idArrecadacao: 0
+              idArrecadador: 0
+              idCliente: 0
+              idGrupo: 0
+              nivelErro: 0
+              idPeriodo: 0
+              idFatura: 0
+              idGuia: 0
+              idLigacao: 0
+              inconsistencia: ''
+              dataVencimento: ''
+              dataPagamento: ''
+              dataCredito: ''
+              dataImportacao: ''
+              periodo: ''
+              linha: ''
+              arquivoEnvio: ''
+              arquivoEstorno: ''
+              valor: 0
+              valorGuia: 0
+              taxaArrecadacao: 0
+              valorPago: 0
+              valorExtorno: 0
+              faturasGuia:
+                - idInconsistencia: 0
+                  idFatura: 0
+                  idGuia: 0
+                  idPeriodo: 0
+                  dataVencimento: ''
+                  dataImportacao: ''
+                  valor: 0
+                  taxaArrecadacao: 0
+                  pagamentoDuplicado: false
   securitySchemes: {}
 x-extension-1: null
