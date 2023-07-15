@@ -17673,7 +17673,7 @@ paths:
             type: integer
           in: query
           name: limit
-  /timbre-sii/lod/faturas-pendentes-sii:
+  /timbre-sii/load/faturas-pendentes-sii:
     get:
       summary: Timbre SII - Load faturas pendentes sii
       tags:
