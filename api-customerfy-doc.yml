@@ -17319,6 +17319,387 @@ paths:
                     $ref: '#/components/schemas/ImportArrecadacaoDtoModel'
                     x-stoplight:
                       id: 6ldeu1jqa07i5
+  /timbre-sii/is/modo/operacao-producao:
+    get:
+      summary: Timbre SII - Is modo operação produção
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-timbre-sii-is-modo-operacao-producao
+  /timbre-sii/verifica/baixa-manual/inconsistencias:
+    get:
+      summary: Timbre SII - Verifica baixa manual inconsistência
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-timbre-sii-verifica-baixa-manual-inconsistencias
+  /timbre-sii/verifica/baixa-manual/recalculadas:
+    get:
+      summary: Timbre SII - Verifica baixa manual recalculadas
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-timbre-sii-verifica-baixa-manual-recalculadas
+  /timbre-sii/download/xml:
+    get:
+      summary: Timbre SII - Download XML
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-timbre-sii-download-xml
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: xml
+        - schema:
+            type: string
+          in: query
+          name: filename
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /timbre-sii/processar/envio/todas-faturas-sii:
+    get:
+      summary: Timbre SII - Processar envio todas faturas sii
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiiStatusDtoModel'
+      operationId: get-timbre-sii-processar-envio-todas-faturas-sii
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: total
+        - schema:
+            type: string
+          in: query
+          name: tipoEnvio
+  /timbre-sii/processar/baixa-manual/faturas-sii:
+    post:
+      summary: Timbre SII - Processar baixa manual faturas sii
+      operationId: post-timbre-sii-processar-baixa-manual-faturas-sii
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      tags:
+        - TimbreSII
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                faturas:
+                  type: array
+                  x-stoplight:
+                    id: 5hetz01otzirw
+                  items:
+                    $ref: '#/components/schemas/FaturasSiiDtoModel'
+                    x-stoplight:
+                      id: dol7x38h8qah6
+                isFaturasRecalculadas:
+                  type: boolean
+                  x-stoplight:
+                    id: 76fm4r7ay5oqk
+  /timbre-sii/baixar/faturas/recalculadas:
+    post:
+      summary: Timbre SII - Baixar faturas recalculadas
+      operationId: post-timbre-sii-baixar-faturas-recalculadas
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiiStatusDtoModel'
+      tags:
+        - TimbreSII
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                faturasNaoBaixadas:
+                  type: array
+                  x-stoplight:
+                    id: d5exfikwdqq0o
+                  items:
+                    $ref: '#/components/schemas/FaturasSiiDtoModel'
+                    x-stoplight:
+                      id: abs84s8vxuodn
+  /timbre-sii/enviar/xml/faturas-sii:
+    post:
+      summary: Timbre SII - Enviar xml fatura sii
+      operationId: post-timbre-sii-enviar-xml-faturas-sii
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiiStatusDtoModel'
+      tags:
+        - TimbreSII
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                faturasSelecionadas:
+                  type: array
+                  x-stoplight:
+                    id: tqm0yjgyy4mgl
+                  items:
+                    $ref: '#/components/schemas/FaturasSiiDtoModel'
+                    x-stoplight:
+                      id: uh06t9r2dmegy
+  /timbre-sii/obter/total/faturas-incons/por-pagina:
+    get:
+      summary: Timbre SII - Obter total faturas incosistentes por página
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-timbre-sii-obter-total-faturas-incons-por-pagina
+  /timbre-sii/obter/total/faturas-recalc/por-pagina:
+    get:
+      summary: Timbre SII - Obter total faturas recalculadas por página
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-timbre-sii-obter-total-faturas-recalc-por-pagina
+  /timbre-sii/obter/total/faturas-tca/por-pagina:
+    get:
+      summary: Timbre SII - Obter total faturas tca por página
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-timbre-sii-obter-total-faturas-tca-por-pagina
+  /timbre-sii/obter/total/faturas-pendentes/por-pagina:
+    get:
+      summary: Timbre SII - Obter total faturas pendentes por página
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-timbre-sii-obter-total-faturas-pendentes-por-pagina
+  /timbre-sii/total/faturas-incons-sii/nao-enviadas:
+    get:
+      summary: Timbre SII - Total faturas inconsistentes sii não enviadas
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-timbre-sii-total-faturas-incons-sii-nao-enviadas
+  /timbre-sii/total/faturas-recalc-sii/nao-enviadas:
+    get:
+      summary: Timbre SII - Total faturas recalculadas sii não enviadas
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-timbre-sii-total-faturas-recalc-sii-nao-enviadas
+      tags:
+        - TimbreSII
+  /timbre-sii/total/faturas-tca-sii/nao-enviadas:
+    get:
+      summary: Timbre SII - Total faturas tca sii não enviadas
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-timbre-sii-total-faturas-tca-sii-nao-enviadas
+  /timbre-sii/total/faturas-pendetes-sii/nao-enviadas:
+    get:
+      summary: Timbre SII - Total faturas pendentes sii não enviadas
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-timbre-sii-total-faturas-pendetes-sii-nao-enviadas
+  /timbre-sii/load/faturas-incons-sii:
+    get:
+      summary: Timbre SII - Load faturas inconsistentes sii
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturasSiiDtoModel'
+                  x-stoplight:
+                    id: 3jbp4kom68zhf
+      operationId: get-timbre-sii-load-faturas-incons-sii
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+        - schema:
+            type: integer
+          in: query
+          name: limit
+  /timbre-sii/load/faturas-recalc-sii:
+    get:
+      summary: Timbre SII - Load faturas recalculadas sii
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturasSiiDtoModel'
+                  x-stoplight:
+                    id: 9lnjb6e0fuvdi
+      operationId: get-timbre-sii-load-faturas-recalc-sii
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+        - schema:
+            type: integer
+          in: query
+          name: limit
+  /timbre-sii/load/faturas-tca-sii:
+    get:
+      summary: Timbre SII - Load faturas tca sii
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturasSiiDtoModel'
+                  x-stoplight:
+                    id: pm5uk33u14amg
+      operationId: get-timbre-sii-load-faturas-tca-sii
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+        - schema:
+            type: integer
+          in: query
+          name: limit
+  /timbre-sii/lod/faturas-pendentes-sii:
+    get:
+      summary: Timbre SII - Load faturas pendentes sii
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturasSiiDtoModel'
+                  x-stoplight:
+                    id: 955pqoso47qk7
+      operationId: get-timbre-sii-load-faturas-pendentes-sii
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+        - schema:
+            type: integer
+          in: query
+          name: limit
+    parameters: []
 components:
   schemas:
     CriarLigacaoModel:
@@ -75815,5 +76196,84 @@ components:
                   valor: 0
                   taxaArrecadacao: 0
                   pagamentoDuplicado: false
+    SiiStatusDtoModel:
+      type: object
+      properties:
+        processadoCorretamente:
+          type: boolean
+        totalFaturasSelecionadas:
+          type: integer
+        totalEnviadasCorretamente0:
+          type: integer
+        totalInconsistentes:
+          type: integer
+      x-examples:
+        Example 1:
+          processadoCorretamente: false
+          totalFaturasSelecionadas: 1
+          totalEnviadasCorretamente0: 1
+          totalInconsistentes: 1
+    FaturasSiiDtoModel:
+      type: object
+      properties:
+        idLigacao:
+          type: integer
+        nome:
+          type: string
+        periodo:
+          type: string
+        valor:
+          type: integer
+        enviadoSii:
+          type: string
+        dataHoraEnvio:
+          type: string
+        xmlEnviado:
+          type: string
+        xmlResposta:
+          type: string
+        faturaRecalculada:
+          type: boolean
+        idFaturaRecalculada:
+          type: 'null'
+        faturaRecalculadaBaixada:
+          type: boolean
+        faturaModificada:
+          type: boolean
+        estadoEnvio:
+          type: string
+        codigoErro:
+          type: 'null'
+        descricaoErro:
+          type: 'null'
+        idCidade:
+          type: integer
+        baixaManual:
+          type: boolean
+        faturaSimplificada:
+          type: boolean
+        tipoFatura:
+          type: integer
+      x-examples:
+        Example 1:
+          idLigacao: 0
+          nome: ''
+          periodo: ''
+          valor: 0
+          enviadoSii: ''
+          dataHoraEnvio: ''
+          xmlEnviado: ''
+          xmlResposta: ''
+          faturaRecalculada: false
+          idFaturaRecalculada: null
+          faturaRecalculadaBaixada: false
+          faturaModificada: false
+          estadoEnvio: ''
+          codigoErro: null
+          descricaoErro: null
+          idCidade: 0
+          baixaManual: false
+          faturaSimplificada: false
+          tipoFatura: 0
   securitySchemes: {}
 x-extension-1: null
