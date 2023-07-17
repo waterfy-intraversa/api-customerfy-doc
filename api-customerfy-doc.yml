@@ -4065,7 +4065,7 @@ paths:
                     type: integer
                 fator_gerador:
                   type: string
-  '/solicitacoes/ocorrencia-operacional/{id_ligacao}':
+  '/ocorrencia-operacional/por-idligacao/{id_ligacao}':
     parameters:
       - schema:
           type: string
@@ -4073,9 +4073,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Solicitações - Ocorrência operacional por id ligação
-      tags:
-        - Central-Atendimento
+      summary: Ocorrência Operacional - Ocorrência operacional por id ligação
       responses:
         '200':
           description: OK
@@ -4086,6 +4084,8 @@ paths:
                 items:
                   $ref: '#/components/schemas/OcorrenciaOperacionalDtoModel'
       operationId: get-solicitacoes-ocorrencia-operacional-id_ligacao
+      tags:
+        - Ocorrência-Operacional
   /auditoria/obter-log:
     get:
       summary: Auditoria - Obter log
@@ -17700,6 +17700,169 @@ paths:
           in: query
           name: limit
     parameters: []
+  /rotina-arrecadacao/importar/arquivos:
+    get:
+      summary: Rotina Arrecadação - Importar arquivos
+      tags:
+        - Rotina-Arrecadação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImportArrecadacaoDtoModel'
+                  x-stoplight:
+                    id: muxslwb3sm4yy
+      operationId: get-rotina-arrecadacao-importar-arquivos
+  /rotina-arrecadacao/salvar:
+    post:
+      summary: Rotina Arrecadação - Salvar
+      operationId: post-rotina-arrecadacao-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ImportArrecadacaoDtoModel'
+                  x-stoplight:
+                    id: tpvjx7h2iakce
+      tags:
+        - Rotina-Arrecadacao
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                list:
+                  type: array
+                  x-stoplight:
+                    id: cfifgr9gft5fw
+                  items:
+                    $ref: '#/components/schemas/ImportArrecadacaoDtoModel'
+                    x-stoplight:
+                      id: obnkeee1kwzj4
+        description: ''
+  /ocorrencia-operacional/classificacao:
+    get:
+      summary: Ocorrência Operacional - Classificação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: 1j2wig3mfrljw
+      operationId: get-ocorrencias-operacionais-classificacao
+      tags:
+        - Ocorrência-Operacional
+    parameters: []
+  /ocorrencia-operacional/situacao:
+    get:
+      summary: Ocorrencia Operacional - Situação
+      tags:
+        - Ocorrencia-Operacional
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: 0mwi41ci50a9q
+      operationId: get-ocorrencia-operacional-situacao
+  /ocorrencia-operacional/salvar:
+    post:
+      summary: Ocorrência Operacional - Salvar
+      operationId: post-ocorrencia-operacional-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      tags:
+        - Ocorrência-Operacional
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/OcorrenciaOperacionalDtoModel'
+                  x-stoplight:
+                    id: lejlxtjr2zhdm
+  /ocorrencia-operacional/id-last:
+    get:
+      summary: Ocorrência Operacional - Id last
+      tags:
+        - Ocorrência-Operacional
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-ocorrencia-operacional-id-last
+  '/ocorrencia-operacional/por-id/{idOcorrencia}':
+    parameters:
+      - schema:
+          type: string
+        name: idOcorrencia
+        in: path
+        required: true
+    get:
+      summary: Ocorrência Operacional - Ocorrência operacional por id
+      tags:
+        - Ocorrência-Operacional
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OcorrenciaOperacionalDtoModel'
+      operationId: get-ocorrencia-operacional-por-id-idOcorrencia
+  /ocorrencia-operacional/inativar:
+    post:
+      summary: Ocorrência Operacional - Inativar ocorrência
+      operationId: post-ocorrencia-operacional-inativar
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      tags:
+        - Ocorrência-Operacional
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/OcorrenciaOperacionalDtoModel'
+                  x-stoplight:
+                    id: 86umekcffp4to
+        description: ''
 components:
   schemas:
     CriarLigacaoModel:
