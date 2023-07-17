@@ -17990,6 +17990,24 @@ paths:
               schema:
                 type: boolean
       operationId: get-factura-e-is-modo-op-prod
+  /norma-19/buscar/arquivos-locais:
+    get:
+      summary: Norma 19 - Buscar arquivos locais
+      tags:
+        - Norma19
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+      operationId: get-norma-19-buscar-arquivos-locais
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: arq
 components:
   schemas:
     CriarLigacaoModel:
