@@ -17863,6 +17863,133 @@ paths:
                   x-stoplight:
                     id: 86umekcffp4to
         description: ''
+  /factura-e/load/faturas-face:
+    get:
+      summary: Factura-E - Load faturas FACe
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturaFaceDtoModel'
+                  x-stoplight:
+                    id: m9i1qmly5mnk0
+      operationId: get-factura-e-load-faturas-face
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+        - schema:
+            type: integer
+          in: query
+          name: limit
+      tags:
+        - Factura-E
+  /factura-e/gerar-face:
+    post:
+      summary: Factura E - Gerar FACe
+      operationId: post-factura-e-gerar-face
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+        - Factura-E
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                vIdFatura:
+                  type: array
+                  x-stoplight:
+                    id: xtoi49plzs2fi
+                  items:
+                    x-stoplight:
+                      id: rv37gjzettr6b
+                    type: integer
+                tipoOrdenacao:
+                  type: integer
+                  x-stoplight:
+                    id: m5mj326e96s8s
+  /factura-e/obter/total/faturas/por-pagina:
+    get:
+      summary: Factura E - Obter total faturas por página
+      tags:
+        - Factura-E
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-factura-e-obter-total-faturas-por-pagina
+  /factura-e/total/faturas/nao-enviadas:
+    get:
+      summary: Factura E - Total faturas não enviadas
+      tags:
+        - Factura-E
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-factura-e-total-faturas-nao-enviadas
+  /factura-e/enviar-face:
+    post:
+      summary: Factura E - Enviar FACe
+      operationId: post-factura-e-enviar-face
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FACeStatusDtoModel'
+      tags:
+        - Factura-E
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                vIdFatura:
+                  type: array
+                  x-stoplight:
+                    id: hxpil5kp3ba1t
+                  items:
+                    x-stoplight:
+                      id: l55m5jm6w6a6v
+                    type: integer
+                tipoOrdenacao:
+                  type: integer
+                  x-stoplight:
+                    id: wjk8fnu5ogcnn
+  /factura-e/is/modo-op-prod:
+    get:
+      summary: Factura E - Is modo operação produção
+      tags:
+        - Factura-E
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-factura-e-is-modo-op-prod
 components:
   schemas:
     CriarLigacaoModel:
@@ -76438,5 +76565,51 @@ components:
           baixaManual: false
           faturaSimplificada: false
           tipoFatura: 0
+    FaturaFaceDtoModel:
+      type: object
+      properties:
+        idLigacao:
+          type: integer
+        nome:
+          type: string
+        periodo:
+          type: string
+        valor:
+          type: integer
+        enviadoFace:
+          type: string
+        dataHoraEnvio:
+          type: string
+        xmlEnviado:
+          type: string
+        xmlResposta:
+          type: string
+      x-examples:
+        Example 1:
+          idLigacao: 0
+          nome: ''
+          periodo: ''
+          valor: 0
+          enviadoFace: ''
+          dataHoraEnvio: ''
+          xmlEnviado: ''
+          xmlResposta: ''
+    FACeStatusDtoModel:
+      type: object
+      properties:
+        processadoCorretamente:
+          type: boolean
+        totalFaturasSelecionadas:
+          type: integer
+        totalEnviadasCorretamente:
+          type: integer
+        totalInconsistentes:
+          type: integer
+      x-examples:
+        Example 1:
+          processadoCorretamente: false
+          totalFaturasSelecionadas: 0
+          totalEnviadasCorretamente: 0
+          totalInconsistentes: 0
   securitySchemes: {}
 x-extension-1: null
