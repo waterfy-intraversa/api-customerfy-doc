@@ -17292,6 +17292,19 @@ paths:
                   x-stoplight:
                     id: 7vdi8vex0fmba
       operationId: get-norma-19-importar-arquivos-retorno
+  /timbre-sii/is/modo/operacao-producao:
+    get:
+      summary: Timbre SII - Is modo operação produção
+      tags:
+        - TimbreSII
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-timbre-sii-is-modo-operacao-producao
   /norma-19/salvar:
     post:
       summary: Norma 19 - Salvar
@@ -17319,19 +17332,6 @@ paths:
                     $ref: '#/components/schemas/ImportArrecadacaoDtoModel'
                     x-stoplight:
                       id: 6ldeu1jqa07i5
-  /timbre-sii/is/modo/operacao-producao:
-    get:
-      summary: Timbre SII - Is modo operação produção
-      tags:
-        - TimbreSII
-      responses:
-        '200':
-          description: OK
-          content:
-            text/plain:
-              schema:
-                type: boolean
-      operationId: get-timbre-sii-is-modo-operacao-producao
   /timbre-sii/verifica/baixa-manual/inconsistencias:
     get:
       summary: Timbre SII - Verifica baixa manual inconsistência
@@ -18008,6 +18008,85 @@ paths:
             type: string
           in: query
           name: arq
+  /vendas/valida/cancel-incorp:
+    post:
+      summary: Vendas - Valida canc incorporação
+      operationId: post-vendas-valida-cancel-incorp
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: ubkfl6uw9l7g0
+      tags:
+        - Vendas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                v_vendIncorp:
+                  type: array
+                  x-stoplight:
+                    id: tdmndqavdi0ct
+                  items:
+                    $ref: '#/components/schemas/VendaFatIncorpDetDtoModel'
+                    x-stoplight:
+                      id: g03jl243rcqcy
+        description: ''
+  /vendas/cancelar/incorporacao:
+    post:
+      summary: Vendas - Cancelar incorporação
+      operationId: post-vendas-cancelar-incorporacao
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      x-stoplight:
+        id: 6gx85v1f2uael
+      tags:
+        - Vendas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dado:
+                  type: array
+                  x-stoplight:
+                    id: l06t1il0xhi8q
+                  items:
+                    $ref: '#/components/schemas/VendaFatIncorpDetDtoModel'
+                    x-stoplight:
+                      id: ph3my1mammmuh
+  /vendas/carregar/venda/fat-incorp:
+    get:
+      summary: Vendas - Carregar venda fat incorp
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VendaFatIncorpDtoModel'
+                  x-stoplight:
+                    id: bbusxob6qukor
+      operationId: get-vendas-carregar-venda-fat-incorp
+      x-stoplight:
+        id: qduwsgthix996
+      tags:
+        - Vendas
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
 components:
   schemas:
     CriarLigacaoModel:
