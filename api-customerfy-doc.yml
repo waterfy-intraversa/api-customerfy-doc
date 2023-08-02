@@ -17717,6 +17717,7 @@ paths:
                   x-stoplight:
                     id: muxslwb3sm4yy
       operationId: get-rotina-arrecadacao-importar-arquivos
+      description: ''
   /rotina-arrecadacao/salvar:
     post:
       summary: Rotina Arrecadação - Salvar
@@ -18087,6 +18088,142 @@ paths:
             type: integer
           in: query
           name: idLigacao
+      description: ''
+  /instalacao-medidor/save:
+    post:
+      summary: Instalação Medidor - Salvar
+      operationId: post-instalacao-medidor-save
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: fw0yhekm3leli
+      tags:
+        - Instalação-Medidor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dado:
+                  $ref: '#/components/schemas/InstalacaoMedidorDtoModel'
+                  x-stoplight:
+                    id: 4ai420ln1ywrg
+                dadoLigacao:
+                  $ref: '#/components/schemas/DadosLigacaoInstMedidorDtoModel'
+                  x-stoplight:
+                    id: e1q59ya5qe24k
+  /ligacao/checa/debitos/bloqueio:
+    post:
+      summary: Ligação - Checa débitos com bloqueio
+      operationId: post-ligacao-checa-debitos-bloqueio
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: gjqklm2p6orkn
+      tags:
+        - Ligação
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: cpfCNPJ
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+        - schema:
+            type: integer
+          in: query
+          name: idCliente
+  /ligacao/checa/debito/inquilino:
+    get:
+      summary: Ligação - Checa débito inquilino
+      tags:
+        - Ligação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-ligacao-checa-debito-inquilino
+      x-stoplight:
+        id: audxe6j0mdc6o
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /os/servico/checa-debito:
+    post:
+      summary: OS - Serviço checa débito
+      operationId: post-os-servico-checa-debito
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      x-stoplight:
+        id: ipmr8g7vmp62o
+      tags:
+        - OS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idServico:
+                  type: integer
+                  x-stoplight:
+                    id: qxc8ptuon4xgf
+  /os/encerrar/servico-auto/call-center:
+    post:
+      summary: OS - Encerrar serviço auto call center
+      operationId: post-os-encerrar-servico-auto-call-center
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CadastroOSServicoDtoModel'
+                  x-stoplight:
+                    id: hht2esc1paui7
+      x-stoplight:
+        id: 6tipjeddpo1l3
+      tags:
+        - OS
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                listaServico:
+                  type: array
+                  x-stoplight:
+                    id: sdc7034jqwazu
+                  items:
+                    $ref: '#/components/schemas/CadastroOSServicoDtoModel'
+                    x-stoplight:
+                      id: wuaoi4ob3mgwa
+                i_dadoVO:
+                  $ref: '#/components/schemas/EncerramentoAutoCallCenterDtoModel'
+                  x-stoplight:
+                    id: my29csuscfbet
 components:
   schemas:
     CriarLigacaoModel:
