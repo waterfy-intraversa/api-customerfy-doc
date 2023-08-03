@@ -18371,6 +18371,31 @@ paths:
                     $ref: '#/components/schemas/AprovacaoRecalculoDtoModel'
                     x-stoplight:
                       id: froauchoqnylb
+  /faturamento/reprovacao/faturas:
+    post:
+      summary: Faturamento - Reprovação de faturas
+      operationId: post-faturamento-reprovacao-faturas
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: bdpysi0bor7dm
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                aprovacao:
+                  x-stoplight:
+                    id: hgfer35tr038c
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AprovacaoRecalculoDtoModel'
+                    x-stoplight:
+                      id: v1ncrf6jrqath
 components:
   schemas:
     CriarLigacaoModel:
