@@ -18396,6 +18396,257 @@ paths:
                     $ref: '#/components/schemas/AprovacaoRecalculoDtoModel'
                     x-stoplight:
                       id: v1ncrf6jrqath
+  /pesquisa-satisfacao/validar/data:
+    get:
+      summary: Pesquisa Satisfação - Validar data
+      tags:
+        - Pesquisa-Satisfação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-pesquisa-satisfacao-validar-data
+      x-stoplight:
+        id: eujyuojq9mf2x
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: dataDE
+        - schema:
+            type: string
+          in: query
+          name: dataATE
+  /pesquisa-satisfacao/verificar/pesquisas-pendentes:
+    get:
+      summary: Pesquisa Satisfação - Verificar pesquisas pendentes
+      tags:
+        - Pesquisa-Satisfação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PesquisaSatisfacaoDetalheDtoModel'
+      operationId: get-pesquisa-satisfacao-verificar-pesquisas-pendentes
+      x-stoplight:
+        id: ilgikpvh8gi3s
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /pesquisa-satisfacao/carregar/pesquisa-selecionada:
+    get:
+      summary: Pesquisa Satisfação - Carrega pesquisa selecionada
+      tags:
+        - Pesquisa-Satisfação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PesquisaSatisfacaoDtoModel'
+      operationId: get-pesquisa-satisfacao-carregar-pesquisa-selecionada
+      x-stoplight:
+        id: 36irz71kjk743
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idPesquisaSatisfacao
+  /pesquisa-satisfacao/salvar/pesquisa-detalhe:
+    post:
+      summary: Pesquisa Satisfação - Salvar pesquisa detalhe
+      operationId: post-pesquisa-satisfacao-salvar-pesquisa-detalhe
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: k5lgngq29ngou
+      tags:
+        - Pesquisa-Satisfação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pesquisa:
+                  $ref: '#/components/schemas/PesquisaSatisfacaoDetalheDtoModel'
+                  x-stoplight:
+                    id: 0yrfrepe53vfz
+  /pesquisa-satisfacao/atualizar/find:
+    post:
+      summary: Pesquisa Satisfação - Atualizar find
+      operationId: post-pesquisa-satisfacao-atualizar-find
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: algms35gy9q3l
+      tags:
+        - Pesquisa-Satisfação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dto:
+                  $ref: '#/components/schemas/PesquisaSatisfacaoDtoModel'
+                  x-stoplight:
+                    id: txgiko46stgfw
+  '/pesquisa-satisfacao/perguntas-respostas/{idPesquisa}':
+    parameters:
+      - schema:
+          type: string
+        name: idPesquisa
+        in: path
+        required: true
+    get:
+      summary: Pesquisa Satisfação - Perguntas respostas por id pesquisa
+      tags:
+        - Pesquisa-Satisfação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PesquisaSatisfacaoDetalheDtoModel'
+      operationId: get-pesquisa-satisfacao-perguntas-respostas-idPesquisa
+      x-stoplight:
+        id: kydoji8v96bz1
+  /pesquisa-satisfacao/rotina/salvar/pesquisa/detalhe:
+    post:
+      summary: Pesquisa Satisfação - Rotina salvar pesquisa satisfação
+      operationId: post-pesquisa-satisfacao-rotina-salvar-pesquisa-detalhe
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: hpqbjldq016l1
+      tags:
+        - Pesquisa-Satisfação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                datelhes:
+                  type: array
+                  x-stoplight:
+                    id: 4e82mlkg6tgsq
+                  items:
+                    $ref: '#/components/schemas/PesquisaSatisfacaoDetalheDtoModel'
+                    x-stoplight:
+                      id: escm9m43lat0m
+  /pesquisa-satisfacao/detalhes-pesquisa:
+    get:
+      summary: Pesquisa Satisfação - Detalhes pesquisa
+      tags:
+        - Pesquisa-Satisfação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PesquisaSatisfacaoDetalheDtoModel'
+                  x-stoplight:
+                    id: 3z9v22h5x0o6p
+      operationId: get-pesquisa-satisfacao-detalhes-pesquisa
+      x-stoplight:
+        id: nmyq3y0y92qbu
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /pesquisa-satisfacao/setup/pesquisa-detalhe:
+    post:
+      summary: Pesquisa Satisfação - Setup pesquisa detalhe
+      operationId: post-pesquisa-satisfacao-setup-pesquisa-detalhe
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PesquisaSatisfacaoDetalheDtoModel'
+                  x-stoplight:
+                    id: uykaf11zeqdiu
+      x-stoplight:
+        id: hdo9peh3qakr4
+      tags:
+        - Pesquisa-Satisfação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pesquisa:
+                  $ref: '#/components/schemas/PesquisaSatisfacaoDtoModel'
+                  x-stoplight:
+                    id: qz0xz1ys2fer4
+  /pesquisa-satisfacao/update/pesquisa:
+    post:
+      summary: Pesquisa Satisfação - Update pesquisa
+      operationId: post-pesquisa-satisfacao-update-pesquisa
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: p802sjm49cbot
+      tags:
+        - Pesquisa-Satisfação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pesquisa:
+                  $ref: '#/components/schemas/PesquisaSatisfacaoDtoModel'
+                  x-stoplight:
+                    id: 9qwluzsu9dgpm
+  /pesquisa-satisfacao/salvar/pesquisa:
+    post:
+      summary: Pesquisa Satisfação - Salvar pesquisa
+      operationId: post-pesquisa-satisfacao-salvar-pesquisa
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: xxpo21ov5zpyl
+      tags:
+        - Pesquisa-Satisfação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pesquisa:
+                  $ref: '#/components/schemas/PesquisaSatisfacaoDtoModel'
+                  x-stoplight:
+                    id: 50r7tbvkf9skc
 components:
   schemas:
     CriarLigacaoModel:
@@ -77070,5 +77321,165 @@ components:
           usuarioParcelamento: ''
           usuarioAprovacao: ''
           dataHoraAprovacao: ''
+    PesquisaSatisfacaoDtoModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        idPesquisa:
+          type: integer
+        descricao:
+          type: string
+        dataInicial:
+          type: string
+        dataFinal:
+          type: string
+        dataInclusao:
+          type: string
+        idCidade:
+          type: integer
+        qtdPesquisas:
+          type: integer
+        idUsuarioInclusao:
+          type: integer
+        servicos:
+          type: array
+          items:
+            type: object
+            properties:
+              idOS:
+                type: integer
+              idServico:
+                type: integer
+              descricao:
+                type: string
+              dataHoraAbertura:
+                type: string
+              bairro:
+                type: string
+              logradouro:
+                type: string
+              nr:
+                type: string
+              naoAdmiteDuplicacao:
+                type: boolean
+              idServicoAbertura:
+                type: integer
+        perguntas:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              perguntas:
+                type: string
+              observacao:
+                type: string
+              respostas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    resposta:
+                      type: string
+      x-examples:
+        Example 1:
+          id: 0
+          idPesquisa: 0
+          descricao: ''
+          dataInicial: ''
+          dataFinal: ''
+          dataInclusao: ''
+          idCidade: 0
+          qtdPesquisas: 0
+          idUsuarioInclusao: 0
+          servicos:
+            - idOS: 0
+              idServico: 0
+              descricao: ''
+              dataHoraAbertura: ''
+              bairro: ''
+              logradouro: ''
+              nr: ''
+              naoAdmiteDuplicacao: false
+              idServicoAbertura: 0
+          perguntas:
+            - id: 1
+              perguntas: ''
+              observacao: ''
+              respostas:
+                - id: 1
+                  resposta: ''
+    PesquisaSatisfacaoDetalheDtoModel:
+      type: object
+      properties:
+        idServico:
+          type: integer
+        idOS:
+          type: integer
+        idPesquisa:
+          type: integer
+        qtdPesquisa:
+          type: integer
+        solicitante:
+          type: string
+        servico:
+          type: string
+        logradouro:
+          type: string
+        telefoneSolicitante:
+          type: string
+        telefoneFixo:
+          type: string
+        telefoneCelular:
+          type: string
+        inicioExecucao:
+          type: string
+        fimExecucao:
+          type: string
+        perguntas:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              perguntas:
+                type: string
+              observacao:
+                type: string
+              respostas:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    resposta:
+                      type: string
+      x-examples:
+        Example 1:
+          idServico: 0
+          idOS: 0
+          idPesquisa: 0
+          qtdPesquisa: 0
+          solicitante: ''
+          servico: ''
+          logradouro: ''
+          telefoneSolicitante: ''
+          telefoneFixo: ''
+          telefoneCelular: ''
+          inicioExecucao: ''
+          fimExecucao: ''
+          perguntas:
+            - id: 1
+              perguntas: ''
+              observacao: ''
+              respostas:
+                - id: 1
+                  resposta: ''
   securitySchemes: {}
 x-extension-1: null
