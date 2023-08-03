@@ -18224,6 +18224,153 @@ paths:
                   $ref: '#/components/schemas/EncerramentoAutoCallCenterDtoModel'
                   x-stoplight:
                     id: my29csuscfbet
+  /faturamento/aprovacao/recalculo:
+    get:
+      summary: Faturamento - Aprovação recálculo
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AprovacaoRecalculoDtoModel'
+                  x-stoplight:
+                    id: 3dswsmgmnvxku
+      operationId: get-faturamento-aprovacao-recalculo
+      x-stoplight:
+        id: g4djttqt94rvr
+    parameters: []
+  /faturamento/aprovacao/parcelamento:
+    get:
+      summary: Faturamento - Aprovação parcelamento
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AprovacaoParcelamentoDtoModel'
+                  x-stoplight:
+                    id: cqej7ppc7sj3p
+      operationId: get-faturamento-aprovacao-parcelamento
+      x-stoplight:
+        id: sw8jqc3oo6mhr
+  /faturamento/aprovacao/parcelamento/post:
+    post:
+      summary: Faturamento - Aprovação parcelamento POST
+      operationId: post-faturamento-aprovacao-parcelamento-post
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: jf18gajou3fr7
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                listAprovacao:
+                  type: array
+                  x-stoplight:
+                    id: tfu18y1heuheg
+                  items:
+                    $ref: '#/components/schemas/AprovacaoParcelamentoDtoModel'
+                    x-stoplight:
+                      id: 8kkuecfdcqjws
+  /faturamento/reprovacao/parcelamento:
+    post:
+      summary: Faturamento - Reprovação parcelamento
+      operationId: post-faturamento-reprovacao-parcelamento
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: mglry2ubjjxep
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                listAprovacao:
+                  type: array
+                  x-stoplight:
+                    id: 2utzb9xymyrtm
+                  items:
+                    $ref: '#/components/schemas/AprovacaoParcelamentoDtoModel'
+                    x-stoplight:
+                      id: gb77fwnkw1z7f
+  /faturamento/rotina/aprovacao/parcelamento:
+    post:
+      summary: Faturamento - Rotina aprovação parcelamento
+      operationId: post-faturamento-rotina-aprovacao-parcelamento
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: nvrlvb34ocgp1
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                listAprovacao:
+                  type: array
+                  x-stoplight:
+                    id: rflixifqs3u5g
+                  items:
+                    $ref: '#/components/schemas/AprovacaoParcelamentoDtoModel'
+                    x-stoplight:
+                      id: otn2fs0brhbpi
+  /faturamento/rotina/aprovacao/recalculo:
+    post:
+      summary: Faturamento - Rotina aprovação recálculo
+      operationId: post-faturamento-rotina-aprovacao-recalculo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: 9zxq6yu2ipjk6
+                  type: integer
+      x-stoplight:
+        id: e3nz1nar0ztcg
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                aprovacao:
+                  type: array
+                  x-stoplight:
+                    id: h6iw1xa6smc69
+                  items:
+                    $ref: '#/components/schemas/AprovacaoRecalculoDtoModel'
+                    x-stoplight:
+                      id: froauchoqnylb
 components:
   schemas:
     CriarLigacaoModel:
@@ -76845,5 +76992,58 @@ components:
           totalFaturasSelecionadas: 0
           totalEnviadasCorretamente: 0
           totalInconsistentes: 0
+    AprovacaoParcelamentoDtoModel:
+      type: object
+      properties:
+        idParcelamento:
+          type: integer
+        dataHoraParcelamento:
+          type: string
+        status:
+          type: string
+        idLigacao:
+          type: integer
+        tipoParcelamento:
+          type: string
+        valorDebito:
+          type: integer
+        valorEncargo:
+          type: integer
+        valorDesconto:
+          type: integer
+        percentual:
+          type: integer
+        valorTotal:
+          type: integer
+        qtdParcelas:
+          type: integer
+        idUsuarioParcelamento:
+          type: integer
+        idUsuarioAprovacao:
+          type: integer
+        usuarioParcelamento:
+          type: string
+        usuarioAprovacao:
+          type: string
+        dataHoraAprovacao:
+          type: string
+      x-examples:
+        Example 1:
+          idParcelamento: 0
+          dataHoraParcelamento: ''
+          status: ''
+          idLigacao: 0
+          tipoParcelamento: ''
+          valorDebito: 0
+          valorEncargo: 0
+          valorDesconto: 0
+          percentual: 0
+          valorTotal: 0
+          qtdParcelas: 0
+          idUsuarioParcelamento: 0
+          idUsuarioAprovacao: 0
+          usuarioParcelamento: ''
+          usuarioAprovacao: ''
+          dataHoraAprovacao: ''
   securitySchemes: {}
 x-extension-1: null
