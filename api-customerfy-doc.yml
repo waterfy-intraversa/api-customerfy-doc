@@ -18647,6 +18647,118 @@ paths:
                   $ref: '#/components/schemas/PesquisaSatisfacaoDtoModel'
                   x-stoplight:
                     id: 50r7tbvkf9skc
+  /pagamento-anual/simular:
+    post:
+      summary: Pagamento Anual - Simular
+      operationId: post-pagamento-anual-simular
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagamentoAnualDtoModel'
+      x-stoplight:
+        id: z4xqau5zpkh71
+      tags:
+        - Pagamento-Anual
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                l:
+                  $ref: '#/components/schemas/CriarLigacaoModel'
+                  x-stoplight:
+                    id: cyhznezegunih
+                p:
+                  $ref: '#/components/schemas/PagamentoAnualDtoModel'
+                  x-stoplight:
+                    id: uyhjxovoy5hfg
+  /pagamento-anual/efetivar-pagamento:
+    post:
+      summary: Pagamento Anual - Efetivar pagamento
+      operationId: post-pagamento-anual-efetivar-pagamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: bk411k2hfnt82
+      tags:
+        - Pagamento-Anual
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ligacao:
+                  $ref: '#/components/schemas/CriarLigacaoModel'
+                  x-stoplight:
+                    id: i3aqj1jorxsab
+                pagamento:
+                  $ref: '#/components/schemas/PagamentoAnualDtoModel'
+                  x-stoplight:
+                    id: fatw41jetndba
+      x-extension-1: null
+  /pagamento-anual/obter/pagamento-anual:
+    post:
+      summary: Pagamento Anual - Obter pagamento anual
+      operationId: post-pagamento-anual-obter-pagamento-anual
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PagamentoAnualDtoModel'
+      x-stoplight:
+        id: kwhtv8lwyswge
+      tags:
+        - Pagamento-Anual
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                l:
+                  $ref: '#/components/schemas/CriarLigacaoModel'
+                  x-stoplight:
+                    id: obzblkbsnc7et
+                p:
+                  $ref: '#/components/schemas/PagamentoAnualDtoModel'
+                  x-stoplight:
+                    id: 02rohut6e95nj
+  /pagamento-anual/get-historico:
+    get:
+      summary: Pagamento Anual - Get pagamento anual histórico
+      tags:
+        - Pagamento-Anual
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PagamentoAnualDtoModel'
+                  x-stoplight:
+                    id: u8rr8scgm4jjo
+      operationId: get-pagamento-anual-get-historico
+      x-stoplight:
+        id: 91q48tsws1j9a
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
 components:
   schemas:
     CriarLigacaoModel:
@@ -77481,5 +77593,112 @@ components:
               respostas:
                 - id: 1
                   resposta: ''
+    PagamentoAnualDtoModel:
+      type: object
+      properties:
+        item:
+          type: integer
+        idLigacao:
+          type: integer
+        idFaturaAvulsa:
+          type: integer
+        idVendaFaturaAvulsa:
+          type: integer
+        idPeriodo:
+          type: integer
+        periodo:
+          type: string
+        situacao:
+          type: string
+        idUsuarioCadastro:
+          type: integer
+        dataCadastro:
+          type: string
+        horaCadastro:
+          type: string
+        saldoAnterior:
+          type: integer
+        valor:
+          type: integer
+        saldoAtual:
+          type: integer
+        mediaFaturamento:
+          type: integer
+        mediaConsumo:
+          type: integer
+        desconto:
+          type: integer
+        valorDisponivel:
+          type: integer
+        totalDistribuido:
+          type: integer
+        pagamentoAnualDetalhe:
+          type: array
+          items:
+            type: object
+            properties:
+              item:
+                type: integer
+              idPagamentoAnualAntecipado:
+                type: integer
+              idFatura:
+                type: integer
+              idGrupoReceita:
+                type: integer
+              creditoSaldo:
+                type: integer
+              dataCadastro:
+                type: string
+              horaCadastro:
+                type: string
+              saldoAnterior:
+                type: integer
+              valorFatura:
+                type: integer
+              valorUtilizado:
+                type: integer
+              saldoAtual:
+                type: integer
+              volumeMedido:
+                type: integer
+        parcelas:
+          type: integer
+        process:
+          type: boolean
+      x-examples:
+        Example 1:
+          item: 1
+          idLigacao: 1
+          idFaturaAvulsa: 1
+          idVendaFaturaAvulsa: 1
+          idPeriodo: 1
+          periodo: ''
+          situacao: ''
+          idUsuarioCadastro: 1
+          dataCadastro: ''
+          horaCadastro: ''
+          saldoAnterior: 0
+          valor: 0
+          saldoAtual: 0
+          mediaFaturamento: 0
+          mediaConsumo: 0
+          desconto: 0
+          valorDisponivel: 0
+          totalDistribuido: 0
+          pagamentoAnualDetalhe:
+            - item: 0
+              idPagamentoAnualAntecipado: 0
+              idFatura: 0
+              idGrupoReceita: 0
+              creditoSaldo: 0
+              dataCadastro: ''
+              horaCadastro: ''
+              saldoAnterior: 0
+              valorFatura: 0
+              valorUtilizado: 0
+              saldoAtual: 0
+              volumeMedido: 0
+          parcelas: 1
+          process: false
   securitySchemes: {}
 x-extension-1: null
