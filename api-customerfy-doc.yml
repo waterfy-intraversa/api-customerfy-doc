@@ -2880,10 +2880,7 @@ paths:
                   $ref: '#/components/schemas/FiltroProcessoJuridicoDtoModel'
   /cobranca/acordos/faturas:
     get:
-      summary: Cobrança - Acordos - Obter faturas acordo
-      tags:
-        - Cobrança
-        - Central-Atendimento
+      summary: Acordo - Obter faturas acordo
       responses:
         '200':
           description: OK
@@ -2897,12 +2894,12 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+      tags:
+        - Acordo
+      description: ''
   /cobranca/acordos/verificar-os:
     get:
-      summary: Cobrança - Acordos - Verificar OS
-      tags:
-        - Cobrança
-        - Central-Atendimento
+      summary: Acordo - Verificar OS
       responses:
         '200':
           description: OK
@@ -2916,16 +2913,15 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+      tags:
+        - Acordo
   /cobranca/acordos/save:
     post:
-      summary: Cobrança - Acordos - Salvar acordo
+      summary: Acordo - Salvar acordo
       operationId: post-cobranca-acordos-save
       responses:
         '200':
           description: OK
-      tags:
-        - Central-Atendimento
-        - Cobrança
       requestBody:
         content:
           application/json:
@@ -2934,12 +2930,11 @@ paths:
               properties:
                 acordo:
                   $ref: '#/components/schemas/AcordoDtoModel'
+      tags:
+        - Acordo
   /cobranca/acordos/consulta-acordos:
     get:
-      summary: Cobrança - Acordos - Consultar acordo
-      tags:
-        - Cobrança
-        - Central-Atendimento
+      summary: Acordo - Consultar acordo
       responses:
         '200':
           description: OK
@@ -2955,6 +2950,8 @@ paths:
             type: integer
           in: query
           name: id_ligacao
+      tags:
+        - Acordo
   /cobranca/extra-judicial/carrega-processos:
     get:
       summary: Cobrança - Extra Judicial - Carregar processos cobrança
@@ -18859,6 +18856,35 @@ paths:
             type: integer
           in: query
           name: idFatura
+  /cobranca/acordos/cancelar:
+    post:
+      summary: Acordo - Cancelar acordo
+      operationId: post-cobranca-acordos-cancelar
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 4mpq51osn5av3
+      tags:
+        - Acordo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idAcordo:
+                  type: integer
+                  x-stoplight:
+                    id: gjyf8u9eqzhez
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: j11er14upct98
+                acordo:
+                  $ref: '#/components/schemas/AcordoDtoModel'
+                  x-stoplight:
+                    id: fnj9y7oycesiy
 components:
   schemas:
     CriarLigacaoModel:
