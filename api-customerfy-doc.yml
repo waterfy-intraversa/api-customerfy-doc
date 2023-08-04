@@ -18885,6 +18885,250 @@ paths:
                   $ref: '#/components/schemas/AcordoDtoModel'
                   x-stoplight:
                     id: fnj9y7oycesiy
+  /pesquisa-medicao/tipo-campo/resposta:
+    get:
+      summary: Pesquisa Medição - Tipo campo resposta
+      tags:
+        - Pesquisa-Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: zpmo6yp6qhuxk
+      operationId: get-pesquisa-medicao-tipo-campo-resposta
+      x-stoplight:
+        id: sup2yz29svw80
+  /pesquisa-medicao/save:
+    post:
+      summary: Pesquisa Medição - Salvar pesquisa medição
+      operationId: post-pesquisa-medicao-save
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: 3a8kyka8ax4va
+      tags:
+        - Pesquisa-Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pesquisa:
+                  $ref: '#/components/schemas/PesquisaMedicaoPerguntaDtoModel'
+                  x-stoplight:
+                    id: vyh2u3qfsioaz
+  /pesquisa-medicao/buscar:
+    post:
+      summary: Pesquisa Medição - Buscar pesquisa medição
+      operationId: post-pesquisa-medicao-buscar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PesquisaMedicaoPerguntaDtoModel'
+      x-stoplight:
+        id: q859nzzv1gn7p
+      tags:
+        - Pesquisa-Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pesquisa:
+                  $ref: '#/components/schemas/PesquisaMedicaoPerguntaDtoModel'
+                  x-stoplight:
+                    id: 8o6i7odc5kmfk
+  /pesquisa-medicao/inativar:
+    post:
+      summary: Pesquisa Medição - Inativar pesquisa medição
+      operationId: post-pesquisa-medicao-inativar
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: tbetdthip1u7g
+      tags:
+        - Pesquisa-Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pesquisa:
+                  $ref: '#/components/schemas/PesquisaMedicaoPerguntaDtoModel'
+                  x-stoplight:
+                    id: hio3hcwm8pqik
+  /pesquisa-medicao/pesquisa/consulta/ligacao:
+    post:
+      summary: Pesquisa Medição - Pesquisa consulta ligação
+      operationId: post-pesquisa-medicao-pesquisa-consulta-ligacao
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CriarLigacaoModel'
+                  x-stoplight:
+                    id: 3mfi0wzl97b16
+      x-stoplight:
+        id: yq6nd6q6ssn2o
+      tags:
+        - Pesquisa-Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filtro:
+                  $ref: '#/components/schemas/FiltroConsultaLigacaoDtoModel'
+                  x-stoplight:
+                    id: 4th346w33i9su
+        description: ''
+  /pesquisa-medicao/alterar/gp-selecionado:
+    post:
+      summary: Pesquisa Medição - Alterar gp selecionado
+      operationId: post-pesquisa-medicao-alterar-gp-selecionado
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: w52y80yvf6ucn
+      tags:
+        - Pesquisa-Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ligacoesSelecionadas:
+                  type: array
+                  x-stoplight:
+                    id: 8w2dzej7y3udr
+                  items:
+                    $ref: '#/components/schemas/CriarLigacaoModel'
+                    x-stoplight:
+                      id: 723t4arueqb6c
+                filtro:
+                  $ref: '#/components/schemas/FiltroConsultaLigacaoDtoModel'
+                  x-stoplight:
+                    id: 7v6hwzn892e05
+  /pesquisa-medicao/alterar/rt-selecionado:
+    post:
+      summary: Pesquisa Medição - Alterar rt selecionado
+      operationId: post-pesquisa-medicao-alterar-rt-selecionado
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: hze63rvytg3qo
+      tags:
+        - Pesquisa-Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ligacoesSelecionadas:
+                  type: array
+                  x-stoplight:
+                    id: bj3uwn2ce0595
+                  items:
+                    $ref: '#/components/schemas/CriarLigacaoModel'
+                    x-stoplight:
+                      id: uf4fie8vzrlwt
+                filtro:
+                  $ref: '#/components/schemas/FiltroConsultaLigacaoDtoModel'
+                  x-stoplight:
+                    id: xu8is08la78ho
+  /pesquisa-medicao/incrementar/seq:
+    post:
+      summary: Pesquisa Medição - Incrementar seq
+      operationId: post-pesquisa-medicao-incrementar-seq
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: srodou7yddvim
+      tags:
+        - Pesquisa-Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                inicio:
+                  type: integer
+                  x-stoplight:
+                    id: smg9p02g43n9e
+                incrementar:
+                  type: integer
+                  x-stoplight:
+                    id: 23v3x5ywpx0gv
+                ligacoesSelecionadas:
+                  type: array
+                  x-stoplight:
+                    id: jsh1icv30or6v
+                  items:
+                    $ref: '#/components/schemas/CriarLigacaoModel'
+                    x-stoplight:
+                      id: 5h3qxuij3yz3c
+  /pesquisa-medicao/incrementar/seq-sl:
+    post:
+      summary: Pesquisa Medição - Incrementar seq sl
+      operationId: post-pesquisa-medicao-incrementar-seq-sl
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: x1o70vm0ug8fc
+      tags:
+        - Pesquisa-Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                incrementar:
+                  type: integer
+                  x-stoplight:
+                    id: 28on4w6g38quu
+                ligacoesSelecionadas:
+                  type: array
+                  x-stoplight:
+                    id: rb8tla5pwtahq
+                  items:
+                    $ref: '#/components/schemas/CriarLigacaoModel'
+                    x-stoplight:
+                      id: ddgfgaxhqto5k
 components:
   schemas:
     CriarLigacaoModel:
@@ -77885,5 +78129,120 @@ components:
           residuo: 0
           residuoPendente: 0
           baixaCancelamento: 'N'
+    PesquisaMedicaoPerguntaDtoModel:
+      type: object
+      properties:
+        idCidade:
+          type: integer
+        idPeriodoDe:
+          type: integer
+        idPeriodoAte:
+          type: integer
+        idUsuario:
+          type: integer
+        qtdTotalFaturasDe:
+          type: integer
+        qtdTotalFaturasAte:
+          type: integer
+        podeEditarApagar:
+          type: boolean
+        idsBairros:
+          type: array
+          items:
+            type: integer
+        idsCategorias:
+          type: array
+          items:
+            type: integer
+        idsGrupos:
+          type: array
+          items:
+            type: integer
+        idsSituacaoCobranca:
+          type: array
+          items:
+            type: integer
+        resposta:
+          type: array
+          items:
+            type: object
+            properties:
+              idPergunta:
+                type: integer
+              resposta:
+                type: string
+        fotoObrigatoria:
+          type: boolean
+        ativo:
+          type: boolean
+        nomePesquisa:
+          type: string
+        pergunta:
+          type: string
+        tipoCampo:
+          type: integer
+      x-examples:
+        Example 1:
+          idCidade: 0
+          idPeriodoDe: 0
+          idPeriodoAte: 0
+          idUsuario: 0
+          qtdTotalFaturasDe: 0
+          qtdTotalFaturasAte: 0
+          podeEditarApagar: true
+          idsBairros:
+            - 1
+          idsCategorias:
+            - 1
+          idsGrupos:
+            - 1
+          idsSituacaoCobranca:
+            - 1
+          resposta:
+            - idPergunta: 1
+              resposta: ''
+          fotoObrigatoria: false
+          ativo: false
+          nomePesquisa: ''
+          pergunta: ''
+          tipoCampo: 0
+    FiltroConsultaLigacaoDtoModel:
+      type: object
+      properties:
+        idCidade:
+          type: integer
+        idDistrito:
+          type: integer
+        idBairro:
+          type: integer
+        idLogradouro:
+          type: integer
+        idGrupo:
+          type: integer
+        idRota:
+          type: integer
+        idRoteirizacao:
+          type: integer
+        idGrupo1:
+          type: integer
+        ckRligualRe:
+          type: boolean
+        idRota1:
+          type: integer
+        idLeituraOuEntrega:
+          type: integer
+      x-examples:
+        Example 1:
+          idCidade: 0
+          idDistrito: 0
+          idBairro: 0
+          idLogradouro: 0
+          idGrupo: 0
+          idRota: 0
+          idRoteirizacao: 0
+          idGrupo1: 0
+          ckRligualRe: false
+          idRota1: 0
+          idLeituraOuEntrega: 0
   securitySchemes: {}
 x-extension-1: null
