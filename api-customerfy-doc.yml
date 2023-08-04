@@ -18759,6 +18759,106 @@ paths:
             type: integer
           in: query
           name: idLigacao
+  /cobranca/grava/corte-ligacao:
+    post:
+      summary: Cobrança - Grava corte ligação
+      operationId: post-cobranca-grava-corte-ligacao
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 7udifb48x119s
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filtro:
+                  $ref: '#/components/schemas/FiltroEfetivacaoDtoModel'
+                  x-stoplight:
+                    id: x33yem0sc0edx
+                comProcesso:
+                  type: boolean
+                  x-stoplight:
+                    id: a2gwd2taycieu
+  /cobranca-negativacao/cancelar/envio/negativacao:
+    post:
+      summary: Cobrança Negativação - Cancelar envio negativação
+      operationId: post-cobranca-negativacao-cancelar-envio-negativacao
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 7c0rt9d703uy4
+      tags:
+        - Cobrança-Negativação
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: 5505bmc0ydlm2
+                idFatura:
+                  type: integer
+                  x-stoplight:
+                    id: s3pab0hvxstwd
+                idProcessoCorte:
+                  type: integer
+                  x-stoplight:
+                    id: 4389yidmia7ku
+  /cobranca-negativacao/confirmar/cancelamento:
+    post:
+      summary: Cobrança Negativação - Confirmar cancelamento
+      operationId: post-cobranca-negativacao-confirmar-cancelamento
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 5ed89nw2sq7wj
+      tags:
+        - Cobrança-Negativação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idFatura:
+                  type: integer
+                  x-stoplight:
+                    id: qbue0anly4a5b
+                idMotivo:
+                  type: integer
+                  x-stoplight:
+                    id: udqpxp3m4llyd
+  /cobranca-negativacao/is/negativado:
+    get:
+      summary: Cobrança Negativação - Is negativado
+      tags:
+        - Cobrança-Negativação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-cobranca-negativacao-is-negativado
+      x-stoplight:
+        id: oyy3i20z7rcat
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idFatura
 components:
   schemas:
     CriarLigacaoModel:
@@ -77700,5 +77800,64 @@ components:
               volumeMedido: 0
           parcelas: 1
           process: false
+    FiltroEfetivacaoDtoModel:
+      type: object
+      properties:
+        idCidade:
+          type: integer
+        idGrupo:
+          type: integer
+        codigoProcesso:
+          type: integer
+        idLeiturista:
+          type: integer
+        dataCorte:
+          type: string
+        horaCorte:
+          type: string
+        idEmpresa:
+          type: integer
+        idLigacao:
+          type: integer
+        cortado:
+          type: string
+        idMotivo:
+          type: integer
+        idTipoCorte:
+          type: integer
+        leituraCorte:
+          type: integer
+        lacre:
+          type: string
+        idMotivoCorte:
+          type: integer
+        leituraAnterior:
+          type: integer
+        residuo:
+          type: integer
+        residuoPendente:
+          type: integer
+        baixaCancelamento:
+          type: string
+      x-examples:
+        Example 1:
+          idCidade: 0
+          idGrupo: 0
+          codigoProcesso: 0
+          idLeiturista: 0
+          dataCorte: ''
+          horaCorte: ''
+          idEmpresa: 0
+          idLigacao: 0
+          cortado: ''
+          idMotivo: 0
+          idTipoCorte: 0
+          leituraCorte: 0
+          lacre: ''
+          idMotivoCorte: 0
+          leituraAnterior: 0
+          residuo: 0
+          residuoPendente: 0
+          baixaCancelamento: 'N'
   securitySchemes: {}
 x-extension-1: null
