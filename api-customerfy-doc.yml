@@ -19129,6 +19129,31 @@ paths:
                     $ref: '#/components/schemas/CriarLigacaoModel'
                     x-stoplight:
                       id: ddgfgaxhqto5k
+  /faturamento/rotina/cancelamento/guia/fatura-final:
+    post:
+      summary: Faturamento - Rotina cancelamento guia fatura final
+      operationId: post-faturamento-rotina-cancelamento-guia-fatura-final
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      x-stoplight:
+        id: abzunj01t6lo4
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                guia:
+                  $ref: '#/components/schemas/HistoricoGuiaDtoModel'
+                  x-stoplight:
+                    id: wq8sip6sotb2i
 components:
   schemas:
     CriarLigacaoModel:
