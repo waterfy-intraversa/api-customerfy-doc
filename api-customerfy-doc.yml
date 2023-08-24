@@ -19154,6 +19154,43 @@ paths:
                   $ref: '#/components/schemas/HistoricoGuiaDtoModel'
                   x-stoplight:
                     id: wq8sip6sotb2i
+  /faturamento/emitir/fatura/confirmacao:
+    post:
+      summary: Faturamento - Emitir fatura confirmação
+      operationId: post-faturamento-emitir-fatura-confirmacao
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: pkmrkbgpx4wwd
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idGrupo:
+                  type: integer
+                  x-stoplight:
+                    id: r8adss45oatvm
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: 0z795ott0hghb
+                idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: mmcopy55mmfjo
+                idsFaturas:
+                  type: array
+                  x-stoplight:
+                    id: vg42a8drxrbjf
+                  items:
+                    x-stoplight:
+                      id: sxhtjqso40fr3
+                    type: integer
 components:
   schemas:
     CriarLigacaoModel:
