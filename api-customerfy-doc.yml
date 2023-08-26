@@ -19191,6 +19191,51 @@ paths:
                     x-stoplight:
                       id: sxhtjqso40fr3
                     type: integer
+  /faturamento/carregar/indice-reajuste/ufir/busca-ligacao:
+    get:
+      summary: Faturamento - Carregar índice reajuste UFIR
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndiceReajusteDtoModel'
+      operationId: get-faturamento-carregar-indice-reajuste-ufir
+      x-stoplight:
+        id: 8409xn9b0jxyq
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+        - schema:
+            type: boolean
+          in: query
+          name: buscarPelaLigacao
+    parameters: []
+  /faturamento/carregar/indice-reajuste:
+    get:
+      summary: Faturamento - Carregar índice reajuste UFIR
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndiceReajusteDtoModel'
+      operationId: get-faturamento-carregar-indice-reajuste
+      x-stoplight:
+        id: pbr45iybterci
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
 components:
   schemas:
     CriarLigacaoModel:
