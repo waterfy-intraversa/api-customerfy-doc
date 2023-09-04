@@ -19269,6 +19269,25 @@ paths:
             type: integer
           in: query
           name: idCliente
+  /faturamento/enviar/email/confirmacao/aprovacao/recalculo:
+    post:
+      summary: Faturamento - Enviar email aprovação recálculo
+      operationId: post-faturamento-enviar-email-confirmacao-aprovacao-recalculo
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 1yj2nnb1441ee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                aprovacao:
+                  $ref: '#/components/schemas/AprovacaoRecalculoDtoModel'
+                  x-stoplight:
+                    id: xplzi7bxki1il
 components:
   schemas:
     CriarLigacaoModel:
