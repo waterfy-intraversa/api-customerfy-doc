@@ -19288,6 +19288,57 @@ paths:
                   $ref: '#/components/schemas/AprovacaoRecalculoDtoModel'
                   x-stoplight:
                     id: xplzi7bxki1il
+  /confirmacao-entrega-notif/obter/ocorrencias:
+    get:
+      summary: Confirmação Entrega Notificação - Obter ocorrências notificação
+      tags:
+        - Confirmação-Entrega-Notificação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: jb2lj2r0spw6l
+      operationId: get-confirmacao-entrega-notif-obter-ocorrencias
+      x-stoplight:
+        id: mlxzdxso1ww6n
+  /faturamento/obter/historico/faturas/cliente:
+    get:
+      summary: Faturamento - Obter histórico faturas cliente
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturaDtoModel'
+                  x-stoplight:
+                    id: r8ddars3rt7u6
+      operationId: get-faturamento-obter-historico-faturas-cliente
+      x-stoplight:
+        id: 3chtwjt7n6v3t
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCliente
+        - schema:
+            type: integer
+          in: query
+          name: offset
+        - schema:
+            type: integer
+          in: query
+          name: limit
 components:
   schemas:
     CriarLigacaoModel:
