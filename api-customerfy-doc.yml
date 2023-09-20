@@ -19390,9 +19390,10 @@ paths:
                   x-stoplight:
                     id: z4jlczq5o42bo
                 ligacao:
-                  type: integer
+                  $ref: '#/components/schemas/CriarLigacaoModel'
                   x-stoplight:
                     id: hgwb7nq437vyd
+        description: ''
   /confirmacao-entrega-notif/obter/dados/filtro/ligacao-individual:
     get:
       summary: Confirmação Entrega Notificação - Obter dados filtro ligação individual
