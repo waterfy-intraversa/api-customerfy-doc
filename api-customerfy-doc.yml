@@ -19339,6 +19339,174 @@ paths:
             type: integer
           in: query
           name: limit
+  /confirmacao-entrega-notif/obter/dados/filtro/processo-cobranca:
+    get:
+      summary: Confirmação Entrega Notificação - Obter dados filtro processo cobrança
+      tags:
+        - ConfirmaçãoEntregaNotificação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+      operationId: get-confirmacao-entrega-notif-obter-dados-filtro-processo-cobranca
+      x-stoplight:
+        id: 7ekx7sblrfkrt
+      description: ''
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: codigo
+  /vendas/salvar/concessao-cred-manual:
+    post:
+      summary: Vendas - Salvar concessão crédito manual
+      operationId: post-vendas-salvar-concessao-cred-manual
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 3h6rnrpnilfpq
+      tags:
+        - Vendas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                venda:
+                  type: array
+                  x-stoplight:
+                    id: niq937i2r4uvy
+                  items:
+                    $ref: '#/components/schemas/VendaFatIncorpDetDtoModel'
+                    x-stoplight:
+                      id: 5t3ub2haghrtn
+                atribuicaoLigacao:
+                  type: boolean
+                  x-stoplight:
+                    id: z4jlczq5o42bo
+                ligacao:
+                  type: integer
+                  x-stoplight:
+                    id: hgwb7nq437vyd
+  /confirmacao-entrega-notif/obter/dados/filtro/ligacao-individual:
+    get:
+      summary: Confirmação Entrega Notificação - Obter dados filtro ligação individual
+      tags:
+        - ConfirmaçãoEntregaNotificação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+      operationId: get-confirmacao-entrega-notif-obter-dados-filtro-ligacao-individual
+      x-stoplight:
+        id: x397ngxiks9gf
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /confirmacao-entrega-notif/obter/detalhes/processo/processo:
+    get:
+      summary: Confirmação Entrega Notificação - Obter detalhes processo por processo
+      tags:
+        - ConfirmaçãoEntregaNotificação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                  x-stoplight:
+                    id: n3ohkolvr6us9
+      operationId: get-confirmacao-entrega-notif-obter-detalhes-processo-processo
+      x-stoplight:
+        id: 50i87ic8fql7f
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idProcesso
+  /confirmacao-entrega-notif/obter/detalhes/processo/ligacao:
+    get:
+      summary: Confirmação Entrega Notificação - Obter detalhes processo por ligação
+      tags:
+        - ConfirmaçãoEntregaNotificação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                  x-stoplight:
+                    id: 5by00tn7783kn
+      operationId: get-confirmacao-entrega-notif-obter-detalhes-processo-ligacao
+      x-stoplight:
+        id: hkxkj80u3g8vg
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /confirmacao-entrega-notif/obter/total/confirmacoes/pendentes:
+    get:
+      summary: Confirmação Entrega Notificação - Obter total confirmações pendentes
+      tags:
+        - ConfirmaçãoEntregaNotificação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: get-confirmacao-entrega-notif-obter-total-confirmacoes-pendentes
+      x-stoplight:
+        id: qmggfi65mjx3l
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idProcesso
+  /confirmacao-entrega-notif/efetivar/confirmacoes:
+    post:
+      summary: Confirmação Entrega Notificação - Efetivar confirmações
+      operationId: post-confirmacao-entrega-notif-efetivar-confirmacoes
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: is6i1t3qmv5vu
+      tags:
+        - ConfirmaçãoEntregaNotificação
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ligacoesEfetivarConfirmacaoDTO:
+                  type: array
+                  x-stoplight:
+                    id: youy6yeqjc17j
+                  items:
+                    $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                    x-stoplight:
+                      id: 6100x4yr2o5h1
 components:
   schemas:
     CriarLigacaoModel:
@@ -69798,6 +69966,7 @@ components:
           ativo: false
           cep: ''
           idVendaCobrancaAvisoDebito: 0
+      description: ''
     ExcecaoTipoDtoModel:
       type: object
       properties:
