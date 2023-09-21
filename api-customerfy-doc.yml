@@ -19943,6 +19943,34 @@ paths:
       operationId: get-notificacao-ligacao-processo-exibe-check
       x-stoplight:
         id: rj6arv4h8tscp
+  /faturamento/get/fatura/movimentacao/debitos:
+    get:
+      summary: Faturamento - Get fatura movimentação débitos
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FaturaDtoModel'
+                  x-stoplight:
+                    id: 6bb4smge4midz
+      operationId: get-faturamento-get-fatura-movimentacao-debitos
+      x-stoplight:
+        id: hyxhlmw3xgoq5
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCliente
+        - schema:
+            type: integer
+          in: query
+          name: idLigacaoDestino
 components:
   schemas:
     CriarLigacaoModel:
