@@ -19508,6 +19508,441 @@ paths:
                     $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
                     x-stoplight:
                       id: 6100x4yr2o5h1
+  /notificacao-ligacao-processo/obter/dados/processo-corte:
+    post:
+      summary: Notificação Ligação Processo - Obter dados processo corte
+      operationId: post-notificacao-ligacao-processo-obter-dados-processo-corte
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessoCorteDtoModel'
+      x-stoplight:
+        id: wqc1kz5n3oylv
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filtros:
+                  $ref: '#/components/schemas/FiltroNotificacaoDtoModel'
+                  x-stoplight:
+                    id: x5ovgi64ysf3w
+                idProcesso:
+                  type: integer
+                  x-stoplight:
+                    id: xy3qxvwnohhop
+  /notificacao-ligacao-processo/obter/dados/processo/grupo:
+    post:
+      summary: Notificação Ligação Process - Obter dados processo por grupo
+      operationId: post-notificacao-ligacao-processo-obter-dados-processo-grupo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessoCorteDtoModel'
+      x-stoplight:
+        id: huz0v1094rfyc
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filtros:
+                  $ref: '#/components/schemas/FiltroNotificacaoDtoModel'
+                  x-stoplight:
+                    id: 3zepyn1ff46qk
+  /notificacao-ligacao-processo/notificar/ligacao/processo-corte/impressao/in-loco:
+    get:
+      summary: Notificação Ligação Processo - Notificar ligação processo corte impressão in loco
+      tags:
+        - NotificacaoLigacaoProcesso
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-notificacao-ligacao-processo-notificar-ligacao-processo-corte-impressao-in-loco
+      x-stoplight:
+        id: 16muw0g89dijd
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idProcesso
+        - schema:
+            type: boolean
+          in: query
+          name: aviso
+  /notificacao-ligacao-processo/notificar/ligacao/processo-corte/impressao/biro:
+    get:
+      summary: Notificação Ligação Processo - Notificar ligação processo corte biro impressão
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoProcessoCorteDtoModel'
+                  x-stoplight:
+                    id: zyrxzcwdzeztg
+      operationId: get-notificacao-ligacao-processo-notificar-ligacao-processo-corte-impressao-biro
+      x-stoplight:
+        id: lxumwarpqmedl
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idProcesso
+  '/notificacao-ligacao-processo/emitir/relacao-entrega/{idProcesso}/{idSituacaoLigacaoProcesso}':
+    parameters:
+      - schema:
+          type: string
+        name: idProcesso
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: idSituacaoLigacaoProcesso
+        in: path
+        required: true
+    get:
+      summary: Notificação Ligação Processo - Emitir relação entrega por processo
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-notificacao-ligacao-processo-emitir-relacao-entrega-idProcesso-idSituacaoLigacaoProcesso
+      x-stoplight:
+        id: d1fuvhrhviy0g
+  /notificacao-ligacao-processo/emitir/relacao-entrega:
+    post:
+      summary: Notificação Ligação Processo - Emitir relação entrega por ligações
+      operationId: post-notificacao-ligacao-processo-emitir-relacao-entrega
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: 1z3xlzn6gq0ti
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ligacoes:
+                  type: array
+                  x-stoplight:
+                    id: 2353vglsykvgb
+                  items:
+                    $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                    x-stoplight:
+                      id: xrbwbepdscynb
+                idSituacaoLigacaoProcesso:
+                  type: integer
+                  x-stoplight:
+                    id: vkekjb74didz3
+  /notificacao-ligacao-processo/emitir/relacao-entrega/corte:
+    post:
+      summary: Notificação Ligação Processo - Emitir relação entrega corte
+      operationId: post-notificacao-ligacao-processo-emitir-relacao-entrega-corte
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: rnaj2d28odmtf
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idProcesso:
+                  type: integer
+                  x-stoplight:
+                    id: 6ybqxvlirercl
+                idsLigacoesFiltradas:
+                  type: array
+                  x-stoplight:
+                    id: wbvj07sil48r3
+                  items:
+                    x-stoplight:
+                      id: pvnzput9iy3k1
+                    type: integer
+                status:
+                  type: integer
+                  x-stoplight:
+                    id: ts965nmyaloc9
+  /notificacao-ligacao-processo/notificar/ligacao/processo-corte/impressao/filtro/biro:
+    post:
+      summary: Notificação Ligação Processo - Notificar ligação processo corte biro impressao filtro
+      operationId: post-notificacao-ligacao-processo-notificar-ligacao-processo-corte-impressao-filtro-biro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                  x-stoplight:
+                    id: 5yfqwlmf5t9vw
+      x-stoplight:
+        id: yegohm50r4i6v
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idProcesso:
+                  type: integer
+                  x-stoplight:
+                    id: noidve8p9q1fu
+                idsLigacoesFiltradas:
+                  type: array
+                  x-stoplight:
+                    id: hh2skia02hesv
+                  items:
+                    x-stoplight:
+                      id: 0ztaod2zx55t8
+                    type: integer
+  /notificacao-ligacao-processo/notificar/ligacao/processo-corte/impressao/in-loco/filtro:
+    post:
+      summary: Notificação Ligação Processo - Notificar ligação processo corte impressão in loco filtro
+      operationId: post-notificacao-ligacao-processo-notificar-ligacao-processo-corte-impressao-in-loco-filtro
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: 88q9q1om69m46
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idProcesso:
+                  type: integer
+                  x-stoplight:
+                    id: 1vp41fv9ahdts
+                idsLigacoesFiltradas:
+                  type: array
+                  x-stoplight:
+                    id: 4anqiazrux2cj
+                  items:
+                    x-stoplight:
+                      id: 1op3t33iyk7d9
+                    type: integer
+                aviso:
+                  type: boolean
+                  x-stoplight:
+                    id: oc5wihg9it7so
+  /notificacao-ligacao-processo/emitir/aviso/divida:
+    post:
+      summary: Notificação Ligação Processo - Emitir aviso divida
+      operationId: post-notificacao-ligacao-processo-emitir-aviso-divida
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: 93isj7xbz8pgf
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idProcesso:
+                  type: integer
+                  x-stoplight:
+                    id: bx5yfozfhdxqd
+                idsLigacoesFiltradas:
+                  type: array
+                  x-stoplight:
+                    id: d6xt87oqo4b2j
+                  items:
+                    x-stoplight:
+                      id: bs0173249j6kb
+                    type: integer
+                aviso:
+                  type: boolean
+                  x-stoplight:
+                    id: 3e80ntxstiew1
+  /notificacao-ligacao-processo/emitir/notificacao/divida:
+    post:
+      summary: Notificação Ligação Processo - Emitir notificação divida
+      operationId: post-notificacao-ligacao-processo-emitir-notificacao-divida
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: 5np6h1cdm1k8s
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idProcesso:
+                  type: integer
+                  x-stoplight:
+                    id: p2l1gk5e2w72h
+                idsLigacoesFiltradas:
+                  type: array
+                  x-stoplight:
+                    id: xi2dj0oz2g35z
+                  items:
+                    x-stoplight:
+                      id: lvped7y4wjtjl
+                    type: integer
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: 1almjvwwr2897
+  /notificacao-ligacao-processo/emitir/aviso/corte:
+    post:
+      summary: Notificação Ligação Processo - Emitir aviso corte
+      operationId: post-notificacao-ligacao-processo-emitir-aviso-corte
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: 6qc576gf4mukn
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idProcesso:
+                  type: integer
+                  x-stoplight:
+                    id: uyavv1izimxyp
+                idsLigacoesFiltradas:
+                  type: array
+                  x-stoplight:
+                    id: bq7v7c69amlpj
+                  items:
+                    x-stoplight:
+                      id: gkrz0qo2w89g6
+                    type: integer
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: dp644aj6i4sjv
+  /notificacao-ligacao-processo/emitir/relacoes/notificacoes:
+    post:
+      summary: Notificação Ligação Processo - Emitir relações notificações
+      operationId: post-notificacao-ligacao-processo-emitir-relacoes-notificacoes
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: d8rfbcma676lp
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idProcesso:
+                  type: integer
+                  x-stoplight:
+                    id: pax4sye6tkfkz
+                idsLigacoesFiltradas:
+                  type: array
+                  x-stoplight:
+                    id: vsbruxryvydx9
+                  items:
+                    x-stoplight:
+                      id: ltb6o8b48yvwf
+                    type: integer
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: 8twf98sl9d26q
+  /notificacao-ligacao-processo/exibe/check:
+    get:
+      summary: Notificação Ligação Processo - Exibe check
+      tags:
+        - NotificaçãoLigaçãoProcesso
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-notificacao-ligacao-processo-exibe-check
+      x-stoplight:
+        id: rj6arv4h8tscp
 components:
   schemas:
     CriarLigacaoModel:
@@ -80990,5 +81425,244 @@ components:
               id_pacto_origem: 1
               data_emissao_origem: string
               cadastro_atual: true
+    FiltroNotificacaoDtoModel:
+      type: object
+      properties:
+        idCidade:
+          type: integer
+        idGrupo:
+          type: integer
+        idPeriodoDe:
+          type: integer
+        idPeriodoAte:
+          type: integer
+        idUsuario:
+          type: integer
+        vlrTotalInadimplenciaDe:
+          type: integer
+        vlrTotalInadimplenciaAte:
+          type: integer
+        vlrTotalFaturasDe:
+          type: integer
+        vlrTotalFaturasAte:
+          type: integer
+        qtdTotalDebitosDe:
+          type: integer
+        qtdTotalDebitosAte:
+          type: integer
+        qtdTotalFaturasDe:
+          type: integer
+        qtdTotalFaturasAte:
+          type: integer
+        idTipoFaturamento:
+          type: integer
+        idTipoLigacao:
+          type: integer
+        idsCobrancaFase:
+          type: array
+          items:
+            type: integer
+        idsSituacaoLigacao:
+          type: array
+          items:
+            type: integer
+        idsSituacaoImovel:
+          type: array
+          items:
+            type: integer
+        idsSituacaoCavalete:
+          type: array
+          items:
+            type: integer
+        idsTipoCorte:
+          type: array
+          items:
+            type: integer
+        idsRotas:
+          type: array
+          items:
+            type: integer
+        idsCategorias:
+          type: array
+          items:
+            type: integer
+        idsTipoFaturamento:
+          type: array
+          items:
+            type: integer
+        idsClassConsumo:
+          type: array
+          items:
+            type: integer
+        idsBairros:
+          type: array
+          items:
+            type: integer
+        idsGrupo:
+          type: array
+          items:
+            type: integer
+        idsCidade:
+          type: array
+          items:
+            type: integer
+        idsStatusNegativacao:
+          type: array
+          items:
+            type: integer
+        nomeProcesso:
+          type: string
+        dataEntregaPrevista:
+          type: string
+        dataCortePrevista:
+          type: string
+        dataGeracaoFatura:
+          type: boolean
+        dataVencimentoAte:
+          type: string
+        consideraPIM:
+          type: string
+        idExcecao:
+          type: integer
+        idObjetivoProcessoCorte:
+          type: integer
+        gerarNotificacaoDebito:
+          type: string
+        grupoUsaImpNotificacaoDebito:
+          type: boolean
+        desconsOrgPublicos:
+          type: boolean
+        desconsOrgParticulares:
+          type: boolean
+        idPeriodoImpressaoNotificacao:
+          type: integer
+        idPeriodo:
+          type: integer
+        idRota:
+          type: integer
+        orgaoPublico:
+          type: boolean
+        orgaoPrivado:
+          type: boolean
+        idUnidadeOperacionalUsuario:
+          type: integer
+        idsExcecao:
+          type: array
+          items:
+            type: integer
+        grupounidadeoperacional:
+          type: boolean
+        periodoDe:
+          type: string
+        periodoAte:
+          type: string
+        categorias:
+          type: array
+          items:
+            type: string
+        qtdDiasAposConfirmacao:
+          type: integer
+        exibeLigacaoAvisoDebNaoVencido:
+          type: boolean
+        tipoProcesso:
+          type: string
+        ligacoes:
+          type: array
+          items:
+            type: string
+        nomeArquivoImportacao:
+          type: string
+        idInstituicaoCobranca:
+          type: integer
+        idTipoProcessoCobranca:
+          type: integer
+        desconsiderarLigacaoAcordo:
+          type: boolean
+        desconsiderarFaturasAvulsas:
+          type: boolean
+        faturasPeriodicas:
+          type: boolean
+        faturasParcelas:
+          type: boolean
+      x-examples:
+        Example 1:
+          idCidade: 0
+          idGrupo: 0
+          idPeriodoDe: 0
+          idPeriodoAte: 0
+          idUsuario: 0
+          vlrTotalInadimplenciaDe: 0
+          vlrTotalInadimplenciaAte: 0
+          vlrTotalFaturasDe: 0
+          vlrTotalFaturasAte: 0
+          qtdTotalDebitosDe: 0
+          qtdTotalDebitosAte: 0
+          qtdTotalFaturasDe: 0
+          qtdTotalFaturasAte: 0
+          idTipoFaturamento: 0
+          idTipoLigacao: 0
+          idsCobrancaFase:
+            - 1
+          idsSituacaoLigacao:
+            - 1
+          idsSituacaoImovel:
+            - 1
+          idsSituacaoCavalete:
+            - 1
+          idsTipoCorte:
+            - 1
+          idsRotas:
+            - 1
+          idsCategorias:
+            - 1
+          idsTipoFaturamento:
+            - 1
+          idsClassConsumo:
+            - 1
+          idsBairros:
+            - 1
+          idsGrupo:
+            - 1
+          idsCidade:
+            - 1
+          idsStatusNegativacao:
+            - 1
+          nomeProcesso: ''
+          dataEntregaPrevista: ''
+          dataCortePrevista: ''
+          dataGeracaoFatura: false
+          dataVencimentoAte: ''
+          consideraPIM: 'N'
+          idExcecao: 0
+          idObjetivoProcessoCorte: 0
+          gerarNotificacaoDebito: ''
+          grupoUsaImpNotificacaoDebito: false
+          desconsOrgPublicos: false
+          desconsOrgParticulares: false
+          idPeriodoImpressaoNotificacao: 0
+          idPeriodo: 0
+          idRota: 0
+          orgaoPublico: false
+          orgaoPrivado: false
+          idUnidadeOperacionalUsuario: 0
+          idsExcecao:
+            - 1
+          grupounidadeoperacional: false
+          periodoDe: ''
+          periodoAte: ''
+          categorias:
+            - ''
+          qtdDiasAposConfirmacao: 0
+          exibeLigacaoAvisoDebNaoVencido: false
+          tipoProcesso: ''
+          ligacoes:
+            - ''
+          nomeArquivoImportacao: ''
+          idInstituicaoCobranca: 0
+          idTipoProcessoCobranca: 0
+          desconsiderarLigacaoAcordo: true
+          desconsiderarFaturasAvulsas: false
+          faturasPeriodicas: false
+          faturasParcelas: false
   securitySchemes: {}
 x-extension-1: null
