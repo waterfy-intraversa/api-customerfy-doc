@@ -19971,6 +19971,81 @@ paths:
             type: integer
           in: query
           name: idLigacaoDestino
+  /cobranca/salvar/parametros/ordem/cobranca:
+    post:
+      summary: Cobrança - Salvar parâmetros ordem cobrança
+      operationId: post-cobranca-salvar-parametros-ordem-cobranca
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: j9bsd8wn6ptwd
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parametros:
+                  $ref: '#/components/schemas/CadParamProcessoCobrancaDtoModel'
+                  x-stoplight:
+                    id: oznwy9d3sn6rz
+  /cobranca/buscar/parametros/ordem/cobranca:
+    post:
+      summary: Cobrança - Buscar parâmetros ordem cobrança
+      operationId: post-cobranca-buscar-parametros-ordem-cobranca
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadParamProcessoCobrancaDtoModel'
+      x-stoplight:
+        id: t9hga2xx0wr4d
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parametros:
+                  $ref: '#/components/schemas/CadParamProcessoCobrancaDtoModel'
+                  x-stoplight:
+                    id: 4zkawghe2f786
+  /cobranca/inativar/parametros/ordem/cobranca:
+    post:
+      summary: Cobrança - Inativar parâmetros ordem cobrança
+      operationId: post-cobranca-inativar-parametros-ordem-cobranca
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: dyp9dlrrlw6pi
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parametros:
+                  $ref: '#/components/schemas/CadParamProcessoCobrancaDtoModel'
+                  x-stoplight:
+                    id: m02qpv4van7ew
 components:
   schemas:
     CriarLigacaoModel:
@@ -81692,5 +81767,121 @@ components:
           desconsiderarFaturasAvulsas: false
           faturasPeriodicas: false
           faturasParcelas: false
+    CadParamProcessoCobrancaDtoModel:
+      type: object
+      properties:
+        idAutomacao:
+          type: integer
+        idCidade:
+          type: integer
+        idPeriodoDe:
+          type: integer
+        idPeriodoAte:
+          type: integer
+        idUsuario:
+          type: integer
+        vlrTotalFaturasDe:
+          type: integer
+        vlrTotalFaturasAte:
+          type: integer
+        qtdTotalFaturasDe:
+          type: integer
+        qtdTotalFaturasAte:
+          type: integer
+        idsSituacaoLigacao:
+          type: array
+          items:
+            type: integer
+        idsSituacaoCobranca:
+          type: array
+          items:
+            type: integer
+        idsSituacaoImovel:
+          type: array
+          items:
+            type: integer
+        idsCategorias:
+          type: array
+          items:
+            type: integer
+        idsGrupo:
+          type: array
+          items:
+            type: integer
+        idsTipoFaturamento:
+          type: array
+          items:
+            type: integer
+        gridGrupos:
+          type: array
+          items:
+            type: integer
+        ativo:
+          type: boolean
+        desconsClientesEspeciais:
+          type: boolean
+        desconsiderarLigacaoAcordo:
+          type: boolean
+        imprimirBarcodeComunicado:
+          type: boolean
+        processoCobrancaSimultanea:
+          type: boolean
+        cobrarEmissaoComunicado:
+          type: boolean
+        desconsiderarAcoesJudiciais:
+          type: boolean
+        desconsiderarWhiteList:
+          type: boolean
+        maxFatComunicado:
+          type: integer
+        diasVencimentoComunicado:
+          type: integer
+        numDiasCorte:
+          type: integer
+        descricaoGeral:
+          type: string
+        tituloComunicado:
+          type: string
+        msgComunicado:
+          type: string
+      x-examples:
+        Example 1:
+          idAutomacao: 0
+          idCidade: 0
+          idPeriodoDe: 0
+          idPeriodoAte: 0
+          idUsuario: 0
+          vlrTotalFaturasDe: 0
+          vlrTotalFaturasAte: 0
+          qtdTotalFaturasDe: 0
+          qtdTotalFaturasAte: 0
+          idsSituacaoLigacao:
+            - 1
+          idsSituacaoCobranca:
+            - 1
+          idsSituacaoImovel:
+            - 1
+          idsCategorias:
+            - 1
+          idsGrupo:
+            - 1
+          idsTipoFaturamento:
+            - 1
+          gridGrupos:
+            - 1
+          ativo: false
+          desconsClientesEspeciais: false
+          desconsiderarLigacaoAcordo: false
+          imprimirBarcodeComunicado: false
+          processoCobrancaSimultanea: false
+          cobrarEmissaoComunicado: false
+          desconsiderarAcoesJudiciais: false
+          desconsiderarWhiteList: false
+          maxFatComunicado: 0
+          diasVencimentoComunicado: 0
+          numDiasCorte: 0
+          descricaoGeral: ''
+          tituloComunicado: ''
+          msgComunicado: ''
   securitySchemes: {}
 x-extension-1: null
