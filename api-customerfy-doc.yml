@@ -20046,6 +20046,289 @@ paths:
                   $ref: '#/components/schemas/CadParamProcessoCobrancaDtoModel'
                   x-stoplight:
                     id: m02qpv4van7ew
+  /reemissao-notificacao/obter/detalhes-processo/processo:
+    get:
+      summary: Reemissão Notificação Ligação Processo - Obter detalhes processo por processo
+      tags:
+        - ReemissãoNotificação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                  x-stoplight:
+                    id: zq8xn6yjy1g9k
+      operationId: get-reemissao-notif-lig-proc-obter-detalhes-processo-processo
+      x-stoplight:
+        id: owvh6jafagffw
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idProcesso
+        - schema:
+            type: boolean
+          in: query
+          name: aviso
+        - schema:
+            type: boolean
+          in: query
+          name: reimpressao
+    parameters: []
+  /reemissao-notificacao/obter/detalhes-processo/ligacao:
+    get:
+      summary: Reemissão Notificação Ligação Processo - Obter detalhes processo por ligação
+      tags:
+        - ReemissãoNotificação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                  x-stoplight:
+                    id: xblymtw436vs3
+      operationId: get-reemissao-notificacao-obter-detalhes-processo-ligacao
+      x-stoplight:
+        id: cu84welaliysp
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+        - schema:
+            type: boolean
+          in: query
+          name: reimpressao
+  /reemissao-notificacao/obter/dados/filtro/processo:
+    get:
+      summary: Reemissão Notificação Ligação Processo - Obter dados filtro processo cobrança
+      tags:
+        - ReemissãoNotificação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+      operationId: get-reemissao-notificacao-obter-dados-filtro-processo
+      x-stoplight:
+        id: k9d16o0z0ywoj
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: codigo
+  /reemissao-notificacao/obter/dados/filtro/ligacao:
+    get:
+      summary: Reemissão Notificação Ligacão Processo - Obter dados filtro ligação individual
+      tags:
+        - ReemissãoNotificação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+      operationId: get-reemissao-notificacao-obter-dados-filtro-ligacao
+      x-stoplight:
+        id: w0z3fyui9c15r
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /reemissao-notificacao/reemitir/notif-ligacao/impressao/biro:
+    post:
+      summary: Reemissão Notificação Ligação Processo - Reemitir notificação ligação biro impressão
+      operationId: post-reemissao-notificacao-reemitir-notif-ligacao-impressao-biro
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: y6xgke662t9x7
+      tags:
+        - ReemissãoNotificação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idProcesso:
+                  type: integer
+                  x-stoplight:
+                    id: 2ksmij8xs2siw
+                ligacoes:
+                  type: array
+                  x-stoplight:
+                    id: cyc3fuxvdyqj8
+                  items:
+                    $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                    x-stoplight:
+                      id: wteuhoj2wv4oz
+        description: ''
+  /reemissao-notificacao/reemitir/notif-ligacao/impressao/in-loco:
+    post:
+      summary: Reemissão Notificação Ligação Processo - Reemitir notificação ligação impressão in loco
+      operationId: post-reemissao-notificacao-reemitir-notif-ligacao-impressao-in-loco
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: skm2xb1gfdb3r
+      tags:
+        - ReemissãoNotificação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idProcesso:
+                  type: integer
+                  x-stoplight:
+                    id: ri9rpnkvhoxoe
+                ligacoes:
+                  type: array
+                  x-stoplight:
+                    id: w6y42ndygh562
+                  items:
+                    $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                    x-stoplight:
+                      id: jmylf8m0fngqg
+  /reemissao-notificacao/reemitir/notif-ligacao/reimpressao:
+    post:
+      summary: Reimpressão Notificação Ligação Processo - Reemitir notificação ligação reimpressão
+      operationId: post-reemissao-notificacao-reemitir-notif-ligacao-reimpressao
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: krujgi4k089ii
+      tags:
+        - ReimpressãoNotificação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idProcesso:
+                  type: integer
+                  x-stoplight:
+                    id: bs2ew866lenhx
+                ligacoes:
+                  type: array
+                  x-stoplight:
+                    id: u2z370l8y37hy
+                  items:
+                    $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                    x-stoplight:
+                      id: 83w23j6kol79h
+  /reemissao-notificacao/reemitir/notif-ligacao/reimpressao/atendimento:
+    post:
+      summary: Reemissão Notificação Ligação Processo - Reemitir notificação ligação reimpressão atendimento
+      operationId: post-reemissao-notificacao-reemitir-notif-ligacao-reimpressao-atendimento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: l439rq0d7eptz
+      tags:
+        - ReemissãoNotificação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                listaNotificacao:
+                  type: array
+                  x-stoplight:
+                    id: lol8hvfvnhdwu
+                  items:
+                    $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                    x-stoplight:
+                      id: iui8j2weknzv2
+  /reemissao-notificacao/cancelar/aviso-corte/ligacaao:
+    post:
+      summary: Reemissão Notificação Ligação Processo - Cancelar aviso corte por ligação
+      operationId: post-reemissao-notificacao-cancelar-aviso-corte-ligacaao
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: fgroiwc4mmyal
+      tags:
+        - ReemissãoNotificação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: 98kyhk2kyxvs2
+                idProcessoCorte:
+                  type: integer
+                  x-stoplight:
+                    id: rvqulpk6wvt4y
+  /reemissao-notificacao/obter/detalhe-processo/ligacao/processo:
+    get:
+      summary: Reemissão Notificação Ligação Processo - Obter detalhes processo por ligação id processo
+      tags:
+        - ReemissãoNotificação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoProcessoCobrancaDtoModel'
+                  x-stoplight:
+                    id: fdg4dpktwo29b
+      operationId: get-reemissao-notificacao-obter-detalhe-processo-ligacao-processo
+      x-stoplight:
+        id: 0stx7fbs0u44j
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+        - schema:
+            type: integer
+          in: query
+          name: idProcesso
 components:
   schemas:
     CriarLigacaoModel:
