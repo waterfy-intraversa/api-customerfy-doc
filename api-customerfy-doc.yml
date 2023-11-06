@@ -20329,6 +20329,38 @@ paths:
             type: integer
           in: query
           name: idProcesso
+  /congelamento/congelar/apuracao-contabil:
+    get:
+      summary: Congelamento - Congelar apuração contábil
+      tags:
+        - Congelamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  x-stoplight:
+                    id: wrvmczuusfwm8
+                  type: string
+      operationId: get-congelamento-congelar-apuracao-contabil
+      x-stoplight:
+        id: 2mt7gmtu6pa8n
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: string
+          in: query
+          name: competencia
+        - schema:
+            type: string
+          in: query
+          name: dataHoraInicio
 components:
   schemas:
     CriarLigacaoModel:
