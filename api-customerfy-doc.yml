@@ -20361,6 +20361,260 @@ paths:
             type: string
           in: query
           name: dataHoraInicio
+  /cadastro-arrecadador/salvar:
+    post:
+      summary: Cadastro Arrecadado - Salvar
+      operationId: post-cadastro-arrecadador-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: fpkiv0kd052j5
+      tags:
+        - CadastroArrecadador
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dadoVO:
+                  $ref: '#/components/schemas/ArrecadadorDtoModel'
+                  x-stoplight:
+                    id: ao4pzat8jot9f
+                i_dadoPreVO:
+                  $ref: '#/components/schemas/ArrecadadorDtoModel'
+                  x-stoplight:
+                    id: 4na6hx181m30s
+  /cadastro-arrecadador/salvar/cidade:
+    post:
+      summary: Cadastro Arrecadador - Salvar com cidade
+      operationId: post-cadastro-arrecadador-salvar-cidade
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: azsyli9o6uu4r
+      tags:
+        - CadastroArrecadador
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dadoVO:
+                  $ref: '#/components/schemas/ArrecadadorDtoModel'
+                  x-stoplight:
+                    id: g4xr7g4mxnwyn
+                i_dadoPreVO:
+                  $ref: '#/components/schemas/ArrecadadorDtoModel'
+                  x-stoplight:
+                    id: 1xeaww3b9emzx
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: b84njr59ozxfi
+  /cadastro-arrecadador/excluir:
+    post:
+      summary: Cadastro Arrecadador - Excluir
+      operationId: post-cadastro-arrecadador-excluir
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: ktjp4bq3b0bh5
+      tags:
+        - CadastroArrecadador
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dadoVO:
+                  $ref: '#/components/schemas/ArrecadadorDtoModel'
+                  x-stoplight:
+                    id: 5pl46ptr1pphy
+  /cadastro-arrecadador/excluir/cidade:
+    post:
+      summary: Cadastro Arrecadador - Excluir com cidade
+      operationId: post-cadastro-arrecadador-excluir-cidade
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: q2swhuy9a6cul
+      tags:
+        - CadastroArrecadador
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_dadoVO:
+                  $ref: '#/components/schemas/ArrecadadorDtoModel'
+                  x-stoplight:
+                    id: 49p0s7g6u88cy
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: 88wt7ihbb3ljq
+  /cadastro-arrecadador/carregar-registro:
+    get:
+      summary: Cadastro Arrecadador - Carregar registro
+      tags:
+        - CadastroArrecadador
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrecadadorDtoModel'
+      operationId: get-cadastro-arrecadador-carregar-registro
+      x-stoplight:
+        id: 82wo1jej5ewcd
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_id
+  /cadastro-arrecadador/carregar-registro/clone:
+    get:
+      summary: Cadastro Arrecadador - Carregar registro com clone
+      tags:
+        - CadastroArrecadador
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArrecadadorDtoModel'
+                  x-stoplight:
+                    id: 0oyt7zodkehfe
+      operationId: get-cadastro-arrecadador-carregar-registro-clone
+      x-stoplight:
+        id: do9injirvn9l4
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_id
+        - schema:
+            type: boolean
+          in: query
+          name: gerarClone
+  /cadastro-arrecadador/carregar-registro/clone/cidade:
+    get:
+      summary: Cadastro Arrecadador - Carregar registro com clone e cidade
+      tags:
+        - CadastroArrecadador
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ArrecadadorDtoModel'
+                  x-stoplight:
+                    id: dyxds0j33m8tx
+      operationId: get-cadastro-arrecadador-carregar-registro-clone-cidade
+      x-stoplight:
+        id: hts4z2usqt17o
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_id
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: boolean
+          in: query
+          name: gerarClone
+  /cadastro-bairro/salvar:
+    post:
+      summary: Cadastro Bairro - Salvar
+      operationId: post-cadastro-bairro-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BairroDtoModel'
+      x-stoplight:
+        id: 687j93q7fn0js
+      tags:
+        - CadastroBairro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bairroDTO:
+                  $ref: '#/components/schemas/BairroDtoModel'
+                  x-stoplight:
+                    id: r3odcq629b3hk
+  /cadastro-bairro/excluir:
+    post:
+      summary: Cadastro Bairro - Excluir
+      operationId: post-cadastro-bairro-excluir
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 6dxjb0eep3ejf
+      tags:
+        - CadastroBairro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idBairro:
+                  type: integer
+                  x-stoplight:
+                    id: rhjzk812y3a4d
+  /cadastro-bairro/buscar:
+    get:
+      summary: Cadastro Bairro - Buscar
+      tags:
+        - CadastroBairro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BairroDtoModel'
+      operationId: get-cadastro-bairro-buscar
+      x-stoplight:
+        id: r9bt6byvkxise
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idBairro
 components:
   schemas:
     CriarLigacaoModel:
@@ -82198,5 +82452,130 @@ components:
           descricaoGeral: ''
           tituloComunicado: ''
           msgComunicado: ''
+    ArrecadadorDtoModel:
+      type: object
+      properties:
+        arrecadador:
+          type: string
+        diasAnt:
+          type: integer
+        nrBanco:
+          type: string
+        situacao:
+          type: string
+        arrArquivos:
+          type: object
+          properties:
+            idarrecadador:
+              type: integer
+            idUniOp:
+              type: integer
+            codconveniodebiauto:
+              type: string
+            codconvenioarrecadacao:
+              type: string
+            seqdebauto:
+              type: integer
+            seqarrecadacao:
+              type: integer
+            seqenviodebauto:
+              type: integer
+            integrar:
+              type: string
+            txarrecadacao:
+              type: integer
+            txdebitoautomatico:
+              type: integer
+            codctabcomwdreceita:
+              type: integer
+            codctabcomwddespesa:
+              type: integer
+            codctabcodebauto:
+              type: integer
+            codctabcoarrecadacao:
+              type: integer
+            validarnsaimp:
+              type: string
+            dvcodigocliente:
+              type: string
+            tamanhocodigocliente:
+              type: integer
+            camaracompensacao:
+              type: integer
+            tamanhodvcliente:
+              type: integer
+            prefixocodigocliente:
+              type: integer
+            creditoRegistroZ:
+              type: string
+            seqBaixaManual:
+              type: integer
+            contaCompromisso:
+              type: string
+            nrDiasDataCreditoDebitoAutomatico:
+              type: integer
+        idBanklineBandeira:
+          type: integer
+        taxaArrecadador:
+          type: integer
+        novo:
+          type: boolean
+        nrbanco:
+          type: string
+        versaoLayout:
+          type: string
+        preenchimentoCpfCnpj:
+          type: string
+      x-examples:
+        Example 1:
+          arrecadador: ''
+          diasAnt: 0
+          nrBanco: ''
+          situacao: ''
+          arrArquivos:
+            idarrecadador: 0
+            idUniOp: 0
+            codconveniodebiauto: ''
+            codconvenioarrecadacao: ''
+            seqdebauto: 0
+            seqarrecadacao: 0
+            seqenviodebauto: 0
+            integrar: ''
+            txarrecadacao: 0
+            txdebitoautomatico: 0
+            codctabcomwdreceita: 0
+            codctabcomwddespesa: 0
+            codctabcodebauto: 0
+            codctabcoarrecadacao: 0
+            validarnsaimp: ''
+            dvcodigocliente: ''
+            tamanhocodigocliente: 0
+            camaracompensacao: 0
+            tamanhodvcliente: 0
+            prefixocodigocliente: 0
+            creditoRegistroZ: 'N'
+            seqBaixaManual: 0
+            contaCompromisso: ''
+            nrDiasDataCreditoDebitoAutomatico: 0
+          idBanklineBandeira: 0
+          taxaArrecadador: 0
+          novo: true
+          nrbanco: ''
+          versaoLayout: ''
+          preenchimentoCpfCnpj: ''
+    BairroDtoModel:
+      type: object
+      properties:
+        bairro:
+          type: string
+        idCidade:
+          type: integer
+        idDistrito:
+          type: integer
+      x-examples:
+        Example 1:
+          bairro: ''
+          idCidade: 0
+          idDistrito: 0
   securitySchemes: {}
 x-extension-1: null
