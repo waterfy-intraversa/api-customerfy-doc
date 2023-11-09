@@ -20615,6 +20615,291 @@ paths:
             type: integer
           in: query
           name: idBairro
+  /cadastro-logradouro/salvar:
+    post:
+      summary: Cadastro Logradouro - Salvar
+      operationId: post-cadastro-logradouro-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: 3joq4obleujuh
+      tags:
+        - CadastroLogradouro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                l:
+                  $ref: '#/components/schemas/LogradouroDtoModel'
+                  x-stoplight:
+                    id: zbhijo827p66z
+  /cadastro-logradouro/excluir:
+    post:
+      summary: Cadastro Logradouro - Excluir
+      operationId: post-cadastro-logradouro-excluir
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 928ths7esuh6s
+      tags:
+        - CadastroLogradouro
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  x-stoplight:
+                    id: s76csjhyytk15
+  /cadastro-logradouro/buscar:
+    get:
+      summary: Cadastro Logradouro - Buscar
+      tags:
+        - CadastroLogradouro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogradouroDtoModel'
+      operationId: get-cadastro-logradouro-buscar
+      x-stoplight:
+        id: ztlfj0ysahy8h
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLogradouro
+  /enviar-fatura-email/get/parametros/email:
+    get:
+      summary: Enviar Fatura Email - Get parâmetros email
+      tags:
+        - Enviar-Fatura-Email
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParametrosEmailDtoModel'
+      operationId: get-enviar-fatura-email-get-parametros-email
+      x-stoplight:
+        id: fhf6kkzbaaiil
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idCidade
+      description: ''
+  /tipo-entrega/carregar/param:
+    get:
+      summary: Tipo Entrega - Carregar param tipo entrega
+      tags:
+        - TipoEntrega
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TipoEntregaDtoModel'
+      operationId: get-tipo-entrega-carregar-param
+      x-stoplight:
+        id: x3pog2wnn3e5y
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idCidade
+  /tipo-entrega/salvar:
+    post:
+      summary: Tipo Entrega - Salvar
+      operationId: post-tipo-entrega-salvar
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: x9k6op2ey8x4j
+      tags:
+        - TipoEntrega
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                dado:
+                  $ref: '#/components/schemas/TipoEntregaDtoModel'
+                  x-stoplight:
+                    id: 6cdnirkpwptjp
+  /tipo-entrega/carregar/registro:
+    get:
+      summary: Tipo Entrega - Carregar registro
+      tags:
+        - TipoEntrega
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TipoEntregaDtoModel'
+      operationId: get-tipo-entrega-carregar-registro
+      x-stoplight:
+        id: gdq71hl8nvyap
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: id
+      description: ''
+  /cadastro-ligacao-blacklist/obter/dados-ligacao:
+    get:
+      summary: Cadastro Ligação Blacklist - Obter dados ligação
+      tags:
+        - CadastroLigacaoBlacklist
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LigacaoExcecaoDtoModel'
+      operationId: get-cadastro-ligacao-blacklist-obter-dados-ligacao
+      x-stoplight:
+        id: c57z5ceb2x5t0
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /cadastro-ligacao-blacklist/obter/historico/blacklist:
+    get:
+      summary: Cadastro Ligação Blacklist - Obter histórico blacklist
+      tags:
+        - CadastroLigaçãoBlacklist
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LigacaoExcecaoDtoModel'
+                  x-stoplight:
+                    id: 2zm471opuwry3
+      operationId: get-cadastro-ligacao-blacklist-obter-historico-blacklist
+      x-stoplight:
+        id: hl2ettr5081re
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLigacao
+  /cadastro-ligacao-blacklist/obter/motivos-inclusao:
+    get:
+      summary: Cadastro Ligação Blacklist - Obter motivos inclusão
+      tags:
+        - CadastroLigaçãoBlacklist
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: oblbmx6mk0slf
+      operationId: get-cadastro-ligacao-blacklist-obter-motivos-inclusao
+      x-stoplight:
+        id: kn206pnwuzum8
+  /cadastro-ligacao-blacklist/obter/tipos-aplicacao:
+    get:
+      summary: Cadastro Ligação Blacklist - Obter tipos aplicação
+      tags:
+        - CadastroLigaçãoBlacklist
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: qyyxhqjtxn2bo
+      operationId: get-cadastro-ligacao-blacklist-obter-tipos-aplicacao
+      x-stoplight:
+        id: vbodj9fz7b3i1
+  /cadastro-ligacao-blacklist/inativar/excecao:
+    post:
+      summary: Cadastro Ligação Blacklist - Inativar exceção
+      operationId: post-cadastro-ligacao-blacklist-inativar-excecao
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 62q62cbvvxij3
+      tags:
+        - CadastroLigaçãoBlacklist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ligacao:
+                  $ref: '#/components/schemas/LigacaoExcecaoDtoModel'
+                  x-stoplight:
+                    id: 9p31itw0rh88r
+  /cadastro-ligacao-blacklist/confirmar:
+    post:
+      summary: Cadastro Ligação Blacklist - Confirmar ligação blacklist
+      operationId: post-cadastro-ligacao-blacklist-confirmar
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: qw42fhrf0nbnm
+      tags:
+        - CadastroLigaçãoBlacklist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: 4mkymz2pi37dc
+                ligacao:
+                  type: array
+                  x-stoplight:
+                    id: 42sbkudnulhw2
+                  items:
+                    $ref: '#/components/schemas/LigacaoExcecaoDtoModel'
+                    x-stoplight:
+                      id: 71t21gqsrv1z6
 components:
   schemas:
     CriarLigacaoModel:
@@ -82577,5 +82862,81 @@ components:
           bairro: ''
           idCidade: 0
           idDistrito: 0
+    LogradouroDtoModel:
+      type: object
+      properties:
+        idCidade:
+          type: integer
+        tipo:
+          type: string
+        titulo:
+          type: string
+        logradouro:
+          type: string
+        logradouroIni:
+          type: string
+        logradouroFim:
+          type: string
+        idLogradouroInicial:
+          type: integer
+        idLogradouroFinal:
+          type: integer
+        referencia:
+          type: string
+        bairros:
+          type: array
+          items:
+            type: object
+            properties:
+              bairro:
+                type: string
+              idCidade:
+                type: integer
+              idDistrito:
+                type: integer
+      x-examples:
+        Example 1:
+          idCidade: 0
+          tipo: ''
+          titulo: ''
+          logradouro: ''
+          logradouroIni: ''
+          logradouroFim: ''
+          idLogradouroInicial: 0
+          idLogradouroFinal: 0
+          referencia: ''
+          bairros:
+            - bairro: ''
+              idCidade: 0
+              idDistrito: 0
+    ParametrosEmailDtoModel:
+      type: object
+      properties:
+        idCidade:
+          type: integer
+        assuntoEmail:
+          type: string
+        corpoEmailSegVia:
+          type: string
+        nomeArquivo:
+          type: 'null'
+        isImagemCabecalho:
+          type: boolean
+        emailOcultoEnvioFatura:
+          type: string
+        utlizarRastreabilidadeEmail:
+          type: boolean
+        cabecalhoEmailArq:
+          type: 'null'
+      x-examples:
+        Example 1:
+          idCidade: 0
+          assuntoEmail: ''
+          corpoEmailSegVia: ''
+          nomeArquivo: null
+          isImagemCabecalho: false
+          emailOcultoEnvioFatura: ''
+          utlizarRastreabilidadeEmail: false
+          cabecalhoEmailArq: null
   securitySchemes: {}
 x-extension-1: null
