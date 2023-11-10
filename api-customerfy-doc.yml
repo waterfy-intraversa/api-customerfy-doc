@@ -20900,6 +20900,148 @@ paths:
                     $ref: '#/components/schemas/LigacaoExcecaoDtoModel'
                     x-stoplight:
                       id: 71t21gqsrv1z6
+  /cobranca/salvar/parametros/ordem-corte:
+    post:
+      summary: Cobrança - Salva parâmetros ordem corte
+      operationId: post-cobranca-salvar-parametros-ordem-corte
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: po7v9yoflps40
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parametros:
+                  $ref: '#/components/schemas/CadParamGerOSCorteDtoModel'
+                  x-stoplight:
+                    id: ftc5o2t2dzhtv
+  /cobranca/buscar/parametros/ordem-corte:
+    post:
+      summary: Cobrança - Buscar parâmetros ordem corte
+      operationId: post-cobranca-buscar-parametros-ordem-corte
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CadParamGerOSCorteDtoModel'
+      x-stoplight:
+        id: bj8rvpjcz6i2x
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parametros:
+                  $ref: '#/components/schemas/CadParamGerOSCorteDtoModel'
+                  x-stoplight:
+                    id: opecg65h24nt8
+        description: ''
+  /cobranca/inativar/parametros/ordem-corte:
+    post:
+      summary: Cobrança - Inativar parâmetros ordem corte
+      operationId: post-cobranca-inativar-parametros-ordem-corte
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      x-stoplight:
+        id: jq73vi1gey5jp
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parametros:
+                  $ref: '#/components/schemas/CadParamGerOSCorteDtoModel'
+                  x-stoplight:
+                    id: svjxn2qvli3cb
+  /cobranca/valida/residuo-retorna:
+    post:
+      summary: Cobrança - Valida residuo retorna
+      operationId: post-cobranca-valida-residuo-retorna
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FiltroEfetivacaoDtoModel'
+      x-stoplight:
+        id: jhh7eue7hw03z
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filtro:
+                  $ref: '#/components/schemas/FiltroEfetivacaoDtoModel'
+                  x-stoplight:
+                    id: m63u4bb4thofl
+  /cobranca/set/religacao:
+    post:
+      summary: Cobrança - Set religação
+      operationId: post-cobranca-set-religacao
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 4ihvwek1xyn6s
+      tags:
+        - Cobrança
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idLigacao:
+                  type: integer
+                  x-stoplight:
+                    id: 6vv9mjv8l8br0
+                dataReligacao:
+                  type: string
+                  x-stoplight:
+                    id: uv45s2khbw3ks
+                idLeituristaReligacao:
+                  type: integer
+                  x-stoplight:
+                    id: ty6hvj7eezmf3
+                leituraReligacao:
+                  type: integer
+                  x-stoplight:
+                    id: v29wlbro54q38
+                horaReligacao:
+                  type: string
+                  x-stoplight:
+                    id: 0owajfbcpdppu
+                numeroLacre:
+                  type: string
+                  x-stoplight:
+                    id: 8dfug73bnyfgt
 components:
   schemas:
     CriarLigacaoModel:
@@ -82938,5 +83080,121 @@ components:
           emailOcultoEnvioFatura: ''
           utlizarRastreabilidadeEmail: false
           cabecalhoEmailArq: null
+    CadParamGerOSCorteDtoModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        idAutomacao:
+          type: integer
+        idCidade:
+          type: integer
+        idPeriodoDe:
+          type: integer
+        idPeriodoAte:
+          type: integer
+        idUsuario:
+          type: integer
+        vlrTotalFaturasDe:
+          type: integer
+        vlrTotalFaturasAte:
+          type: integer
+        qtdTotalFaturasDe:
+          type: integer
+        qtdTotalFaturasAte:
+          type: integer
+        idServicoCorte:
+          type: integer
+        idsSituacaoLigacao:
+          type: array
+          items:
+            type: integer
+        idsSituacaoCobranca:
+          type: array
+          items:
+            type: integer
+        idsSituacaoImovel:
+          type: array
+          items:
+            type: integer
+        idsCategorias:
+          type: array
+          items:
+            type: integer
+        idsGrupo:
+          type: array
+          items:
+            type: integer
+        idsTipoFaturamento:
+          type: array
+          items:
+            type: integer
+        ativo:
+          type: boolean
+        desconsClientesEspeciais:
+          type: boolean
+        desconsiderarLigacaoAcordo:
+          type: boolean
+        desconsiderarFaturasDebitos:
+          type: boolean
+        desconsiderarAcoesJudiciais:
+          type: boolean
+        desconsiderarWhiteList:
+          type: boolean
+        qtdeMaxOsPorDia:
+          type: integer
+        numDiasGerados:
+          type: integer
+        descricaoGeral:
+          type: string
+        idFaseAtual:
+          type: integer
+        idFaseAnterior:
+          type: integer
+        habilitarFasesCorte:
+          type: boolean
+        faseAnterior:
+          type: string
+        faseAtual:
+          type: string
+      x-examples:
+        Example 1:
+          id: 0
+          idAutomacao: 0
+          idCidade: 0
+          idPeriodoDe: 0
+          idPeriodoAte: 0
+          idUsuario: 0
+          vlrTotalFaturasDe: 0
+          vlrTotalFaturasAte: 0
+          qtdTotalFaturasDe: 0
+          qtdTotalFaturasAte: 0
+          idServicoCorte: 0
+          idsSituacaoLigacao:
+            - 0
+          idsSituacaoCobranca:
+            - 0
+          idsSituacaoImovel:
+            - 0
+          idsCategorias:
+            - 0
+          idsGrupo:
+            - 0
+          idsTipoFaturamento:
+            - 0
+          ativo: false
+          desconsClientesEspeciais: false
+          desconsiderarLigacaoAcordo: true
+          desconsiderarFaturasDebitos: false
+          desconsiderarAcoesJudiciais: false
+          desconsiderarWhiteList: false
+          qtdeMaxOsPorDia: 0
+          numDiasGerados: 0
+          descricaoGeral: ''
+          idFaseAtual: 0
+          idFaseAnterior: 0
+          habilitarFasesCorte: false
+          faseAnterior: ''
+          faseAtual: ''
   securitySchemes: {}
 x-extension-1: null
