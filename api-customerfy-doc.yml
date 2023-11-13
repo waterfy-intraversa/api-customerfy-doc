@@ -21042,6 +21042,137 @@ paths:
                   type: string
                   x-stoplight:
                     id: 8dfug73bnyfgt
+  /congelamento/valida/histograma/congelamento:
+    post:
+      summary: Congelamento - Validar histograma congelamento
+      operationId: post-congelamento-valida-histograma-congelamento
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      x-stoplight:
+        id: 9ue5cubkednh3
+      tags:
+        - Congelamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                histograma:
+                  $ref: '#/components/schemas/HistogramaDtoModel'
+                  x-stoplight:
+                    id: zntkcc1g1mp7b
+    parameters: []
+  /congelamento/emitir/relatorio:
+    post:
+      summary: Congelamento - Emitir relatório
+      operationId: post-congelamento-emitir-relatorio
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: iacobvdugixri
+      tags:
+        - Congelamento
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hist:
+                  $ref: '#/components/schemas/HistogramaDtoModel'
+                  x-stoplight:
+                    id: rtuodral9x2fb
+  /congelamento/emitir/relatorio/csv:
+    post:
+      summary: Congelamento - Emitir relatório CSV
+      operationId: post-congelamento-emitir-relatorio-csv
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: zxqj3kwy4z3du
+      tags:
+        - Congelamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hist:
+                  $ref: '#/components/schemas/HistogramaDtoModel'
+                  x-stoplight:
+                    id: wu78zhyghirsz
+  /congelamento/valida/histograma:
+    post:
+      summary: Congelamento - Validar histograma
+      operationId: post-congelamento-valida-histograma
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: ot4v429ejoew1
+      tags:
+        - Congelamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hist:
+                  $ref: '#/components/schemas/HistogramaDtoModel'
+                  x-stoplight:
+                    id: n8ptcul1hn6a1
+  /faturamento/emitir/relatorio/analitico:
+    post:
+      summary: Faturamento - Emitir relatório analítico
+      operationId: post-faturamento-emitir-relatorio-analitico
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HistogramaAnaliticoLayoutDtoModel'
+                  x-stoplight:
+                    id: pxja9y14r69mc
+      x-stoplight:
+        id: uf5zo0hx0huzb
+      tags:
+        - Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hist:
+                  $ref: '#/components/schemas/HistogramaDtoModel'
+                  x-stoplight:
+                    id: trv0srfff60zy
 components:
   schemas:
     CriarLigacaoModel:
@@ -83196,5 +83327,118 @@ components:
           habilitarFasesCorte: false
           faseAnterior: ''
           faseAtual: ''
+    HistogramaDtoModel:
+      type: object
+      properties:
+        enquadramentoFaixaVolFaturado:
+          type: boolean
+        idCidade:
+          type: integer
+        idGrupo:
+          type: integer
+        grupo:
+          type: string
+        idProduto:
+          type: integer
+        produto:
+          type: string
+        seqPerInicial:
+          type: integer
+        perInicial:
+          type: string
+        seqPerFinal:
+          type: integer
+        perFinal:
+          type: string
+        opcao:
+          type: integer
+        periodos:
+          type: string
+        tipoCategoria:
+          type: integer
+        descrTipoCategoria:
+          type: string
+        considerarVolumeFaturadoZero:
+          type: boolean
+        faixas:
+          type: object
+          properties:
+            de:
+              type: integer
+            ate:
+              type: integer
+        periodo:
+          type: integer
+      x-examples:
+        Example 1:
+          enquadramentoFaixaVolFaturado: true
+          idCidade: 0
+          idGrupo: 0
+          grupo: ''
+          idProduto: 0
+          produto: ''
+          seqPerInicial: 0
+          perInicial: ''
+          seqPerFinal: 0
+          perFinal: ''
+          opcao: 0
+          periodos: ''
+          tipoCategoria: 0
+          descrTipoCategoria: ''
+          considerarVolumeFaturadoZero: true
+          faixas:
+            de: 1
+            ate: 1
+          periodo: 0
+    HistogramaAnaliticoLayoutDtoModel:
+      type: object
+      properties:
+        idligacao:
+          type: integer
+        grupo:
+          type: string
+        col1:
+          type: string
+        col2:
+          type: string
+        col3:
+          type: string
+        col4:
+          type: string
+        col5:
+          type: string
+        col6:
+          type: string
+        col7:
+          type: string
+        col8:
+          type: string
+        col9:
+          type: string
+        col10:
+          type: string
+        col11:
+          type: string
+        col12:
+          type: string
+        periodos:
+          type: string
+      x-examples:
+        Example 1:
+          idligacao: 0
+          grupo: ''
+          col1: ''
+          col2: ''
+          col3: ''
+          col4: ''
+          col5: ''
+          col6: ''
+          col7: ''
+          col8: ''
+          col9: ''
+          col10: ''
+          col11: ''
+          col12: ''
+          periodos: ''
   securitySchemes: {}
 x-extension-1: null
