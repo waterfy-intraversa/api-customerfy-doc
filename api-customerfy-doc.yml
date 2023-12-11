@@ -21173,6 +21173,80 @@ paths:
                   $ref: '#/components/schemas/HistogramaDtoModel'
                   x-stoplight:
                     id: trv0srfff60zy
+  /medicao/imprimir/detalhes/critica-ligacao/pdf:
+    post:
+      summary: Medição - Imprimir detalhes crítica ligação PDF
+      operationId: post-medicao-imprimir-detalhes-critica-ligacao-pdf
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: f8qi8pcpyjrub
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hist:
+                  $ref: '#/components/schemas/HistoricoCondominioDtoModel'
+                  x-stoplight:
+                    id: n67qg1nv6cms6
+                itemPeriodo:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: m1v4il5njrvje
+                itemGrupo:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: sk7ps87uo9ckm
+                itemCidade:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: k1vdd7u8pkgf9
+  /medicao/imprimir/detalhes/critica-ligacao/csv:
+    post:
+      summary: Medição - Imprimir detalhes crítica ligação CSV
+      operationId: post-medicao-imprimir-detalhes-critica-ligacao-csv
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: uf3cp6crwc609
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hist:
+                  $ref: '#/components/schemas/HistoricoCondominioDtoModel'
+                  x-stoplight:
+                    id: mt3nwozvyh2tr
+                itemPeriodo:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: 6065zmnqnv5ks
+                itemGrupo:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: 08gvf88hji9ld
+                itemCidade:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: sizddaup97pza
 components:
   schemas:
     CriarLigacaoModel:
