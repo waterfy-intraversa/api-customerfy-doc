@@ -21247,6 +21247,117 @@ paths:
                   $ref: '#/components/schemas/ItemComboDtoModel'
                   x-stoplight:
                     id: sizddaup97pza
+  /consolidacao-consumo/carregar/ligacao-consolidadora:
+    get:
+      summary: Consolidação Consumo - Carregar ligação consolidadora
+      tags:
+        - ConsolidaçãoConsumo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConsolidacaoConsumoDtoModel'
+                  x-stoplight:
+                    id: 7pont0sp6ici5
+      operationId: get-consolidacao-consumo-carregar-ligacao-consolidadora
+      x-stoplight:
+        id: nw90piskowauf
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: ano
+        - schema:
+            type: integer
+          in: query
+          name: mes
+        - schema:
+            type: boolean
+          in: query
+          name: exibeMensagem
+  /consolidacao-consumo/imprimir:
+    post:
+      summary: Consolidação Consumo - Imprimir consolidação
+      operationId: post-consolidacao-consumo-imprimir
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      x-stoplight:
+        id: zwcdu56rc4iua
+      tags:
+        - ConsolidaçãoConsumo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consolidacoesConsumo:
+                  type: array
+                  x-stoplight:
+                    id: 720fkhktfpmsc
+                  items:
+                    $ref: '#/components/schemas/ConsolidacaoConsumoDtoModel'
+                    x-stoplight:
+                      id: s2u6z9bjjoqz9
+  /consolidação-consumo/calcular:
+    post:
+      summary: Consolidação Consumo - Calcular
+      operationId: post-consolida-o-consumo-calcular
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 83qstbn2sn9yb
+      tags:
+        - ConsolidaçãoConsumo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consolidacoesConsumo:
+                  type: array
+                  x-stoplight:
+                    id: 0z7j79g70gvd7
+                  items:
+                    $ref: '#/components/schemas/ConsolidacaoConsumoDtoModel'
+                    x-stoplight:
+                      id: x6vvny1q3e29n
+  /consolidacao-consumo/enviar/email:
+    post:
+      summary: Consolidação Consumo - Enviar email
+      operationId: post-consolidacao-consumo-enviar-email
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: rqe1gd21hq042
+      tags:
+        - ConsolidaçãoConsumo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                consolidacoesConsumo:
+                  type: array
+                  x-stoplight:
+                    id: llhxdacgs3rhg
+                  items:
+                    $ref: '#/components/schemas/ConsolidacaoConsumoDtoModel'
+                    x-stoplight:
+                      id: urlktqp228qum
 components:
   schemas:
     CriarLigacaoModel:
@@ -83514,5 +83625,52 @@ components:
           col11: ''
           col12: ''
           periodos: ''
+    ConsolidacaoConsumoDtoModel:
+      type: object
+      properties:
+        idLigacao:
+          type: integer
+        consumidor:
+          type: string
+        idCidade:
+          type: integer
+        cidade:
+          type: string
+        qtdLigacoesConsolidadas:
+          type: integer
+        disponivelParaImpressao:
+          type: boolean
+        idPeriodo:
+          type: integer
+        idGrupo:
+          type: integer
+        faturaEmitida:
+          type: boolean
+        disponivelParaCalculo:
+          type: boolean
+        idFatura:
+          type: integer
+        email:
+          type: boolean
+        enviadoEmail:
+          type: boolean
+        calculoFinalizado:
+          type: boolean
+      x-examples:
+        Example 1:
+          idLigacao: 0
+          consumidor: ''
+          idCidade: 0
+          cidade: ''
+          qtdLigacoesConsolidadas: 0
+          disponivelParaImpressao: false
+          idPeriodo: 0
+          idGrupo: 0
+          faturaEmitida: false
+          disponivelParaCalculo: false
+          idFatura: 0
+          email: false
+          enviadoEmail: false
+          calculoFinalizado: false
   securitySchemes: {}
 x-extension-1: null
