@@ -21459,6 +21459,27 @@ paths:
       operationId: get-monitoramento-servicos-agendados-obter-usuario-cidade
       x-stoplight:
         id: jiurovg3c647g
+  /monitoramento-servicos-agendados/deletar:
+    post:
+      summary: Monitoramento Serviços Agendados - Deletar registro
+      operationId: post-monitoramento-servicos-agendados-deletar
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: x4fvkcg0hwwq0
+      tags:
+        - MonitoramentoServiçosAgendados
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  x-stoplight:
+                    id: l8doxfvud3o80
 components:
   schemas:
     CriarLigacaoModel:
