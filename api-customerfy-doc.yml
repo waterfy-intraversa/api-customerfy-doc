@@ -21358,6 +21358,107 @@ paths:
                     $ref: '#/components/schemas/ConsolidacaoConsumoDtoModel'
                     x-stoplight:
                       id: urlktqp228qum
+  /enviar-fatura-email/salvar/parametros:
+    post:
+      summary: Enviar Fatura Email - Salvar parâmetros email
+      operationId: post-enviar-fatura-email-salvar-parametros
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: dbd21amwhjf0j
+      tags:
+        - EnviarFaturaEmail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_parametrosEmail:
+                  $ref: '#/components/schemas/ParametrosEmailDtoModel'
+                  x-stoplight:
+                    id: bmowjc2vas4fd
+                i_tipoEntrega:
+                  $ref: '#/components/schemas/TipoEntregaDtoModel'
+                  x-stoplight:
+                    id: 0wsu8g62imowb
+  /monitoramento-servicos-agendados/listar/eventos:
+    get:
+      summary: Monitoramento Serviços Agendados - Listar eventos
+      tags:
+        - MonitoramentoServicosAgendados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MonitoramentoServicosAgendadosDtoModel'
+                  x-stoplight:
+                    id: 818u0udjul9kn
+      operationId: get-monitoramento-servicos-agendados-listar-eventos
+      x-stoplight:
+        id: fwix07w1w8anw
+      parameters:
+        - schema:
+            type: boolean
+          in: query
+          name: b
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+  /monitoramento-servicos-agendados/listar/log-eventos:
+    post:
+      summary: Monitoramento Serviços Agendados - Listar log eventos
+      operationId: post-monitoramento-servicos-agendados-listar-log-eventos
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogServicoAgendadoDtoModel'
+                  x-stoplight:
+                    id: t73b6hl9k9p5v
+      x-stoplight:
+        id: j6hj1n0r2sq7f
+      tags:
+        - MonitoramentoServicosAgendados
+      requestBody:
+        content:
+          application/xhtml+xml:
+            schema:
+              type: object
+              properties:
+                filtro:
+                  $ref: '#/components/schemas/FiltrosLogsEventosDtoModel'
+                  x-stoplight:
+                    id: run38fu6o4pl0
+  /monitoramento-servicos-agendados/obter/usuario-cidade:
+    get:
+      summary: Monitoramento Serviços Agendados - Obter usuario cidades
+      tags:
+        - MonitoramentoServiçosAgendados
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ItemComboDtoModel'
+                  x-stoplight:
+                    id: zst4cz8pc6k1f
+      operationId: get-monitoramento-servicos-agendados-obter-usuario-cidade
+      x-stoplight:
+        id: jiurovg3c647g
 components:
   schemas:
     CriarLigacaoModel:
@@ -83672,5 +83773,59 @@ components:
           email: false
           enviadoEmail: false
           calculoFinalizado: false
+    MonitoramentoServicosAgendadosDtoModel:
+      type: object
+      properties:
+        jobName:
+          type: string
+        scheduleTime:
+          type: string
+        lastFiredTime:
+          type: string
+        groupName:
+          type: string
+        jobStatus:
+          type: string
+        nextFireTime:
+          type: string
+      x-examples:
+        Example 1:
+          jobName: ''
+          scheduleTime: ''
+          lastFiredTime: ''
+          groupName: ''
+          jobStatus: ''
+          nextFireTime: ''
+    LogServicoAgendadoDtoModel:
+      type: object
+      properties:
+        jobName:
+          type: string
+        execucao:
+          type: string
+        situacao:
+          type: string
+      x-examples:
+        Example 1:
+          jobName: ''
+          execucao: ''
+          situacao: ''
+    FiltrosLogsEventosDtoModel:
+      type: object
+      properties:
+        size:
+          type: integer
+        idCidade:
+          type: integer
+        job:
+          type: integer
+        situacao:
+          type: integer
+      x-examples:
+        Example 1:
+          size: 1
+          idCidade: 1
+          job: 1
+          situacao: 1
   securitySchemes: {}
 x-extension-1: null
