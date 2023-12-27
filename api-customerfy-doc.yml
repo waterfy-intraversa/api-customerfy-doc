@@ -21480,6 +21480,104 @@ paths:
                   type: string
                   x-stoplight:
                     id: l8doxfvud3o80
+  /cadastro/consolidacao-faturas/rastrear/consolidacao:
+    get:
+      summary: Consolidação Faturas - Rastrear consolidação
+      tags:
+        - Cadastro
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsolidacaoArrecadacaoDtoModel'
+      operationId: get-cadastro-consolidacao-faturas-rastrear-consolidacao
+      x-stoplight:
+        id: bvo245mqu6h2e
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idConsolidacao
+  /serasa/valida/dados/pessoa-fisica:
+    post:
+      summary: Serasa - Valida dados pessoa fisica
+      operationId: post-serasa-valida-dados-pessoa-fisica
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClienteDtoModel'
+      x-stoplight:
+        id: qqbrjliqq8tr2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cpf:
+                  type: string
+                  x-stoplight:
+                    id: 34svog5lsqvu4
+                cliente:
+                  $ref: '#/components/schemas/ClienteDtoModel'
+                  x-stoplight:
+                    id: nlxykelq7rtad
+      tags:
+        - Serasa
+  /serasa/valida/dados/pessoa-juridica:
+    get:
+      summary: Serasa - Valida dados pessoa juridica
+      tags:
+        - Serasa
+      responses:
+        '206':
+          description: Partial Content
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-serasa-valida-dados-pessoa-juridica
+      x-stoplight:
+        id: 2denaktq3xwvx
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: cnpj
+  /serasa/valida/documento:
+    post:
+      summary: Serasa - Valida documento
+      operationId: post-serasa-valida-documento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidacaoDocumentoDtoModel'
+      x-stoplight:
+        id: 4kc5y1lduldbx
+      tags:
+        - Serasa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                documento:
+                  type: string
+                  x-stoplight:
+                    id: oi2v67cldy7jt
+                clienteDto:
+                  $ref: '#/components/schemas/ClienteDtoModel'
+                  x-stoplight:
+                    id: e6cj7nkvmtccp
 components:
   schemas:
     CriarLigacaoModel:
@@ -83848,5 +83946,22 @@ components:
           idCidade: 1
           job: 1
           situacao: 1
+    ValidacaoDocumentoDtoModel:
+      type: object
+      properties:
+        pessoaFisica:
+          type: boolean
+        pessosJuridica:
+          type: boolean
+        cpfJaCadastro:
+          type: boolean
+        cnpjJaCadadastro:
+          type: boolean
+      x-examples:
+        Example 1:
+          pessoaFisica: false
+          pessosJuridica: false
+          cpfJaCadastro: false
+          cnpjJaCadadastro: false
   securitySchemes: {}
 x-extension-1: null
