@@ -21593,6 +21593,35 @@ paths:
       operationId: get-faturamento-parametros-cadastro-unidade-operacional
       x-stoplight:
         id: t9magqb99x543
+  /calculo-faturamento/simular-dados/proporcional:
+    post:
+      summary: Cálculo de Faturamento - Simular dados proporcional
+      operationId: post-calculo-faturamento-simular-dados-proporcional
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SimulacaoDtoModel'
+                  x-stoplight:
+                    id: r213xqjn4en72
+      x-stoplight:
+        id: rmsjcroxlz96u
+      tags:
+        - Calculo-Faturamento
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                simulacao:
+                  $ref: '#/components/schemas/SimulacaoDadosDtoModel'
+                  x-stoplight:
+                    id: vwlnolsb0xtuz
 components:
   schemas:
     CriarLigacaoModel:
