@@ -21578,6 +21578,21 @@ paths:
                   $ref: '#/components/schemas/ClienteDtoModel'
                   x-stoplight:
                     id: e6cj7nkvmtccp
+  /faturamento/parametros/cadastro/unidade-operacional:
+    get:
+      summary: Faturamento - Obter parâmetros cadastro por unidade operacional
+      tags:
+        - Faturamento
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CAParametrosCadastroModel'
+      operationId: get-faturamento-parametros-cadastro-unidade-operacional
+      x-stoplight:
+        id: t9magqb99x543
 components:
   schemas:
     CriarLigacaoModel:
