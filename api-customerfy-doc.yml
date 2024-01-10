@@ -21622,6 +21622,106 @@ paths:
                   $ref: '#/components/schemas/SimulacaoDadosDtoModel'
                   x-stoplight:
                     id: vwlnolsb0xtuz
+  /medicao/salvar/retorno/leitura/manual:
+    post:
+      summary: Medição - Salvar retorno leitura manual
+      operationId: post-medicao-salvar-retorno-leitura-manual
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: wgnid23m0f3yt
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idGrupo:
+                  type: integer
+                  x-stoplight:
+                    id: 9a793p7bomouz
+                i_idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: 6lfjhsoye0pet
+                i_coletor:
+                  $ref: '#/components/schemas/ColetorDtoModel'
+                  x-stoplight:
+                    id: okzl3iazn5zer
+  /medicao/retornar/leitura/manual:
+    post:
+      summary: Medição - Retornar leitura manual
+      operationId: post-medicao-retornar-leitura-manual
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ColetorDetalheDtoModel'
+      x-stoplight:
+        id: 4kld5xfxoae2l
+      tags:
+        - Medição
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                i_idGrupo:
+                  type: integer
+                  x-stoplight:
+                    id: m4d8q9p2pyrut
+                i_idPeriodo:
+                  type: integer
+                  x-stoplight:
+                    id: 86z5eykdauhyn
+                i_dado:
+                  $ref: '#/components/schemas/ColetorDetalheDtoModel'
+                  x-stoplight:
+                    id: ykgpnk2hxyrzh
+                m_considerarDiasConsumo:
+                  type: string
+                  x-stoplight:
+                    id: ojkk8ws5of0ez
+                m_dataLeitura:
+                  type: string
+                  x-stoplight:
+                    id: 4y6bxffgj99sa
+  /medicao/carregar/retorno/manual:
+    get:
+      summary: Medição - Carregar retorno manual
+      tags:
+        - Medição
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ColetorDtoModel'
+                  x-stoplight:
+                    id: 0eqels1v22yjj
+      operationId: get-medicao-carregar-retorno-manual
+      x-stoplight:
+        id: p07nvregtfakm
+      requestBody:
+        content: {}
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: string
+          in: query
+          name: i_idPeriodo
 components:
   schemas:
     CriarLigacaoModel:
