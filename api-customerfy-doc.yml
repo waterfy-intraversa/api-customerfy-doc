@@ -1166,7 +1166,7 @@ paths:
           in: query
           name: filtro
     parameters: []
-  /cadastro/ligacao/facilitador-roteiro:
+  /cadastro/ligacao/carrega/facilitador-roteiro:
     get:
       summary: Cadastro Ligação - Carrega facilitador roteiro
       responses:
@@ -1193,6 +1193,9 @@ paths:
           name: i_inscricao
       tags:
         - Ligação
+      x-stoplight:
+        id: c65x1rxol1pn9
+    parameters: []
   /comum/listar-parametro:
     get:
       summary: Comum - Listar Parâmetro String
@@ -21794,6 +21797,65 @@ paths:
             type: integer
           in: query
           name: idTipoEntrega
+  /cadastro/ligacao/carrega/facilitador-roteiro/logradouro:
+    get:
+      summary: Ligação - Carrega facilitador roteiro logradouro
+      tags:
+        - CadastroLigação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FacilitadorRoteiroDtoModel'
+                  x-stoplight:
+                    id: xsh174epvj9vv
+      operationId: get-cadastro-ligacao-carrega-facilitador-roteiro-logradouro
+      x-stoplight:
+        id: nei7nckgjwagr
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idLogradouro
+        - schema:
+            type: integer
+          in: query
+          name: nrIm
+  /cadastro/ligacao/carrega/facilitador-roteiro/identificacao:
+    get:
+      summary: Ligação - Carrega facilitador roteiro identificação
+      tags:
+        - CadastroLigação
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FacilitadorRoteiroDtoModel'
+                  x-stoplight:
+                    id: 06v19qc64tvfa
+      operationId: get-cadastro-ligacao-carrega-facilitador-roteiro-identificacao
+      x-stoplight:
+        id: 20ubhh534nfgt
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: i_idGrupo
+        - schema:
+            type: integer
+          in: query
+          name: i_setor
+  /cadastro/ligacao/facilitador-roteiro:
+    get:
+      description: ''
 components:
   schemas:
     CriarLigacaoModel:
