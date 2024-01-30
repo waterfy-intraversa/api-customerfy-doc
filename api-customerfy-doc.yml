@@ -21722,6 +21722,78 @@ paths:
             type: string
           in: query
           name: i_idPeriodo
+  /ligacao/verifica/bloqueio/endereco/entrega:
+    get:
+      summary: Ligação - Verifica bloqueio endereço entrega
+      tags:
+        - Ligação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-ligacao-verifica-bloqueio-endereco-entrega
+      x-stoplight:
+        id: q4ttycg5w2jmu
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idTipoEntrega
+  /ligacao/verifica/limpar/endereco/entrega:
+    get:
+      summary: Ligação - Verifica limpar endereço entrega
+      tags:
+        - Ligação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: boolean
+      operationId: get-ligacao-verifica-limpar-endereco-entrega
+      x-stoplight:
+        id: 0s51nqzdtidsg
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idTipoEntrega
+  /ligacao/verifica/tipo-entrega/no-local:
+    get:
+      summary: Ligação - Verifica tipo entrega no local
+      tags:
+        - Ligação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+      operationId: get-ligacao-verifica-tipo-entrega-no-local
+      x-stoplight:
+        id: r3w60is9v3pu9
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: idCidade
+        - schema:
+            type: integer
+          in: query
+          name: idTipoEntrega
 components:
   schemas:
     CriarLigacaoModel:
