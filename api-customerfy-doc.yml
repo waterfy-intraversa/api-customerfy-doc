@@ -21856,6 +21856,59 @@ paths:
   /cadastro/ligacao/facilitador-roteiro:
     get:
       description: ''
+  /automacao/arrecadacao/id-cidade:
+    post:
+      summary: Automação - Arrecadação por id cidade
+      tags:
+        - Automação
+      responses: {}
+      operationId: post-automacao-arrecadacao-id-cidade
+      x-stoplight:
+        id: 7ypu11n1ybms8
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: 0q18pd7psaype
+  /automacao/processo-cobranca:
+    post:
+      summary: Automação - Processo cobrança
+      tags:
+        - Automação
+      responses: {}
+      operationId: post-automacao-processo-cobranca
+      x-stoplight:
+        id: xf9s1unfyhm8o
+  /automacao/processo-cobranca/id-cidade:
+    post:
+      summary: Automação - Processo cobrança por id cidade
+      tags:
+        - Automação
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: integer
+      operationId: post-automacao-processo-cobranca-id-cidade
+      x-stoplight:
+        id: 24eqtvbaaox4f
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idCidade:
+                  type: integer
+                  x-stoplight:
+                    id: yk36k3jusuxur
 components:
   schemas:
     CriarLigacaoModel:
